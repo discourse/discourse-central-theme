@@ -1,0 +1,107 @@
+// melon
+
+.melon__wrapper {
+  @extend .elevation;
+}
+
+.melon__chart {
+  margin: 0;
+  counter-reset: item;
+  * {
+    max-width: 100%;
+  }
+}
+
+.melon__entry {
+  display: flex;
+  position: relative;
+  &:before {
+    font-size: var(--font-down-1);
+    content: counter(item) ".";
+    counter-increment: item;
+    position: absolute;
+    left: -0.375em;
+    top: 0;
+    width: 2ch;
+    text-align: right;
+  }
+  &:not(:last-child) {
+    margin-bottom: 0.75em;
+  }
+  > *:not(:last-child) {
+    padding-right: 0.5em;
+  }
+  padding-left: 1.25em;
+}
+
+.melon__header {
+  img {
+    width: 3.5em;
+    height: fit-content;
+  }
+  span {
+    @extend .detail;
+  }
+  margin-bottom: 1.25em;
+  display: flex;
+  justify-content: space-between;
+}
+
+.melon__art {
+  img {
+    width: 4em;
+    height: auto;
+    @extend .shadow-sm;
+  }
+}
+
+.melon__entry:not(:first-child) .melon__art {
+  display: none;
+}
+
+.melon__title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: var(--font-down-1);
+}
+
+.melon__title-up {
+  &:before {
+    content: "+";
+  }
+  color: var(--green);
+  display: inline-flex;
+  flex-basis: 1;
+}
+
+.melon__title-down {
+  &:before {
+    content: "-";
+  }
+  color: var(--red);
+  display: inline-flex;
+  flex-basis: 1;
+}
+
+.melon__artist {
+  font-size: var(--font-down-2);
+}
+
+.melon__expand {
+  span {
+    @extend .detail;
+  }
+  text-align: center;
+  padding-top: 0.25em;
+  margin-top: 1em;
+  border-top: 1px solid var(--primary-low);
+}
+
+.footer__links {
+  li {
+    @extend .detail;
+  }
+  list-style-type: none;
+  margin: 0;
+}

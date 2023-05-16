@@ -1,0 +1,32 @@
+{
+  "about_url": null,
+  "license_url": null,
+  "assets": {},
+  "name": "Central",
+  "color_schemes": {
+    "Central Dark": {
+      "primary": "E1E1E1",
+      "secondary": "121212",
+      "tertiary": "555555",
+      "quaternary": "006937",
+      "header_background": "121212",
+      "header_primary": "E1E1E1",
+      "highlight": "CEDFD7",
+      "danger": "A92E2E",
+      "success": "1ca551",
+      "love": "fa6c8d"
+    },
+    "Central Light": {
+      "primary": "121212",
+      "secondary": "ffffff",
+      "tertiary": "555555",
+      "quaternary": "006937",
+      "header_background": "ffffff",
+      "header_primary": "121212",
+      "highlight": "CEDFD7",
+      "danger": "A92E2E",
+      "success": "1ca551",
+      "love": "fa6c8d"
+    }
+  }
+}

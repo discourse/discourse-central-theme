@@ -1,0 +1,37 @@
+@import "melon";
+
+.list-controls {
+  grid-area: right;
+  grid-column: span 2 / span 2;
+  order: 3;
+  align-self: flex-start;
+  top: calc(var(--header-offset) + 1.5em);
+}
+
+#create-topic {
+  display: none;
+  background: var(--primary);
+  width: 100%;
+  color: var(--secondary);
+  font-size: var(--font-up-1);
+  font-weight: 700;
+  padding: 0.5em 0;
+  margin-right: 0;
+  .d-icon {
+    color: inherit;
+  }
+}
+
+.navigation-controls {
+  &,
+  button {
+    width: 100%;
+  }
+  > * {
+    width: 100%;
+    white-space: initial;
+    &:not(:last-child) {
+      margin-right: 0;
+    }
+  }
+}

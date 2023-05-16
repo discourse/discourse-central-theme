@@ -1,0 +1,22 @@
+<nav class="sidebar-left">
+  <ul class="sidebar-left__links">
+    <li class="sidebar-left__link">
+      <a class="badge-wrapper bullet" href="/">
+        <span data-drop-close="true" class="badge-category clear-badge">
+          <span class="category-badge-icon">
+            
+          </span>
+          <span class="category-name">
+            Home
+          </span>
+        </span>
+      </a>
+    </li>
+
+    {{#each site.categories as |category|}}
+      <li class="sidebar-left__link">
+        {{category-link category}}
+      </li>
+    {{/each}}
+  </ul>
+</nav>

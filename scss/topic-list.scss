@@ -1,0 +1,20 @@
+.username {
+  //   font-weight: 600;
+}
+.name {
+  font-weight: 700;
+}
+
+.topic-list-item.visited .topic-list-data,
+.latest-topic-list-item.visited,
+.category-topic-link.visited {
+  a.title:not(.badge-notification) {
+    color: var(--primary);
+  }
+  span.badge-category {
+    color: var(--primary-medium);
+  }
+  a.discourse-tag {
+    color: var(--primary-medium);
+  }
+}

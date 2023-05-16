@@ -1,0 +1,3 @@
+apiKey:
+  type: string
+  default: 123

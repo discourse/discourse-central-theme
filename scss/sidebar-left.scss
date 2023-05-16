@@ -1,0 +1,28 @@
+.sidebar-left__links {
+  list-style: None;
+  margin: 0;
+}
+
+.sidebar-left__link {
+  &:nth-child(2) {
+    // hide uncategorized
+    display: none;
+  }
+  &:not(:last-child) {
+    margin-bottom: 0.375em;
+  }
+  a {
+    display: flex;
+    padding: 0.5em 1em;
+    border-radius: 0.375em;
+    font-size: var(--font-up-1);
+    font-weight: 700;
+    margin-right: 0 !important;
+    &.active {
+      background: var(--primary-300);
+    }
+    &:hover:not(.active) {
+      background: var(--primary-200);
+    }
+  }
+}

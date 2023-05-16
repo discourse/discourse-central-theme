@@ -1,0 +1,56 @@
+{{log "currentUser:" currentUser}}
+{{#if currentUser.username}}
+  <div class="user__wrapper has-banner">
+    {{#if banner}}
+      <div
+        class="user__banner"
+        style={{concat "background-image: url(" banner ")"}}
+      >
+      </div>
+    {{else}}
+      <div class="user__banner">
+      </div>
+    {{/if}}
+    <div class="user__wrapper--inner">
+      <div class="user__avatar">
+        {{#if currentUser.animated_avatar}}
+          {{bound-avatar-template currentUser.animated_avatar "huge"}}
+        {{else}}
+          {{bound-avatar-template currentUser.avatar_template "huge"}}
+        {{/if}}
+      </div>
+      {{#if currentUser.name}}
+        <h3 class="user__name">
+          {{currentUser.name}}
+        </h3>
+      {{/if}}
+      <div class="user__handle username">
+        <a href={{concat "/u/" currentUser.username}}>
+          {{currentUser.username}}
+        </a>
+      </div>
+      <p class="user__bio">
+        {{html-safe bio}}
+      </p>
+      {{! <p class="user__status">
+      {{currentUser.status.emoji.src
+      {{currentUser.status.description
+    </p> }}
+      <div class="user__view">
+        <a href={{concat "/u/" currentUser.username "/preferences/profile"}}>
+          <button class="btn">
+            Edit Profile
+          </button>
+        </a>
+      </div>
+    </div>
+  </div>
+{{else}}
+  <div class="user__wrapper">
+    <div class="user__view">
+      <button class="btn">
+        Login
+      </button>
+    </div>
+  </div>
+{{/if}}
