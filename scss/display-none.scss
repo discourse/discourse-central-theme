@@ -1,0 +1,6 @@
+.topic-list .topic-list-item-separator {
+  display: none;
+}
+.topic-list > .topic-list-body > .topic-list-item.last-visit {
+  border-bottom: var(--border);
+}

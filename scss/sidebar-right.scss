@@ -1,6 +1,24 @@
 @import "melon";
 
+.topic-navigation {
+  grid-area: right;
+}
+
+.sidebar-right {
+  grid-area: right;
+  display: flex;
+  padding: 1.5em 0;
+  grid-column: span 2;
+  order: 3;
+  flex-direction: column;
+  gap: 1em;
+  @include breakpoint(medium) {
+    display: none;
+  }
+}
+
 .list-controls {
+  display: none;
   grid-area: right;
   grid-column: span 2 / span 2;
   order: 3;
@@ -34,4 +52,107 @@
       margin-right: 0;
     }
   }
+}
+
+// user
+
+.user__wrapper {
+  @extend .elevation;
+  overflow: hidden;
+  text-align: center;
+  padding: 0 !important;
+}
+
+.user__wrapper--inner {
+  padding: var(--elevation-pad);
+}
+
+.user__banner {
+  background-color: var(--primary-100);
+  background-position: 50% 50%;
+  // position: absolute;
+  // z-index: 0;
+  // top: 0;
+  // left: 0;
+  // height: 0;
+  margin-bottom: calc((var(--elevation-pad) * -1) - (var(--avatar-size) / 2));
+  padding-bottom: 40%; // 5:2 ratio
+  width: 100%;
+  background-size: cover;
+}
+
+img.avatar {
+  object-fit: cover;
+}
+
+.user__avatar {
+  img {
+    background: var(--primary-50);
+    border-radius: 50%;
+    border: 0.25em solid var(--primary-50);
+    max-width: var(--avatar-size);
+    height: var(--avatar-size);
+    box-sizing: border-box;
+  }
+  position: relative;
+  z-index: 1;
+
+  margin-bottom: 0.5em;
+}
+
+.user__name {
+  margin-bottom: 0;
+}
+
+.user__handle {
+  line-height: 1;
+  a {
+    color: var(--primary-500);
+    font-size: var(--font-down-1);
+  }
+}
+
+.user__bio {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  font-size: var(--font-down-1);
+  overflow: hidden;
+  line-height: var(--line-height-large);
+}
+
+span.second.username a {
+  color: var(--primary-medium);
+}
+
+.username a {
+  display: inline-flex;
+  &:before {
+    content: "@";
+  }
+}
+
+// stats
+
+.stats__wrap {
+  @extend .elevation;
+}
+
+.stats__users {
+  list-style-type: none;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.stats__user {
+  &:not(:last-child):after {
+    content: ",\a0";
+  }
+  display: inline-flex;
+}
+
+.stats__total {
+  @extend .detail;
+  margin-top: 1em;
 }

@@ -1,28 +1,100 @@
-.sidebar-left__links {
-  list-style: None;
+.sidebar-left {
+  grid-area: left;
+  grid-column: span 2;
+  position: sticky;
+  top: var(--header-offset);
+  padding-top: 1.5em;
+  height: calc(100vh - var(--header-offset) - 1.5em);
+  overflow-y: scroll;
+  overscroll-behavior: contain;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.sidebar-left__wrapper {
+  --gap: 0em;
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+}
+
+.sidebar-left__section {
+  list-style: none;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+}
+
+svg.svg-icon {
+  transform: initial;
+}
+.badge-wrapper .badge-category .d-icon,
+.badge-wrapper .badge-category .category-badge-icon__emoji {
   margin: 0;
 }
 
-.sidebar-left__link {
-  &:nth-child(2) {
-    // hide uncategorized
-    display: none;
+.sidebar-left__toggle {
+  display: flex;
+  width: 100%;
+  padding: 0 1em;
+  height: 3em;
+  align-items: center;
+  border-radius: 0.375em;
+  border: 0;
+  background: none;
+  gap: 0.5em;
+  font-weight: 600;
+  &:hover {
+    background: var(--primary-50);
   }
-  &:not(:last-child) {
-    margin-bottom: 0.375em;
+  .d-icon {
+    width: 1.25em;
+  }
+  &:not(.active) {
+    .d-icon {
+      transform: rotate(-90deg);
+    }
+  }
+}
+
+.sidebar-left__link {
+  &:empty {
+    display: none;
   }
   a {
     display: flex;
-    padding: 0.5em 1em;
+    padding: 0 1em;
+    height: 3em;
+    align-items: center;
     border-radius: 0.375em;
-    font-size: var(--font-up-1);
-    font-weight: 700;
-    margin-right: 0 !important;
+    .category-name {
+      color: var(--primary);
+    }
     &.active {
-      background: var(--primary-300);
+      background: var(--primary-100);
     }
     &:hover:not(.active) {
-      background: var(--primary-200);
+      background: var(--primary-50);
+    }
+  }
+
+  .badge-wrapper {
+    .badge-category {
+      gap: 1em;
+      .category-badge-icon {
+        font-size: 1.25em;
+      }
+      .category-name {
+        font-weight: 400;
+      }
+    }
+    &.none {
+      margin: 0;
     }
   }
 }

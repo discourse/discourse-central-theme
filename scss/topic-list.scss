@@ -18,3 +18,44 @@
     color: var(--primary-medium);
   }
 }
+
+.topic-list-main-link {
+  font-size: var(--font-up-1);
+  a.title {
+    padding: 15px 0;
+    word-break: break-word;
+    color: var(--primary);
+  }
+
+  .anon & {
+    a.title:visited:not(.badge-notification) {
+      color: var(--primary-medium);
+    }
+  }
+
+  a.title.visited:not(.badge-notification) {
+    color: var(--primary-medium);
+  }
+}
+
+.topic-list .main-link a.title {
+  font-size: 1em;
+}
+
+.topic-list-main-link,
+.latest-topic-list-item .main-link,
+.topic-list .main-link {
+  font-size: unset;
+}
+
+.topic-list-item,
+tr {
+  border-color: var(--primary-100);
+}
+
+.topic-list-bottom {
+  padding: 0 1em;
+  .footer-message {
+    padding: 0;
+  }
+}

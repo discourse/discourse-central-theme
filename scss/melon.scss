@@ -51,7 +51,7 @@
   img {
     width: 4em;
     height: auto;
-    @extend .shadow-sm;
+    box-shadow: var(--shadow-sm);
   }
 }
 

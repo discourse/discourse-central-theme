@@ -1,10 +1,10 @@
-<nav class="sidebar-left">
-  <ul class="sidebar-left__links">
+<nav class="sidebar-left__wrapper">
+  <ul class="sidebar-left__section">
     <li class="sidebar-left__link">
-      <a class="badge-wrapper bullet" href="/">
+      <a class="badge-wrapper none" href="/">
         <span data-drop-close="true" class="badge-category clear-badge">
           <span class="category-badge-icon">
-            
+            {{d-icon "home"}}
           </span>
           <span class="category-name">
             Home
@@ -12,11 +12,31 @@
         </span>
       </a>
     </li>
-
-    {{#each site.categories as |category|}}
-      <li class="sidebar-left__link">
-        {{category-link category}}
-      </li>
-    {{/each}}
+    <li class="sidebar-left__link">
+      <a class="badge-wrapper none" href="/u/{{currentUser.username}}/messages">
+        <span data-drop-close="true" class="badge-category clear-badge">
+          <span class="category-badge-icon">
+            {{d-icon "m-mail"}}
+          </span>
+          <span class="category-name">
+            Messages
+          </span>
+        </span>
+      </a>
+    </li>
+    <li class="sidebar-left__link">
+      <a class="badge-wrapper none" href="/admin">
+        <span data-drop-close="true" class="badge-category clear-badge">
+          <span class="category-badge-icon">
+            {{d-icon "wrench"}}
+          </span>
+          <span class="category-name">
+            Admin
+          </span>
+        </span>
+      </a>
+    </li>
   </ul>
+
+  {{sidebar-left-accordion}}
 </nav>

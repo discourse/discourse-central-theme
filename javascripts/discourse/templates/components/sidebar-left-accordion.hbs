@@ -1,0 +1,18 @@
+<button
+  class="sidebar-left__toggle {{if isActive 'active'}}"
+  {{on "click" this.toggleAccordion}}
+>
+  {{d-icon "chevron-down"}}
+  <span>
+    {{i18n "js.filters.categories.title"}}
+  </span>
+</button>
+
+<ul class="sidebar-left__section {{if isActive '' 'hidden'}}">
+  {{#each site.categories as |category|}}
+    {{log "category:" site.categories}}
+    <li class="sidebar-left__link">
+      {{~category-link category~}}
+    </li>
+  {{/each}}
+</ul>
