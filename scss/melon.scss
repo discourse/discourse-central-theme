@@ -42,7 +42,7 @@
   span {
     @extend .detail;
   }
-  margin-bottom: 1.25em;
+  margin-bottom: 0.5em;
   display: flex;
   justify-content: space-between;
 }
@@ -51,7 +51,7 @@
   img {
     width: 4em;
     height: auto;
-    box-shadow: var(--shadow-sm);
+    // box-shadow: var(--shadow-sm);
   }
 }
 

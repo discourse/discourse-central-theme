@@ -2,19 +2,12 @@
 
 <div class="stats__wrap">
   <h3 class="stats__heading">
-    Online Users
+    Online Members
   </h3>
   <ul class="stats__users">
-    {{#each stats as |activeUser|}}
-      <li class="stats__user">
-        <a data-user-card={{activeUser}}>
-          {{activeUser}}
-        </a>
-      </li>
-    {{/each}}
   </ul>
   <div class="stats__total">
-    {{stats.length}} total
+    total
   </div>
   <div class="stats__total">
     {{total}} registered users

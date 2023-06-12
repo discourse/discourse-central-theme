@@ -59,3 +59,20 @@ tr {
     padding: 0;
   }
 }
+
+.topic-filter {
+  margin: 0 2em 0 auto;
+  border: 0;
+  background: 0;
+  width: 5em;
+  justify-self: flex-end;
+  option {
+    padding: 0;
+  }
+}
+
+.topic-list-header {
+  svg {
+    font-size: 1.25em;
+  }
+}

@@ -1,4 +1,5 @@
-{{log "currentUser:" currentUser}}
+{{log currentUser}}
+
 {{#if currentUser.username}}
   <div class="user__wrapper has-banner">
     {{#if banner}}
@@ -32,6 +33,12 @@
       <p class="user__bio">
         {{html-safe bio}}
       </p>
+      <span class="user__link">
+        {{d-icon "globe"}}
+        <a href={{website}}>
+          {{website_name}}
+        </a>
+      </span>
       {{! <p class="user__status">
       {{currentUser.status.emoji.src
       {{currentUser.status.description

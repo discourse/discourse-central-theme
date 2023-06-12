@@ -1,7 +1,7 @@
 <th data-sort-order='{{order}}' class='{{view.className}} topic-list-data' scope="col" {{#if ariaLabel}}aria-label='{{ariaLabel}}'{{/if}} {{#if sortable}}tabindex="0" role="button" aria-pressed='{{view.ariaPressed}}' {{#if view.ariaSort}}aria-sort='{{view.ariaSort}}'{{/if}} {{/if}}>
   {{~#if canBulkSelect}}
     {{~#if showBulkToggle}}
-      {{raw "flat-button" class="bulk-select" icon="list" title="topics.bulk.toggle"}}
+      {{raw "flat-button" class="bulk-select" icon="home" title="topics.bulk.toggle"}}
     {{/if ~}}
     {{~#if bulkSelectEnabled}}
       <span class='bulk-select-topics'>
@@ -13,10 +13,23 @@
       </span>
     {{/if ~}}
   {{/if ~}}
-  <span>{{view.localizedName}}</span>
+  <span>Home</span>
   {{~#if view.isSorting}}
     {{d-icon view.sortIcon}}
   {{/if ~}}
-
-  
+{{log this}}
+  <select class="topic-filter" onchange="openLink()">
+  <option value="" selected>
+    Latest
+  </option>
+  <option value="https://example.com">
+    Unread
+  </option>
+  <option value="https://example.org">
+    Most Replies
+  </option>
+  <option value="https://example.net">
+    Most Views
+  </option>
+</select>
 </th>

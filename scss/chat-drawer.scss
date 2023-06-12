@@ -16,19 +16,20 @@
   transform: translateX(-50%);
   .chat-drawer {
     grid-column: 7 / -1;
-    height: calc(100vh - var(--header-offset) - 3em) !important;
+    height: calc(100vh - var(--header-offset) - 1.5em) !important;
     width: 100% !important;
     max-width: unset;
     .chat-drawer-container {
       box-shadow: none;
-      background: var(--primary-50);
-      border: 0;
-      padding: 1em;
+      background: var(--secondary);
+      border: var(--border);
+      //   padding: 1em;
 
-      border-radius: var(--border-radius-sm);
+      border-radius: var(--border-radius-sm) var(--border-radius-sm) 0 0;
       .chat-drawer-header {
         border: 0;
-        padding: 0;
+        padding: 1em;
+        background: 0;
         .chat-drawer-header__top-line {
           padding: unset;
           font-size: 1.25em;
@@ -40,4 +41,8 @@
 
 .chat-drawer-header__expand-btn {
   display: none;
+}
+
+.d-header-icons .header-dropdown-toggle {
+  position: unset;
 }

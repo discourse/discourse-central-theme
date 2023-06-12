@@ -1,11 +1,12 @@
 import { apiInitializer } from "discourse/lib/api"
 
 export default apiInitializer("0.11.1", (api) => {
+  api.addToHeaderIcons("header-user")
   api.onPageChange(() => {
     const activePage = window.location.href
     const homePage = window.origin + "/"
     const links = document
-      .querySelectorAll(".sidebar-left__link a")
+      .querySelectorAll(".sidebar-left__link > a")
       .forEach((link) => {
         link.classList.remove("active")
         if (

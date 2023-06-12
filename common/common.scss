@@ -5,12 +5,15 @@
 @import "header";
 @import "display-none";
 @import "chat-drawer";
+@import "topic-post";
 
 :root {
-  --heading-font-family: system-ui, Helvetica, Arial, sans-serif;
-  --font-family: system-ui, Helvetica, Arial, sans-serif;
   --d-max-width: 1280px;
   --tertiary: var(--primary);
+
+  --shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px,
+    rgba(0, 0, 0, 0.1) 0px 2px 4px 0px,
+    rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
 
   --avatar-size: 5.5em;
 
@@ -49,10 +52,8 @@ body {
 }
 
 .detail {
-  letter-spacing: 0.03em;
   font-size: 0.6875rem;
   color: var(--primary-medium);
-  text-transform: uppercase;
 }
 
 body:not(.navigation-topics):not(.navigation-categories):not(.category) {
@@ -104,7 +105,7 @@ body.archetype-banner {
 
   padding-top: 0;
 
-  @include breakpoint(medium) {
+  @include breakpoint(large) {
     grid-template-areas:
       "alerts alerts"
       "left main";
@@ -124,7 +125,7 @@ body.archetype-banner {
   background: var(--secondary);
   grid-area: main;
   grid-column: span 4;
-  @include breakpoint(medium) {
+  @include breakpoint(large) {
     grid-column: span 6;
   }
   order: 2;
@@ -333,7 +334,6 @@ body.archetype-banner {
     margin: 0;
   }
   .category-name {
-    text-transform: uppercase;
     font-size: var(--font-down-1);
   }
 }
@@ -387,62 +387,42 @@ span.category-badge-icon {
 
 // posts
 
-.post-avatar {
-  display: flex;
-  flex-wrap: wrap;
-  img.avatar {
-    width: 96px !important;
-    height: 96px !important;
-  }
-}
-.topic-avatar {
-  width: 96px;
-
-  .user-title {
-    font-size: var(--font-down-1);
-    background: var(--tertiary);
-    color: var(--secondary);
-    padding: 0.25em 0.75em;
-    margin: 1em auto 0 auto;
-  }
-}
-
 // profile
 
-.user-main {
-  .about {
-    &,
-    &.collapsed-info {
-      .details {
-        background: none;
-      }
-    }
-    &.has-background:not(.collapsed-info) {
-      .staff-counters {
-        position: absolute;
-        z-index: 1;
-      }
-      .details {
-        padding-top: 300px;
-      }
+// .user-main {
+//   .about {
+//     &,
+//     &.collapsed-info {
+//       .details {
+//         background: none;
+//       }
+//     }
+//     &.has-background:not(.collapsed-info) {
+//       .staff-counters {
+//         position: absolute;
+//         z-index: 1;
+//       }
+//       .details {
+//         padding-top: 300px;
+//       }
 
-      .user-profile-image {
-        border-radius: var(--border-radius-sm) var(--border-radius-sm) 0 0;
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-      }
-    }
-  }
-}
-.user-content {
-  background: None;
-}
+//       .user-profile-image {
+//         border-radius: var(--border-radius-sm) var(--border-radius-sm) 0 0;
+//         position: absolute;
+//         top: 0;
+//         left: 0;
+//         width: 100%;
+//       }
+//     }
+//   }
+// }
+// .user-content {
+//   background: None;
+// }
 
-.user-stream .user-stream-item {
-  background: none;
-}
+// .user-stream .user-stream-item {
+//   background: none;
+// }
 
 // reply
 

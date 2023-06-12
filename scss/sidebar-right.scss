@@ -1,5 +1,9 @@
 @import "melon";
 
+#whos-online {
+  display: none;
+}
+
 .topic-navigation {
   grid-area: right;
 }
@@ -12,13 +16,13 @@
   order: 3;
   flex-direction: column;
   gap: 1em;
-  @include breakpoint(medium) {
+  @include breakpoint(large) {
     display: none;
   }
 }
 
 .list-controls {
-  display: none;
+  //   display: none;
   grid-area: right;
   grid-column: span 2 / span 2;
   order: 3;
@@ -57,10 +61,15 @@
 // user
 
 .user__wrapper {
+  display: none;
   @extend .elevation;
   overflow: hidden;
   text-align: center;
   padding: 0 !important;
+
+  .btn {
+    border-radius: 0.375em;
+  }
 }
 
 .user__wrapper--inner {
@@ -70,11 +79,6 @@
 .user__banner {
   background-color: var(--primary-100);
   background-position: 50% 50%;
-  // position: absolute;
-  // z-index: 0;
-  // top: 0;
-  // left: 0;
-  // height: 0;
   margin-bottom: calc((var(--elevation-pad) * -1) - (var(--avatar-size) / 2));
   padding-bottom: 40%; // 5:2 ratio
   width: 100%;
@@ -89,7 +93,7 @@ img.avatar {
   img {
     background: var(--primary-50);
     border-radius: 50%;
-    border: 0.25em solid var(--primary-50);
+    border: 0.375em solid var(--primary-50);
     max-width: var(--avatar-size);
     height: var(--avatar-size);
     box-sizing: border-box;
@@ -102,13 +106,14 @@ img.avatar {
 
 .user__name {
   margin-bottom: 0;
+  font-size: 1.25em;
 }
 
 .user__handle {
   line-height: 1;
   a {
     color: var(--primary-500);
-    font-size: var(--font-down-1);
+    font-size: 0.875em;
   }
 }
 
@@ -116,9 +121,15 @@ img.avatar {
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
-  font-size: var(--font-down-1);
+  font-size: 0.875em;
   overflow: hidden;
   line-height: var(--line-height-large);
+}
+.user__link {
+  display: none;
+  font-size: 0.875em;
+  padding-bottom: 1em;
+  display: inline-block;
 }
 
 span.second.username a {

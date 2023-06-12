@@ -6,6 +6,8 @@ import { tracked } from "@glimmer/tracking"
 export default class UserBlock extends Component {
   @tracked banner = null
   @tracked bio = null
+  @tracked website = null
+  @tracked website_name = null
   @tracked currentUser = null
 
   constructor() {
@@ -19,11 +21,13 @@ export default class UserBlock extends Component {
       ajax(currentUserUrl).then((data) => {
         this.banner = data.user.profile_background_upload_url
         this.bio = data.user.bio_excerpt
+        this.website = data.user.website
+        this.website_name = data.user.website_name
       })
     }
   }
 
   // willDestroy() {
-  //   this.userBlock = null
+  //   this.currentUser = null
   // }
 }
