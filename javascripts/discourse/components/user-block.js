@@ -19,15 +19,23 @@ export default class UserBlock extends Component {
       const currentUserUrl = "/u/" + this.currentUser.username + ".json"
 
       ajax(currentUserUrl).then((data) => {
-        this.banner = data.user.profile_background_upload_url
-        this.bio = data.user.bio_excerpt
-        this.website = data.user.website
-        this.website_name = data.user.website_name
+        this.updateUserData(data.user)
       })
     }
   }
 
-  // willDestroy() {
-  //   this.currentUser = null
-  // }
+  updateUserData(user) {
+    this.banner = user.profile_background_upload_url
+    this.bio = user.bio_excerpt
+    this.website = user.website
+    this.website_name = user.website_name
+  }
+
+  willDestroy() {
+    this.currentUser = null
+    this.banner = null
+    this.bio = null
+    this.website = null
+    this.website_name = null
+  }
 }

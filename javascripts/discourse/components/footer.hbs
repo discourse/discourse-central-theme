@@ -1,0 +1,11 @@
+<footer>
+  <ul class="footer__links">
+    {{#each footerLinks as |link|}}
+      <li>
+        <a href={{link.url}}>
+          {{link.title}}
+        </a>
+      </li>
+    {{/each}}
+  </ul>
+</footer>

@@ -1,0 +1,34 @@
+<button
+  class="dc-create-post {{if isActive 'active'}}"
+  {{on "click" this.toggleDropdown}}
+>
+  <div>
+    {{d-icon "pencil-alt"}}
+  </div>
+
+  <ul style={{concat "display: none" (if isActive "display: flex")}}>
+    <li>
+      <LinkTo @route="user.summary" @model={{this.currentUser}}>
+        {{d-icon "user"}}
+        <span>
+          My Profile
+        </span>
+      </LinkTo>
+    </li>
+    <li>
+      <LinkTo @route="userActivity.drafts" @model={{this.currentUser}}>
+        {{d-icon "pencil-alt"}}
+        <span>
+          {{#if this.currentUser.draft_count}}
+            {{i18n
+              "drafts.label_with_count"
+              count=this.currentUser.draft_count
+            }}
+          {{else}}
+            {{i18n "drafts.label"}}
+          {{/if}}
+        </span>
+      </LinkTo>
+    </li>
+  </ul>
+</button>

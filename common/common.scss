@@ -11,23 +11,29 @@
   --d-max-width: 1280px;
   --tertiary: var(--primary);
 
+  --shadow-sm: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
   --shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px,
     rgba(0, 0, 0, 0.1) 0px 2px 4px 0px,
     rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
 
   --avatar-size: 5.5em;
 
-  --border-radius-sm: 0.75em;
-  --border-radius-md: 1em;
-  --border-radius-lg: 1.5em;
+  --rounded-none: 0;
+  --rounded-sm: 0.125em;
+  --rounded: 0.25em;
+  --rounded-md: 0.375em;
+  --rounded-lg: 0.5em;
+  --rounded-xl: 0.75em;
+  --rounded-2xl: 1em;
+  --rounded-3xl: 1.5em;
+  --rounded-full: 9999px;
 
   --border: 1px solid var(--primary-100);
 
-  --shadow-sm: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+  --base-font-size: 16px;
 }
 
 html {
-  font-size: 16px;
   overscroll-behavior: contain;
 }
 
@@ -35,6 +41,14 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+// material icon set size reset
+
+svg.svg-icon {
+  transform: initial;
+}
+
+// end
 
 .wrap {
   padding: 0 1em;
@@ -46,7 +60,7 @@ body {
   --elevation-pad: 1.5em;
   position: relative;
   padding: var(--elevation-pad);
-  border-radius: var(--border-radius-sm);
+  border-radius: var(--rounded-xl);
   height: fit-content;
   background: var(--primary-50);
 }
@@ -431,9 +445,9 @@ span.category-badge-icon {
   width: calc(100% - 4em);
   box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
   background: var(--grey3);
-  border-radius: 1.5em;
+  border-radius: var(--rounded-3xl);
   .reply-area {
-    padding: 1.5em;
+    padding: var(--rounded-3xl);
   }
   &.fullscreen {
     bottom: 0;

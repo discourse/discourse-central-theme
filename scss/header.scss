@@ -14,7 +14,7 @@
 }
 
 #current-user {
-  display: none;
+  // display: none;
 }
 
 .d-header {
@@ -55,11 +55,14 @@
   display: none;
 }
 
+.before-header-panel-outlet {
+  grid-area: search;
+  grid-column: span 4;
+}
+
 .floating-search-input {
   width: 100%;
   // visibility: hidden;
-  grid-area: search;
-  grid-column: span 4;
 
   .search-banner {
     height: 100%;
@@ -107,13 +110,13 @@
           width: 100%;
           display: flex;
           padding: 0;
-          border-radius: var(--border-radius-lg);
+          border-radius: var(--rounded-3xl);
 
           #search-term {
             border: 1px solid transparent;
             height: 100%;
             margin: 0;
-            border-radius: var(--border-radius-lg);
+            border-radius: var(--rounded-3xl);
             padding: 0.5em 0.5em 0.5em 4em;
             color: var(--primary-600);
             background: var(--primary-50);
@@ -130,7 +133,7 @@
             display: none;
           }
           background: var(--secondary);
-          border-radius: var(--border-radius-sm);
+          border-radius: var(--rounded-xl);
           margin-top: 0.5em;
           padding: 0.5em;
           box-sizing: border-box;
@@ -151,5 +154,83 @@
         }
       }
     }
+  }
+}
+
+.sidebar-left__user {
+  width: 100%;
+  border: 0;
+  padding: 0;
+  // position: relative;
+  overflow: visible;
+
+  .sidebar-left__name {
+    display: none;
+  }
+
+  background: none;
+
+  .sidebar-left__user-menu {
+    box-shadow: var(--shadow);
+    background: var(--secondary);
+    position: absolute;
+    right: 0;
+
+    width: 100%;
+    top: 0;
+    z-index: 99;
+    border-radius: var(--rounded-md);
+    overflow: hidden;
+
+    padding-top: 3em;
+    display: none;
+    flex-direction: column;
+    list-style: none;
+    margin: 0;
+    li {
+      display: flex;
+      height: 3em;
+      align-items: center;
+      a {
+        flex: 1;
+      }
+      &:hover {
+        background: var(--primary-50);
+      }
+      svg {
+        width: 3rem;
+      }
+    }
+  }
+  &.active {
+    .sidebar-left__user-menu {
+      display: flex;
+    }
+    .sidebar-left__name {
+      display: flex;
+    }
+    div {
+      &:hover,
+      &.active {
+        background: none;
+      }
+    }
+  }
+  div {
+    z-index: 999;
+    position: relative;
+    .sidebar-left__name {
+      font-weight: 600;
+      + svg {
+        margin-left: auto;
+      }
+    }
+  }
+
+  .avatar {
+    width: 2em;
+    height: 2em;
+    margin: 0 0.5em;
+    object-fit: cover;
   }
 }

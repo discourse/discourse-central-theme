@@ -13,11 +13,10 @@
       </span>
     {{/if ~}}
   {{/if ~}}
-  <span>Home</span>
+  <span>{{category-link category}}</span>
   {{~#if view.isSorting}}
     {{d-icon view.sortIcon}}
   {{/if ~}}
-{{log this}}
   <select class="topic-filter" onchange="openLink()">
   <option value="" selected>
     Latest

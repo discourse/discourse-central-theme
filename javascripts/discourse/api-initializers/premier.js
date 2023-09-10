@@ -1,7 +1,9 @@
 import { apiInitializer } from "discourse/lib/api"
 
 export default apiInitializer("0.11.1", (api) => {
-  api.addToHeaderIcons("header-user")
+  // api.addToHeaderIcons("header-user")
+  // api.addToHeaderIcons("create-post")
+
   api.onPageChange(() => {
     const activePage = window.location.href
     const homePage = window.origin + "/"
@@ -15,7 +17,7 @@ export default apiInitializer("0.11.1", (api) => {
           activePage.includes(link.href)
         ) {
           link.classList.add("active")
-        } else if (link.href == activePage) {
+        } else if (link.href === activePage) {
           link.classList.add("active")
         }
       })

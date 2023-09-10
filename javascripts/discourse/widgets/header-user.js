@@ -4,7 +4,6 @@ import { hbs } from "ember-cli-htmlbars"
 
 export default createWidget("header-user", {
   tagName: "li.header-dropdown-toggle.header-user",
-  title: "chat.title_capitalized",
 
   html() {
     return [new RenderGlimmer(this, "div", hbs`<HeaderUser />`)]

@@ -1,0 +1,21 @@
+<div class="sidebar-left__section">
+  <button
+    class="sidebar-left__toggle {{if isToggled 'active'}}"
+    {{on "click" this.toggleSection}}
+  >
+    {{d-icon "chevron-down"}}
+    <span class="sidebar-left__label">
+      {{i18n "js.filters.categories.title"}}
+    </span>
+  </button>
+
+  <ul class="sidebar-left__links {{if isToggled '' 'hidden'}}">
+    {{#each site.categories as |category|}}
+      {{#unless (eq category.name "Uncategorized")}}
+        <li class="sidebar-left__link">
+          {{~category-link category~}}
+        </li>
+      {{/unless}}
+    {{/each}}
+  </ul>
+</div>

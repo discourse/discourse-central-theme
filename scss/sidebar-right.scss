@@ -61,14 +61,14 @@
 // user
 
 .user__wrapper {
-  display: none;
+  // display: none;
   @extend .elevation;
   overflow: hidden;
   text-align: center;
   padding: 0 !important;
 
   .btn {
-    border-radius: 0.375em;
+    border-radius: var(--rounded-md);
   }
 }
 
@@ -92,8 +92,8 @@ img.avatar {
 .user__avatar {
   img {
     background: var(--primary-50);
-    border-radius: 50%;
-    border: 0.375em solid var(--primary-50);
+    border-radius: var(--rounded-full);
+    border: 0.25em solid var(--primary-50);
     max-width: var(--avatar-size);
     height: var(--avatar-size);
     box-sizing: border-box;
