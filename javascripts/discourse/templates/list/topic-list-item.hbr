@@ -106,7 +106,9 @@
         </li>
       {{/if}}
       <li>
-        {{d-icon "far-comment"}} {{number topic.replyCount noTitle="true"}}
+        <a href={{topic.url}}>
+          {{d-icon "far-comment"}} {{number topic.replyCount noTitle="true"}}
+        </a>
       </li>
     </ul>
   </div>

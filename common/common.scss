@@ -65,7 +65,7 @@ body {
 
 .header-sidebar-toggle,
 .sidebar-wrapper,
-.category-breadcrumb > li:nth-child(2) {
+.category-breadcrumb > li:not(:first-of-type) {
   display: none;
 }
 body.has-sidebar-page .wrap {
@@ -135,6 +135,12 @@ body.category.archetype-regular {
   #main-container + div {
     grid-area: main;
     grid-column: 3 / span 6;
+    @include breakpoint(tablet) {
+      grid-column: 2 / span 7;
+    }
+    @include breakpoint(mobile-extra-large) {
+      grid-column: span 8;
+    }
     border-left: var(--border);
   }
 }
@@ -158,11 +164,12 @@ body.archetype-banner {
 }
 
 #main-outlet {
+  --gap: 1.5rem;
   display: grid;
   grid-template-columns: repeat(8, minmax(0, 1fr));
   grid-template-rows: auto auto 1fr;
   grid-auto-rows: min-content;
-  column-gap: 1.5em;
+  column-gap: var(--gap);
   grid-template-areas:
     "left alerts right"
     "left head right"
@@ -176,7 +183,7 @@ body.archetype-banner {
   }
 
   @include breakpoint(tablet) {
-    column-gap: 0.5em;
+    --gap: 0.5rem;
     grid-template-columns: 3rem repeat(7, minmax(0, 1fr));
   }
 
@@ -223,12 +230,17 @@ body.archetype-banner {
   margin: 0;
   .container {
     display: grid;
+    gap: var(--gap);
     grid-template-columns: repeat(6, minmax(0, 1fr));
     &:before {
       content: none;
     }
     .title-wrapper {
       grid-column: span 4;
+      @include breakpoint(tablet) {
+        grid-column: span 6;
+      }
+
       order: 0;
       padding: 1em;
       box-sizing: border-box;
@@ -239,11 +251,15 @@ body.archetype-banner {
   }
 }
 .container.posts {
+  column-gap: var(--gap);
   grid-template-columns: repeat(6, minmax(0, 1fr));
   > .row {
     border: var(--border);
     border-width: 0 var(--central-border-r) 0 0;
     grid-column: span 4;
+    @include breakpoint(tablet) {
+      grid-column: span 6;
+    }
     order: 0;
   }
   .topic-navigation {
@@ -436,6 +452,12 @@ body.archetype-banner {
     list-style: none;
     margin: 0;
     li {
+      a {
+        color: var(--secondary);
+        &:visited {
+          color: var(--primary-medium);
+        }
+      }
       padding: 0.25em 0.375em;
       border: var(--border);
       border-radius: var(--rounded);
@@ -462,7 +484,7 @@ body.archetype-banner {
 
 .topic-list-item:not(.visited) .topic-list-data {
   a.title {
-    font-weight: 600;
+    color: var(--primary);
   }
 }
 .bulk-select-topics {

@@ -151,7 +151,7 @@ span.second.username a {
 .username a {
   display: inline-flex;
   &:before {
-    content: "@";
+    // content: "@";
   }
 }
 

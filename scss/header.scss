@@ -19,7 +19,10 @@
     align-items: center;
     grid-column: 1 / span 2;
     & + .extra-info-wrapper {
-      grid-column: 1 / span 4;
+      grid-column: 3 / span 4;
+      @include breakpoint(tablet) {
+        display: none;
+      }
       & + .before-header-panel-outlet {
         display: none;
       }
@@ -61,7 +64,7 @@
   }
 
   .panel {
-    grid-column: span 2;
+    grid-column: 7 / span 2;
     justify-self: flex-end;
     @include breakpoint(tablet) {
       grid-column: 5 / span 4;
@@ -84,11 +87,13 @@
 }
 
 // header bar
-.discourse-no-touch .d-header-icons, .drop-down-mode .d-header-icons {
+.discourse-no-touch .d-header-icons,
+.drop-down-mode .d-header-icons {
   margin: 0;
   display: flex;
 
-  .icon, .active .icon {
+  .icon,
+  .active .icon {
     width: 2em;
     height: 2em;
     box-sizing: content-box;
