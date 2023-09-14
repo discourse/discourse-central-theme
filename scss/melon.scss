@@ -56,7 +56,10 @@
 }
 
 .melon__entry:not(:first-child) .melon__art {
-  display: none;
+  img {
+    width: 2em;
+    height: auto;
+  }
 }
 
 .melon__title {
@@ -89,6 +92,7 @@
 }
 
 .melon__expand {
+  a,
   span {
     @extend .detail;
   }

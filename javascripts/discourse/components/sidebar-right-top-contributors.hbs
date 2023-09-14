@@ -1,28 +1,35 @@
-<h3 class="top-contributors-heading">
-    Top Contributors
-</h3>
-
-<div class="top-contributors--container">
-  {{#each topContributors as |item|}}
-    <div class="top-contributors--user">
-      <span
-        data-user-card={{item.user.username}}
-        class="top-contributors--user-badge"
-      >
-        {{avatar item.user imageSize="small"}}
-        {{html-safe item.user.username}}
-      </span>
-      <span class="top-contributors--user-likes">
-        {{d-icon "heart"}}
-        {{item.likes_received}}
-      </span>
-    </div>
-  {{/each}}
+<div class="melon__wrapper">
+  <div class="melon__header">
+    <h3>
+      Top Contributors
+    </h3>
+    <span>
+    </span>
+  </div>
+  <ol class="melon__chart">
+    {{#each topContributors as |topContributor|}}
+      <li class="melon__entry">
+        <div class="melon__art">
+          {{avatar topContributor.user imageSize="medium"}}
+        </div>
+        <div class="melon__info">
+          <div class="melon__title">
+            <span>
+              {{html-safe topContributor.user.username}}
+            </span>
+          </div>
+          <div class="melon__artist">
+            <span>
+              {{topContributor.likes_received}} likes
+            </span>
+          </div>
+        </div>
+      </li>
+    {{/each}}
+  </ol>
+  <div class="melon__expand">
+    <a href="/u?order=likes_received&period=yearly">
+      View All
+    </a>
+  </div>
 </div>
-
-<a
-  class="top-contributors--view-all"
-  href="/u?order=likes_received&period=yearly"
->
-  View All
-</a>
