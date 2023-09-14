@@ -82,16 +82,13 @@
         </span>
       {{else}}
         <span class="tli__last-reply">
-          {{d-icon "m-feed"}}
+          {{!-- {{d-icon "m-feed"}} --}}
           <a
             href="{{topic.posters.0.user.userPath}}"
             data-user-card="{{topic.posters.0.user.username}}"
           >
-            {{topic.posters.0.user.username}} {{format-date
-              topic.bumpedAt
-              format="tiny"
-              leaveAgo="true"
-            }}
+            {{!-- {{topic.posters.0.user.username}}  --}}
+            {{format-date topic.bumpedAt format="tiny" leaveAgo="true"}}
           </a>
         </span>
       {{/if}}
