@@ -8,11 +8,11 @@ export default class SidebarRightTopContributors extends Component {
   constructor() {
     super(...arguments)
 
-    const count = this.args?.params?.count || 5
+    const count = this.args?.params?.count || 10
 
     ajax(`/directory_items.json?period=yearly&order=likes_received`).then(
       (data) => {
-        this.topContributors = data.directory_items.slice(1, count)
+        this.topContributors = data.directory_items.slice(1, count + 1)
       }
     )
   }
