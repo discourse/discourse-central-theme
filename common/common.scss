@@ -61,6 +61,23 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+// hide existing sidebar
+
+.header-sidebar-toggle,
+.sidebar-wrapper,
+.category-breadcrumb > li:nth-child(2) {
+  display: none;
+}
+
+body.has-sidebar-page #main-outlet-wrapper {
+  grid-template-columns: 0 minmax(0, 1fr);
+  gap: 0;
+  padding-left: 1em;
+  @include breakpoint(tablet) {
+    padding-left: 0.5em;
+  }
+}
+
 // material icon set size reset
 
 svg.svg-icon {
