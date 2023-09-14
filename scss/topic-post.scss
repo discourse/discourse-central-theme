@@ -5,3 +5,20 @@
 //   transform: translate(1em, 1em);
 //   border: 0;
 // }
+
+.topic-status-info,
+.topic-timer-info,
+.topic-body,
+.topic-avatar,
+.small-action .topic-avatar,
+.small-action .small-action-desc {
+  border-color: var(--primary-100);
+}
+
+.topic-post {
+  border: 0;
+}
+
+#topic-title .title-wrapper {
+    gap: 0.5rem;
+}

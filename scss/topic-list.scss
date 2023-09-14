@@ -1,10 +1,3 @@
-.username {
-  //   font-weight: 600;
-}
-.name {
-  font-weight: 700;
-}
-
 .topic-item-avatar {
   .avatar {
     width: 2em;
@@ -85,32 +78,6 @@ tr {
   }
 }
 
-#list-area {
-  .new-topic-list-header {
-    height: 5em;
-    padding: 0 1em;
-    display: flex;
-    align-items: center;
-    box-sizing: border-box;
-    border-bottom: var(--border);
-    .badge-wrapper.none {
-      color: var(--primary);
-      .badge-category {
-        .category-badge-icon__emoji {
-          height: 2rem;
-          width: 2rem;
-          justify-content: center;
-          align-items: center;
-          display: inline-flex;
-          font-size: 1em;
-        }
-        font-size: 1.5em;
-        font-weight: 700;
-        gap: 1rem;
-      }
-    }
-    h2 {
-      margin: 0;
-    }
-  }
+.topic-list .badge-notification.new-topic {
+  display: none;
 }

@@ -66,20 +66,47 @@
           {{category-link topic.category}}
         {{/unless}}
       {{/unless}}
+      {{#if topic.posters.1.user}}
+        <span class="tli__last-reply">
+          {{d-icon "reply"}}
+          <a
+            href="{{topic.lastPoster.user.userPath}}"
+            data-user-card="{{topic.lastPoster.user.username}}"
+          >
+            {{topic.lastPoster.user.username}}
+          </a>
+          {{!-- {{theme-i18n
+            "topic_list_item.replied"
+          }}  --}}
+          {{format-date topic.bumpedAt format="tiny" leaveAgo="true"}}
+        </span>
+      {{else}}
+        <span class="tli__last-reply">
+          {{d-icon "m-feed"}}
+          <a
+            href="{{topic.posters.0.user.userPath}}"
+            data-user-card="{{topic.posters.0.user.username}}"
+          >
+            {{topic.posters.0.user.username}} {{format-date
+              topic.bumpedAt
+              format="tiny"
+              leaveAgo="true"
+            }}
+          </a>
+        </span>
+      {{/if}}
     </span>
   </div>
 
   <div class="topic-item-stats">
     <ul>
+      {{#if hasLikes}}
+        <li>
+          {{d-icon "heart"}} {{number topic.like_count}}
+        </li>
+      {{/if}}
       <li>
         {{d-icon "far-comment"}} {{number topic.replyCount noTitle="true"}}
-      </li>
-      <li>
-        {{d-icon "far-clock"}} {{~format-date
-          topic.bumpedAt
-          format="tiny"
-          noTitle="true"
-        ~}}
       </li>
     </ul>
   </div>

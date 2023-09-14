@@ -8,3 +8,6 @@ en:
     likes_header: "Share the Love"
     badges_header: "Your Top Badges"
     full_profile: "View your full profile"
+  topic_list_item:
+    replied: "replied"
+    posted: "posted"

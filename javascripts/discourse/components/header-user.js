@@ -1,16 +1,16 @@
 import Component from "@glimmer/component"
 import { tracked } from "@glimmer/tracking"
-import User from "discourse/models/user"
+import { inject as service } from "@ember/service"
 import { action } from "@ember/object"
 
 export default class HeaderUser extends Component {
+  @service currentUser
+
   @tracked isActive = false
-  @tracked currentUser = null
   clickOutsideListener = null
 
   constructor() {
     super(...arguments)
-    this.currentUser = User.current()
   }
 
   @action
@@ -25,7 +25,7 @@ export default class HeaderUser extends Component {
   }
 
   handleDocumentClick(event) {
-    const dropdownButton = document.querySelector("button.sidebar-left__user")
+    const dropdownButton = document.querySelector("button.header-user__button")
     if (dropdownButton && !dropdownButton.contains(event.target)) {
       this.toggleDropdown()
     }

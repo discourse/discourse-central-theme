@@ -1,0 +1,41 @@
+{{#if currentUser}}
+  <div class={{concatClass "header-create" (if isActive "active")}}>
+    <button class="header-create__button" {{on "click" this.toggleDropdown}}>
+      {{d-icon "m-post_add"}}
+    </button>
+
+    <ul class="header-create__menu">
+      <li>
+        <a href="/new-topic">
+          {{d-icon "pencil-alt"}}
+          <span>
+            New Topic
+          </span>
+        </a>
+      </li>
+      <li>
+        <a href="/new-message">
+          {{d-icon "m-mail"}}
+          <span>
+            New Message
+          </span>
+        </a>
+      </li>
+      <li>
+        <LinkTo @route="userActivity.drafts" @model={{this.currentUser}}>
+          {{d-icon "m-edit_note"}}
+          <span>
+            {{#if this.currentUser.draft_count}}
+              {{i18n
+                "drafts.label_with_count"
+                count=this.currentUser.draft_count
+              }}
+            {{else}}
+              {{i18n "drafts.label"}}
+            {{/if}}
+          </span>
+        </LinkTo>
+      </li>
+    </ul>
+  </div>
+{{/if}}

@@ -21,15 +21,6 @@
   }
 }
 
-.list-controls {
-  //   display: none;
-  grid-area: right;
-  grid-column: span 2 / span 2;
-  order: 3;
-  align-self: flex-start;
-  top: calc(var(--header-offset) + 1.5em);
-}
-
 #create-topic {
   display: none;
   background: var(--primary);
@@ -44,21 +35,40 @@
   }
 }
 
-.navigation-controls {
-  &,
-  button {
-    width: 100%;
-  }
-  > * {
-    width: 100%;
-    white-space: initial;
-    &:not(:last-child) {
-      margin-right: 0;
-    }
-  }
-}
+// .navigation-controls {
+//   &,
+//   button {
+//     width: 100%;
+//   }
+//   > * {
+//     width: 100%;
+//     white-space: initial;
+//     &:not(:last-child) {
+//       margin-right: 0;
+//     }
+//   }
+// }
 
 // user
+
+.user__edit {
+  margin-top: 0.5em;
+  a {
+    display: block;
+    &:hover {
+      button.btn {
+        background: var(--primary-100);
+      }
+    }
+  }
+  button.btn {
+    display: flex;
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 0.875rem;
+    background: var(--primary-200);
+  }
+}
 
 .user__wrapper {
   // display: none;
@@ -126,10 +136,12 @@ img.avatar {
   line-height: var(--line-height-large);
 }
 .user__link {
-  display: none;
   font-size: 0.875em;
   padding-bottom: 1em;
   display: inline-block;
+  a {
+    color: var(--primary);
+  }
 }
 
 span.second.username a {

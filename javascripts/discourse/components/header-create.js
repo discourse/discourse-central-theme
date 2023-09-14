@@ -1,16 +1,16 @@
 import Component from "@glimmer/component"
 import { tracked } from "@glimmer/tracking"
-import User from "discourse/models/user"
+import { inject as service } from "@ember/service"
 import { action } from "@ember/object"
 
-export default class CreatePost extends Component {
+export default class HeaderCreate extends Component {
+  @service currentUser
+
   @tracked isActive = false
-  @tracked currentUser = null
   clickOutsideListener = null
 
   constructor() {
     super(...arguments)
-    this.currentUser = User.current()
   }
 
   @action
@@ -25,7 +25,9 @@ export default class CreatePost extends Component {
   }
 
   handleDocumentClick(event) {
-    const dropdownButton = document.querySelector("button.dc-create-post")
+    const dropdownButton = document.querySelector(
+      "button.header-create__button"
+    )
     if (dropdownButton && !dropdownButton.contains(event.target)) {
       this.toggleDropdown()
     }

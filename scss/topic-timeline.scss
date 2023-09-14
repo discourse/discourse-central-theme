@@ -1,0 +1,13 @@
+.timeline-container .topic-timeline {
+  .timeline-handle {
+    background-color: var(--primary);
+    border-radius: 0;
+    width: 0.375em;
+    margin-left: 0;
+    transform: translateX(-50%);
+  }
+  .timeline-scrollarea {
+    border-left-width: 0.375em;
+    border-color: var(--primary-100);
+  }
+}

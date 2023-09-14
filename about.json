@@ -5,12 +5,12 @@
   "name": "Central",
   "color_schemes": {
     "Central Dark": {
-      "primary": "E1E1E1",
-      "secondary": "121212",
-      "tertiary": "555555",
+      "primary": "cccccc",
+      "secondary": "202020",
+      "tertiary": "0093FF",
       "quaternary": "006937",
-      "header_background": "121212",
-      "header_primary": "E1E1E1",
+      "header_background": "202020",
+      "header_primary": "cccccc",
       "highlight": "CEDFD7",
       "danger": "A92E2E",
       "success": "1ca551",
@@ -19,7 +19,7 @@
     "Central Light": {
       "primary": "121212",
       "secondary": "ffffff",
-      "tertiary": "555555",
+      "tertiary": "0093FF",
       "quaternary": "006937",
       "header_background": "ffffff",
       "header_primary": "121212",

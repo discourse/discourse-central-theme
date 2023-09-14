@@ -1,28 +1,5 @@
-{{log "thiscategory:" this.category}}
-{{log "site:" site.categories}}
-
-<CategoryDrop
-  @category={{this.category}}
-  @categories={{this.options}}
-  @tagId={{this.tag.id}}
-  @editingCategory={{this.editingCategory}}
-  @editingCategoryTab={{this.editingCategoryTab}}
-  @options={{hash
-    parentCategory=this.parentCategory
-    subCategory=this.isSubcategory
-    noSubcategories=this.noSubcategories
-    autoFilterable=true
-  }}
-/>
-
-<select
-  id="dropdown"
-  onchange={{action "redirectToLink"}}
-  value={{selectedOption}}
->
-  {{#each site.categories as |category|}}
-    <option value={{concat "/c/" category.id}}>
-      {{category-badge category}}
-    </option>
-  {{/each}}
-</select>
+{{#if this.category.description_excerpt}}
+  <span class="header__desc">
+    {{this.category.description_excerpt}}
+  </span>
+{{/if}}

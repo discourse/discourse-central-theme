@@ -1,7 +1,7 @@
 import Component from "@glimmer/component"
 import { tracked } from "@glimmer/tracking"
 
-export default class Melon extends Component {
+export default class SidebarRightMelon extends Component {
   @tracked melon = null
   API_TOKEN = "apify_api_eh6HzOW5Qp9KUKeeyNC4gN8AcznlUI4b5cNA"
 

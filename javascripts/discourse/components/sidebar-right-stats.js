@@ -2,7 +2,7 @@ import Component from "@glimmer/component"
 import { ajax } from "discourse/lib/ajax"
 import { tracked } from "@glimmer/tracking"
 
-export default class Stats extends Component {
+export default class SidebarRightStats extends Component {
   @tracked stats = null
   @tracked total = null
 

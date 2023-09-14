@@ -1,0 +1,14 @@
+.discourse-no-touch .btn {
+  background: none;
+  padding: 0;
+  svg {
+    font-size: 1.25em;
+  }
+  &:hover {
+    background: none;
+    &,
+    .d-icon {
+      color: initial;
+    }
+  }
+}
