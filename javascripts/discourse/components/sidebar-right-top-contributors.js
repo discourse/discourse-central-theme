@@ -12,7 +12,7 @@ export default class SidebarRightTopContributors extends Component {
 
     ajax(`/directory_items.json?period=yearly&order=likes_received`).then(
       (data) => {
-        this.topContributors = data.directory_items.slice(0, count)
+        this.topContributors = data.directory_items.slice(1, count)
       }
     )
   }
