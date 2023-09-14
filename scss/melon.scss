@@ -42,8 +42,12 @@
   span {
     @extend .detail;
   }
-  margin-bottom: 0.5em;
+  h3 {
+    margin: 0;
+  }
+  margin-bottom: 1em;
   display: flex;
+  align-items: baseline;
   justify-content: space-between;
 }
 
