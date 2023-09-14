@@ -43,8 +43,8 @@
   --central-border-r: 1px;
   --central-border-l: 1px;
 
-  // --heading-font-family: "Work Sans";
-  // --font-family: "Work Sans";
+  --heading-font-family: system-ui, Helvetica, sans-serif;
+  --font-family: system-ui, Helvetica, sans-serif;
 
   @include breakpoint(mobile-extra-large) {
     --central-border-r: 0px;
