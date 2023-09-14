@@ -145,16 +145,16 @@ body.category.archetype-regular {
   }
 }
 
-body.chat-drawer-active {
-  #main-container + .container,
-  #main-container + section,
-  #main-container + div {
-    grid-column: span 4 !important;
-  }
-  .sidebar-right {
-    visibility: hidden;
-  }
-}
+// body.chat-drawer-active {
+//   #main-container + .container,
+//   #main-container + section,
+//   #main-container + div {
+//     grid-column: span 4 !important;
+//   }
+//   .sidebar-right {
+//     visibility: hidden;
+//   }
+// }
 
 body.archetype-regular,
 body.archetype-banner {
@@ -447,13 +447,29 @@ body.archetype-banner {
   }
 }
 
+.category-navigation {
+  .badge-wrapper.bullet .badge-category-bg {
+    width: 1em;
+    height: 1em;
+    margin: 0 1.5em;
+  }
+  .category-name {
+    font-size: 1.5em;
+    color: var(--primary);
+    font-weight: 700;
+  }
+}
+
 .topic-item-stats {
   ul {
     list-style: none;
     margin: 0;
     li {
       a {
-        color: var(--secondary);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.375em;
+        color: var(--primary);
         &:visited {
           color: var(--primary-medium);
         }

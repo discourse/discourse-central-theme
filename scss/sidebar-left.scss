@@ -168,6 +168,22 @@
         }
 
         .badge-wrapper {
+          &.bullet {
+            .badge-category-bg {
+              margin-left: 1em;
+              margin-right: 1em;
+              width: 1em;
+              height: 1em;
+            }
+            .badge-category-parent-bg {
+              margin-right: -1.5em;
+              margin-left: 1em;
+              width: 0.5em;
+              position: relative;
+              z-index: 9;
+              height: 1em;
+            }
+          }
           .badge-category {
             font-size: 1em;
             align-items: center;

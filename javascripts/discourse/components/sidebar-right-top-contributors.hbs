@@ -1,0 +1,28 @@
+<h3 class="top-contributors-heading">
+    Top Contributors
+</h3>
+
+<div class="top-contributors--container">
+  {{#each topContributors as |item|}}
+    <div class="top-contributors--user">
+      <span
+        data-user-card={{item.user.username}}
+        class="top-contributors--user-badge"
+      >
+        {{avatar item.user imageSize="small"}}
+        {{html-safe item.user.username}}
+      </span>
+      <span class="top-contributors--user-likes">
+        {{d-icon "heart"}}
+        {{item.likes_received}}
+      </span>
+    </div>
+  {{/each}}
+</div>
+
+<a
+  class="top-contributors--view-all"
+  href="/u?order=likes_received&period=yearly"
+>
+  View All
+</a>
