@@ -3,9 +3,19 @@
     <h3>
       Top Contributors
     </h3>
-    <span>
+    {{! <span>
       All-time
-    </span>
+    </span> }}
+    {{yield topContributors}}
+
+    <select onchange={{action updatePeriod value="target.value"}}>
+      <option value="all">All-time</option>
+      <option value="yearly">Yearly</option>]
+      <option value="quarterly">Quarterly</option>
+      <option value="monthly">Monthly</option>
+      <option value="weekly" selected>Weekly</option>
+      <option value="daily">Daily</option>
+    </select>
   </div>
   <ol class="melon__chart">
     {{#each topContributors as |topContributor|}}
@@ -21,7 +31,8 @@
           </div>
           <div class="melon__artist">
             <span>
-              {{topContributor.likes_received}} likes
+              {{topContributor.likes_received}}
+              likes
             </span>
           </div>
         </div>
@@ -29,7 +40,7 @@
     {{/each}}
   </ol>
   <div class="melon__expand">
-    <a href="/u?order=likes_received&period=yearly">
+    <a href={{concat "/u?order=likes_received&period=" period}}>
       View All
     </a>
   </div>

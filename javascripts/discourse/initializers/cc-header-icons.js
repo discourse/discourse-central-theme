@@ -1,6 +1,6 @@
-import { withPluginApi } from "discourse/lib/plugin-api"
-import { h } from "virtual-dom"
-import { iconNode } from "discourse-common/lib/icon-library"
+import { withPluginApi } from "discourse/lib/plugin-api";
+import { h } from "virtual-dom";
+import { iconNode } from "discourse-common/lib/icon-library";
 
 export default {
   initialize() {
@@ -9,32 +9,32 @@ export default {
         return helper.h("button.sidebar-left__toggle", [
           iconNode("bars"),
           iconNode("m-close"),
-        ])
-      })
+        ]);
+      });
 
       api.reopenWidget("header-notifications", {
         html(attrs) {
-          const { user } = attrs
+          const { user } = attrs;
 
           let avatarAttrs = {
             template: user.get("avatar_template"),
             username: user.get("username"),
-          }
+          };
 
           if (this.siteSettings.enable_names) {
-            avatarAttrs.name = user.get("name")
+            avatarAttrs.name = user.get("name");
           }
 
-          const contents = [h("div", iconNode("bell"))]
+          const contents = [h("div", iconNode("bell"))];
 
           if (this.currentUser.status) {
             contents.push(
               this.attach("user-status-bubble", this.currentUser.status)
-            )
+            );
           }
 
           if (user.isInDoNotDisturb()) {
-            contents.push(h("div.do-not-disturb-background", iconNode("moon")))
+            contents.push(h("div.do-not-disturb-background", iconNode("moon")));
           } else {
             if (user.new_personal_messages_notifications_count) {
               contents.push(
@@ -56,7 +56,7 @@ export default {
                     ),
                   },
                 })
-              )
+              );
             } else if (user.unseen_reviewable_count) {
               contents.push(
                 this.attach("link", {
@@ -75,7 +75,7 @@ export default {
                     ),
                   },
                 })
-              )
+              );
             } else if (user.all_unread_notifications_count) {
               contents.push(
                 this.attach("link", {
@@ -89,14 +89,16 @@ export default {
                     "aria-label": I18n.t("user.notifications"),
                   },
                 })
-              )
+              );
             }
           }
-          return contents
+          return contents;
         },
-      })
-      api.addToHeaderIcons("header-user")
-      api.addToHeaderIcons("header-create")
-    })
+      });
+      api.addToHeaderIcons("header-user");
+      api.addToHeaderIcons("header-message");
+      api.replaceIcon("d-chat", "m-chat_bubble_outline");
+      // api.addToHeaderIcons("header-create")
+    });
   },
-}
+};

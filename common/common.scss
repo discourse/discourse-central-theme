@@ -14,6 +14,10 @@
 @import "mixins";
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600&display=swap");
 
+.material-symbols-outlined {
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+}
+
 :root {
   --d-max-width: 1280px;
 
@@ -59,6 +63,24 @@ html {
 body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.notification-count {
+  min-width: 1rem;
+  height: 1rem;
+  font-size: 0.6875rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  border-radius: var(--rounded-xl);
+  background: var(--tertiary);
+  position: absolute;
+  top: -0.25rem;
+  right: -0.25rem;
+  text-align: right;
+  padding: 0 0.1875rem;
+  color: var(--secondary);
 }
 
 // hide existing sidebar
@@ -369,26 +391,37 @@ body.archetype-banner {
   padding-right: 0;
 }
 
-.topic-list .link-bottom-line {
-  font-size: 0.75em;
-  align-items: baseline;
-}
-
 .badge-wrapper {
   font-size: unset;
 }
+.topic-list {
+  .link-bottom-line {
+    font-size: 0.75em;
+    align-items: baseline;
+    span.relative-date {
+      &:before {
+        content: "· ";
+      }
+    }
+    a {
+      margin-top: 0.5em;
+      color: var(--primary-medium);
+      + a {
+        display: inline-flex;
+        &:before {
+          content: "·\00a0";
+        }
+      }
 
-.link-bottom-line a {
-  margin-top: 0.5em;
-  color: var(--primary-medium);
-  + a {
-    display: inline-flex;
-    &:before {
-      content: "·\00a0";
+      &.bullet {
+        .badge-category-parent-bg,
+        .badge-category-bg {
+          display: none;
+        }
+      }
     }
   }
 }
-
 .topic-list-data {
   position: relative;
   // padding-left: 2.5em !important;
@@ -409,6 +442,7 @@ body.archetype-banner {
     justify-content: center;
   }
   .topic-item-stats {
+    color: var(--primary);
     flex-basis: 6em;
     padding: 0 1em;
     display: flex;
@@ -485,6 +519,9 @@ body.archetype-banner {
       }
       svg {
         font-size: 0.875em;
+      }
+      .d-icon-heart {
+        color: var(--love);
       }
     }
   }

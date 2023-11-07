@@ -3,6 +3,12 @@
   "license_url": null,
   "assets": {},
   "name": "Central",
+  "assets": {
+    "icons-sprite": "/assets/outlined.svg"
+  },
+  "modifiers": {
+    "serialize_topic_excerpts": true
+  },
   "color_schemes": {
     "Central Dark": {
       "primary": "cccccc",

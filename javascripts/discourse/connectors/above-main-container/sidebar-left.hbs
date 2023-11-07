@@ -31,6 +31,7 @@
             </span>
           </a>
         </li>
+
         {{#if currentUser.admin}}
           <li class="sidebar-left__link">
             <a href="/admin">
@@ -41,6 +42,15 @@
             </a>
           </li>
         {{/if}}
+
+        <li class="sidebar-left__link">
+          <a href="/new-topic" class="sidebar-left__new">
+            {{d-icon "m-add_box"}}
+            <span class="sidebar-left__label">
+              New Topic
+            </span>
+          </a>
+        </li>
       {{/if}}
     </ul>
   </div>

@@ -1,15 +1,20 @@
-{{whos-online}}
-
 <div class="stats__wrap">
   <h3 class="stats__heading">
-    Online Members
+    Our Community
   </h3>
-  <ul class="stats__users">
-  </ul>
+
   <div class="stats__total">
-    total
+    {{number this.stats.user_count}}
+    members
   </div>
+
   <div class="stats__total">
-    {{total}} registered users
+    {{number this.stats.topic_count}}
+    topics
+  </div>
+
+  <div class="stats__total">
+    {{number this.stats.post_count}}
+    posts
   </div>
 </div>

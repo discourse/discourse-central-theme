@@ -1,0 +1,111 @@
+{{#if currentUser}}
+  <button
+    class={{concatClass "header-message__button" (if isActive "active")}}
+    {{on "click" this.toggleDropdown}}
+  >
+    {{d-icon "m-mail"}}
+    {{#unless (eq totalUnread 0)}}
+      <span class="notification-count">
+        {{totalUnread}}
+      </span>
+    {{/unless}}
+  </button>
+
+  <div class="header-message__menu">
+    <div class="header-message__heading">
+      <a href={{concat "/u/" currentUser.username "/messages"}}>
+        <h3>
+          Messages
+        </h3>
+      </a>
+      <ul class="material-symbols-outlined">
+        <li>
+          more_horiz
+        </li>
+        <li>
+          <a href="/new-message">
+            edit_square
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <ul class="header-message__inboxes">
+      {{#each groups as |group index|}}
+        <li class="header-message__inbox">
+          <button
+            {{action "selectTab" index}}
+            class={{if (eq index selectedTabIndex) "active"}}
+          >
+            {{#if group.full_name}}
+              {{group.full_name}}
+            {{else}}
+              {{group.name}}
+            {{/if}}
+          </button>
+          {{#unless (eq group.unread_total 0)}}
+            <span class="notification-count">
+              {{group.unread_total}}
+            </span>
+          {{/unless}}
+        </li>
+      {{/each}}
+    </ul>
+    {{#if this.loading}}
+      {{loading-spinner}}
+    {{else}}
+      {{#each groups as |group index|}}
+        <ul
+          class="header-message__messages
+            {{if (eq index selectedTabIndex) 'active'}}"
+        >
+          {{#each group.messages as |message|}}
+            <li>
+              <a
+                href={{concat
+                  "/t/"
+                  message.slug
+                  "/"
+                  message.id
+                  "/"
+                  message.highest_post_number
+                }}
+              >
+                <div class="header-message__avatar">
+                  {{avatar currentUser imageSize="medium"}}
+                </div>
+                <div class="header-message__info">
+                  <div class="header-message__info-top">
+                    <span class="header-message__title">
+                      {{message.title}}
+                    </span>
+                    <span
+                      class={{concatClass
+                        "header-message__date"
+                        (if (isUnread message.unread_posts) "unread")
+                      }}
+                    >
+                      {{format-date message.last_posted_at format="tiny"}}
+                    </span>
+                  </div>
+                  <p class="header-message__excerpt">
+                    {{message.excerpt}}
+                  </p>
+                  {{#if message.tags}}
+                    <ul class="header-message__tags">
+                      {{#each message.tags as |tag|}}
+                        <li>
+                          {{tag}}
+                        </li>
+                      {{/each}}
+                    </ul>
+                  {{/if}}
+                </div>
+              </a>
+            </li>
+          {{/each}}
+        </ul>
+      {{/each}}
+    {{/if}}
+  </div>
+{{/if}}

@@ -82,14 +82,14 @@
         </span>
       {{else}}
         <span class="tli__last-reply">
-          {{!-- {{d-icon "m-feed"}} --}}
+          {{d-icon "user"}}
           <a
             href="{{topic.posters.0.user.userPath}}"
             data-user-card="{{topic.posters.0.user.username}}"
           >
-            {{!-- {{topic.posters.0.user.username}}  --}}
-            {{format-date topic.bumpedAt format="tiny" leaveAgo="true"}}
+            {{topic.posters.0.user.username}}
           </a>
+          {{format-date topic.bumpedAt format="tiny" leaveAgo="true"}}
         </span>
       {{/if}}
     </span>
@@ -99,12 +99,18 @@
     <ul>
       {{#if hasLikes}}
         <li>
-          {{d-icon "heart"}} {{number topic.like_count}}
+          {{#if topic.liked}}
+            {{d-icon "heart"}}
+          {{else}}
+            {{d-icon "far-heart"}}
+          {{/if}}
+          {{number topic.like_count}}
         </li>
       {{/if}}
       <li>
         <a href={{topic.url}}>
-          {{d-icon "far-comment"}} {{number topic.replyCount noTitle="true"}}
+          {{d-icon "m-mode_comment"}}
+          {{number topic.replyCount noTitle="true"}}
         </a>
       </li>
     </ul>
@@ -121,7 +127,8 @@
   <td class="num likes topic-list-data">
     {{#if hasLikes}}
       <a href="{{topic.summaryUrl}}">
-        {{number topic.like_count}} {{d-icon "heart"}}
+        {{number topic.like_count}}
+        {{d-icon "heart"}}
       </a>
     {{/if}}
   </td>
@@ -131,7 +138,8 @@
   <td class="num likes">
     {{#if hasOpLikes}}
       <a href="{{topic.summaryUrl}}">
-        {{number topic.op_like_count}} {{d-icon "heart"}}
+        {{number topic.op_like_count}}
+        {{d-icon "heart"}}
       </a>
     {{/if}}
   </td>

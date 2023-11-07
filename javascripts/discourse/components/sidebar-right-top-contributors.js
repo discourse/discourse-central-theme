@@ -1,23 +1,36 @@
-import Component from "@glimmer/component"
-import { ajax } from "discourse/lib/ajax"
-import { tracked } from "@glimmer/tracking"
+import Component from "@glimmer/component";
+import { ajax } from "discourse/lib/ajax";
+import { tracked } from "@glimmer/tracking";
 
 export default class SidebarRightTopContributors extends Component {
-  @tracked topContributors = null
+  @tracked topContributors = null;
+  @tracked period = "weekly";
 
   constructor() {
-    super(...arguments)
+    super(...arguments);
 
-    const count = this.args?.params?.count || 10
+    const count = this.args?.params?.count || 10;
 
-    ajax(`/directory_items.json?period=yearly&order=likes_received`).then(
-      (data) => {
-        this.topContributors = data.directory_items.slice(1, count + 1)
-      }
-    )
+    this.fetchTopContributors(this.period, count);
   }
 
   willDestroy() {
-    this.topContributors = null
+    this.topContributors = null;
+  }
+
+  // Function to fetch top contributors based on period
+  fetchTopContributors(period, count) {
+    ajax(`/directory_items.json?period=${period}&order=likes_received`).then(
+      (data) => {
+        this.topContributors = data.directory_items.slice(1, count + 1);
+      }
+    );
+  }
+
+  // Action to update the period
+  updatePeriod(newPeriod) {
+    this.period = newPeriod;
+    const count = this.args?.params?.count || 10;
+    this.fetchTopContributors(this.period, count);
   }
 }
