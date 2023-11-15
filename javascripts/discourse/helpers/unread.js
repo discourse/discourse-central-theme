@@ -1,9 +1,13 @@
-import { registerUnbound } from "discourse-common/lib/helpers"
-
-registerUnbound("isUnread", function (a) {
-  return a > 0
-})
+import { registerUnbound } from "discourse-common/lib/helpers";
 
 registerUnbound("eq", (a, b) => {
-  return a == b ? true : false
-})
+  return a == b ? true : false;
+});
+
+registerUnbound("last", function (array) {
+  return array.length - 1;
+});
+
+registerUnbound("objectToArray", function (obj) {
+  return Object.values(obj);
+});

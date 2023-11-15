@@ -4,9 +4,9 @@
     {{on "click" this.toggleDropdown}}
   >
     {{d-icon "m-mail"}}
-    {{#unless (eq totalUnread 0)}}
+    {{#unless (eq allUnread 0)}}
       <span class="notification-count">
-        {{totalUnread}}
+        {{allUnread}}
       </span>
     {{/unless}}
   </button>
@@ -31,21 +31,21 @@
     </div>
 
     <ul class="header-message__inboxes">
-      {{#each groups as |group index|}}
+      {{#each inboxes as |inbox index|}}
         <li class="header-message__inbox">
           <button
             {{action "selectTab" index}}
             class={{if (eq index selectedTabIndex) "active"}}
           >
-            {{#if group.full_name}}
-              {{group.full_name}}
+            {{#if inbox.full_name}}
+              {{inbox.full_name}}
             {{else}}
-              {{group.name}}
+              {{inbox.name}}
             {{/if}}
           </button>
-          {{#unless (eq group.unread_total 0)}}
+          {{#unless (eq inbox.unread_total 0)}}
             <span class="notification-count">
-              {{group.unread_total}}
+              {{inbox.unread_total}}
             </span>
           {{/unless}}
         </li>
@@ -54,56 +54,102 @@
     {{#if this.loading}}
       {{loading-spinner}}
     {{else}}
-      {{#each groups as |group index|}}
+      {{#each inboxes as |inbox index|}}
         <ul
           class="header-message__messages
             {{if (eq index selectedTabIndex) 'active'}}"
         >
-          {{#each group.messages as |message|}}
-            <li>
-              <a
-                href={{concat
-                  "/t/"
-                  message.slug
-                  "/"
-                  message.id
-                  "/"
-                  message.highest_post_number
-                }}
-              >
-                <div class="header-message__avatar">
-                  {{avatar currentUser imageSize="medium"}}
-                </div>
-                <div class="header-message__info">
-                  <div class="header-message__info-top">
+          {{#if inbox.topic_list.topics}}
+            {{#each inbox.topic_list.topics as |message|}}
+              <li>
+                <a
+                  href={{concat
+                    "/t/"
+                    message.slug
+                    "/"
+                    message.id
+                    "/"
+                    message.highest_post_number
+                  }}
+                >
+                  <div class="header-message__avatar">
+                    {{bound-avatar-template
+                      message.first_poster.avatar_template
+                      "large"
+                    }}
+                    {{#unless message.no_replies}}
+                      {{bound-avatar-template
+                        message.last_poster.avatar_template
+                        "large"
+                      }}
+                    {{/unless}}
+                  </div>
+                  <div class="header-message__info">
+                    <div class="header-message__info-top">
+                      <span class="header-message__name">
+                        {{#if message.posters.0.name}}
+                          {{message.posters.0.name}}
+                        {{else}}
+                          {{message.posters.0.username}}
+                        {{/if}}
+                      </span>
+                      <span
+                        class={{concatClass
+                          "header-message__date"
+                          (unless (eq message.unread 0) "unread")
+                        }}
+                      >
+                        {{format-date message.last_posted_at format="tiny"}}
+                      </span>
+                    </div>
                     <span class="header-message__title">
                       {{message.title}}
                     </span>
-                    <span
+                    <p class="header-message__excerpt">
+                      {{message.excerpt}}
+                    </p>
+                    {{#if message.tags}}
+                      <ul class="header-message__tags">
+                        {{#each message.tags as |tag|}}
+                          <li>
+                            {{tag}}
+                          </li>
+                        {{/each}}
+                      </ul>
+                    {{/if}}
+
+                    <div
                       class={{concatClass
-                        "header-message__date"
-                        (if (isUnread message.unread_posts) "unread")
+                        "header-message__assigned"
+                        (if message.assigned_to_user "direct")
+                        (if message.indirectly_assigned_to "indirect")
                       }}
                     >
-                      {{format-date message.last_posted_at format="tiny"}}
-                    </span>
+                      {{d-icon "m-person_add_alt"}}
+                      <ul>
+                        {{#if message.assigned_to_user}}
+                          <li>{{message.assigned_to_user.username}}</li>
+                        {{/if}}
+
+                        {{#if message.indirectly_assigned_to}}
+                          {{log "assignee:" message.indirectly_assigned_to}}
+
+                          {{#each
+                            (objectToArray message.indirectly_assigned_to)
+                            as |assignee|
+                          }}
+                            <li>{{assignee.assigned_to.username}}</li>
+                          {{/each}}
+
+                        {{/if}}
+                      </ul>
+                    </div>
+
                   </div>
-                  <p class="header-message__excerpt">
-                    {{message.excerpt}}
-                  </p>
-                  {{#if message.tags}}
-                    <ul class="header-message__tags">
-                      {{#each message.tags as |tag|}}
-                        <li>
-                          {{tag}}
-                        </li>
-                      {{/each}}
-                    </ul>
-                  {{/if}}
-                </div>
-              </a>
-            </li>
-          {{/each}}
+                </a>
+              </li>
+            {{/each}}
+          {{/if}}
         </ul>
       {{/each}}
     {{/if}}

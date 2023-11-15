@@ -1,7 +1,17 @@
-<div class="sidebar-right">
-  {{sidebar-right-user}}
-  {{!-- {{sidebar-right-melon}} --}}
-  {{sidebar-right-top-contributors}}
+{{#if isHomepage}}
+  <div class="sidebar-right">
 
-  {{sidebar-right-stats}}
-</div>
+    {{!-- {{sidebar-right-user}} --}}
+    <div class="sidebar-right-mini">
+      {{mini-time}}
+      {{mini-emoji}}
+      {{mini-birthday}}
+      {{mini-docs}}
+      {{mini-totd}}
+      {{mini-themes}}
+      {{mini-components}}
+    </div>
+    {{sidebar-right-top-contributors}}
+    {{sidebar-right-stats}}
+  </div>
+{{/if}}

@@ -65,7 +65,6 @@
   img {
     width: 4em;
     height: auto;
-    // box-shadow: var(--shadow-sm);
   }
 }
 
@@ -80,7 +79,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  font-size: var(--font-down-1);
+  font-size: 0.875rem;
 }
 
 .melon__title-up {
@@ -102,7 +101,7 @@
 }
 
 .melon__artist {
-  font-size: var(--font-down-2);
+  font-size: 0.75rem;
 }
 
 .melon__expand {

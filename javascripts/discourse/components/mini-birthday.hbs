@@ -1,0 +1,26 @@
+{{#if this.randomBirthday}}
+  <div class="mini-birthday">
+    <span class="mini-birthday__message">
+      {{theme-i18n "sidebar.right.mini.birthday.message"}}
+    </span>
+    <span class="mini-birthday__name">
+
+      {{!-- {{#if this.randomBirthday.name}}
+        {{this.randomBirthday.name}}
+      {{else}} --}}
+      {{this.randomBirthday.username}}
+      {{!-- {{/if}} --}}
+    </span>
+    <div class="mini-birthday__avatar">
+      <span class="mini-birthday__emoji">{{this.randomEmoji}}</span>
+      {{bound-avatar-template this.randomBirthday.avatar_template "large"}}
+    </div>
+  </div>
+
+{{else}}
+
+  <div class="mini-emoji">
+    {{miniEmoji}}
+  </div>
+
+{{/if}}

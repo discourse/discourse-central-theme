@@ -1,0 +1,70 @@
+<button
+  class="sidebar-left__link sidebar-left__user {{if isActive 'active'}}"
+  {{on "click" this.toggleDropdown}}
+>
+  {{#if currentUser.animated_avatar}}
+    {{bound-avatar-template currentUser.animated_avatar "huge"}}
+  {{else}}
+    {{avatar currentUser}}
+  {{/if}}
+  <div class="sidebar-left__user-info">
+    <span class="sidebar-left__greeting">
+      Hello
+    </span>
+    <span class="sidebar-left__name">
+      {{#if currentUser.name}}
+        {{currentUser.name}}
+      {{else}}
+        {{currentUser.username}}
+      {{/if}}
+    </span>
+  </div>
+  {{d-icon "ellipsis-h"}}
+</button>
+
+<ul class="sidebar-left__user-menu">
+  <li>
+    <LinkTo @route="user.summary" @model={{this.currentUser}}>
+      {{d-icon "user"}}
+      <span>
+        My Profile
+      </span>
+    </LinkTo>
+  </li>
+  <li>
+    <LinkTo @route="userActivity.drafts" @model={{this.currentUser}}>
+      {{d-icon "pencil-alt"}}
+      <span>
+        {{#if this.currentUser.draft_count}}
+          {{i18n "drafts.label_with_count" count=this.currentUser.draft_count}}
+        {{else}}
+          {{i18n "drafts.label"}}
+        {{/if}}
+      </span>
+    </LinkTo>
+  </li>
+  <li>
+    <LinkTo @route="userActivity.bookmarks" @model={{this.currentUser}}>
+      {{d-icon "m-bookmarks"}}
+      <span>
+        {{i18n "js.user.bookmarks"}}
+      </span>
+    </LinkTo>
+  </li>
+  <li>
+    <LinkTo @route="preferences" @model={{this.currentUser}}>
+      {{d-icon "cog"}}
+      <span>
+        {{i18n "user.preferences"}}
+      </span>
+    </LinkTo>
+  </li>
+  <li>
+    <DButton @action={{route-action "logout"}}>
+      {{d-icon "sign-out-alt"}}
+      <span>
+        {{i18n "user.log_out"}}
+      </span>
+    </DButton>
+  </li>
+</ul>

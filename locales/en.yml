@@ -8,6 +8,24 @@ en:
     likes_header: "Share the Love"
     badges_header: "Your Top Badges"
     full_profile: "View your full profile"
+    right:
+      mini:
+        themes:
+          label: "Browse new"
+          title: "Themes"
+          emoji: "🎨"
+        components:
+          label: "Add a"
+          title: "Component"
+          emoji: "🧩"
+        docs:
+          label: "Need help?"
+          title: "Docs"
+          emoji: "📚"
+        totd:
+          label: "Topic of the day"
+        birthday:
+          message: "Happy birthday"
   topic_list_item:
     replied: "replied"
     posted: "posted"

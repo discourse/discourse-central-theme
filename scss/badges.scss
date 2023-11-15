@@ -1,3 +1,12 @@
 .badge-notification {
-    background: var(--tertiary);
+  background: var(--tertiary);
+}
+
+.badge-category__wrapper {
+  .badge-category {
+    &:before {
+      width: 0.5rem;
+      height: 0.5rem;
+    }
+  }
 }

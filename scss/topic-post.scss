@@ -1,10 +1,73 @@
-// .topic-avatar {
-//   width: 0;
-//   overflow: visible;
-//   padding: 0;
-//   transform: translate(1em, 1em);
-//   border: 0;
-// }
+.topic-avatar {
+  width: 3rem;
+  margin-right: -3rem;
+  overflow: visible;
+  padding: 0;
+  transform: translate(1rem, 1rem);
+  border: 0;
+}
+
+.topic-post {
+  &.sticky-avatar {
+    .topic-avatar {
+      position: relative;
+      top: unset;
+    }
+  }
+}
+
+.gap {
+  padding: 0.5rem 1rem;
+  background: var(--primary-50);
+  border-radius: var(--rounded-xl);
+  margin: 1rem auto;
+  text-align: center;
+  width: max-content;
+  text-transform: capitalize;
+}
+
+.post-links-container {
+  margin: 0 1rem;
+}
+
+section.post-menu-area {
+  padding: 0 1rem;
+}
+
+.topic-map {
+  margin: 1rem;
+}
+
+.topic-body {
+  padding: 1rem 0 0 0;
+  .topic-meta-data {
+    align-items: center;
+
+    height: 3rem;
+    padding: 0 1rem 0 4.75rem;
+    .post-infos {
+      align-items: baseline;
+    }
+    .names {
+      flex-wrap: wrap;
+      align-items: baseline;
+      .user-title {
+        flex-basis: 100%;
+        font-size: 0.875rem;
+      }
+    }
+  }
+  .cooked {
+    padding: 1rem;
+  }
+}
+
+.post-notice {
+  background: var(--primary-50);
+  border-radius: var(--rounded-xl);
+  margin: 1rem;
+  border: none;
+}
 
 .topic-status-info,
 .topic-timer-info,
@@ -20,5 +83,5 @@
 }
 
 #topic-title .title-wrapper {
-    gap: 0.5rem;
+  gap: 0.5rem;
 }

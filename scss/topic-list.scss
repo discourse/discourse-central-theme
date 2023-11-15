@@ -1,3 +1,18 @@
+#list-area {
+  .show-more {
+    width: unset;
+    margin: 0 auto;
+    left: 50%;
+    transform: translateX(-50%);
+    .alert {
+      border-radius: var(--rounded-full);
+      padding: 0.5rem 1rem;
+      font-weight: 600;
+      font-size: 0.875rem;
+    }
+  }
+}
+
 .topic-item-avatar {
   .avatar {
     width: 2em;
