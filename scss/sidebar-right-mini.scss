@@ -166,9 +166,9 @@
       font-size: 0.75rem;
     }
     &__name {
-      display: inline;
-      font-weight: 600;
-      font-size: 0.875rem;
+      display: inline-flex;
+    //   font-weight: 600;
+      font-size: 0.75rem;
       // align-items: baseline;
       text-overflow: ellipsis;
       white-space: nowrap;
@@ -177,7 +177,7 @@
         // content: "@";
       }
       &:after {
-        // content: "!";
+        content: "!";
       }
     }
     &__emoji {

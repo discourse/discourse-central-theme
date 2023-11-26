@@ -84,22 +84,6 @@ export default class HeaderMessage extends Component {
           } else {
             topic.unread = 0;
           }
-
-          // create 'assigned' array'
-          // let assigned = {};
-          // let startIndex = 0;
-
-          // if (topic.assigned_to_user) {
-          //   assigned[startIndex++] = { ...topic.assigned_to_user };
-          // }
-
-          // if (topic.indirectly_assigned_to) {
-          //   Object.values(topic.indirectly_assigned_to).forEach((assignee) => {
-          //     assigned[startIndex++] = { ...assignee.assigned_to };
-          //   });
-          // }
-
-          // topic.assigned = Object.keys(assigned).length > 0 ? assigned : null;
         });
 
         // update the total count of unread topics across all inboxes
