@@ -95,8 +95,13 @@ export default {
           return contents;
         },
       });
-      api.addToHeaderIcons("header-user");
-      api.addToHeaderIcons("header-message");
+
+      const currentUser = api.container.lookup("service:current-user");
+      if (currentUser !== null) {
+        api.addToHeaderIcons("header-user");
+        api.addToHeaderIcons("header-message");
+      }
+
       api.replaceIcon("d-chat", "m-chat_bubble_outline");
       // api.addToHeaderIcons("header-create")
     });

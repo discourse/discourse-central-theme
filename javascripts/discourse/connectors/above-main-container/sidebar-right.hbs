@@ -1,17 +1,18 @@
 {{#if isHomepage}}
   <div class="sidebar-right">
 
-    {{!-- {{sidebar-right-user}} --}}
+    {{sidebar-right-user}}
+    {{sidebar-right-top-contributors}}
+
     <div class="sidebar-right-mini">
+      {{mini-welcome}}
       {{mini-time}}
       {{mini-emoji}}
       {{mini-birthday}}
       {{mini-docs}}
-      {{mini-totd}}
+      {{!-- {{mini-totd}} --}}
       {{mini-themes}}
       {{mini-components}}
     </div>
-    {{sidebar-right-top-contributors}}
-    {{sidebar-right-stats}}
   </div>
 {{/if}}

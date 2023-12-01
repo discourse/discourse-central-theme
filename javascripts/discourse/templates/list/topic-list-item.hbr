@@ -66,6 +66,9 @@
           {{category-link topic.category}}
         {{/unless}}
       {{/unless}}
+
+      {{discourse-tags topic mode="list" tagsForUser=tagsForUser}}
+
       {{#if topic.posters.1.user}}
         <span class="tli__last-reply">
           {{d-icon "reply"}}
@@ -92,6 +95,7 @@
           {{format-date topic.bumpedAt format="tiny" leaveAgo="true"}}
         </span>
       {{/if}}
+
     </span>
   </div>
 

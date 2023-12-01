@@ -3,103 +3,130 @@ import { tracked } from "@glimmer/tracking";
 import { inject as service } from "@ember/service";
 import { action } from "@ember/object";
 import { ajax } from "discourse/lib/ajax";
+import { set } from "@ember/object";
 
 export default class HeaderMessage extends Component {
   @service currentUser;
+
+  @tracked messages = null;
+  @tracked selectedTabIndex = 0;
+  @tracked loading = null;
+
+  @tracked allUnread = localStorage.getItem(`inboxes_unread`) ?? 0;
+
   @tracked isActive = false;
+  clickOutsideListener = null;
 
   @tracked inboxes = [];
-  @tracked allUnread = 0;
-  @tracked loading = true;
 
-  @tracked selectedTabIndex = 0;
-  clickOutsideListener = null;
+  tagName = "";
 
   constructor() {
     super(...arguments);
+    const inboxes = this.currentUser.groups.filter(
+      (inbox) => inbox.has_messages
+    );
 
-    // fetch group inboxes
-    const groupInboxes = ajax(
-      "/u/" + this.currentUser.username + "/messages.json"
-    ).then((data) => {
-      return Promise.all(
-        data.user.groups
-          .filter((inbox) => inbox.has_messages)
-          .map((inbox) => {
-            return ajax(
-              "/topics/private-messages-group/" +
-                this.currentUser.username +
-                "/" +
-                inbox.name +
-                ".json"
-            ).then((messages) => {
-              return { ...inbox, ...messages };
-            });
-          })
-      );
+    const myInbox = { name: "My Inbox" };
+    inboxes.unshift(myInbox);
+
+    this.inboxes = inboxes;
+    this.inboxes.forEach((inbox, index) => {
+      const localStorageKey = `inbox_${index}_unread`;
+      inbox.unread_total = localStorage.getItem(localStorageKey) ?? 0;
     });
 
-    // fetch personal inbox
-    const myInbox = ajax(
-      "/topics/private-messages/" + this.currentUser.username + ".json"
-    ).then((messages) => {
-      return [{ full_name: "My Inbox", ...messages }];
-    });
+    this.loadInbox(this.selectedTabIndex);
+  }
 
-    // console.log(groupInboxes, myInbox);
+  get selectedInbox() {
+    return this.inboxes[this.selectedTabIndex];
+  }
 
-    // combine inboxes after all data is retrieved
-    Promise.all([myInbox, groupInboxes]).then((data) => {
-      // combine arrays
-      const inboxes = data.flat();
-      // console.log(inboxes);
+  @action
+  async loadInbox(index) {
+    this.loading = true;
 
-      inboxes.forEach((inbox) => {
-        // initialize unread total for the specific inbox
-        inbox.unread_total = 0;
-        inbox.topic_list.topics.forEach((topic) => {
+    const selectedInbox = this.inboxes[index];
+    console.log("Selected Inbox:", selectedInbox);
+
+    if (selectedInbox) {
+      try {
+        const messages = await this.fetchMessages(selectedInbox);
+
+        console.log("Inbox Data:", messages);
+
+        messages.unread_total = 0;
+
+        messages.topic_list.topics.forEach((topic) => {
           topic.posters.forEach((poster) => {
-            // match the poster ID to the user ID and merge the users array
-            const matchingUser = inbox.users.find(
+            const matchingUser = messages.users.find(
               (user) => user.id === poster.user_id
             );
+
             if (matchingUser) {
               Object.assign(poster, matchingUser);
             }
           });
 
-          // identify first and last posters for the topic
           topic.first_poster = topic.posters[0];
           topic.last_poster = topic.posters[topic.posters.length - 1];
 
-          // check if topic is unreplied
           topic.no_replies =
             topic.participants.length === 1 && topic.posters.length === 1;
 
-          // count unread posts for the specific topic
           if (Number.isInteger(topic.unread_posts) && topic.unread_posts > 0) {
-            // increment unread count for the specific inbox
-            inbox.unread_total++;
-            topic.unread = 1; // mark this topic as unread
+            messages.unread_total++;
+            topic.unread = 1;
           } else {
             topic.unread = 0;
           }
         });
 
-        // update the total count of unread topics across all inboxes
-        this.allUnread += inbox.unread_total;
-      });
+        const inboxKey = `inbox_${index}_unread`;
+        const previousUnreadCount = Number(selectedInbox.unread_total) || 0;
+        const newUnreadCount = Number(messages.unread_total);
 
-      this.inboxes = inboxes; // set inboxes
-      this.loading = false; // turn off the loading indicator
+        localStorage.setItem(inboxKey, messages.unread_total);
 
-      console.log(this.inboxes);
-    });
+        set(this.inboxes[index], "unread_total", messages.unread_total);
+
+        this.allUnread = this.allUnread - previousUnreadCount + newUnreadCount;
+        localStorage.setItem(`inboxes_unread`, this.allUnread);
+
+        console.log(this.inboxes, "thisinboxes");
+
+        // Update the component state
+        this.messages = { ...messages };
+
+        // Loading is done
+        this.loading = false;
+      } catch (error) {
+        console.error("Error loading inbox:", error);
+
+        // Loading is done (with error)
+        this.loading = false;
+      }
+    }
+  }
+
+  async fetchMessages(selectedInbox) {
+    const url =
+      selectedInbox.name === "My Inbox"
+        ? `/topics/private-messages/${this.currentUser.username}.json`
+        : `/topics/private-messages-group/${this.currentUser.username}/${selectedInbox.name}.json`;
+
+    return await ajax(url);
   }
 
   @action
   selectTab(index) {
-    this.selectedTabIndex = index;
+    if (this.selectedTabIndex === index) {
+      this.loadInbox(index);
+    } else {
+      this.selectedTabIndex = index;
+      this.loadInbox(index);
+    }
   }
 
   @action

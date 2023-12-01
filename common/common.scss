@@ -209,7 +209,7 @@ body.archetype-banner {
 #main-outlet {
   --gap: 1.5rem;
   display: grid;
-  grid-template-columns: repeat(8, minmax(0, 1fr));
+  grid-template-columns: repeat(6, minmax(0, 1fr)) 19rem;
   grid-template-rows: auto auto 1fr;
   grid-auto-rows: min-content;
   column-gap: var(--gap);
@@ -426,13 +426,13 @@ body.archetype-banner {
     }
     a {
       margin-top: 0.5em;
-      color: var(--primary-medium);
-      + a {
-        display: inline-flex;
-        &:before {
-          content: "·\00a0";
-        }
-      }
+      // color: var(--primary-700);
+      // + a {
+      //   display: inline-flex;
+      //   &:before {
+      //     content: "·\00a0";
+      //   }
+      // }
 
       &.bullet {
         .badge-category-parent-bg,

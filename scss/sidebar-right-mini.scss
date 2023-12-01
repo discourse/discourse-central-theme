@@ -1,7 +1,9 @@
 .sidebar-right-mini {
+  position: sticky;
+  top: 6rem;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  grid-auto-rows: 7rem;
+  grid-template-columns: repeat(4, 4rem);
+  grid-auto-rows: 4rem;
   gap: 1rem;
   align-items: stretch;
   & > div {
@@ -11,18 +13,36 @@
     border-radius: var(--rounded-xl);
     background: var(--primary-50);
   }
+  .mini-welcome {
+    grid-column: span 4;
+    grid-row: span 2;
+    border-radius: var(--rounded-xl);
+    background: rgb(255, 252, 196);
+    display: flex;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 1.5rem;
+    font-size: 2rem;
+    font-weight: 600;
+  }
   .mini-time {
+    grid-column: span 2;
+    grid-row: span 1;
     align-items: center;
     justify-content: center;
-    font-size: 1.875rem;
+    font-size: 1.5rem;
     font-weight: 600;
   }
   .mini-emoji {
+    grid-column: span 2;
+    grid-row: span 1;
     align-items: center;
     justify-content: center;
-    font-size: 3rem;
+    font-size: 2.5rem;
   }
   .mini-docs {
+    grid-column: span 2;
+    grid-row: span 2;
     background: rgb(234, 251, 255);
     padding: 0.75rem 0.75rem 0.75rem 0.75rem;
     position: relative;
@@ -54,6 +74,8 @@
   }
 
   .mini-themes {
+    grid-column: span 2;
+    grid-row: span 2;
     background-color: #fffedf;
     // align-items: center;
     padding: 2rem 0.75rem 0.75rem 0.75rem;
@@ -87,6 +109,8 @@
   }
 
   .mini-components {
+    grid-column: span 2;
+    grid-row: span 2;
     background: linear-gradient(
       0deg,
       rgba(246, 255, 211, 1) 0%,
@@ -159,6 +183,8 @@
     }
   }
   .mini-birthday {
+    grid-column: span 2;
+    grid-row: span 2;
     flex-direction: column;
     padding: 0.75rem;
 
@@ -167,7 +193,7 @@
     }
     &__name {
       display: inline-flex;
-    //   font-weight: 600;
+      //   font-weight: 600;
       font-size: 0.75rem;
       // align-items: baseline;
       text-overflow: ellipsis;

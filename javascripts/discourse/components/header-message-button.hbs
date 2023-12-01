@@ -1,0 +1,11 @@
+<button
+  class={{concatClass "header-message__button" (if isActive "active")}}
+  {{on "click" this.toggleDropdown}}
+>
+  {{d-icon "m-mail"}}
+  {{#unless (eq allUnread 0)}}
+    <span class="notification-count">
+      {{allUnread}}
+    </span>
+  {{/unless}}
+</button>

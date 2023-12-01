@@ -7,6 +7,9 @@ export default class SidebarRight extends Component {
 
   get isHomepage() {
     const { currentRouteName } = this.router;
-    return currentRouteName === `discovery.${defaultHomepage()}`;
+    return (
+      currentRouteName === `discovery.${defaultHomepage()}` ||
+      currentRouteName === `discovery.category`
+    );
   }
 }

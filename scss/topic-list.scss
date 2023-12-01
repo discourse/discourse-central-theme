@@ -20,6 +20,29 @@
   }
 }
 
+.discourse-tags {
+  gap: 0.25rem;
+
+  a.discourse-tag {
+    &.simple:not(:last-child):after {
+      content: initial;
+    }
+    font-size: 0.6875rem;
+
+    border-radius: var(--rounded);
+    display: flex;
+    align-items: center;
+    height: 1rem;
+    padding: 0 0.25rem;
+    background: var(--primary-200);
+    color: var(--primary);
+  }
+  .assigned-to.discourse-tag.simple {
+    // can we get rid of this class in core
+    color: var(--primary);
+  }
+}
+
 .topic-list-item.visited .topic-list-data,
 .latest-topic-list-item.visited,
 .category-topic-link.visited {
@@ -30,7 +53,7 @@
     color: var(--primary-medium);
   }
   a.discourse-tag {
-    color: var(--primary-medium);
+    color: var(--primary);
   }
 }
 

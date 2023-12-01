@@ -10,8 +10,12 @@
   </button>
 
   <ul class="sidebar-left__links {{if isToggled '' 'hidden'}}">
+    {{log "site categories:" site.categories}}
     {{#each site.categories as |category|}}
-      {{#unless (eq category.name "Uncategorized")}}
+      {{#unless
+        (or (eq category.name "Uncategorized") category.parentCategory)
+      }}
+
         <li
           class="{{concatClass
               'sidebar-left__link'
@@ -19,6 +23,18 @@
             }}"
         >
           {{~category-link category~}}
+
+          {{#if category.has_children}}
+            <div class="sidebar-left__subcategories">
+              <ul>
+                {{#each category.subcategories as |subcategory|}}
+                  <li>
+                    {{~category-link subcategory~}}
+                  </li>
+                {{/each}}
+              </ul>
+            </div>
+          {{/if}}
         </li>
       {{/unless}}
     {{/each}}
