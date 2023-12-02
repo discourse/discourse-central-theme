@@ -13,6 +13,7 @@
           </span>
         </a>
       </li>
+      {{log "huh" currentUser}}
       {{#if currentUser}}
         <li class="sidebar-left__link">
           <a href={{concat "/u/" currentUser.username "/messages"}}>

@@ -1,0 +1,22 @@
+<div class="mini-stats">
+  <div class="mini-stats__label">
+    {{theme-i18n "sidebar.right.mini.stats.label"}}
+  </div>
+
+  <ul>
+    <li class="mini-stats__members">
+      {{number this.stats.users_count}}
+      {{theme-i18n "sidebar.right.mini.stats.members"}}
+    </li>
+
+    <li class="mini-stats__topics">
+      {{number this.stats.topics_count}}
+      {{theme-i18n "sidebar.right.mini.stats.topics"}}
+    </li>
+
+    <li class="mini-stats__posts">
+      {{number this.stats.posts_count}}
+      {{theme-i18n "sidebar.right.mini.stats.posts"}}
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,19 @@
+.nav-pills {
+  gap: 0.5rem;
+  li {
+    a,
+    button {
+      border-radius: var(--rounded);
+      font-size: 1rem;
+      padding: 0.5rem 0.75rem;
+      &:hover {
+        color: var(--primary);
+        background: var(--primary-50);
+      }
+      &.active {
+        color: var(--primary);
+        background: var(--primary-200);
+      }
+    }
+  }
+}
