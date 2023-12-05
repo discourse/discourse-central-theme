@@ -1,60 +1,40 @@
-import Component from "@glimmer/component"
-import { tracked } from "@glimmer/tracking"
-import { action } from "@ember/object"
-import { inject as service } from "@ember/service"
-import discourseComputed from "discourse-common/utils/decorators"
+import Component from "@glimmer/component";
+import { action } from "@ember/object";
+import { inject as service } from "@ember/service";
 
 export default class TopicListHeaderFilter extends Component {
-  // @service router
+  @service router;
 
-  @tracked selectedOption = this.options[0]
-  @tracked options = []
-  @tracked isActive = false
-  @tracked currentPage = (clickOutsideListener = null)
+  filterOptions = [
+    { value: "latest", label: "Latest" },
+    { value: "top", label: "Top" },
+    { value: "mostviewed", label: "Most Viewed" },
+    { value: "mostreplied", label: "Most Replied" },
+    { value: "oldest", label: "Oldest" },
+  ];
 
   constructor() {
-    super(...arguments)
+    super(...arguments);
 
-    this.options = [
-      { title: "Latest", url: "/latest" },
-      { title: "Top", url: "/top" },
-    ]
+    console.log(this.router);
   }
 
-  @discourseComputed("route", "router.currentRoute")
-  active(route, currentRoute) {
-    if (!route) {
-      return
-    }
-
-    const routeParam = this.routeParam
-    if (routeParam && currentRoute) {
-      return currentRoute.params["filter"] === routeParam
-    }
-
-    return this.router.isActive(route)
-  }
+  selectedOption = this.filterOptions[0];
 
   @action
-  selectOption(option) {
-    this.selectedOption = option
-  }
+  updateFilter(value) {
+    const currentRoute = this.router.currentRoute;
 
-  @action
-  toggleDropdown() {
-    this.isActive = !this.isActive
-    if (this.isActive) {
-      this.clickOutsideListener = this.handleDocumentClick.bind(this)
-      document.addEventListener("click", this.clickOutsideListener)
-    } else {
-      document.removeEventListener("click", this.clickOutsideListener)
+    let redirectURL;
+    switch (value) {
+      case "latest":
+        redirectURL = `discovery.latest`;
+        break;
+      case "top":
+        redirectURL = `discovery.top`;
+        break;
     }
-  }
 
-  handleDocumentClick(event) {
-    const dropdownButton = document.querySelector(".list-filter__button")
-    if (dropdownButton && !dropdownButton.contains(event.target)) {
-      this.toggleDropdown()
-    }
+    this.router.transitionTo(redirectURL);
   }
 }

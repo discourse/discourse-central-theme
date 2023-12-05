@@ -1,0 +1,198 @@
+{{~raw-plugin-outlet name="topic-list-before-columns"}}
+
+<td class="main-link clearfix topic-list-data" colspan="1">
+  {{~raw-plugin-outlet name="topic-list-before-link"}}
+
+  {{#if bulkSelectEnabled}}
+    <div class="bulk-select topic-list-data">
+      <label for="bulk-select-{{topic.id}}">
+        <input
+          type="checkbox"
+          class="bulk-select"
+          id="bulk-select-{{topic.id}}"
+        />
+      </label>
+    </div>
+  {{else}}
+    <div class="topic-item-avatar">
+      <a
+        href="{{topic.posters.0.user.userPath}}"
+        data-user-card="{{topic.posters.0.user.username}}"
+      >
+        {{#if topic.posters.0.user.animated_avatar}}
+          <img
+            src={{topic.posters.0.user.animated_avatar}}
+            class="avatar"
+            width="32"
+            height="32"
+            loading="lazy"
+          />
+        {{else}}
+          {{avatar topic.posters.0.user imageSize="medium"}}
+        {{/if}}
+      </a>
+    </div>
+  {{/if}}
+  <div class="topic-item-info">
+    <div class="topic-item-link">
+      <span class="link-top-line">
+        {{~raw-plugin-outlet name="topic-list-before-status"}}
+        {{~raw "topic-status" topic=topic}}
+        {{~topic-link topic class="raw-link raw-topic-link"}}
+        {{~#if topic.featured_link}}
+          {{~topic-featured-link topic}}
+        {{~/if}}
+        {{~raw-plugin-outlet name="topic-list-after-title"}}
+        {{~raw
+          "list/unread-indicator"
+          includeUnreadIndicator=includeUnreadIndicator
+          topicId=topic.id
+          unreadClass=unreadClass
+        ~}}
+        {{~#if showTopicPostBadges}}
+          {{~raw
+            "topic-post-badges"
+            unreadPosts=topic.unread_posts
+            unseen=topic.unseen
+            url=topic.lastUnreadUrl
+            newDotText=newDotText
+          }}
+        {{~/if}}
+      </span>
+      <span class="link-bottom-line">
+        {{#unless hideCategory}}
+          {{#unless topic.isPinnedUncategorized}}
+            {{~raw-plugin-outlet name="topic-list-before-category"}}
+            {{category-link topic.category}}
+          {{/unless}}
+        {{/unless}}
+
+        {{#if topic.tags}}
+          <ul class="discourse-tags">
+            {{#each topic.tags as |tag|}}
+              <li>
+                <a class="discourse-tag" href="/tag/{{tag}}">
+                  {{tag}}
+                </a>
+              </li>
+            {{/each}}
+          </ul>
+        {{/if}}
+
+        {{!-- {{#if topic.assigned_to_user}}
+          <div class={{concatClass "tli__assigned" "direct"}}>
+            {{d-icon "m-person_add_alt"}}
+            <ul>
+              {{#if topic.assigned_to_user}}
+                <li>{{topic.assigned_to_user.username}}</li>
+              {{/if}}
+
+              {{#if topic.indirectly_assigned_to}}
+                {{#each
+                  (objectToArray topic.indirectly_assigned_to)
+                  as |assignee|
+                }}
+                  <li>{{assignee.assigned_to.username}}</li>
+                {{/each}}
+              {{/if}}
+            </ul>
+          </div>
+        {{/if}} --}}
+
+        {{#if topic.posters.1.user}}
+          <span class="tli__last-reply">
+            {{d-icon "reply"}}
+            <a
+              href="{{topic.lastPoster.user.userPath}}"
+              data-user-card="{{topic.lastPoster.user.username}}"
+            >
+              {{~topic.lastPoster.user.username~}}
+            </a>
+            {{theme-i18n "topic_list_item.replied"}}
+            <a href={{topic.lastPostUrl}}>
+              {{format-date topic.bumpedAt format="medium" leaveAgo="true"}}
+            </a>
+          </span>
+        {{else}}
+          <span class="tli__last-reply">
+            {{d-icon "m-post_add"}}
+            <a
+              href="{{topic.posters.0.user.userPath}}"
+              data-user-card="{{topic.posters.0.user.username}}"
+            >
+              {{~topic.posters.0.user.username~}}
+            </a>
+            posted
+            <a href={{topic.lastPostUrl}}>
+              {{format-date topic.bumpedAt format="medium" leaveAgo="true"}}
+            </a>
+          </span>
+        {{/if}}
+      </span>
+
+      {{discourse-tags topic mode="list" tagsForUser=tagsForUser}}
+
+    </div>
+
+    <div class="topic-item-stats">
+      <ul>
+        {{#if hasLikes}}
+          <li>
+            {{#if topic.liked}}
+              {{d-icon "heart"}}
+            {{else}}
+              {{d-icon "far-heart"}}
+            {{/if}}
+            {{number topic.like_count}}
+          </li>
+        {{/if}}
+        <li>
+          <a href={{topic.url}}>
+            {{d-icon "m-mode_comment"}}
+            {{number topic.replyCount noTitle="true"}}
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    {{~raw-plugin-outlet name="topic-list-main-link-bottom"}}
+  </div>
+</td>
+
+{{~raw-plugin-outlet name="topic-list-after-main-link"}}
+
+{{raw "list/posts-count-column" topic=topic}}
+
+{{#if showLikes}}
+  <td class="num likes topic-list-data">
+    {{#if hasLikes}}
+      <a href="{{topic.summaryUrl}}">
+        {{number topic.like_count}}
+        {{d-icon "heart"}}
+      </a>
+    {{/if}}
+  </td>
+{{/if}}
+
+{{#if showOpLikes}}
+  <td class="num likes">
+    {{#if hasOpLikes}}
+      <a href="{{topic.summaryUrl}}">
+        {{number topic.op_like_count}}
+        {{d-icon "heart"}}
+      </a>
+    {{/if}}
+  </td>
+{{/if}}
+
+<td class="num views {{topic.viewsHeat}} topic-list-data">
+  {{raw-plugin-outlet name="topic-list-before-view-count"}}
+  {{number topic.views numberKey="views_long"}}
+</td>
+
+{{raw
+  "list/activity-column"
+  topic=topic
+  class="num topic-list-data"
+  tagName="td"
+}}

@@ -1,10 +1,47 @@
-.topic-avatar {
+#suggested-topics {
+  .topic-list-header {
+    display: table-header-group;
+  }
+}
+
+.more-topics__container {
+  & > .row {
+    grid-column: span 4;
+    @include breakpoint(mobile-extra-large) {
+      grid-column: span 6;
+    }
+  }
+  display: grid;
+  max-width: unset;
+  column-gap: var(--gap);
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  .more-topics__lists {
+    grid-column: span 4;
+    @include breakpoint(mobile-extra-large) {
+      grid-column: span 6;
+    }
+  }
+  .more-topics__browse-more {
+    grid-column: span 4;
+    @include breakpoint(mobile-extra-large) {
+      grid-column: span 6;
+    }
+  }
+}
+
+.row > .topic-avatar {
   width: 3rem;
   margin-right: -3rem;
   overflow: visible;
   padding: 0;
   transform: translate(1rem, 1rem);
   border: 0;
+}
+
+.time-gap.small-action {
+  .topic-avatar {
+    transform: none;
+  }
 }
 
 .topic-post {
@@ -45,6 +82,10 @@ section.post-menu-area {
 
     height: 3rem;
     padding: 0 1rem 0 4.75rem;
+
+    @include breakpoint(mobile-extra-large) {
+      padding: 0 1rem 0 2rem;
+    }
     .post-infos {
       align-items: baseline;
     }
@@ -84,4 +125,58 @@ section.post-menu-area {
 
 #topic-title .title-wrapper {
   gap: 0.5rem;
+}
+
+#topic-title {
+  margin: 0;
+  .container {
+    display: grid;
+    gap: var(--gap);
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    &:before {
+      content: none;
+    }
+    .title-wrapper {
+      grid-column: span 4;
+      @include breakpoint(tablet) {
+        grid-column: span 6;
+      }
+
+      order: 0;
+      padding: 1em;
+      box-sizing: border-box;
+      width: 100%;
+      border: var(--border);
+      border-width: 0 var(--central-border-r) 0 0;
+    }
+  }
+}
+
+.container.posts {
+  column-gap: var(--gap);
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  > .row {
+    border: var(--border);
+    border-width: 0 var(--central-border-r) 0 0;
+    grid-column: span 4;
+    @include breakpoint(tablet) {
+      grid-column: span 6;
+      max-width: 100%;
+    }
+    order: 0;
+  }
+  .topic-navigation {
+    grid-column: span 2;
+    order: 1;
+    display: flex;
+    justify-content: center;
+    @include breakpoint(mobile-extra-large) {
+      grid-column: 4 / span 2;
+      justify-content: unset;
+    }
+    .timeline-container .topic-timeline {
+      display: flex;
+      flex-direction: column;
+    }
+  }
 }

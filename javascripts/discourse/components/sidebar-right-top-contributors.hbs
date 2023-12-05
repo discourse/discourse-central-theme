@@ -3,9 +3,7 @@
     <h3>
       Top Contributors
     </h3>
-    {{! <span>
-      All-time
-    </span> }}
+
     {{yield topContributors}}
 
     <select onchange={{action updatePeriod value="target.value"}}>
@@ -21,13 +19,21 @@
     {{#each topContributors as |topContributor|}}
       <li class="melon__entry">
         <div class="melon__art">
-          {{avatar topContributor.user imageSize="medium"}}
+          <a
+            href={{topContributor.user.userPath}}
+            data-user-card={{topContributor.user.username}}
+          >
+            {{avatar topContributor.user imageSize="medium"}}
+          </a>
         </div>
         <div class="melon__info">
           <div class="melon__title">
-            <span>
+            <a
+              href={{topContributor.user.userPath}}
+              data-user-card={{topContributor.user.username}}
+            >
               {{html-safe topContributor.user.username}}
-            </span>
+            </a>
           </div>
           <div class="melon__artist">
             <span>

@@ -20,16 +20,21 @@
           {{bound-avatar-template currentUser.avatar_template "huge"}}
         {{/if}}
       </div>
-      {{#if currentUser.name}}
-        <h3 class="user__name">
+      <h3 class="user__name">
+        {{#if currentUser.name}}
           {{currentUser.name}}
-        </h3>
-      {{/if}}
-      <div class="user__handle username">
-        <a href={{concat "/u/" currentUser.username}}>
+        {{else}}
           {{currentUser.username}}
-        </a>
-      </div>
+        {{/if}}
+      </h3>
+
+      {{#if currentUser.name}}
+        <div class="user__handle username">
+          <a href={{concat "/u/" currentUser.username}}>
+            {{currentUser.username}}
+          </a>
+        </div>
+      {{/if}}
       <p class="user__bio">
         {{html-safe bio}}
       </p>

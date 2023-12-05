@@ -9,7 +9,10 @@ export default class SidebarRight extends Component {
     const { currentRouteName } = this.router;
     return (
       currentRouteName === `discovery.${defaultHomepage()}` ||
-      currentRouteName === `discovery.category`
+      currentRouteName === `discovery.category` ||
+      currentRouteName === `discovery.unread` ||
+      currentRouteName === `discovery.top` ||
+      currentRouteName === `discovery.latest`
     );
   }
 }

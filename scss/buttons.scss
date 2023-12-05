@@ -1,6 +1,10 @@
 .discourse-no-touch .btn {
   // background: none;
   // padding: 0;
+
+  &.btn-default {
+    transition: none;
+  }
   svg {
     font-size: 1.25em;
   }

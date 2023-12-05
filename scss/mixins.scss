@@ -12,5 +12,19 @@ input[type="url"],
 input[type="search"],
 input[type="tel"],
 input[type="color"] {
-  border-width: 0 0 1px 0;
+  // border-width: 0 0 1px 0;
+}
+
+@mixin form-item-sizing {
+  border: 1px solid transparent;
+  font-size: var(--font-0);
+  line-height: normal;
+  box-sizing: border-box;
+  padding: $vpad $hpad;
+  transition: none;
+  .ios-device & {
+    font-size: var(--font-size-ios-input);
+    padding-top: $vpad * 0.8;
+    padding-bottom: $vpad * 0.8;
+  }
 }

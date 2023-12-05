@@ -8,6 +8,10 @@ import { set } from "@ember/object";
 export default class HeaderMessage extends Component {
   @service currentUser;
 
+  @tracked isMovedToHeader = localStorage.getItem("isMovedToHeader") === "true";
+  @tracked menuPosition = { top: 0, right: 0 };
+  @tracked submenuIsActive = false;
+
   @tracked messages = null;
   @tracked selectedTabIndex = 0;
   @tracked loading = null;
@@ -41,6 +45,56 @@ export default class HeaderMessage extends Component {
 
   get selectedInbox() {
     return this.inboxes[this.selectedTabIndex];
+  }
+
+  @action
+  toggleMoveToHeader() {
+    this.isMovedToHeader = !this.isMovedToHeader;
+    localStorage.setItem("isMovedToHeader", this.isMovedToHeader.toString());
+
+    window.location.reload(true);
+  }
+
+  @action
+  updateMenuPosition() {
+    const menuButton = document.querySelector(".header-message__more");
+
+    if (menuButton) {
+      const rect = menuButton.getBoundingClientRect();
+
+      this.menuPosition = {
+        top: rect.bottom,
+        right: window.innerWidth - rect.right,
+      };
+    }
+  }
+
+  @action
+  toggleSubmenu(event) {
+    event.preventDefault();
+    this.submenuIsActive = !this.submenuIsActive;
+
+    if (this.submenuIsActive) {
+      this.updateMenuPosition();
+      document.addEventListener("click", this.handleDocumentClick2);
+    } else {
+      document.removeEventListener("click", this.handleDocumentClick2);
+    }
+  }
+
+  handleDocumentClick2 = (event) => {
+    const menuButton = document.querySelector(".header-message__more");
+    const menuElement = document.querySelector(".header-message__submenu");
+
+    if (menuButton && !menuButton.contains(event.target) && menuElement) {
+      if (!menuElement.contains(event.target)) {
+        this.toggleSubmenu(event);
+      }
+    }
+  };
+
+  get concatStyle() {
+    return `top: ${this.menuPosition.top}px; right: ${this.menuPosition.right}px;`;
   }
 
   @action

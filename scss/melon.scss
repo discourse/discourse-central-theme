@@ -80,6 +80,9 @@
   overflow: hidden;
   text-overflow: ellipsis;
   font-size: 0.875rem;
+  a {
+    color: var(--primary);
+  }
 }
 
 .melon__title-up {

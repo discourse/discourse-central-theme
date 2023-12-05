@@ -1,13 +1,13 @@
 {
   "about_url": null,
   "license_url": null,
-  "assets": {},
   "name": "Central",
   "assets": {
     "icons-sprite": "/assets/outlined.svg"
   },
   "modifiers": {
-    "serialize_topic_excerpts": true
+    "serialize_topic_excerpts": true,
+    "enable_mobile_theme": false
   },
   "color_schemes": {
     "Central Dark": {

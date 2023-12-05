@@ -1,16 +1,7 @@
-<div class="list-filter {{if isActive 'active'}}">
-  <button class="list-filter__button" {{on "click" this.toggleDropdown}}>
-    {{log "router" router}}
-    {{selectedOption.title}}
-    {{d-icon "m-expand_more"}}
-  </button>
-  <ul class="list-filter__menu">
-    {{#each options as |option|}}
-      <li {{on "click" (fn this.selectOption option)}}>
-        <LinkTo href={{option.url}}>
-          {{option.title}}
-        </LinkTo>
-      </li>
-    {{/each}}
-  </ul>
-</div>
+<select
+  class="list-filter"
+  onchange={{action updateFilter value="target.value"}}
+>
+  <option value="latest">Latest</option>
+  <option value="top">Top</option>
+</select>

@@ -1,0 +1,28 @@
+@import "topic-post";
+@import "topic-timeline";
+
+// hide existing sidebar
+
+body:not(.has-full-page-chat) {
+  .header-sidebar-toggle,
+  .sidebar-wrapper,
+  .category-breadcrumb > li:not(:first-of-type) {
+    display: none;
+  }
+  &.has-sidebar-page .wrap {
+    max-width: var(--d-max-width);
+  }
+  &.has-sidebar-page #main-outlet-wrapper {
+    grid-template-columns: 0 minmax(0, 1fr);
+    gap: 0;
+    padding-left: 1em;
+    @include breakpoint(tablet) {
+      padding-left: 0.5em;
+    }
+  }
+}
+
+// remove default hamburger
+.hamburger-dropdown {
+  display: none;
+}

@@ -1,6 +1,32 @@
 {{#if currentUser}}
+
+  <ul
+    class={{concatClass
+      "header-message__submenu"
+      (unless this.submenuIsActive "hidden")
+    }}
+    style={{concatStyle}}
+  >
+    <li>
+      <a href={{concat "/u/" currentUser.username "/messages"}}>
+        {{d-icon "m-inbox"}}
+        <span>Go to inbox</span>
+      </a>
+    </li>
+    <li>
+      <a {{on "click" this.toggleMoveToHeader}}>
+        {{d-icon "m-call_received"}}
+        <span>Move to sidebar</span>
+      </a>
+    </li>
+  </ul>
+
   <button
-    class={{concatClass "header-message__button" (if isActive "active")}}
+    class={{concatClass
+      "header-message__button"
+      (if isActive "active")
+      (unless this.isMovedToHeader "hidden")
+    }}
     {{on "click" this.toggleDropdown}}
   >
     {{d-icon "m-mail"}}
@@ -11,7 +37,12 @@
     {{/unless}}
   </button>
 
-  <div class="header-message__menu">
+  <div
+    class={{concatClass
+      "header-message__menu"
+      (unless this.isMovedToHeader "hidden")
+    }}
+  >
     <div class="header-message__heading">
       <a href={{concat "/u/" currentUser.username "/messages"}}>
         <h3>
@@ -20,7 +51,15 @@
       </a>
       <ul class="header-message__buttons">
         <li>
-          {{d-icon "m-more_horiz"}}
+          <a
+            {{on "click" this.toggleSubmenu}}
+            class={{concatClass
+              "header-message__more"
+              (if this.submenuIsActive "active")
+            }}
+          >
+            {{d-icon "m-more_horiz"}}
+          </a>
         </li>
         <li>
           <a href="/new-message">
@@ -30,29 +69,31 @@
       </ul>
     </div>
 
-    <ul class="header-message__inboxes">
-      {{#each inboxes as |inbox index|}}
-        <li class="header-message__inbox">
-          <button
-            {{action selectTab index}}
-            class={{if (eq index selectedTabIndex) "active"}}
-            disabled={{loading}}
-          >
-            {{#if inbox.full_name}}
-              {{inbox.full_name}}
-            {{else}}
-              {{inbox.name}}
-            {{/if}}
-          </button>
-          {{#unless (eq inbox.unread_total 0)}}
-            <span class="notification-count">
-              {{inbox.unread_total}}
-            </span>
-          {{/unless}}
-        </li>
-      {{/each}}
+    {{#unless (eq inboxes.length 1)}}
+      <ul class="header-message__inboxes">
+        {{#each inboxes as |inbox index|}}
+          <li class="header-message__inbox">
+            <button
+              {{action selectTab index}}
+              class={{if (eq index selectedTabIndex) "active"}}
+              disabled={{loading}}
+            >
+              {{#if inbox.full_name}}
+                {{inbox.full_name}}
+              {{else}}
+                {{inbox.name}}
+              {{/if}}
+            </button>
+            {{#unless (eq inbox.unread_total 0)}}
+              <span class="notification-count">
+                {{inbox.unread_total}}
+              </span>
+            {{/unless}}
+          </li>
+        {{/each}}
 
-    </ul>
+      </ul>
+    {{/unless}}
     {{#if loading}}
       {{loading-spinner}}
     {{else}}

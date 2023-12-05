@@ -1,3 +1,42 @@
+ul.sidebar-left__messages-menu {
+  position: fixed;
+  padding: 0.5rem;
+  list-style: none;
+  z-index: 999;
+
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  background: var(--secondary);
+  box-shadow: var(--shadow);
+  border-radius: var(--rounded-lg);
+
+  li {
+    display: flex;
+    align-items: stretch;
+    height: 2.5rem;
+    font-size: 0.875rem;
+    span {
+      padding-right: 1rem;
+    }
+    a {
+      border-radius: var(--rounded-lg);
+      gap: 0.25rem;
+      flex: 1;
+      align-items: center;
+      display: flex;
+      color: var(--primary);
+      &:hover {
+        background: var(--primary-50);
+      }
+      svg {
+        width: 2rem;
+        font-size: 1.125rem;
+      }
+    }
+  }
+}
+
 .sidebar-left {
   --py: 1.5em;
   --gap: 1em;
@@ -56,8 +95,10 @@
     }
   }
 
-  padding: var(--py) 0;
-  height: calc(100vh - var(--header-offset) - var(--py) * 2);
+  padding: var(--py) 0 calc(var(--py) * 2) 0;
+  margin-right: 0.4375rem;
+  padding-right: 0.4375rem;
+  height: calc(100vh - var(--header-offset) - var(--py) * 3);
 
   position: sticky;
   top: var(--header-offset);
@@ -65,11 +106,28 @@
   overflow-y: scroll;
   overscroll-behavior: contain;
 
-  &::-webkit-scrollbar {
-    display: none;
+  &:hover {
+    &::-webkit-scrollbar-thumb {
+      background: var(--primary-200);
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background: var(--primary-400);
+    }
   }
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    width: 0.4375rem;
+  }
+  &::-webkit-scrollbar-track {
+    background: none;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: var(--secondary);
+    border-radius: var(--rounded);
+    border-top: 1.5rem solid var(--secondary);
+    border-bottom: 3rem solid var(--secondary);
+  }
 
   .sidebar-left__section {
     .sidebar-left__toggle {
@@ -117,11 +175,41 @@
       gap: 0;
 
       li.sidebar-left__link {
+        &.sidebar-left__messages {
+          display: var(--message-sidebar);
+          position: relative;
+          right: 0;
+          &:hover {
+            button.sidebar-left__messages-more {
+              display: flex;
+            }
+          }
+          button.sidebar-left__messages-more {
+            margin-left: auto;
+            margin-right: 0.5rem;
+            background: none;
+            padding: 0;
+            border: none;
+            width: 2rem;
+            height: 2rem;
+            border-radius: var(--rounded-full);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            &:hover {
+              background: var(--primary-200);
+            }
+            &.active {
+              display: flex;
+              background: var(--primary-200);
+            }
+          }
+        }
         &.unread-notification > a:after {
           content: "";
-          width: 0.5em;
-          height: 0.5em;
-          margin-left: 0.5em;
+          width: 0.375rem;
+          height: 0.375rem;
+          margin-left: 0.375rem;
           background: var(--tertiary);
           display: inline-flex;
           border-radius: var(--rounded-full);
@@ -180,9 +268,9 @@
             }
             gap: 0;
             &:before {
-              width: 0.75rem;
-              height: 0.75rem;
-              margin: 0 1.125rem;
+              width: 0.6875rem;
+              height: 0.6875rem;
+              margin: 0 calc((3rem - 0.6875rem) / 2);
             }
           }
         }
@@ -234,24 +322,37 @@
       }
     }
   }
-
-  .footer__links {
-    @include breakpoint(tablet) {
-      html:not(.sidebar-left--open) & {
-        display: none;
-      }
+  footer {
+    .sidebar-theme-toggle__wrapper {
+      margin-bottom: 0.5rem;
     }
-    li {
-      @extend .detail;
-      a {
-        color: inherit;
-        &:hover {
-          text-decoration: underline;
+    padding-top: 1.5rem;
+    margin-top: auto;
+    .footer__links {
+      @include breakpoint(tablet) {
+        html:not(.sidebar-left--open) & {
+          display: none;
         }
       }
+      display: flex;
+      flex-wrap: wrap;
+      li {
+        &:not(:first-of-type) {
+          &:before {
+            content: "\00a0·";
+          }
+        }
+        @extend .detail;
+        a {
+          color: inherit;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+      list-style-type: none;
+      margin: 0;
     }
-    list-style-type: none;
-    margin: 0;
   }
 }
 

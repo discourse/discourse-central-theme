@@ -1,7 +1,36 @@
+<ul
+  class={{concatClass
+    "sidebar-left__messages-menu"
+    (unless this.isActive "hidden")
+  }}
+  style={{concatStyle}}
+>
+  <li>
+    <a href={{concat "/u/" currentUser.username "/messages"}}>
+      {{d-icon "m-inbox"}}
+      <span>Go to inbox</span>
+    </a>
+  </li>
+  <li>
+    <a href="/new-message">
+      {{d-icon "m-post_add"}}
+      <span>New message</span>
+    </a>
+  </li>
+  <li>
+    <a {{on "click" this.toggleMoveToHeader}}>
+      {{d-icon "m-arrow_outward"}}
+      <span>Move to header</span>
+    </a>
+  </li>
+</ul>
+
 <nav class="sidebar-left">
   {{!-- <div class="sidebar-left__section">
     {{sidebar-left-user}}
   </div> --}}
+
+  {{log "site:" site}}
 
   <div class="sidebar-left__section">
     <ul class="sidebar-left__links">
@@ -13,19 +42,39 @@
           </span>
         </a>
       </li>
-      {{log "huh" currentUser}}
+
       {{#if currentUser}}
-        <li class="sidebar-left__link">
+
+        <li
+          class={{concatClass
+            "sidebar-left__link sidebar-left__messages"
+            (if this.isMovedToHeader "hidden")
+          }}
+        >
           <a href={{concat "/u/" currentUser.username "/messages"}}>
             {{d-icon "m-email"}}
             <span class="sidebar-left__label">
               Messages
-              {{!-- {{#unless (eq totalUnread 0)}}
+              {{log "currentuser" currentUser}}
+              {{#unless
+                (eq currentUser.new_personal_messages_notifications_count 0)
+              }}
                 <span class="badge-notification">
-                  {{totalUnread}}
+                  {{currentUser.new_personal_messages_notifications_count}}
                 </span>
-              {{/unless}} --}}
+              {{/unless}}
             </span>
+
+            <button
+              class={{concatClass
+                "sidebar-left__messages-more"
+                (if this.isActive "active")
+              }}
+              {{on "click" this.toggleMenu}}
+            >
+              {{d-icon "ellipsis-h"}}
+            </button>
+
           </a>
         </li>
         <li class="sidebar-left__link">
@@ -36,6 +85,22 @@
             </span>
           </a>
         </li>
+
+        {{#if currentUser.can_review}}
+          <li class="sidebar-left__link">
+            <a href="/review">
+              {{d-icon "flag"}}
+              <span class="sidebar-left__label">
+                Review
+                {{#unless (eq currentUser.reviewable_count 0)}}
+                  <span class="badge-notification">
+                    {{currentUser.reviewable_count}}
+                  </span>
+                {{/unless}}
+              </span>
+            </a>
+          </li>
+        {{/if}}
 
         {{#if currentUser.admin}}
           <li class="sidebar-left__link">

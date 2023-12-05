@@ -11,7 +11,8 @@
 .sidebar-right {
   grid-area: right;
   display: flex;
-  padding: 1.5em 0;
+  padding: 1.5rem 0;
+  margin-left: 1.5rem;
   grid-column: span 1;
   order: 3;
   flex-direction: column;
