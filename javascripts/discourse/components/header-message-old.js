@@ -1,7 +1,7 @@
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
-import { inject as service } from "@ember/service";
 import { action } from "@ember/object";
+import { inject as service } from "@ember/service";
 import { ajax } from "discourse/lib/ajax";
 
 export default class HeaderMessage extends Component {
@@ -30,11 +30,11 @@ export default class HeaderMessage extends Component {
                 "/" +
                 group.name +
                 ".json"
-            ).then((data) => {
+            ).then((pmGroupData) => {
               // match poster id to users id and merge the users array
-              data.topic_list.topics.forEach((topic) => {
+              pmGroupData.topic_list.topics.forEach((topic) => {
                 topic.posters.forEach((poster) => {
-                  const matchingUser = data.users.find(
+                  const matchingUser = pmGroupData.users.find(
                     (user) => user.id === poster.user_id
                   );
                   if (matchingUser) {
@@ -51,13 +51,15 @@ export default class HeaderMessage extends Component {
               });
 
               // if topic has unread posts, mark topic has unread
-              const unreadTopics = data.topic_list.topics.map((topic) => {
-                return {
-                  ...topic,
-                  unread_total:
-                    topic.unread_posts && topic.unread_posts > 0 ? 1 : 0,
-                };
-              });
+              const unreadTopics = pmGroupData.topic_list.topics.map(
+                (topic) => {
+                  return {
+                    ...topic,
+                    unread_total:
+                      topic.unread_posts && topic.unread_posts > 0 ? 1 : 0,
+                  };
+                }
+              );
 
               // total count of unread topics
               const unreadTotal = unreadTopics.reduce(
@@ -76,10 +78,10 @@ export default class HeaderMessage extends Component {
         // get user personal inbox and do the same things... can this be consolidated?
         const userInboxPromise = ajax(
           "/topics/private-messages/" + this.currentUser.username + ".json"
-        ).then((data) => {
-          data.topic_list.topics.forEach((topic) => {
+        ).then((pmData) => {
+          pmData.topic_list.topics.forEach((topic) => {
             topic.posters.forEach((poster) => {
-              const matchingUser = data.users.find(
+              const matchingUser = pmData.users.find(
                 (user) => user.id === poster.user_id
               );
               if (matchingUser) {
@@ -94,7 +96,7 @@ export default class HeaderMessage extends Component {
                 : false;
           });
 
-          const unreadTopics = data.topic_list.topics.map((topic) => {
+          const unreadTopics = pmData.topic_list.topics.map((topic) => {
             return {
               ...topic,
               unread_total:
@@ -118,8 +120,6 @@ export default class HeaderMessage extends Component {
       .then((combinedData) => {
         this.groups = combinedData;
 
-        console.log(this.groups);
-
         // all unread topics count
         this.groups.forEach((e) => {
           this.totalUnread += e.unread_total;
@@ -129,6 +129,7 @@ export default class HeaderMessage extends Component {
         this.loading = false;
       })
       .catch((error) => {
+        // eslint-disable-next-line no-console
         console.error("Error fetching data:", error);
         this.loading = false;
       });

@@ -1,7 +1,7 @@
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
-import User from "discourse/models/user";
 import { action } from "@ember/object";
+import User from "discourse/models/user";
 
 export default class SidebarLeftUser extends Component {
   @tracked isActive = false;

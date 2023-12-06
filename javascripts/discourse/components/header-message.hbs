@@ -14,7 +14,7 @@
       </a>
     </li>
     <li>
-      <a {{on "click" this.toggleMoveToHeader}}>
+      <a href {{on "click" this.toggleMoveToHeader}}>
         {{d-icon "m-call_received"}}
         <span>Move to sidebar</span>
       </a>
@@ -27,6 +27,7 @@
       (if isActive "active")
       (unless this.isMovedToHeader "hidden")
     }}
+    type="button"
     {{on "click" this.toggleDropdown}}
   >
     {{d-icon "m-mail"}}
@@ -52,6 +53,7 @@
       <ul class="header-message__buttons">
         <li>
           <a
+            href
             {{on "click" this.toggleSubmenu}}
             class={{concatClass
               "header-message__more"
@@ -74,9 +76,10 @@
         {{#each inboxes as |inbox index|}}
           <li class="header-message__inbox">
             <button
-              {{action selectTab index}}
               class={{if (eq index selectedTabIndex) "active"}}
               disabled={{loading}}
+              type="button"
+              {{action selectTab index}}
             >
               {{#if inbox.full_name}}
                 {{inbox.full_name}}
@@ -125,10 +128,10 @@
               <div class="header-message__info">
                 <div class="header-message__info-top">
                   <span class="header-message__name">
-                    {{#if message.posters.0.name}}
-                      {{message.posters.0.name}}
+                    {{#if (get message.posters "0.name")}}
+                      {{get message.posters "0.name"}}
                     {{else}}
-                      {{message.posters.0.username}}
+                      {{get message.posters "0.username"}}
                     {{/if}}
                   </span>
                   <span

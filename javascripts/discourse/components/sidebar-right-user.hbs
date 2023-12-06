@@ -1,11 +1,9 @@
-{{log currentUser}}
-
 {{#if currentUser.username}}
   <div class="user__wrapper has-banner">
     {{#if banner}}
       <div
         class="user__banner"
-        style={{concat "background-image: url(" banner ")"}}
+        style={{html-safe (concat "background-image: url(" banner ")")}}
       >
       </div>
     {{else}}
@@ -49,18 +47,17 @@
       {{currentUser.status.description
     </p> }}
       <div class="user__edit">
-        <a href={{concat "/u/" currentUser.username "/preferences/profile"}}>
-          <button class="btn">
-            Edit Profile
-          </button>
-        </a>
+        <DButton
+          @translatedLabel="Edit Profile"
+          @href="/u/{{this.currentUser.username}}/preferences/profile"
+        />
       </div>
     </div>
   </div>
 {{else}}
   <div class="user__wrapper">
     <div class="user__view">
-      <button class="btn">
+      <button class="btn" type="button">
         Login
       </button>
     </div>

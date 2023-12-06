@@ -1,9 +1,8 @@
 import Component from "@glimmer/component";
-import { ajax } from "discourse/lib/ajax";
 import { tracked } from "@glimmer/tracking";
-import { inject as service } from "@ember/service";
 import { action } from "@ember/object";
-import { next } from "@ember/runloop";
+import { inject as service } from "@ember/service";
+import { ajax } from "discourse/lib/ajax";
 
 export default class SidebarLeft extends Component {
   @service currentUser;
@@ -16,6 +15,16 @@ export default class SidebarLeft extends Component {
   @tracked menuPosition = { top: 0, right: 0 };
   @tracked isActive = false;
 
+  handleDocumentClick = (event) => {
+    const menuButton = document.querySelector(".sidebar-left__messages-more");
+    const menuElement = document.querySelector(".sidebar-left__messages-menu");
+
+    if (menuButton && !menuButton.contains(event.target) && menuElement) {
+      if (!menuElement.contains(event.target)) {
+        this.toggleMenu(event);
+      }
+    }
+  };
   constructor() {
     super(...arguments);
 
@@ -81,17 +90,6 @@ export default class SidebarLeft extends Component {
       document.removeEventListener("click", this.handleDocumentClick);
     }
   }
-
-  handleDocumentClick = (event) => {
-    const menuButton = document.querySelector(".sidebar-left__messages-more");
-    const menuElement = document.querySelector(".sidebar-left__messages-menu");
-
-    if (menuButton && !menuButton.contains(event.target) && menuElement) {
-      if (!menuElement.contains(event.target)) {
-        this.toggleMenu(event);
-      }
-    }
-  };
 
   get concatStyle() {
     return `top: ${this.menuPosition.top}px; right: ${this.menuPosition.right}px;`;

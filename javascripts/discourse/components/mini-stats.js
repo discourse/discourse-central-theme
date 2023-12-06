@@ -1,6 +1,6 @@
 import Component from "@glimmer/component";
-import { ajax } from "discourse/lib/ajax";
 import { tracked } from "@glimmer/tracking";
+import { ajax } from "discourse/lib/ajax";
 
 export default class MiniStats extends Component {
   @tracked stats = null;
@@ -14,6 +14,7 @@ export default class MiniStats extends Component {
   }
 
   willDestroy() {
+    super.willDestroy(...arguments);
     this.stats = null;
   }
 }

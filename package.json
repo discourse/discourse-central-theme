@@ -2,8 +2,9 @@
   "author": "carson",
   "license": "MIT",
   "devDependencies": {
-    "eslint-config-discourse": "latest",
-    "postcss": "^8.4.29",
-    "prettier-plugin-css-order": "^2.0.0"
+    "@discourse/lint-configs": "^1.2.0",
+    "ember-template-lint": "^5.13.0",
+    "eslint": "^8.54.0",
+    "prettier": "^2.8.8"
   }
 }

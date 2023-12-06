@@ -1,5 +1,9 @@
 <div class={{concatClass "header-user" (if isActive "active")}}>
-  <button class="header-user__button" {{on "click" this.toggleDropdown}}>
+  <button
+    class="header-user__button"
+    type="button"
+    {{on "click" this.toggleDropdown}}
+  >
     {{#if currentUser.animated_avatar}}
       {{bound-avatar-template currentUser.animated_avatar "huge"}}
     {{else}}

@@ -13,18 +13,10 @@ export default class TopicListHeaderFilter extends Component {
     { value: "oldest", label: "Oldest" },
   ];
 
-  constructor() {
-    super(...arguments);
-
-    console.log(this.router);
-  }
-
   selectedOption = this.filterOptions[0];
 
   @action
   updateFilter(value) {
-    const currentRoute = this.router.currentRoute;
-
     let redirectURL;
     switch (value) {
       case "latest":

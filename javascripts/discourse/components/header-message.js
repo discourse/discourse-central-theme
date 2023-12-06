@@ -1,9 +1,8 @@
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
+import { action, set } from "@ember/object";
 import { inject as service } from "@ember/service";
-import { action } from "@ember/object";
 import { ajax } from "discourse/lib/ajax";
-import { set } from "@ember/object";
 
 export default class HeaderMessage extends Component {
   @service currentUser;
@@ -19,12 +18,21 @@ export default class HeaderMessage extends Component {
   @tracked allUnread = localStorage.getItem(`inboxes_unread`) ?? 0;
 
   @tracked isActive = false;
-  clickOutsideListener = null;
-
   @tracked inboxes = [];
+  clickOutsideListener = null;
 
   tagName = "";
 
+  handleDocumentClick2 = (event) => {
+    const menuButton = document.querySelector(".header-message__more");
+    const menuElement = document.querySelector(".header-message__submenu");
+
+    if (menuButton && !menuButton.contains(event.target) && menuElement) {
+      if (!menuElement.contains(event.target)) {
+        this.toggleSubmenu(event);
+      }
+    }
+  };
   constructor() {
     super(...arguments);
     const inboxes = this.currentUser.groups.filter(
@@ -82,17 +90,6 @@ export default class HeaderMessage extends Component {
     }
   }
 
-  handleDocumentClick2 = (event) => {
-    const menuButton = document.querySelector(".header-message__more");
-    const menuElement = document.querySelector(".header-message__submenu");
-
-    if (menuButton && !menuButton.contains(event.target) && menuElement) {
-      if (!menuElement.contains(event.target)) {
-        this.toggleSubmenu(event);
-      }
-    }
-  };
-
   get concatStyle() {
     return `top: ${this.menuPosition.top}px; right: ${this.menuPosition.right}px;`;
   }
@@ -102,13 +99,10 @@ export default class HeaderMessage extends Component {
     this.loading = true;
 
     const selectedInbox = this.inboxes[index];
-    console.log("Selected Inbox:", selectedInbox);
 
     if (selectedInbox) {
       try {
         const messages = await this.fetchMessages(selectedInbox);
-
-        console.log("Inbox Data:", messages);
 
         messages.unread_total = 0;
 
@@ -148,16 +142,12 @@ export default class HeaderMessage extends Component {
         this.allUnread = this.allUnread - previousUnreadCount + newUnreadCount;
         localStorage.setItem(`inboxes_unread`, this.allUnread);
 
-        console.log(this.inboxes, "thisinboxes");
-
         // Update the component state
         this.messages = { ...messages };
 
         // Loading is done
         this.loading = false;
       } catch (error) {
-        console.error("Error loading inbox:", error);
-
         // Loading is done (with error)
         this.loading = false;
       }

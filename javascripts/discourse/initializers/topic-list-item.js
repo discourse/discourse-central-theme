@@ -1,6 +1,6 @@
 import { htmlSafe } from "@ember/template";
-import { findRawTemplate } from "discourse-common/lib/raw-templates";
 import { withPluginApi } from "discourse/lib/plugin-api";
+import { findRawTemplate } from "discourse-common/lib/raw-templates";
 
 export default {
   initialize() {

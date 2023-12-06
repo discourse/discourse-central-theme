@@ -1,5 +1,6 @@
 <button
   class={{concatClass "header-message__button" (if isActive "active")}}
+  type="button"
   {{on "click" this.toggleDropdown}}
 >
   {{d-icon "m-mail"}}
