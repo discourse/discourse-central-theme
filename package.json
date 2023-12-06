@@ -3,7 +3,7 @@
   "license": "MIT",
   "devDependencies": {
     "eslint-config-discourse": "latest",
-    "postcss": "^8.4.29",
+    "postcss": "^8.4.31",
     "prettier-plugin-css-order": "^2.0.0"
   }
 }
