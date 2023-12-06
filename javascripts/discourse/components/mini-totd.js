@@ -1,6 +1,6 @@
 import Component from "@glimmer/component";
-import { ajax } from "discourse/lib/ajax";
 import { tracked } from "@glimmer/tracking";
+import { ajax } from "discourse/lib/ajax";
 
 export default class MiniTotd extends Component {
   @tracked topicOfTheDay = null;
@@ -16,6 +16,7 @@ export default class MiniTotd extends Component {
   }
 
   willDestroy() {
+    super.willDestroy(...arguments);
     this.topicOfTheDay = null;
   }
 }

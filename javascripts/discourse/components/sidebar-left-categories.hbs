@@ -1,6 +1,7 @@
 <div class="sidebar-left__section">
   <button
     class="sidebar-left__toggle {{if isToggled 'active'}}"
+    type="button"
     {{on "click" this.toggleSection}}
   >
     {{d-icon "chevron-down"}}
@@ -10,17 +11,16 @@
   </button>
 
   <ul class="sidebar-left__links {{if isToggled '' 'hidden'}}">
-    {{log "site categories:" site.categories}}
     {{#each site.categories as |category|}}
-      {{#unless
-        (or (eq category.name "Uncategorized") category.parentCategory)
+      {{#if
+        (not (or (eq category.name "Uncategorized") category.parentCategory))
       }}
 
         <li
-          class="{{concatClass
-              'sidebar-left__link'
-              (unless (eq category.newTopicsCount 0) 'unread-notification')
-            }}"
+          class={{concatClass
+            "sidebar-left__link"
+            (unless (eq category.newTopicsCount 0) "unread-notification")
+          }}
         >
           {{~category-link category~}}
 
@@ -36,7 +36,7 @@
             </div>
           {{/if}}
         </li>
-      {{/unless}}
+      {{/if}}
     {{/each}}
   </ul>
 </div>

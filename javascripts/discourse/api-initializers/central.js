@@ -9,22 +9,21 @@ export default apiInitializer("0.11.1", (api) => {
     const activePage = window.location.href;
     const homePage = window.origin + "/";
     const latestPage = window.origin + "/latest";
-    const links = document
-      .querySelectorAll(".sidebar-left__link > a")
-      .forEach((link) => {
-        link.classList.remove("active");
-        if (
-          link.href !== homePage &&
-          link.href !== latestPage &&
-          activePage !== homePage &&
-          activePage !== latestPage &&
-          activePage.includes(link.href)
-        ) {
-          link.classList.add("active");
-        } else if (link.href === activePage) {
-          link.classList.add("active");
-        }
-      });
+
+    document.querySelectorAll(".sidebar-left__link > a").forEach((link) => {
+      link.classList.remove("active");
+      if (
+        link.href !== homePage &&
+        link.href !== latestPage &&
+        activePage !== homePage &&
+        activePage !== latestPage &&
+        activePage.includes(link.href)
+      ) {
+        link.classList.add("active");
+      } else if (link.href === activePage) {
+        link.classList.add("active");
+      }
+    });
 
     // hacky way to modify list title
 

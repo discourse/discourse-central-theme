@@ -1,5 +1,6 @@
 <button
   class="sidebar-left__link sidebar-left__user {{if isActive 'active'}}"
+  type="button"
   {{on "click" this.toggleDropdown}}
 >
   {{#if currentUser.animated_avatar}}

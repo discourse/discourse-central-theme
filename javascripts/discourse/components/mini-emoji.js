@@ -15,8 +15,8 @@ export default class MiniEmoji extends Component {
     try {
       await navigator.clipboard.writeText(emoji);
       // You can add a visual indication that the emoji is copied, e.g., by changing the color
-      console.log(`Copied: ${emoji}`);
     } catch (err) {
+      // eslint-disable-next-line no-console
       console.error("Unable to copy text to clipboard", err);
     }
   }

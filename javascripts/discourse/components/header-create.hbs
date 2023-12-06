@@ -1,6 +1,10 @@
 {{#if currentUser}}
   <div class={{concatClass "header-create" (if isActive "active")}}>
-    <button class="header-create__button" {{on "click" this.toggleDropdown}}>
+    <button
+      class="header-create__button"
+      type="button"
+      {{on "click" this.toggleDropdown}}
+    >
       {{d-icon "m-post_add"}}
     </button>
 

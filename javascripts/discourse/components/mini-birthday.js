@@ -1,6 +1,6 @@
 import Component from "@glimmer/component";
-import { ajax } from "discourse/lib/ajax";
 import { tracked } from "@glimmer/tracking";
+import { ajax } from "discourse/lib/ajax";
 
 const emojis = ["🥳", "🤩", "🎂", "🎉", "🎊", "🎁", "🎈"];
 
@@ -19,6 +19,7 @@ export default class MiniBirthday extends Component {
   }
 
   willDestroy() {
+    super.willDestroy(...arguments);
     this.randomBirthday = null;
   }
 

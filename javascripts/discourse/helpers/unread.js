@@ -1,7 +1,7 @@
 import { registerUnbound } from "discourse-common/lib/helpers";
 
 registerUnbound("eq", (a, b) => {
-  return a == b ? true : false;
+  return a === b ? true : false;
 });
 
 registerUnbound("last", function (array) {
