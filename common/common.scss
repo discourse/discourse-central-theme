@@ -1,23 +1,23 @@
-// @import "presets";
+@import "header";
+
 @import "sidebar-right";
 @import "sidebar-right-mini";
-@import "sidebar-left";
-@import "header";
-@import "display-none";
-@import "chat-drawer";
-@import "badges";
-@import "buttons";
+
 @import "topic-list-header";
 @import "topic-list";
 
+@import "sidebar-left";
+
+@import "display-none";
+@import "chat-drawer";
+
+@import "tagging";
+@import "badges";
+@import "buttons";
 @import "select-kit";
 @import "mixins";
 @import "onebox";
 @import "navs";
-
-.material-symbols-outlined {
-  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
-}
 
 :root {
   --d-max-width: 1280px;
@@ -38,7 +38,6 @@
   --rounded-2xl: 1rem;
   --rounded-3xl: 1.5rem;
   --rounded-4xl: 3rem;
-
   --rounded-full: 9999px;
 
   --border: 1px solid var(--primary-100);
@@ -49,8 +48,6 @@
   --central-border-r: 1px;
   --central-border-l: 1px;
 
-  --elevation-pad: 1.5em;
-
   --heading-font-family: system-ui, Helvetica, sans-serif;
   --font-family: system-ui, Helvetica, sans-serif;
 
@@ -59,6 +56,8 @@
     --central-border-l: 0px;
   }
 }
+
+// RESETS
 
 @keyframes background-fade-highlight {
   0% {
@@ -129,6 +128,8 @@ svg.svg-icon {
 // extends
 
 .elevation {
+  --elevation-pad: 1.5em;
+
   position: relative;
   padding: var(--elevation-pad);
   border-radius: var(--rounded-xl);
@@ -510,51 +511,6 @@ body.category {
 #list-area {
   margin-bottom: 0;
 }
-
-span.category-badge-icon {
-  // display: none;
-}
-
-// posts
-
-// profile
-
-// .user-main {
-//   .about {
-//     &,
-//     &.collapsed-info {
-//       .details {
-//         background: none;
-//       }
-//     }
-//     &.has-background:not(.collapsed-info) {
-//       .staff-counters {
-//         position: absolute;
-//         z-index: 1;
-//       }
-//       .details {
-//         padding-top: 300px;
-//       }
-
-//       .user-profile-image {
-//         border-radius: var(--border-radius-sm) var(--border-radius-sm) 0 0;
-//         position: absolute;
-//         top: 0;
-//         left: 0;
-//         width: 100%;
-//       }
-//     }
-//   }
-// }
-// .user-content {
-//   background: None;
-// }
-
-// .user-stream .user-stream-item {
-//   background: none;
-// }
-
-// reply
 
 #reply-control {
   .reply-area {
