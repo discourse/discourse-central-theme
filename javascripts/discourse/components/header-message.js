@@ -45,7 +45,7 @@ export default class HeaderMessage extends Component {
     this.inboxes = inboxes;
     this.inboxes.forEach((inbox, index) => {
       const localStorageKey = `inbox_${index}_unread`;
-      inbox.unread_total = localStorage.getItem(localStorageKey) ?? 0;
+      inbox.unread_total = +localStorage.getItem(localStorageKey) || 0;
     });
 
     this.loadInbox(this.selectedTabIndex);

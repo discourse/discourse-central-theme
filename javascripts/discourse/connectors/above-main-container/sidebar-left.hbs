@@ -62,14 +62,16 @@
               {{/unless}}
             </span>
 
-            <DButton
-              @action={{this.toggleMenu}}
-              @icon="ellipsis-h"
+            <button
               class={{concatClass
                 "sidebar-left__messages-more"
                 (if this.isActive "active")
               }}
-            />
+              {{on "click" this.toggleMenu}}
+            >
+              {{d-icon "ellipsis-h"}}
+            </button>
+
           </a>
         </li>
         <li class="sidebar-left__link">

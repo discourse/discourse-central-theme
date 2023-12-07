@@ -174,7 +174,7 @@
 
                     {{#if message.indirectly_assigned_to}}
                       {{#each
-                        (objectToArray message.indirectly_assigned_to)
+                        (object-to-array message.indirectly_assigned_to)
                         as |assignee|
                       }}
                         <li>{{assignee.assigned_to.username}}</li>
