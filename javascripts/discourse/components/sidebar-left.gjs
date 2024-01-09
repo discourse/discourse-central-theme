@@ -132,7 +132,7 @@ export default class SidebarLeft extends Component {
         <ul class="sidebar-left__links">
           <li class="sidebar-left__link">
             <LinkTo
-              @route="{{this.homepageRoute}}"
+              @route={{this.homepageRoute}}
               class={{this.isActiveLink this.homepageRoute}}
             >
               {{icon "home"}}
@@ -245,7 +245,7 @@ export default class SidebarLeft extends Component {
             {{/if}}
 
             <li class="sidebar-left__link">
-              <a {{on "click" this.createTopic}} class="sidebar-left__new">
+              <a {{on "click" this.createTopic}} role="button" class="sidebar-left__new">
                 {{icon "m-add_box"}}
                 <span class="sidebar-left__label">
                   {{i18n (themePrefix "sidebar.left.new_topic")}}
