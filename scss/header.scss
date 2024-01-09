@@ -83,6 +83,14 @@ ul.header-message__submenu {
     align-items: center;
   }
 
+  .before-header-logo-outlet {
+    display: none;
+ 
+    @media screen and (max-width: 1000px) {
+      display: flex;
+    }
+  }
+
   .title {
     display: flex;
     align-items: center;
@@ -94,28 +102,7 @@ ul.header-message__submenu {
       gap: 0.5rem;
     }
 
-    button.sidebar-left__toggle {
-      position: absolute;
-      left: -9999rem;
-      background: none;
-      border: none;
-      width: 3rem;
-      height: 3rem;
-      html:not(.sidebar-left--open) & {
-        svg:last-child {
-          display: none;
-        }
-      }
-      html.sidebar-left--open & {
-        svg:first-child {
-          display: none;
-        }
-      }
-      @include breakpoint(tablet) {
-        position: unset;
-        left: unset;
-      }
-    }
+  
   }
 
   .panel {

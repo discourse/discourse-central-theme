@@ -6,12 +6,6 @@ import I18n from "discourse-i18n";
 export default {
   initialize() {
     withPluginApi("0.8", (api) => {
-      api.decorateWidget("home-logo:before", (helper) => {
-        return helper.h("button.sidebar-left__toggle", [
-          iconNode("bars"),
-          iconNode("m-close"),
-        ]);
-      });
 
       api.reopenWidget("header-notifications", {
         html(attrs) {

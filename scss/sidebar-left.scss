@@ -1,5 +1,7 @@
 ul.sidebar-left__messages-menu {
-  position: fixed;
+  position: absolute;
+  right: 0;
+  top: calc(100% - 0.5em);
   padding: 0.5rem;
   list-style: none;
   z-index: 999;
@@ -50,7 +52,7 @@ ul.sidebar-left__messages-menu {
 
   @include breakpoint(tablet) {
     grid-column: 1 / span 1;
-    html.sidebar-left--open & {
+    body.sidebar-left--open & {
       z-index: 999;
       position: fixed;
       width: 20em;
@@ -76,11 +78,11 @@ ul.sidebar-left__messages-menu {
     }
   }
 
-  @include breakpoint(mobile-extra-large) {
-    html:not(.sidebar-left--open) & {
+  @media screen and (max-width: 1000px) {
+    body:not(.sidebar-left--open) & {
       display: none;
     }
-    html.sidebar-left--open & {
+    body.sidebar-left--open & {
       position: fixed;
       width: calc(100% - 4em);
       padding-right: 0.5em;
@@ -185,6 +187,9 @@ ul.sidebar-left__messages-menu {
             }
           }
           button.sidebar-left__messages-more {
+            position: absolute;
+            right: 0;
+            top: 0.5em;
             margin-left: auto;
             margin-right: 0.5rem;
             background: none;
@@ -202,6 +207,9 @@ ul.sidebar-left__messages-menu {
             &.active {
               display: flex;
               background: var(--primary-200);
+              .d-icon {
+                color: var(--primary);
+              }
             }
           }
         }
@@ -330,7 +338,7 @@ ul.sidebar-left__messages-menu {
     margin-top: auto;
     .footer__links {
       @include breakpoint(tablet) {
-        html:not(.sidebar-left--open) & {
+        body:not(.sidebar-left--open) & {
           display: none;
         }
       }

@@ -26,6 +26,13 @@ en:
           label: "Topic of the day"
         birthday:
           message: "Happy birthday"
+    left:
+      home: "Home"
+      messages: "Messages"
+      following: "Following Topics"
+      review: "Review"
+      admin: "Admin"
+      new_topic: "New Topic"
   topic_list_item:
     replied: "replied"
     posted: "posted"
