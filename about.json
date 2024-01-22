@@ -9,6 +9,11 @@
     "serialize_topic_excerpts": true,
     "enable_mobile_theme": false
   },
+  "components": [
+    "https://github.com/discourse/discourse-clickable-topic.git",
+    "https://github.com/discourse/discourse-header-search.git",
+    "https://github.com/discourse/discourse-category-icons.git"
+  ],
   "color_schemes": {
     "Central Dark": {
       "primary": "cccccc",
