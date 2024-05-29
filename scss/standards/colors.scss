@@ -1,0 +1,23 @@
+:root {
+  --neutral-0: rgba(0, 0, 0, 1);
+  --neutral-5: rgba(30, 31, 32, 1);
+  --neutral-10: rgba(59, 60, 62, 1);
+  --neutral-20: rgba(67, 69, 71, 1);
+  --neutral-30: rgba(76, 80, 82, 1);
+  --neutral-40: rgba(90, 94, 96, 1);
+  --neutral-50: rgba(105, 110, 113, 1);
+  --neutral-60: rgba(132, 137, 140, 1);
+  --neutral-70: rgba(173, 177, 179, 1);
+  --neutral-80: rgba(207, 209, 210, 1);
+  --neutral-90: rgba(230, 231, 231, 1);
+  --neutral-95: rgba(245, 246, 246, 1);
+  --neutral-100: rgba(255, 255, 255, 1);
+}
+
+@mixin c($type, $shade, $alpha: 1) {
+  color: rgba(var(--#{$type}-#{$shade}), $alpha);
+}
+
+@mixin bgc($type, $shade, $alpha: 1) {
+  background-color: rgba(var(--#{$type}-#{$shade}), $alpha);
+}

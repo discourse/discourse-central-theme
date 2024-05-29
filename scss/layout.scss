@@ -1,0 +1,65 @@
+html {
+  font-size: 16px;
+}
+
+:root {
+  --heading-font-family: system-ui, Helvetica, sans-serif;
+  --font-family: system-ui, Helvetica, sans-serif;
+  --d-max-width: 80rem;
+}
+
+body {
+  background-color: var(--neutral-100);
+  color: var(--neutral-10);
+
+  &.has-sidebar-page,
+  & {
+    .wrap {
+      max-width: var(--d-max-width);
+      box-sizing: border-box;
+      padding: 0 1rem;
+    }
+    #main-outlet-wrapper {
+      box-sizing: border-box;
+      padding: 0 1rem;
+    }
+  }
+}
+
+a,
+a:visited {
+  color: inherit;
+}
+
+#main-outlet {
+  padding: 0;
+  display: grid;
+  grid-template-areas: "left center-top right" "left center right" "left center right";
+  grid-auto-columns: minmax(0, 17rem) 1fr 19rem;
+  column-gap: 2rem;
+
+  .blocks {
+    grid-area: right;
+  }
+  nav.navigation {
+    grid-area: left;
+  }
+
+  div.list-container,
+  div.regular {
+    grid-area: center;
+    border-left: var(--border-outer);
+    border-right: var(--border-outer);
+  }
+
+  div.list-controls,
+  #main-container {
+    grid-area: center-top;
+    border-left: var(--border-outer);
+    border-right: var(--border-outer);
+  }
+}
+
+#user-card {
+  background-color: var(--neutral-100);
+}

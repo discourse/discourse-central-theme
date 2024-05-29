@@ -1,0 +1,17 @@
+.d-header {
+  background-color: var(--neutral-100);
+  box-shadow: none;
+  height: 3rem;
+  box-sizing: content-box;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--neutral-90);
+
+  .title {
+    display: none;
+  }
+
+  .logo-temp {
+    margin: 0;
+    @include headline-medium;
+  }
+}
