@@ -1,0 +1,4 @@
+example_setting:
+  default: true
+  description:
+    en: A description of a setting.
