@@ -3,7 +3,7 @@
   box-shadow: none;
   height: 3rem;
   box-sizing: content-box;
-  padding: 1rem 0;
+  padding: 0.75rem 0;
   border-bottom: 1px solid var(--neutral-90);
 
   .title {
@@ -12,6 +12,6 @@
 
   .logo-temp {
     margin: 0;
-    @include headline-medium;
+    @include headline-small;
   }
 }

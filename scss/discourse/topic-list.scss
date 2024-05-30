@@ -9,8 +9,26 @@ table.topic-list {
     display: flex;
     flex-direction: column;
     border: 0;
+    container-type: inline-size;
 
+    tr.topic-list-item-separator {
+      display: flex;
+      td.topic-list-data {
+        flex: 1;
+        border-top: var(--border-inner);
+        border-bottom: var(--border-inner);
+        padding: 1rem 0;
+
+        span {
+          background-color: transparent;
+          color: var(--neutral-50);
+          @include body-medium;
+        }
+      }
+    }
     tr.topic-list-item {
+      @include hover($opacity: 0.02);
+
       cursor: pointer;
 
       position: relative;
@@ -19,6 +37,36 @@ table.topic-list {
       grid-template-areas: "avatar author actions" "avatar category actions" "avatar title actions" "avatar tags actions" "avatar content actions" "avatar replies actions";
       grid-template-columns: 2rem auto auto;
       gap: 0 1rem;
+
+      @container (max-width: 32rem) {
+        grid-template-areas: "avatar author " "avatar category " "avatar title " "avatar tags " "avatar content " "avatar replies " "avatar actions";
+
+        .topic__actions {
+          justify-self: flex-start;
+          padding: 0;
+          margin-top: 1rem;
+        }
+      }
+
+      //   @include respond-between(tablet, extra-large) {
+      //     grid-template-areas: "avatar author " "avatar category " "avatar title " "avatar tags " "avatar content " "avatar replies " "avatar actions";
+
+      //     .topic__actions {
+      //       justify-self: flex-start;
+      //       padding: 0;
+      //       margin-top: 1rem;
+      //     }
+      //   }
+
+      //   @include breakpoint(mobile-extra-large) {
+      //     grid-template-areas: "avatar author " "avatar category " "avatar title " "avatar tags " "avatar content " "avatar replies " "avatar actions";
+
+      //     .topic__actions {
+      //       justify-self: flex-start;
+      //       padding: 0;
+      //       margin-top: 1rem;
+      //     }
+      //   }
 
       padding: 1rem;
 
@@ -35,8 +83,10 @@ table.topic-list {
         &.main-link {
           display: contents;
 
+          @include body-large;
+
           .link-top-line {
-            margin-top: 0.125rem;
+            margin-top: 0.25rem;
             grid-area: title;
 
             .topic-post-badges {
@@ -44,8 +94,12 @@ table.topic-list {
             }
 
             a.title {
+              &:hover {
+                span {
+                  text-decoration: underline;
+                }
+              }
               span {
-                @include body-large;
               }
 
               padding: 0;
@@ -74,7 +128,7 @@ table.topic-list {
 
             .discourse-tags {
               grid-area: tags;
-              margin: 0.5rem 0;
+              margin-top: 0.625rem;
             }
           }
         }
@@ -101,12 +155,36 @@ table.topic-list {
 
     .topic__username {
       @include label-medium;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    .topic__category {
+      //   &:before {
+      //     display: inline-flex;
+      //     transform: translateY(0.125rem);
+      //     @include i($font-size: 0.75rem);
+      //     content: "lock";
+      //   }
     }
 
     .topic__metadata {
       @include label-small;
 
       color: var(--neutral-50);
+
+      span {
+        &:not(:last-child) {
+          &:after {
+            content: "\00a0·";
+            display: inline-flex;
+          }
+        }
+        &:hover {
+          text-decoration: underline;
+        }
+      }
     }
   }
 
@@ -125,12 +203,13 @@ table.topic-list {
     //   @include i($font-size: 1rem);
     //   content: "prompt_suggestion";
     // }
+    color: var(--neutral-50);
     display: flex;
     grid-area: replies;
-    gap: 0.25rem;
+    gap: 0.375rem;
     align-items: center;
 
-    margin-top: 0.5rem;
+    margin-top: 0.75rem;
 
     &.--reverse {
       li:first-of-type {
@@ -145,10 +224,10 @@ table.topic-list {
       list-style: none;
 
       li {
-        display: flex;
         margin: 0 -0.1875rem;
 
         img.avatar {
+          display: block;
           box-sizing: content-box;
           width: 1rem;
           height: auto;
@@ -162,11 +241,21 @@ table.topic-list {
     .topic__last-reply {
       display: inline-flex;
       @include body-small;
-      span:first-of-type {
+      &:hover {
+        text-decoration: underline;
+      }
+
+      span:not(:last-of-type) {
         &:after {
-          content: "\00a0·\00a0";
+          content: "\00a0";
         }
       }
+
+      //   span:first-of-type {
+      //     &:after {
+      //       content: "\00a0·\00a0";
+      //     }
+      //   }
     }
   }
 
@@ -203,5 +292,18 @@ table.topic-list {
         content: "comment";
       }
     }
+  }
+}
+
+// UX PREFERENCE
+
+body:not(.user-messages-page) {
+  .topic__username,
+  .topic__excerpt,
+  .topic__last-reply > span:not(.relative-date) {
+    display: none;
+  }
+  .topic__author .topic__metadata {
+    @include body-small;
   }
 }

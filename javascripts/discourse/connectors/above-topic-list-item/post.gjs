@@ -78,6 +78,16 @@ export default class PostPrimary extends Component {
       </a>
       <div class="topic__metadata">
         {{formatDate this.topic.createdAt format="medium" leaveAgo="true"}}
+        {{#if this.topic.category.name}}
+          <span
+            class={{concat
+              "topic__category"
+              (if this.topic.category.read_restricted " --locked")
+            }}
+          >
+            {{this.topic.category.name}}
+          </span>
+        {{/if}}
       </div>
     </div>
 
@@ -114,19 +124,30 @@ export default class PostPrimary extends Component {
             {{#if (eq index 0)}}
               {{#if (eq poster.extras "latest")}}
                 <li>
-                  {{avatar poster.user imageSize="small"}}
+                  <a
+                    href={{poster.user.userPath}}
+                    data-user-card={{poster.user.username}}
+                  >
+                    {{avatar poster.user imageSize="small"}}
+                  </a>
                 </li>
               {{/if}}
             {{else}}
               <li>
-                {{avatar poster.user imageSize="small"}}
+                <a
+                  href={{poster.user.userPath}}
+                  data-user-card={{poster.user.username}}
+                >
+                  {{avatar poster.user imageSize="small"}}
+                </a>
               </li>
             {{/if}}
           {{/each}}
         </ul>
         <a href={{this.topic.lastPostUrl}} class="topic__last-reply">
           <span>{{this.topic.lastPoster.user.username}}</span>
-          {{formatDate this.topic.last_posted_at format="tiny"}}
+          <span>{{i18n (themePrefix "post.replied")}}</span>
+          {{formatDate this.topic.last_posted_at format="medium-with-ago"}}
         </a>
 
       </div>

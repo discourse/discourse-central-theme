@@ -1,0 +1,22 @@
+.badge-category__wrapper {
+  .badge-category {
+    &:before {
+      background: none;
+      width: 1.25rem;
+      height: 1.25rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.25rem;
+    }
+    &[data-category-id="124"]:before {
+      content: "💬";
+    }
+    &[data-category-id="10"]:before {
+      content: "📚";
+    }
+    &[data-category-id="67"]:before {
+      content: "📣";
+    }
+  }
+}

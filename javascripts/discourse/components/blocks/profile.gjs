@@ -28,7 +28,7 @@ export default class BlockProfile extends Component {
     }
   }
 
-  get greeting() {
+  get hello() {
     const greetings = ["Hello", "Welcome", "Greetings", "Salutations"];
 
     const index = Math.floor(Math.random() * greetings.length);
@@ -73,30 +73,35 @@ export default class BlockProfile extends Component {
         />
 
         <div class="block-profile__avatar">
-          ˝
           {{avatar this.currentUser "huge"}}
         </div>
         <div class="block-profile__info">
-          <div class="block-profile__greeting">
-            {{this.greeting}}
-          </div>
-          <div class="block-profile__name">
-            <h3>
-              {{#if this.currentUser.name}}
-                {{this.currentUser.name}}
-              {{else}}
-                {{this.currentUser.username}}
-              {{/if}}
-            </h3>
 
-            {{#if this.currentUser.name}}
-              <div class="block-profile__username">
-                <a href={{concat "/u/" this.currentUser.username}}>
-                  {{this.currentUser.username}}
-                </a>
-              </div>
-            {{/if}}
-          </div>
+          {{#if this.currentUser.name}}
+            <div class="block-profile__name-wrapper">
+              <span class="block-profile__hello">
+                {{this.hello}}
+              </span>
+              <span class="block-profile__name">
+                {{this.currentUser.name}}
+              </span>
+            </div>
+            <a
+              class="block-profile__username"
+              href={{concat "/u/" this.currentUser.username}}
+            >
+              {{this.currentUser.username}}
+            </a>
+          {{else}}
+            <div class="block-profile__name-wrapper">
+              <span class="block-profile__hello">
+                {{this.hello}}
+              </span>
+              <span class="block-profile__name">
+                {{this.currentUser.username}}
+              </span>
+            </div>
+          {{/if}}
 
           <span class="block-profile__bio">
             {{htmlSafe this.bio}}
