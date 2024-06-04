@@ -74,12 +74,24 @@ export default class BlockTopContributors extends Component {
         {{yield this.topContributors}}
 
         <select onchange={{this.updatePeriod}}>
-          <option value="all">All-time</option>
-          <option value="yearly">Yearly</option>]
-          <option value="quarterly">Quarterly</option>
-          <option value="monthly">Monthly</option>
-          <option value="weekly" selected>Weekly</option>
-          <option value="daily">Today</option>
+          <option value="all">
+            {{i18n "js.filters.top.all.title"}}
+          </option>
+          <option value="yearly">
+            {{i18n "js.filters.top.yearly.title"}}
+          </option>
+          <option value="quarterly">
+            {{i18n "js.filters.top.quarterly.title"}}
+          </option>
+          <option value="monthly">
+            {{i18n "js.filters.top.monthly.title"}}
+          </option>
+          <option value="weekly" selected>
+            {{i18n "js.filters.top.weekly.title"}}
+          </option>
+          <option value="daily">
+            {{i18n "js.filters.top.today"}}
+          </option>
         </select>
       </div>
       <ol class="block-chart__list">
@@ -102,7 +114,7 @@ export default class BlockTopContributors extends Component {
                   {{!-- {{#if topContributor.name}}
                     {{topContributor.name}}
                   {{else}} --}}
-                    {{htmlSafe topContributor.username}}
+                  {{htmlSafe topContributor.username}}
                   {{!-- {{/if}} --}}
                 </a>
               </div>
@@ -118,7 +130,7 @@ export default class BlockTopContributors extends Component {
       </ol>
       <div class="block-chart__expand">
         <a href={{concat "/leaderboard/7&period=" this.period}}>
-          {{i18n (themePrefix "blocks.expand")}}
+          {{i18n "js.show_more"}}
         </a>
       </div>
     </div>

@@ -4,12 +4,11 @@ import { action } from "@ember/object";
 import { LinkTo } from "@ember/routing";
 import { service } from "@ember/service";
 import { eq, not, or } from "truth-helpers";
+import bodyClass from "discourse/helpers/body-class";
 import categoryLink from "discourse/helpers/category-link";
 import concatClass from "discourse/helpers/concat-class";
 import Category from "discourse/models/category";
 import i18n from "discourse-common/helpers/i18n";
-
-// import bodyClass from "discourse/helpers/body-class";
 
 export default class CentralNavigation extends Component {
   @service currentUser;
@@ -78,10 +77,12 @@ export default class CentralNavigation extends Component {
 
   <template>
     {{log this.router}}
+    {{#if (eq this.router.currentRouteName "userActivity.assigned")}}
+      {{bodyClass "user-assigned-page"}}
+    {{/if}}
     <div class="c-navigation">
-
       <nav>
-        <ul>
+        <ul class="c-navigation__list">
           <li>
             <LinkTo @route="discovery.latest" data-name="home">
               <span>
@@ -100,6 +101,43 @@ export default class CentralNavigation extends Component {
           </li> --}}
 
           {{#if this.currentUser}}
+
+            <li>
+              <a
+                href="/filter?q=in:watching,tracking"
+                {{!-- @model={{this.currentUser}} --}}
+                data-name="following"
+              >
+                <span>
+                  Following
+                </span>
+              </a>
+            </li>
+
+            <li>
+              <LinkTo
+                @route="userNotifications.responses"
+                @model={{this.currentUser}}
+                data-name="mentions"
+              >
+                <span>
+                  Mentions
+                </span>
+              </LinkTo>
+            </li>
+
+            {{!-- <li>
+              <LinkTo
+                @route="userActivity.bookmarks"
+                @model={{this.currentUser}}
+                data-name="bookmarks"
+              >
+                <span>
+                  Bookmarks
+                </span>
+              </LinkTo>
+            </li> --}}
+
             <li>
               <LinkTo
                 @route="userPrivateMessages"
@@ -112,6 +150,18 @@ export default class CentralNavigation extends Component {
               </LinkTo>
             </li>
 
+            <li>
+              <LinkTo
+                @route="userActivity.assigned"
+                @model={{this.currentUser}}
+                data-name="assigned"
+              >
+                <span>
+                  Assigned
+                </span>
+              </LinkTo>
+            </li>
+
             {{#if this.currentUser.admin}}
               <li class="c-navigation__admin">
                 <LinkTo @route="admin.dashboard.general" data-name="admin">
@@ -119,63 +169,6 @@ export default class CentralNavigation extends Component {
                     {{i18n "js.admin_title"}}
                   </span>
                 </LinkTo>
-
-                <ul>
-                  <li>
-                    Dashboard
-                  </li>
-                  <li>
-                    <a href="/admin/site_settings/">
-                      Settings
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/admin/users/">
-                      Users
-                    </a>
-                  </li>
-                  <li>
-                    <a href="/admin/badges/">
-                      Badges
-                    </a>
-                  </li>
-
-                  <li>
-                    <a href="/admin/emails/">
-                      Emails
-                    </a>
-                  </li>
-
-                  <li>
-                    <a href="/admin/logs/">
-                      Logs
-                    </a>
-                  </li>
-
-                  <li>
-                    <a href="/admin/customize/themes">
-                      Customize
-                    </a>
-                  </li>
-
-                  <li>
-                    <a href="/admin/api/">
-                      API
-                    </a>
-                  </li>
-
-                  <li>
-                    <a href="/admin/backups/">
-                      Backups
-                    </a>
-                  </li>
-
-                  <li>
-                    <a href="/admin/plugins/">
-                      Plugins
-                    </a>
-                  </li>
-                </ul>
               </li>
             {{/if}}
 
@@ -187,8 +180,7 @@ export default class CentralNavigation extends Component {
                 {{i18n "js.search.categories"}}
               </span>
             </LinkTo>
-            <ul>
-              {{log "site" this.site}}
+            <ul class="c-navigation__categories-list">
               {{#each this.categories as |category|}}
                 {{#unless category.parent_category_id}}
 

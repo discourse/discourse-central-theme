@@ -1,6 +1,7 @@
 @mixin button($style: neutral, $size: md) {
   display: flex;
   align-items: center;
+  box-sizing: border-box;
 
   @if $style == neutral {
     background-color: var(--neutral-100);

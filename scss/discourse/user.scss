@@ -2,9 +2,18 @@
   background: none;
 }
 
-.user-messages-page {
+.user-messages-page,
+.user-assigned-page {
   .about,
   .user-navigation-primary {
     display: none;
+  }
+}
+
+[data-user-card="Discourse"],
+[data-user-card="system"] {
+  img.avatar {
+    border-bottom-left-radius: 0;
+    // border: 1px solid var()
   }
 }

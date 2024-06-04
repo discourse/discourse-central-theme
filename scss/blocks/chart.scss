@@ -131,8 +131,8 @@
       position: absolute;
       left: -0.375rem;
       top: 0;
-      font-size: 0.875rem;
       width: 2ch;
+      @include body-medium;
       text-align: right;
     }
   }
@@ -153,20 +153,57 @@
     flex-grow: 1;
     font-size: 0.875rem;
     overflow: hidden;
+  }
+
+  &__title {
+    display: inline-flex;
     a {
       color: var(--neutral-10);
+      @include body-medium;
+
+      &:hover {
+        text-decoration: underline;
+      }
     }
+  }
+
+  &__avatar {
+    margin: 0.375rem 0;
+  }
+
+  &__metadata {
+    display: inline-flex;
   }
 
   &__details {
     display: flex;
-    align-items: baseline;
-    gap: 0.5rem;
-    font-size: 0.75rem;
+    align-items: center;
+    gap: 0.375rem;
+    @include body-small;
+    color: var(--neutral-50);
+
+    img.avatar {
+      width: 1rem;
+      height: 1rem;
+    }
+
+    .relative-date {
+      &:after {
+        content: "\00a0·\00a0";
+      }
+    }
 
     .badge-category__wrapper {
-      margin-top: 0.375rem;
-      margin-bottom: 0.25rem;
+      .badge-category {
+        display: contents;
+        &:before {
+          display: none;
+        }
+        .badge-category__name {
+          @include body-small;
+          color: var(--neutral-50);
+        }
+      }
     }
 
     ul {
@@ -176,31 +213,25 @@
       align-items: baseline;
       margin: 0;
       li {
-        &:first-child {
-          display: none;
-        }
         a {
           display: inline-flex;
-          align-items: baseline;
-          gap: 0.3125rem;
-          line-height: 1;
-          color: var(--primary);
-          padding: 0.25rem 0.3125rem;
-          border: var(--border-dark);
+          align-items: center;
+          gap: 0.125rem;
+          color: var(--neutral-10);
+          height: 1.25rem;
+          padding: 0 0.25rem;
+          box-sizing: border-box;
+          border: var(--border-outer);
           border-radius: var(--rounded);
-          &:visited {
-            color: var(--primary);
+          @include label-small;
+
+          &:before {
+            @include i($font-size: 0.75rem);
+            content: "comment";
           }
-        }
-        span {
-          font-size: 0.6875rem;
-        }
-        svg {
-          align-self: center;
-          font-size: 0.75rem;
-        }
-        .d-icon-heart {
-          color: var(--love);
+          span {
+            padding: 0 0.0625rem;
+          }
         }
       }
     }

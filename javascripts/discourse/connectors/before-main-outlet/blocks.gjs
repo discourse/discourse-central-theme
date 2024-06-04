@@ -10,12 +10,13 @@ export default class Blocks extends Component {
 
   <template>
     <div class="blocks">
-
-      <div class="blocks__row">
-        <BlockProfile @format="2x2" />
+      <div class="blocks__wrapper">
+        <div class="blocks__row">
+          <BlockProfile @format="2x2" />
+        </div>
+        <BlockTopTopics @count="5" />
+        <BlockTopContributors @count="5" />
       </div>
-      <BlockTopContributors @count="5" />
-      <BlockTopTopics @count="5" />
     </div>
   </template>
 }

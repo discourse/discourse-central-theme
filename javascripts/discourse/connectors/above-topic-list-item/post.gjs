@@ -7,6 +7,8 @@ import willDestroy from "@ember/render-modifiers/modifiers/will-destroy";
 import { inject as service } from "@ember/service";
 import { htmlSafe } from "@ember/template";
 import { eq, or } from "truth-helpers";
+import UserAvatarFlair from "discourse/components/user-avatar-flair";
+import UserLink from "discourse/components/user-link";
 import avatar from "discourse/helpers/avatar";
 import formatDate from "discourse/helpers/format-date";
 import number from "discourse/helpers/number";
@@ -60,22 +62,21 @@ export default class PostPrimary extends Component {
     </div>
 
     <div class="topic__avatar">
-      <a
-        href={{get this.topic.posters "0.user.userPath"}}
-        data-user-card={{get this.topic.posters "0.user.username"}}
-      >
+      <UserLink @user={{get this.topic.posters "0.user"}}>
         {{avatar (get this.topic.posters "0.user") imageSize="medium"}}
-      </a>
+        <UserAvatarFlair @user={{get this.topic.posters "0.user"}} />
+      </UserLink>
     </div>
 
     <div class="topic__author">
-      <a
+
+      <UserLink
         class="topic__username"
-        href={{get this.topic.posters "0.user.userPath"}}
-        data-user-card={{get this.topic.posters "0.user.username"}}
+        @user={{get this.topic.posters "0.user"}}
       >
         {{get this.topic.posters "0.user.username"}}
-      </a>
+      </UserLink>
+
       <div class="topic__metadata">
         {{formatDate this.topic.createdAt format="medium" leaveAgo="true"}}
         {{#if this.topic.category.name}}
@@ -109,6 +110,7 @@ export default class PostPrimary extends Component {
         {{/if}}
 
       </div>
+
     {{/if}}
 
     {{#unless (eq this.topic.posters.length 1)}}
@@ -124,22 +126,16 @@ export default class PostPrimary extends Component {
             {{#if (eq index 0)}}
               {{#if (eq poster.extras "latest")}}
                 <li>
-                  <a
-                    href={{poster.user.userPath}}
-                    data-user-card={{poster.user.username}}
-                  >
+                  <UserLink @user={{poster.user}}>
                     {{avatar poster.user imageSize="small"}}
-                  </a>
+                  </UserLink>
                 </li>
               {{/if}}
             {{else}}
               <li>
-                <a
-                  href={{poster.user.userPath}}
-                  data-user-card={{poster.user.username}}
-                >
+                <UserLink @user={{poster.user}}>
                   {{avatar poster.user imageSize="small"}}
-                </a>
+                </UserLink>
               </li>
             {{/if}}
           {{/each}}

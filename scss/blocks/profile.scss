@@ -7,7 +7,7 @@
   --bg: var(--neutral-95);
 
   &.block--2x2 {
-    --avatar-w: 4rem;
+    --avatar-w: 3.5rem;
     justify-content: center;
     gap: 0.125rem;
 
@@ -17,6 +17,8 @@
         top: 0;
         left: 0;
         z-index: 0;
+        padding-bottom: 0;
+        height: 3.5rem;
         // margin-bottom: -1.75rem;
         // margin-bottom: -2.25rem;
       }
@@ -39,7 +41,7 @@
         align-items: center;
       }
       &__hello {
-        @include body-small;
+        @include label-small;
         &:after {
           content: unset;
         }

@@ -14,6 +14,7 @@ body {
   --heading-font-family: system-ui, helvetica, sans-serif;
   --font-family: system-ui, helvetica, sans-serif;
   --d-max-width: 80rem;
+  --wrap-px: 1rem;
 }
 
 body {
@@ -22,11 +23,28 @@ body {
     .wrap {
       box-sizing: border-box;
       max-width: var(--d-max-width);
-      padding: 0 1rem;
+      padding: 0 var(--wrap-px);
     }
 
-    &.admin-interface {
+    &.admin-interface,
+    &.archetype-regular,
+    &.user-messages-page {
       #main-outlet-wrapper {
+        @include breakpoint(large) {
+          grid-template-columns: 5rem 1fr;
+          column-gap: 0;
+          padding: 0;
+          #main-outlet {
+            border-right: 0;
+          }
+        }
+        @include breakpoint(tablet) {
+          grid-template-areas: "center";
+          grid-template-columns: minmax(0, 1fr);
+        }
+        #main-outlet {
+          margin-right: 0rem;
+        }
         grid-template-areas: "left center";
         grid-template-columns: minmax(0, 18rem) minmax(24rem, 1fr);
         .blocks {
@@ -37,7 +55,7 @@ body {
 
     #main-outlet-wrapper {
       @include breakpoint(large) {
-        grid-template-columns: 5rem minmax(24rem, 1fr) 19rem;
+        grid-template-columns: 5rem minmax(22rem, 1fr) 19rem;
         column-gap: 0;
         padding-left: 0;
 
@@ -46,10 +64,10 @@ body {
         }
       }
 
-      @include breakpoint(medium) {
-        grid-template-areas: "center right";
-        grid-template-columns: minmax(24rem, 1fr) 19rem;
-      }
+      // @include breakpoint(medium) {
+      //   grid-template-areas: "center right";
+      //   grid-template-columns: minmax(24rem, 1fr) 19rem;
+      // }
 
       @include breakpoint(tablet) {
         grid-template-areas: "center";
@@ -63,11 +81,15 @@ body {
 
       display: grid;
       grid-template-areas: "left center right";
-      grid-template-columns: minmax(0, 18rem) minmax(24rem, 1fr) 19rem;
+      grid-template-columns: minmax(0, 18rem) minmax(26rem, 1fr) 19rem;
       column-gap: 0rem;
 
       box-sizing: border-box;
-      padding: 0 1rem;
+      padding: 0 var(--wrap-px);
+
+      @include breakpoint(large) {
+        padding-left: 0;
+      }
 
       .blocks {
         grid-area: right;
@@ -75,24 +97,23 @@ body {
 
       .c-navigation {
         grid-area: left;
-        padding-right: 1rem;
       }
 
       #main-outlet {
-        @include breakpoint(tablet) {
-          border: 0;
-          margin-right: 0;
-        }
+        margin-right: 2rem;
         @include breakpoint(large) {
           margin-right: 1rem;
         }
+        @include breakpoint(tablet) {
+          margin: 0;
+          border: 0;
+        }
+        border-right: var(--border-outer);
+        border-left: var(--border-outer);
         padding: 0;
-        margin-right: 2rem;
         grid-area: center;
         // border: var(--border-outer);
         // border-radius: var(--rounded-xl);
-        border-right: var(--border-outer);
-        border-left: var(--border-outer);
       }
     }
   }
