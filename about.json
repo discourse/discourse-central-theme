@@ -1,43 +1,16 @@
 {
-  "about_url": null,
-  "license_url": null,
   "name": "Central",
-  "assets": {
-    "icons-sprite": "/assets/outlined.svg"
-  },
+  "authors": "Carson",
+  "about_url": "TODO: Put your theme's public repo or Meta topic URL here",
+  "license_url": "TODO: Put your theme's LICENSE URL here",
+  "learn_more": "TODO",
+  "theme_version": "0.0.1",
+  "minimum_discourse_version": null,
+  "maximum_discourse_version": null,
+  "assets": {},
   "modifiers": {
-    "serialize_topic_excerpts": true,
-    "enable_mobile_theme": false
+    // "custom_homepage": "true",
+    "serialize_topic_excerpts": "true"
   },
-  "components": [
-    "https://github.com/discourse/discourse-clickable-topic.git",
-    "https://github.com/discourse/discourse-header-search.git",
-    "https://github.com/discourse/discourse-category-icons.git"
-  ],
-  "color_schemes": {
-    "Central Dark": {
-      "primary": "cccccc",
-      "secondary": "18191A",
-      "tertiary": "0093FF",
-      "quaternary": "006937",
-      "header_background": "202020",
-      "header_primary": "cccccc",
-      "highlight": "CEDFD7",
-      "danger": "A92E2E",
-      "success": "1ca551",
-      "love": "fa6c8d"
-    },
-    "Central Light": {
-      "primary": "121212",
-      "secondary": "ffffff",
-      "tertiary": "0093FF",
-      "quaternary": "006937",
-      "header_background": "ffffff",
-      "header_primary": "121212",
-      "highlight": "CEDFD7",
-      "danger": "A92E2E",
-      "success": "1ca551",
-      "love": "fa6c8d"
-    }
-  }
+  "color_schemes": {}
 }

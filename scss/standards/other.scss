@@ -1,0 +1,54 @@
+:root {
+  --rounded-sm: 0.25rem;
+  --rounded: 0.375rem;
+  --rounded-md: 0.5rem;
+  --rounded-lg: 0.75rem;
+  --rounded-xl: 1rem;
+  --rounded-full: 9999px;
+
+  --border-outer: 1px solid var(--neutral-90);
+  --border-inner: 1px solid var(--neutral-95);
+}
+
+@mixin sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+@mixin hover($opacity: 0.08) {
+  & > * {
+    z-index: 1;
+  }
+  overflow: hidden;
+  position: relative;
+  &:hover {
+    &::after {
+      content: "";
+
+      pointer-events: none;
+
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 0;
+      width: 100%;
+      height: 100%;
+
+      opacity: $opacity;
+      background: var(--neutral-10);
+    }
+
+    &:active {
+      &::after {
+        opacity: $opacity * 1.5;
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+//  variables
+
+// sidebar
+
+.header-sidebar-toggle,
+.sidebar-wrapper {
+  display: none;
+}
+
+#main-outlet-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.powered-by-discourse {
+  @include sr-only;
+}

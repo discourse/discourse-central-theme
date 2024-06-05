@@ -1,0 +1,130 @@
+html {
+  font-size: 16px;
+  color: var(--neutral-10);
+  background-color: var(--neutral-100);
+}
+
+html,
+body {
+  height: 100%;
+  min-height: 100vh;
+}
+
+:root {
+  --heading-font-family: system-ui, helvetica, sans-serif;
+  --font-family: system-ui, helvetica, sans-serif;
+  --d-max-width: 80rem;
+  --wrap-px: 1rem;
+}
+
+body {
+  &.has-sidebar-page,
+  & {
+    .wrap {
+      box-sizing: border-box;
+      max-width: var(--d-max-width);
+      padding: 0 var(--wrap-px);
+    }
+
+    &.admin-interface,
+    &.archetype-regular,
+    &.user-messages-page {
+      #main-outlet-wrapper {
+        @include breakpoint(large) {
+          grid-template-columns: 5rem 1fr;
+          column-gap: 0;
+          padding: 0;
+          #main-outlet {
+            border-right: 0;
+          }
+        }
+        @include breakpoint(tablet) {
+          grid-template-areas: "center";
+          grid-template-columns: minmax(0, 1fr);
+        }
+        #main-outlet {
+          margin-right: 0rem;
+        }
+        grid-template-areas: "left center";
+        grid-template-columns: minmax(0, 18rem) minmax(24rem, 1fr);
+        .blocks {
+          display: none;
+        }
+      }
+    }
+
+    #main-outlet-wrapper {
+      @include breakpoint(large) {
+        grid-template-columns: 5rem minmax(22rem, 1fr) 19rem;
+        column-gap: 0;
+        padding-left: 0;
+
+        #main-outlet {
+          margin-right: 1rem;
+        }
+      }
+
+      // @include breakpoint(medium) {
+      //   grid-template-areas: "center right";
+      //   grid-template-columns: minmax(24rem, 1fr) 19rem;
+      // }
+
+      @include breakpoint(tablet) {
+        grid-template-areas: "center";
+        grid-template-columns: minmax(0, 1fr);
+        padding: 0;
+
+        .blocks {
+          display: none;
+        }
+      }
+
+      display: grid;
+      grid-template-areas: "left center right";
+      grid-template-columns: minmax(0, 18rem) minmax(26rem, 1fr) 19rem;
+      column-gap: 0rem;
+
+      box-sizing: border-box;
+      padding: 0 var(--wrap-px);
+
+      @include breakpoint(large) {
+        padding-left: 0;
+      }
+
+      .blocks {
+        grid-area: right;
+      }
+
+      .c-navigation {
+        grid-area: left;
+      }
+
+      #main-outlet {
+        margin-right: 2rem;
+        @include breakpoint(large) {
+          margin-right: 1rem;
+        }
+        @include breakpoint(tablet) {
+          margin: 0;
+          border: 0;
+        }
+        border-right: var(--border-outer);
+        border-left: var(--border-outer);
+        padding: 0;
+        grid-area: center;
+        // border: var(--border-outer);
+        // border-radius: var(--rounded-xl);
+      }
+    }
+  }
+}
+
+a,
+a:visited,
+a:hover {
+  color: inherit;
+}
+
+#user-card {
+  background-color: var(--neutral-100);
+}
