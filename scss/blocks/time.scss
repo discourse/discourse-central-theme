@@ -1,0 +1,15 @@
+.block-time {
+  --w: span 2;
+  --h: span 1;
+  --ai: center;
+  --jc: center;
+  --fd: column;
+
+  &__date {
+    @include body-small;
+    line-height: 1;
+  }
+  &__time {
+    @include headline-small;
+  }
+}

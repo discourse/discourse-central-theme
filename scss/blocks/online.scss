@@ -1,0 +1,15 @@
+.block-online {
+  --w: span 1;
+  --l: span 1;
+  --fd: column;
+  --ai: center;
+  --jc: center;
+
+  .number {
+    @include title-large;
+  }
+
+  span {
+    @include body-small;
+  }
+}

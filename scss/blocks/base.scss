@@ -1,7 +1,7 @@
-// @import "stats";
+@import "online";
 @import "chart";
-// @import "clock";
-// @import "birthday";
+@import "time";
+@import "birthday";
 @import "profile";
 @import "top-contributors";
 @import "top-topics";
@@ -32,6 +32,12 @@
     gap: 1rem;
     align-items: stretch;
   }
+
+  // &__column {
+  //   display: grid;
+  //   grid-auto-rows: 4rem;
+  //   gap: 1rem;
+  // }
 }
 
 .block {

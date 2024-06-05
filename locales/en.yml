@@ -10,3 +10,5 @@ en:
       unit: "pts"
     top_topics:
       title: "Top Topics"
+    online:
+      label: "online"
