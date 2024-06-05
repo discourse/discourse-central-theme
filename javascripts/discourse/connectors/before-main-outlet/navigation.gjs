@@ -76,7 +76,7 @@ export default class CentralNavigation extends Component {
   }
 
   <template>
-    {{log this.router}}
+    {{!log this.router}}
     {{#if (eq this.router.currentRouteName "userActivity.assigned")}}
       {{bodyClass "user-assigned-page"}}
     {{/if}}
@@ -204,7 +204,7 @@ export default class CentralNavigation extends Component {
                       <ul class="c-navigation__subcategories">
                         {{#each category.subcategory_ids as |subcategory|}}
                           <li>
-                            {{log "subcategory" subcategory.name}}
+                            {{!log "subcategory" subcategory.name}}
                             {{~categoryLink subcategory~}}
                           </li>
                         {{/each}}
