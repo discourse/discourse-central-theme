@@ -53,7 +53,7 @@ export default class PostPrimary extends Component {
   }
 
   <template>
-    {{log this.topic}}
+    {{!log this.topic}}
     <div
       class="hidden"
       {{didInsert this.registerClickHandler}}
