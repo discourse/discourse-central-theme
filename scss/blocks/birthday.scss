@@ -1,66 +1,14 @@
 .block-birthday {
-    --p: 0.75rem;
-    --w: span 1;
-    --h: span 1;
-    --ai: center;
-    --jc: center;
-  
-    font-size: 0.75rem;
-    line-height: 0.9375rem;
-  
-    &__message {
-      display: none;
-      // display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      max-width: 100%;
-      &:before {
-        content: "🎉";
-        display: block;
-      }
-    }
-  
-    &__name {
-      display: none;
-  
-      color: var(--primary);
-      // font-weight: 600;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-      overflow-x: hidden;
-      // display: inline-flex;
-      &:before {
-        //   content: "@";
-      }
-      &:after {
-        content: "!";
-        font-weight: 400;
-      }
-    }
-  
-    &__emoji {
-      align-items: center;
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%) translateY(-50%);
-      transition: transform 0.1s cubic-bezier(0.445, 0.05, 0.55, 0.95);
-    }
-    &:hover {
-      .block-birthday__emoji {
-        transform: translateX(-50%) translateY(-40%);
-      }
-    }
-    &__avatar {
-      // position: absolute;
-      // top: calc(var(--p) / 1.5);
-      // right: calc(var(--p) / 1.5);
-      .avatar {
-        // width: 1.75rem;
-        // height: 1.75rem;
-        width: 2.5rem;
-        height: 2.5rem;
-      }
+  --p: 0.75rem;
+  --w: span 1;
+  --h: span 1;
+  --ai: center;
+  --jc: center;
+
+  &__avatar {
+    .avatar {
+      width: 2.5rem;
+      height: 2.5rem;
     }
   }
-  
+}
