@@ -1,3 +1,4 @@
+/** eslint-disable no-unused-vars */
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { concat } from "@ember/helper";
