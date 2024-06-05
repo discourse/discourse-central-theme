@@ -116,7 +116,7 @@ export default class PostPrimary extends Component {
     {{#unless (eq this.topic.posters.length 1)}}
       <div
         class={{if
-          (eq this.topic.posters.0.extras "latest")
+          (eq (get this.topic.posters "0.extras") "latest")
           "topic__replies --reverse"
           "topic__replies"
         }}
