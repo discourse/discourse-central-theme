@@ -1,0 +1,152 @@
+.block-profile {
+  --w: span 4;
+  --p: 0;
+  --fd: column;
+  --ai: center;
+  --avatar-w: 5.5rem;
+  --bg: var(--neutral-95);
+
+  &.block--2x2 {
+    --avatar-w: 3.5rem;
+    justify-content: center;
+    gap: 0.125rem;
+
+    .block-profile {
+      &__banner {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 0;
+        padding-bottom: 0;
+        height: 3.5rem;
+        // margin-bottom: -1.75rem;
+        // margin-bottom: -2.25rem;
+      }
+      &__avatar {
+        position: relative;
+        z-index: 1;
+        padding: 0.1875rem;
+
+        img {
+        }
+      }
+      &__info {
+        flex: unset;
+        padding: 0 0.75rem;
+        gap: 0;
+      }
+      &__name-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      &__hello {
+        @include label-small;
+        &:after {
+          content: unset;
+        }
+      }
+      &__bio,
+      &__username,
+      &__link,
+      &__edit {
+        display: none;
+      }
+      &__name {
+        @include label-large;
+        &:after {
+          content: unset;
+        }
+      }
+    }
+  }
+
+  &__banner {
+    background-color: var(--bg);
+    background-position: 50% 50%;
+    background-size: cover;
+    margin-bottom: calc(var(--avatar-w) / -2);
+    padding-bottom: 40%; // 5:2 ratio
+    width: 100%;
+  }
+
+  &__avatar {
+    background: var(--bg);
+    border-radius: var(--rounded-full);
+    padding: 0.25rem;
+    box-sizing: border-box;
+    max-width: var(--avatar-w);
+
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    flex: 1;
+    gap: 0;
+    text-align: center;
+    padding: 0 1.5rem 1.5rem 1.5rem;
+  }
+
+  &__hello {
+    display: inline-flex;
+    &:after {
+      content: ",";
+    }
+    // @include body-small;
+  }
+
+  &__name-wrapper {
+    @include title-medium;
+  }
+
+  &__name {
+    display: inline-flex;
+    &:after {
+      content: "!";
+    }
+    // @include title-medium;
+  }
+
+  &__username {
+    display: inline-flex;
+    &:before {
+      content: "@";
+    }
+
+    color: var(--neutral-50);
+    @include body-small;
+  }
+
+  &__bio {
+    margin-top: 0.5rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    @include body-medium;
+  }
+
+  &__link {
+    &:before {
+      @include i($font-size: 1.125rem);
+      content: "link";
+    }
+    display: inline-flex;
+    gap: 0.25rem;
+    align-items: center;
+    margin-top: 0.5rem;
+    @include body-medium;
+    a {
+      color: var(--primary);
+    }
+  }
+}

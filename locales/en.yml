@@ -1,0 +1,14 @@
+en:
+  theme_metadata:
+    description: ""
+  post:
+    like: "Like"
+    replied: "replied"
+  blocks:
+    top_contributors:
+      title: "Top Contributors"
+      unit: "pts"
+    top_topics:
+      title: "Top Topics"
+    online:
+      label: "online"

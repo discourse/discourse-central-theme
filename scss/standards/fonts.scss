@@ -1,0 +1,13 @@
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..400,0..1,0");
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+
+@mixin i($font-size: 1.25rem, $fill: 0, $wght: 400, $grad: 0, $opsz: 24) {
+  font-family: "Material Symbols Outlined";
+  font-weight: normal;
+  font-variation-settings: "FILL" $fill, "wght" $wght, "GRAD" $grad,
+    "opsz" $opsz;
+  font-size: $font-size;
+  width: $font-size;
+  line-height: 1;
+  font-display: block;
+}
