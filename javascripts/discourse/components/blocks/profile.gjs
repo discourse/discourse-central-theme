@@ -1,10 +1,9 @@
-/** eslint-disable no-unused-vars */
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
-import { concat, get } from "@ember/helper";
+import { concat } from "@ember/helper";
 import { inject as service } from "@ember/service";
 import { htmlSafe } from "@ember/template";
-import { eq, or } from "truth-helpers";
+// import { eq, or } from "truth-helpers";
 import avatar from "discourse/helpers/avatar";
 import concatClass from "discourse/helpers/concat-class";
 import { ajax } from "discourse/lib/ajax";

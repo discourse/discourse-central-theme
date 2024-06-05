@@ -1,13 +1,12 @@
-/** eslint-disable no-unused-vars */
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { action } from "@ember/object";
 import { LinkTo } from "@ember/routing";
 import { service } from "@ember/service";
-import { eq, not, or } from "truth-helpers";
+import { eq } from "truth-helpers";
 import bodyClass from "discourse/helpers/body-class";
 import categoryLink from "discourse/helpers/category-link";
-import concatClass from "discourse/helpers/concat-class";
+// import concatClass from "discourse/helpers/concat-class";
 import Category from "discourse/models/category";
 import i18n from "discourse-common/helpers/i18n";
 

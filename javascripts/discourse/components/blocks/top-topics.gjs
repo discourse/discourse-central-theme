@@ -1,11 +1,11 @@
 /** eslint-disable no-unused-vars */
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
-import { concat, get } from "@ember/helper";
+import { concat } from "@ember/helper";
 import { action } from "@ember/object";
-import { service } from "@ember/service";
+// import { service } from "@ember/service";
 import { htmlSafe } from "@ember/template";
-import { eq, or } from "truth-helpers";
+import { eq } from "truth-helpers";
 import UserLink from "discourse/components/user-link";
 import avatar from "discourse/helpers/avatar";
 import categoryLink from "discourse/helpers/category-link";
