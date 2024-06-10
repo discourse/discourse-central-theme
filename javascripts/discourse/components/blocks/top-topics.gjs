@@ -19,7 +19,7 @@ import i18n from "discourse-common/helpers/i18n";
 
 export default class BlockTopTopics extends Component {
   @tracked topTopics = [];
-  @tracked period = "weekly";
+  @tracked period = this.args?.period || "weekly";
   @tracked count = parseInt(this.args?.count, 10) || 10;
 
   constructor() {
@@ -33,9 +33,9 @@ export default class BlockTopTopics extends Component {
     this.topTopics = null;
   }
 
-  get format() {
-    if (this.args.format) {
-      return `block--${this.args.format}`;
+  get size() {
+    if (this.args.size) {
+      return `block--${this.args.size}`;
     }
   }
 
@@ -67,7 +67,7 @@ export default class BlockTopTopics extends Component {
   }
 
   <template>
-    <div class={{concatClass "block block-chart block-top-topics" this.format}}>
+    <div class={{concatClass "block block-chart block-top-topics" this.size}}>
       <div class="block-chart__header">
         <h3>
           {{i18n (themePrefix "blocks.top_topics.title")}}

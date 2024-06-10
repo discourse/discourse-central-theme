@@ -150,9 +150,11 @@ export default class PostPrimary extends Component {
     {{/unless}}
 
     <ul class="topic__actions">
-      <li>
-        <LikeToggle @topic={{this.topic}} />
-      </li>
+      {{#unless (eq this.topic.like_count 0)}}
+        <li>
+          <LikeToggle @topic={{this.topic}} />
+        </li>
+      {{/unless}}
       <li>
         <a
           href={{concat "/t/" this.topic.slug "/" this.topic.id}}

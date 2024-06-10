@@ -150,7 +150,7 @@ export default class CentralNavigation extends Component {
               </LinkTo>
             </li>
 
-            <li>
+            {{!-- <li>
               <LinkTo
                 @route="userActivity.assigned"
                 @model={{this.currentUser}}
@@ -160,7 +160,7 @@ export default class CentralNavigation extends Component {
                   Assigned
                 </span>
               </LinkTo>
-            </li>
+            </li> --}}
 
             {{#if this.currentUser.admin}}
               <li class="c-navigation__admin">

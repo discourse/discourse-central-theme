@@ -18,6 +18,8 @@
   width: 100%;
 
   &__wrapper {
+    gap: 1rem;
+
     width: 19rem;
     display: flex;
     flex-direction: column;
@@ -26,11 +28,13 @@
   }
 
   &__row {
-    display: grid;
-    grid-template-columns: repeat(4, 4rem);
-    grid-auto-rows: 4rem;
-    gap: 1rem;
-    align-items: stretch;
+    &:not(:has(.block--4w)) {
+      display: grid;
+      grid-template-columns: repeat(4, 4rem);
+      grid-auto-rows: 4rem;
+      gap: 1rem;
+      align-items: stretch;
+    }
   }
 
   // &__column {
@@ -54,6 +58,10 @@
   justify-content: var(--jc, flex-start);
   padding: var(--p, 0.5rem);
   overflow: var(--o, hidden);
+  &--4w {
+    --w: span 4;
+    --h: auto;
+  }
   &--2x1 {
     --w: span 2;
     --h: span 1;

@@ -35,21 +35,9 @@ export default class BlockProfile extends Component {
     return greetings[index];
   }
 
-  // get format() {
-  //   const width = isNaN(this.args.width)
-  //     ? ""
-  //     : `--w: span ${this.args.width}; `;
-
-  //   const height = isNaN(this.args.height)
-  //     ? ""
-  //     : `--h: span ${this.args.height}; `;
-
-  //   return `${width}${height}`.trim();
-  // }
-
-  get format() {
-    if (this.args.format) {
-      return `block--${this.args.format}`;
+  get size() {
+    if (this.args.size) {
+      return `block--${this.args.size}`;
     }
   }
 
@@ -61,7 +49,7 @@ export default class BlockProfile extends Component {
   }
 
   <template>
-    <div class={{concatClass "block block-profile" this.format}}>
+    <div class={{concatClass "block block-profile" this.size}}>
       {{#if this.currentUser}}
 
         <div

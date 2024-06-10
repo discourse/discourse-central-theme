@@ -41,14 +41,17 @@ export default class BlockTopContributors extends Component {
   }
 
   fetchTopContributors(period, count) {
-    ajax(`/leaderboard/7.json?period=${period}`).then((data) => {
-      this.topContributors = data.users.slice(0, count);
-    });
-    // ajax(`/directory_items.json?period=${period}&order=likes_received`).then(
-    //   (data) => {
-    //     this.topContributors = data.directory_items.slice(0, count);
-    //   }
-    // );
+    ajax(`/leaderboard/7.json?period=${period}`)
+      .then((data) => {
+        this.topContributors = data.users.slice(0, count);
+      })
+      .catch(() => {
+        ajax(
+          `/directory_items.json?period=${period}&order=likes_received`
+        ).then((data) => {
+          this.topContributors = data.directory_items.slice(0, count);
+        });
+      });
   }
 
   @action

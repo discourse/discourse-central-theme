@@ -35,6 +35,9 @@
         }
       }
     }
+    &:before {
+      content: "📁";
+    }
     &[data-category-id="124"]:before {
       content: "💬";
     }
