@@ -55,7 +55,7 @@ export default class Breadcrumbs extends Component {
   @action
   home() {
     console.log(this.router.transitionTo);
-    this.router.transitionTo("/")
+    this.router.transitionTo("/");
   }
 
   <template>
@@ -69,14 +69,24 @@ export default class Breadcrumbs extends Component {
         </h2>
       {{else if this.isCategoryView}}
         <h2 class="breadcrumbs__title">
-          <div data-badge-type="emoji" data-clickable="true" class="badge" {{on "click" this.home}}>
+          <div
+            data-badge-type="emoji"
+            data-clickable="true"
+            class="badge"
+            {{on "click" this.home}}
+          >
             📂
           </div>
           {{this.categoryName}}
         </h2>
       {{else if this.isCategoryList}}
         <h2 class="breadcrumbs__title">
-          <div data-badge-type="emoji" data-clickable="true" class="badge" {{on "click" this.home}}>
+          <div
+            data-badge-type="emoji"
+            data-clickable="true"
+            class="badge"
+            {{on "click" this.home}}
+          >
             🗃️
           </div>
           Categories
