@@ -1,25 +1,107 @@
-sidebar_left_footer_links:
-  default: >
-    [
-      {"title": "About Us", "url": "/about"},
-      {"title": "Privacy Policy", "url": "/privacy"},
-      {"title": "Terms of Service", "url": "/tos"}
-    ]
-  json_schema: >
-    {
-      "type": "array",
-      "format": "table",
-      "uniqueItems": true,
-      "items": {
-        "type": "object",
-        "properties": {
-          "title": {
-            "type": "string"
-          },
-          "url": {
-            "type": "string"
-          }
-        },
-        "required": ["title", "url"]
-      }
-    }
+blocks:
+  default: []
+  type: objects
+  schema:
+    name: row
+    properties:
+      blocks:
+        type: objects
+        schema:
+          name: block
+          properties:
+            name:
+              type: enum
+              choices:
+                - top_contributors
+                - top_topics
+                - time
+                - profile
+                - online
+              required: true
+            size:
+              type: enum
+              required: true
+              choices:
+                - 2x2
+                - 4x4
+                - 4w
+                - 2x1
+                - 1x1
+            period:
+              default: weekly
+              type: enum
+              choices:
+                - all
+                - yearly
+                - quarterly
+                - monthly
+                - weekly
+                - daily
+          allOf:
+            - if:
+                properties:
+                  block:
+                    const: top_contributors
+              then:
+                properties:
+                  size:
+                    choices:
+                      - 2x2
+                      - 4x4
+                      - 4w
+                    default: 4w
+                  period:
+                    default: weekly
+            - if:
+                properties:
+                  block:
+                    const: top_topics
+              then:
+                properties:
+                  size:
+                    choices:
+                      - 2x2
+                      - 4x4
+                      - 4w
+                    default: 4w
+                  period:
+                    default: weekly
+            - if:
+                properties:
+                  block:
+                    const: time
+              then:
+                properties:
+                  size:
+                    choices:
+                      - 2x1
+                      - 2x2
+                    default: 2x1
+                  period:
+                    type: null
+            - if:
+                properties:
+                  block:
+                    const: profile
+              then:
+                properties:
+                  size:
+                    choices:
+                      - 2x2
+                      - 4x4
+                    default: 2x2
+                  period:
+                    type: null
+            - if:
+                properties:
+                  block:
+                    const: online
+              then:
+                properties:
+                  size:
+                    choices:
+                      - 1x1
+                      - 2x1
+                    default: 1x1
+                  period:
+                    type: null

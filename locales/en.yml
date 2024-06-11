@@ -1,31 +1,14 @@
 en:
   theme_metadata:
     description: ""
-  sidebar:
-    welcome: "Welcome"
-    back: "back,"
-    welcome_subhead: "We're glad you're here!"
-    likes_header: "Share the Love"
-    badges_header: "Your Top Badges"
-    full_profile: "View your full profile"
-    right:
-      mini:
-        themes:
-          label: "Browse new"
-          title: "Themes"
-          emoji: "🎨"
-        components:
-          label: "Add a"
-          title: "Component"
-          emoji: "🧩"
-        docs:
-          label: "Need help?"
-          title: "Docs"
-          emoji: "📚"
-        totd:
-          label: "Topic of the day"
-        birthday:
-          message: "Happy birthday"
-  topic_list_item:
+  post:
+    like: "Like"
     replied: "replied"
-    posted: "posted"
+  blocks:
+    top_contributors:
+      title: "Top Contributors"
+      unit: "pts"
+    top_topics:
+      title: "Top Topics"
+    online:
+      label: "online"

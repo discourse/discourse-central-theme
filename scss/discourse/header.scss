@@ -1,0 +1,115 @@
+.d-header {
+  background-color: var(--neutral-100);
+  box-shadow: none;
+  height: 3rem;
+  box-sizing: content-box;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--neutral-90);
+
+  .wrap {
+    .contents {
+      display: grid;
+      grid-template-areas: "left center right";
+      grid-template-columns: minmax(0, 18rem) minmax(26rem, 1fr) 21rem;
+      column-gap: 0rem;
+      @include breakpoint(large) {
+        display: flex;
+      }
+
+      &
+        > *:not(.home-logo-wrapper-outlet):not(.before-header-panel-outlet):not(
+          .panel
+        ) {
+        display: none;
+      }
+    }
+  }
+
+  .title {
+    display: none;
+  }
+  .home-logo-wrapper-outlet {
+    display: flex;
+    .logo-temp {
+      display: flex;
+      width: min-content;
+      img {
+        max-width: 12rem;
+        width: auto;
+        max-height: 2.5rem;
+        height: auto;
+      }
+
+      margin: 0;
+      @include headline-small;
+    }
+  }
+
+  .extra-info-wrapper {
+    display: none;
+  }
+  .d-header-icons {
+    li:has(.ai-bot-button) {
+      display: none;
+    }
+    li.c-user {
+      order: 9;
+    }
+    li > button,
+    li > .icon {
+      border: 0;
+      background: none;
+      padding: 0;
+      color: var(--neutral-10);
+      transition: none;
+      @include hover;
+      &:hover {
+        border: 0;
+        background: inherit;
+        color: inherit;
+      }
+      width: 2.5rem;
+      height: 2.5rem;
+      box-sizing: border-box;
+      border-radius: var(--rounded-md);
+      .avatar {
+        width: 2rem;
+        height: 2rem;
+      }
+    }
+    .active {
+      .icon {
+        background-color: var(--neutral-95);
+        border: 0;
+        &:after {
+          content: unset;
+        }
+      }
+    }
+    li.chat-header-icon {
+      .d-icon {
+        display: none;
+      }
+      .icon:before {
+        @include i($font-size: 1.25rem);
+        content: "chat_bubble";
+      }
+    }
+    li.c-create {
+      order: -1;
+      button:before {
+        @include i($font-size: 1.25rem);
+        content: "edit_square";
+      }
+    }
+    li.user-menu-panel {
+      button:before {
+        @include i($font-size: 1.25rem);
+        content: "notifications";
+      }
+      img.avatar {
+        display: none;
+      }
+    }
+  }
+}

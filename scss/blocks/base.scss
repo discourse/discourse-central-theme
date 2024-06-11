@@ -1,0 +1,97 @@
+@import "online";
+@import "chart";
+@import "time";
+@import "birthday";
+@import "profile";
+@import "top-contributors";
+@import "top-topics";
+// @import "cta";
+// @import "img";
+// @import "canvas";
+// @import "emoji";
+
+.blocks {
+  padding-top: 2rem;
+  @include breakpoint(large) {
+    padding-top: 1rem;
+  }
+  width: 100%;
+
+  &__wrapper {
+    gap: 1rem;
+
+    width: 19rem;
+    display: flex;
+    flex-direction: column;
+
+    gap: 1rem;
+  }
+
+  &__row {
+    &:not(:has(.block--4w)) {
+      display: grid;
+      grid-template-columns: repeat(4, 4rem);
+      grid-auto-rows: 4rem;
+      gap: 1rem;
+      align-items: stretch;
+    }
+  }
+
+  // &__column {
+  //   display: grid;
+  //   grid-auto-rows: 4rem;
+  //   gap: 1rem;
+  // }
+}
+
+.block {
+  position: relative;
+  display: flex;
+  box-sizing: border-box;
+  color: var(--c, var(--neutral-10));
+  background: var(--bg, var(--neutral-95));
+  border-radius: var(--br, var(--rounded-xl));
+  grid-column: var(--w, span 1);
+  grid-row: var(--h, span 1);
+  flex-direction: var(--fd, row);
+  align-items: var(--ai, flex-start);
+  justify-content: var(--jc, flex-start);
+  padding: var(--p, 0.5rem);
+  overflow: var(--o, hidden);
+  &--4w {
+    --w: span 4;
+    --h: auto;
+  }
+  &--2x1 {
+    --w: span 2;
+    --h: span 1;
+  }
+  &--2x2 {
+    --w: span 2;
+    --h: span 2;
+  }
+  &--4x1 {
+    --w: span 4;
+    --h: span 1;
+  }
+  &--4x2 {
+    --w: span 4;
+    --h: span 2;
+  }
+  &--4x4 {
+    --w: span 4;
+    --h: span 4;
+  }
+  &--4x6 {
+    --w: span 4;
+    --h: span 6;
+  }
+  &--4x8 {
+    --w: span 4;
+    --h: span 8;
+  }
+}
+
+.block-user {
+  --w: span 4;
+}

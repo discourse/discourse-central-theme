@@ -1,0 +1,95 @@
+@mixin headline-large {
+  font-size: 32px;
+  line-height: 40px;
+  letter-spacing: 0;
+  font-weight: 600;
+  font-family: var(--heading-font-family);
+}
+
+@mixin headline-medium {
+  font-size: 28px;
+  line-height: 36px;
+  letter-spacing: 0;
+  font-weight: 600;
+  font-family: var(--heading-font-family);
+}
+
+@mixin headline-small {
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: 0;
+  font-weight: 600;
+  font-family: var(--heading-font-family);
+}
+
+@mixin title-large {
+  font-size: 22px;
+  line-height: 28px;
+  letter-spacing: 0;
+  font-weight: 400;
+  font-family: var(--heading-font-family);
+}
+
+@mixin title-medium {
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.1px;
+  font-weight: 600;
+  font-family: var(--font-family);
+}
+
+@mixin title-small {
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.1px;
+  font-weight: 600;
+  font-family: var(--font-family);
+}
+
+@mixin body-large {
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.1px;
+  font-weight: 400;
+  font-family: var(--font-family);
+}
+
+@mixin body-medium {
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.1px;
+  font-weight: 400;
+  font-family: var(--font-family);
+}
+
+@mixin body-small {
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.1px;
+  font-weight: 400;
+  font-family: var(--font-family);
+}
+
+@mixin label-large {
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.1px;
+  font-weight: 600;
+  font-family: var(--font-family);
+}
+
+@mixin label-medium {
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.1px;
+  font-weight: 600;
+  font-family: var(--font-family);
+}
+
+@mixin label-small {
+  font-size: 11px;
+  line-height: 12px;
+  letter-spacing: 0.2px;
+  font-weight: 400;
+  font-family: var(--font-family);
+}

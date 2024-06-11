@@ -1,0 +1,14 @@
+.block-birthday {
+  --p: 0.75rem;
+  --w: span 1;
+  --h: span 1;
+  --ai: center;
+  --jc: center;
+
+  &__avatar {
+    .avatar {
+      width: 2.5rem;
+      height: 2.5rem;
+    }
+  }
+}
