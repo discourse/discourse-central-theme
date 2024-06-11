@@ -1,7 +1,7 @@
-import { inject as service } from "@ember/service";
+// import { inject as service } from "@ember/service";
 import { apiInitializer } from "discourse/lib/api";
 
-export default apiInitializer("1.0", (api) => {
+export default apiInitializer("1.0", () => {
   let css = "";
   const categories = settings.category_icons;
   if (categories) {
