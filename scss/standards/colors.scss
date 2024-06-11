@@ -35,3 +35,13 @@
 @mixin bgc($type, $shade, $alpha: 1) {
   background-color: rgba(var(--#{$type}-#{$shade}), $alpha);
 }
+
+.select-kit.multi-select .multi-select-header,
+.select-kit.combo-box .select-kit-header,
+.select-kit.is-expanded .select-kit-body, .select-kit .select-kit-row.is-highlighted {
+  background: white;
+}
+
+:root {
+  --d-input-bg-color: white;
+}
