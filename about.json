@@ -9,7 +9,6 @@
   "maximum_discourse_version": null,
   "assets": {},
   "modifiers": {
-    // "custom_homepage": "true",
     "serialize_topic_excerpts": "true"
   },
   "color_schemes": {}
