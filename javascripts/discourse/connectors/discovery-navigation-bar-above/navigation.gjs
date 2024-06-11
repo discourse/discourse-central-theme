@@ -138,6 +138,34 @@ export default class Breadcrumbs extends Component {
           Categories
         </h2>
       {{/if}}
+      <TopicFilter @routeType={{this.routeType}} />
     </div>
+  </template>
+}
+class TopicFilter extends Component {
+  @service router;
+
+  @action
+  filterTopics(event) {
+    const routeType = this.args.routeType;
+    const category = this.router?.currentRoute?.attributes?.category;
+    const categoryRoute =
+      routeType === "category" ? `/c/${category.slug}/${category.id}/l` : "";
+    switch (event.target.value) {
+      case "latest":
+        DiscourseURL.routeTo(` ${categoryRoute}/latest`);
+        break;
+    }
+  }
+  <template>
+    <select class="breadcrumbs__select" onchange={{this.filterTopics}}>
+      <option value="latest">
+        Latest
+      </option>
+      <option value="top">
+        Top
+      </option>
+    </select>
+    {{@routeType}}
   </template>
 }
