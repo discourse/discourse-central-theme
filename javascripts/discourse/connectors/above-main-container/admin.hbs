@@ -1,10 +1,10 @@
 <div class="admin-main-nav">
   <ul class="nav nav-pills">
-    <NavItem @route="admin.dashboard" @label="admin.dashboard.title" />
     {{#if this.currentUser.admin}}
+      <NavItem @route="admin.dashboard" @label="admin.dashboard.title" />
       <NavItem @route="adminSiteSettings" @label="admin.site_settings.title" />
+      <NavItem @route="adminUsers" @label="admin.users.title" />
     {{/if}}
-    <NavItem @route="adminUsers" @label="admin.users.title" />
     {{#if this.showGroups}}
       <NavItem @route="groups" @label="admin.groups.title" />
     {{/if}}
@@ -13,14 +13,12 @@
     {{/if}}
     {{#if this.currentUser.admin}}
       <NavItem @route="adminEmail" @label="admin.email.title" />
-    {{/if}}
-    <NavItem @route="adminLogs" @label="admin.logs.title" />
-    <NavItem
-      @route="adminCustomizeThemes"
-      @routeParam="themes"
-      @label="admin.customize.title"
-    />
-    {{#if this.currentUser.admin}}
+      <NavItem @route="adminLogs" @label="admin.logs.title" />
+      <NavItem
+        @route="adminCustomizeThemes"
+        @routeParam="themes"
+        @label="admin.customize.title"
+      />
       <NavItem @route="adminApi" @label="admin.api.title" />
       {{#if this.siteSettings.enable_backups}}
         <NavItem @route="admin.backups" @label="admin.backups.title" />
