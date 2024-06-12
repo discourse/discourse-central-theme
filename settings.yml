@@ -1,3 +1,20 @@
+category_icons:
+  default: []
+  type: objects
+  schema:
+    name: category
+    properties:
+      id:
+        type: categories
+        required: true
+        validations:
+          min: 1
+          max: 1
+      emoji:
+        type: string
+        validations:
+          min_length: 1
+          max_length: 10
 blocks:
   default: []
   type: objects
