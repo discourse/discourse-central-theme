@@ -12,7 +12,7 @@ import i18n from "discourse-common/helpers/i18n";
 
 export default class BlockTopContributors extends Component {
   @tracked topContributors = null;
-  @tracked period = "weekly";
+  @tracked period = this.args?.period || "weekly";
   @tracked count = parseInt(this.args?.count, 10) || 10;
 
   constructor() {
