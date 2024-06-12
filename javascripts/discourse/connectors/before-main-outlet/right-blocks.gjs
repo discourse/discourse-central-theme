@@ -8,7 +8,7 @@ import BlockTime from "../../components/blocks/time";
 import BlockTopContributors from "../../components/blocks/top-contributors";
 import BlockTopTopics from "../../components/blocks/top-topics";
 
-export default class BlocksComponent extends Component {
+export default class RightBlocks extends Component {
   @service currentUser;
   @service router;
   @service site;
@@ -50,6 +50,7 @@ export default class BlocksComponent extends Component {
                     BlockComponent
                     size=block.size
                     period=block.period
+                    count=block.count
                   }}
                 {{/if}}
               {{/let}}

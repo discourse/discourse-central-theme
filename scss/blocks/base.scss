@@ -10,38 +10,94 @@
 // @import "canvas";
 // @import "emoji";
 
-.blocks {
-  padding-top: 2rem;
-  @include breakpoint(large) {
-    padding-top: 1rem;
-  }
-  width: 100%;
-
-  &__wrapper {
-    gap: 1rem;
-
-    width: 19rem;
+#main-outlet-wrapper {
+  .blocks.--top {
+    grid-area: center-top !important;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    margin-right: 2rem;
+    // border-bottom: var(--border-outer);
 
-    gap: 1rem;
-  }
-
-  &__row {
-    &:not(:has(.block--4w)) {
+    .blocks__wrapper {
       display: grid;
-      grid-template-columns: repeat(4, 4rem);
+      justify-content: center;
+      background: #e8ecf2;
+      width: 100%;
+      // margin-right: 2rem;
+      border-radius: var(--rounded-lg);
+      // grid-template-columns: repeat(12, 4rem);
       grid-auto-rows: 4rem;
+      height: min-content;
+      max-height: 19rem;
       gap: 1rem;
+      box-sizing: border-box;
       align-items: stretch;
+
+      .block-banner {
+        --jc: center;
+        --ai: center;
+        --bg: transparent;
+        --c: #14263f;
+        --p: 0;
+        --fd: column;
+        width: 100%;
+        // grid-column: span 12;
+        grid-row: span 3;
+
+        h1 {
+          margin: 0;
+          text-align: center;
+          @include headline-small;
+        }
+        &__blurb {
+          margin-top: 0.75rem;
+          max-width: 75ch;
+          @include body-medium;
+          text-align: center;
+        }
+        .button--primary {
+          margin-top: 1rem;
+          @include button($style: primary);
+        }
+      }
     }
   }
+}
 
-  // &__column {
-  //   display: grid;
-  //   grid-auto-rows: 4rem;
-  //   gap: 1rem;
-  // }
+#main-outlet-wrapper {
+  .blocks {
+    padding-top: 2rem;
+    @include breakpoint(large) {
+      padding-top: 1rem;
+    }
+    width: 100%;
+
+    &__wrapper {
+      gap: 1rem;
+
+      width: 19rem;
+      display: flex;
+      flex-direction: column;
+
+      gap: 1rem;
+    }
+
+    &__row {
+      &:not(:has(.block--4w)) {
+        display: grid;
+        grid-template-columns: repeat(4, 4rem);
+        grid-auto-rows: 4rem;
+        gap: 1rem;
+        align-items: stretch;
+      }
+    }
+
+    // &__column {
+    //   display: grid;
+    //   grid-auto-rows: 4rem;
+    //   gap: 1rem;
+    // }
+  }
 }
 
 .block {

@@ -3,6 +3,11 @@
   align-items: center;
   box-sizing: border-box;
 
+  @if $style == primary {
+    background-color: #f26826;
+    color: var(--neutral-100);
+  }
+
   @if $style == neutral {
     background-color: var(--neutral-100);
     color: var(--neutral-10);
@@ -29,7 +34,11 @@
   } @else if $size == md {
     height: 2.5rem;
 
+    padding: 0 0.5rem;
+    border-radius: var(--rounded-md);
+
     span {
+      @include label-large;
       padding: 0 0.25rem;
     }
   }

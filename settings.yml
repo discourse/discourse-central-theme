@@ -44,6 +44,12 @@ blocks:
                 - 4w
                 - 2x1
                 - 1x1
+            count: 
+              default: 5
+              type: integer
+              validations:
+                min: 1
+                max: 12
             period:
               default: weekly
               type: enum

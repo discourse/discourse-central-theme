@@ -13,7 +13,7 @@ body {
 :root {
   --heading-font-family: system-ui, helvetica, sans-serif;
   --font-family: system-ui, helvetica, sans-serif;
-  --d-max-width: 83rem;
+  --d-max-width: 85rem;
   --wrap-px: 1rem;
 }
 
@@ -28,7 +28,8 @@ body {
 
     &.admin-interface,
     &.archetype-regular,
-    &.user-messages-page {
+    &.user-messages-page,
+    &.archetype-private_message {
       #main-outlet-wrapper {
         @include breakpoint(large) {
           grid-template-columns: 5rem 1fr;
@@ -39,13 +40,13 @@ body {
           }
         }
         @include breakpoint(tablet) {
-          grid-template-areas: "center";
+          grid-template-areas: "center-top" "center";
           grid-template-columns: minmax(0, 1fr);
         }
         #main-outlet {
           margin-right: 0rem;
         }
-        grid-template-areas: "left center";
+        grid-template-areas: "left center-top" "left center";
         grid-template-columns: minmax(0, 18rem) minmax(24rem, 1fr);
         .blocks {
           display: none;
@@ -70,7 +71,7 @@ body {
       // }
 
       @include breakpoint(tablet) {
-        grid-template-areas: "center";
+        grid-template-areas: "center-top" "center";
         grid-template-columns: minmax(0, 1fr);
         padding: 0;
 
@@ -80,7 +81,7 @@ body {
       }
 
       display: grid;
-      grid-template-areas: "left center right";
+      grid-template-areas: "left center-top center-top" "left center right";
       grid-template-columns: minmax(0, 18rem) minmax(26rem, 1fr) 19rem;
       column-gap: 0rem;
 
@@ -100,20 +101,22 @@ body {
       }
 
       #main-outlet {
+        margin-top: 2rem;
         margin-right: 2rem;
         @include breakpoint(large) {
           margin-right: 1rem;
+          margin-top: 1rem;
         }
         @include breakpoint(tablet) {
           margin: 0;
           border: 0;
         }
-        border-right: var(--border-outer);
-        border-left: var(--border-outer);
+        // border-right: var(--border-outer);
+        // border-left: var(--border-outer);
         padding: 0;
         grid-area: center;
-        // border: var(--border-outer);
-        // border-radius: var(--rounded-xl);
+        border: var(--border-outer);
+        border-radius: var(--rounded-lg);
       }
     }
   }
