@@ -3,8 +3,10 @@ import { tracked } from "@glimmer/tracking";
 import { on } from "@ember/modifier";
 import { action } from "@ember/object";
 import { service } from "@ember/service";
+import { capitalize } from "@ember/string";
 import DiscourseURL from "discourse/lib/url";
 import i18n from "discourse-common/helpers/i18n";
+
 
 export default class Breadcrumbs extends Component {
   @service router;
@@ -41,6 +43,10 @@ export default class Breadcrumbs extends Component {
     } else {
       this.routeType = null;
     }
+  }
+
+  get shouldShowFilters() {
+    return this.routerType === "home" || this.routerType === "category";
   }
 
   get isHomepage() {
@@ -124,10 +130,12 @@ export default class Breadcrumbs extends Component {
           >
             🗃️
           </div>
-          Categories
+          {{capitalize (i18n "js.categories.categories_label")}}
         </h2>
       {{/if}}
+      {{#if this.shouldShowFilters}}
       <TopicFilter @routeType={{this.routeType}} />
+      {{/if}}
     </div>
   </template>
 }
@@ -155,6 +163,5 @@ class TopicFilter extends Component {
         Top
       </option>
     </select>
-    {{@routeType}}
   </template>
 }
