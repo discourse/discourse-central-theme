@@ -28,7 +28,7 @@
 
   box-sizing: border-box;
   height: calc(100vh - var(--header-offset));
-  padding: 2rem 2rem 2rem 0;
+  padding: 2rem 0 2rem 0;
 
   background: var(--neutral-100);
 
@@ -165,11 +165,13 @@
 
             .badge-category {
               gap: 1rem;
+              text-overflow: ellipsis;
+              overflow: hidden;
             }
 
             .badge-category__name {
-              display: inline-flex;
-              gap: 0.25rem;
+              // display: inline-flex;
+              // gap: 0.25rem;
               color: var(--neutral-10);
             }
           }

@@ -10,59 +10,62 @@
 // @import "canvas";
 // @import "emoji";
 
-#main-outlet-wrapper {
-  .blocks.--top {
-    grid-area: center-top !important;
-    display: flex;
+// #main-outlet-wrapper {
+.blocks.--top {
+  // display: none;
+  // grid-area: content / blocks;
+  display: flex;
+  justify-content: center;
+  // margin-right: 2rem;
+  // border-bottom: var(--border-outer);
+
+  .blocks__wrapper {
+    display: grid;
     justify-content: center;
-    margin-right: 2rem;
-    // border-bottom: var(--border-outer);
+    background: #e8ecf2;
+    width: 100%;
+    // margin-right: 2rem;
+    // border-radius: var(--rounded-lg);
+    // grid-template-columns: repeat(12, 4rem);
+    grid-auto-rows: 4rem;
+    height: min-content;
+    max-height: 19rem;
+    gap: 1rem;
+    box-sizing: border-box;
+    align-items: stretch;
 
-    .blocks__wrapper {
-      display: grid;
-      justify-content: center;
-      background: #e8ecf2;
+    .block-banner {
+      --jc: center;
+      --ai: center;
+      --bg: transparent;
+      --c: #14263f;
+      --p: 0;
+      --fd: column;
       width: 100%;
-      // margin-right: 2rem;
-      border-radius: var(--rounded-lg);
-      // grid-template-columns: repeat(12, 4rem);
-      grid-auto-rows: 4rem;
-      height: min-content;
-      max-height: 19rem;
-      gap: 1rem;
+      // grid-column: span 12;
+      grid-row: span 3;
+      padding: 0 2rem;
       box-sizing: border-box;
-      align-items: stretch;
 
-      .block-banner {
-        --jc: center;
-        --ai: center;
-        --bg: transparent;
-        --c: #14263f;
-        --p: 0;
-        --fd: column;
-        width: 100%;
-        // grid-column: span 12;
-        grid-row: span 3;
-
-        h1 {
-          margin: 0;
-          text-align: center;
-          @include headline-small;
-        }
-        &__blurb {
-          margin-top: 0.75rem;
-          max-width: 75ch;
-          @include body-medium;
-          text-align: center;
-        }
-        .button--primary {
-          margin-top: 1rem;
-          @include button($style: primary);
-        }
+      h1 {
+        margin: 0;
+        text-align: center;
+        @include headline-small;
+      }
+      &__blurb {
+        margin-top: 0.75rem;
+        max-width: 75ch;
+        @include body-medium;
+        text-align: center;
+      }
+      .button--primary {
+        margin-top: 1rem;
+        @include button($style: primary);
       }
     }
   }
 }
+// }
 
 #main-outlet-wrapper {
   .blocks {

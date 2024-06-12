@@ -31,6 +31,10 @@
             @include i($font-size: 0.75rem);
             content: "lock" !important;
             align-self: center;
+            display: inline-flex;
+            margin-right: 0.125rem;
+            align-items: center;
+            justify-content: center;
           }
         }
       }
