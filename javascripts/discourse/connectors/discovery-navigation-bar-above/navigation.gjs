@@ -4,9 +4,7 @@ import { on } from "@ember/modifier";
 import { action } from "@ember/object";
 import { service } from "@ember/service";
 import { capitalize } from "@ember/string";
-import DiscourseURL from "discourse/lib/url";
 import i18n from "discourse-common/helpers/i18n";
-
 
 export default class Breadcrumbs extends Component {
   @service router;
@@ -46,7 +44,7 @@ export default class Breadcrumbs extends Component {
   }
 
   get shouldShowFilters() {
-    return this.routerType === "home" || this.routerType === "category";
+    return this.routeType === "home" || this.routeType === "category";
   }
 
   get isHomepage() {
@@ -71,11 +69,10 @@ export default class Breadcrumbs extends Component {
   get categoryBadge() {
     const defaultBadge = settings.default_category_badge || "📁";
 
-    const badge = settings.category_badges?.find(
-      (categoryBadgeSetting) =>
-        categoryBadgeSetting.category[0] ===
-        this.router?.currentRoute?.attributes?.category?.id
-    )?.badge;
+    const badge = settings.category_icons?.find(
+      (category) =>
+        category.id[0] === this.router?.currentRoute?.attributes?.category?.id
+    )?.emoji;
 
     if (!badge) {
       return defaultBadge;
@@ -134,7 +131,7 @@ export default class Breadcrumbs extends Component {
         </h2>
       {{/if}}
       {{#if this.shouldShowFilters}}
-      <TopicFilter @routeType={{this.routeType}} />
+        <TopicFilter @routeType={{this.routeType}} />
       {{/if}}
     </div>
   </template>
@@ -146,21 +143,31 @@ class TopicFilter extends Component {
   filterTopics(event) {
     const routeType = this.args.routeType;
     const category = this.router?.currentRoute?.attributes?.category;
-    const categoryRoute =
-      routeType === "category" ? `/c/${category.slug}/${category.id}/l` : "";
-    switch (event.target.value) {
-      case "latest":
-        DiscourseURL.routeTo(` ${categoryRoute}/latest`);
-        break;
+
+    if (routeType === "category") {
+      this.router.transitionTo(
+        `/c/${category.slug}/${category.id}/l/${event.target.value}`
+      );
+    } else {
+      this.router.transitionTo(`/${event.target.value}`);
     }
   }
   <template>
     <select class="breadcrumbs__select" onchange={{this.filterTopics}}>
       <option value="latest">
-        Latest
+        {{i18n "js.filters.latest.title"}}
       </option>
       <option value="top">
-        Top
+        {{i18n "js.filters.top.title"}}
+      </option>
+      <option value="new">
+        {{i18n "js.filters.new.title"}}
+      </option>
+      <option value="hot">
+        {{i18n "js.filters.hot.title"}}
+      </option>
+      <option value="unread">
+        {{i18n "js.filters.unread.title"}}
       </option>
     </select>
   </template>
