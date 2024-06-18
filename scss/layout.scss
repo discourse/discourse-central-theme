@@ -91,6 +91,10 @@ body {
         padding-left: 0;
       }
 
+      .sticky-sidebar {
+        display: unset;
+      }
+
       .blocks {
         grid-area: right;
       }
