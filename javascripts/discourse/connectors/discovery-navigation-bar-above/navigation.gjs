@@ -4,6 +4,7 @@ import { on } from "@ember/modifier";
 import { action } from "@ember/object";
 import { service } from "@ember/service";
 import { capitalize } from "@ember/string";
+import { eq } from "truth-helpers";
 import i18n from "discourse-common/helpers/i18n";
 
 export default class Breadcrumbs extends Component {
@@ -43,8 +44,11 @@ export default class Breadcrumbs extends Component {
     }
   }
 
-  get shouldShowFilters() {
-    return this.routeType === "home" || this.routeType === "category";
+  get filterType() {
+    if (this.router?.currentRoute?.localName === "categories") {
+      return "categories";
+    }
+    return this.router?.currentRoute?.attributes?.filterType || "";
   }
 
   get isHomepage() {
@@ -130,21 +134,28 @@ export default class Breadcrumbs extends Component {
           {{capitalize (i18n "js.categories.categories_label")}}
         </h2>
       {{/if}}
-      {{#if this.shouldShowFilters}}
-        <TopicFilter @routeType={{this.routeType}} />
-      {{/if}}
+      <TopicFilter @filterType={{this.filterType}} @routeType={{this.routeType}} />
     </div>
   </template>
 }
 class TopicFilter extends Component {
   @service router;
+  @service site;
+
+  @tracked filterOptions;
+
+  constructor() {
+    super(...arguments);
+
+    this.filterOptions = this.site.siteSettings?.top_menu?.split("|") || [];
+  }
 
   @action
   filterTopics(event) {
     const routeType = this.args.routeType;
     const category = this.router?.currentRoute?.attributes?.category;
 
-    if (routeType === "category") {
+    if (routeType === "category" && event.target.value !== "categories") {
       this.router.transitionTo(
         `/c/${category.slug}/${category.id}/l/${event.target.value}`
       );
@@ -152,23 +163,18 @@ class TopicFilter extends Component {
       this.router.transitionTo(`/${event.target.value}`);
     }
   }
+
   <template>
-    <select class="breadcrumbs__select" onchange={{this.filterTopics}}>
-      <option value="latest">
-        {{i18n "js.filters.latest.title"}}
-      </option>
-      <option value="top">
-        {{i18n "js.filters.top.title"}}
-      </option>
-      <option value="new">
-        {{i18n "js.filters.new.title"}}
-      </option>
-      <option value="hot">
-        {{i18n "js.filters.hot.title"}}
-      </option>
-      <option value="unread">
-        {{i18n "js.filters.unread.title"}}
-      </option>
+    <select
+      class="breadcrumbs__select"
+      value={{@filterType}}
+      onchange={{this.filterTopics}}
+    >
+      {{#each this.filterOptions as |filterOption|}}
+        <option value={{filterOption}}  selected={{eq filterOption @filterType}}>
+          {{filterOption}}
+        </option>
+      {{/each}}
     </select>
   </template>
 }

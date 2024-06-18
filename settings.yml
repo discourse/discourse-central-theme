@@ -136,7 +136,7 @@ category_badges:
         description: a single emoji to use as a badge (copy and paste from https://emojipedia.org/twitter)
         max_length: 1
         required: true
-default_category_badge:
+default_category_icon:
   default: 📁
-  description: a single emoji to use as a default category badge (copy and paste from https://emojipedia.org/twitter)
+  description: a single emoji to use as a default category icon (copy and paste from https://emojipedia.org/twitter)
   max: 1
