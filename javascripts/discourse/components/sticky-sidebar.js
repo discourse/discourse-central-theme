@@ -4,15 +4,13 @@ import { action } from "@ember/object";
 
 export default class StickySidebar extends Component {
   @tracked top = 0;
-  @tracked position = 'relative';
+  @tracked bottom = 0;
+  @tracked position = "relative";
 
   offset = 0;
   prevScrollTop = 0;
-
-  constructor() {
-    super(...arguments);
-    this.offset = 0;
-  }
+  yOrigin = 0;
+  mode = "unset";
 
   @action
   onScroll() {
@@ -20,28 +18,39 @@ export default class StickySidebar extends Component {
     const scrollingUp = scrollY < this.prevScrollTop;
     const scrollingDown = scrollY > this.prevScrollTop;
     const element = this.element;
-    const topDist = element.offsetTop;
-    const stickyTop = 104;
-    const stickyBot = window.innerHeight - element.getBoundingClientRect().height + 104;
+    if (!this.yOrigin) {
+      // save the initial vertical position
+      this.yOrigin = getYOrigin(this.element);
+    }
+    const stickyTop = this.yOrigin;
 
     if (scrollingUp) {
-      if (isTopInView(element)) {
-        this.position = 'sticky';
+      if (isTopInView(element, this.yOrigin)) {
+        this.mode = "top";
+        this.position = "fixed";
         this.top = stickyTop;
-      } else if (isBottomInView(element)) {
-        this.position = 'relative';
-        this.top = topDist - this.offset;
+        this.bottom = "unset";
+      }
+      if (this.mode === "bottom") {
+        this.mode = "between";
+        const top = element.getBoundingClientRect().top;
+        this.position = "relative";
+        this.top = top + scrollY - this.yOrigin;
       }
     } else if (scrollingDown) {
-      if (isTopInView(element)) {
-        this.position = 'relative';
-        this.top = topDist - this.offset;
-      } else if (isBottomInView(element)) {
-        this.position = 'sticky';
-        this.top = stickyBot - 208;
+      if (isBottomInView(element, this.yOrigin)) {
+        this.mode = "bottom";
+        this.position = "fixed";
+        this.bottom = 0;
+        this.top = "unset";
+      }
+      if (this.mode === "top") {
+        this.mode = "between";
+        const top = element.getBoundingClientRect().top;
+        this.position = "relative";
+        this.top = top + scrollY - this.yOrigin;
       }
     }
-
     this.prevScrollTop = scrollY;
   }
 
@@ -52,13 +61,18 @@ export default class StickySidebar extends Component {
   }
 }
 
-function isTopInView(element) {
+function isTopInView(element, yOffset) {
   const rect = element.getBoundingClientRect();
-  return rect.top >= 104 && rect.top <= window.innerHeight;
+  return rect.top >= yOffset && rect.top <= window.innerHeight;
 }
 
 function isBottomInView(element) {
   const rect = element.getBoundingClientRect();
-  return rect.bottom >= 0 && rect.bottom+104 <= window.innerHeight;
+  return rect.bottom >= 0 && rect.bottom <= window.innerHeight;
 }
 
+function getYOrigin(el) {
+  const rect = el.getBoundingClientRect();
+  const scrollTop = window.scrollY || window.pageYOffset;
+  return rect.top + scrollTop;
+}
