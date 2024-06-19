@@ -134,7 +134,10 @@ export default class Breadcrumbs extends Component {
           {{capitalize (i18n "js.categories.categories_label")}}
         </h2>
       {{/if}}
-      <TopicFilter @filterType={{this.filterType}} @routeType={{this.routeType}} />
+      <TopicFilter
+        @filterType={{this.filterType}}
+        @routeType={{this.routeType}}
+      />
     </div>
   </template>
 }
@@ -147,7 +150,10 @@ class TopicFilter extends Component {
   constructor() {
     super(...arguments);
 
-    this.filterOptions = this.site.siteSettings?.top_menu?.split("|") || [];
+    this.filterOptions =
+      this.site.siteSettings?.top_menu?.split("|").map((item) => {
+        return { name: item, localization: `js.filters.${item}.title` };
+      }) || [];
   }
 
   @action
@@ -171,8 +177,8 @@ class TopicFilter extends Component {
       onchange={{this.filterTopics}}
     >
       {{#each this.filterOptions as |filterOption|}}
-        <option value={{filterOption}}  selected={{eq filterOption @filterType}}>
-          {{filterOption}}
+        <option value={{filterOption.name}}  selected={{eq filterOption.name @filterType}}>
+          {{i18n filterOption.localization}}
         </option>
       {{/each}}
     </select>
