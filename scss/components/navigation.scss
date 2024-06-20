@@ -260,59 +260,21 @@
   }
 }
 
-[data-name="home"] {
-  &::before {
-    content: "home";
-  }
-}
-
-[data-name="topics"] {
-  &::before {
-    content: "feed";
+li:has(a[data-name="chat"]) {
+  display: none !important;
+  @include breakpoint(tablet) {
+    display: flex !important;
   }
 }
 
 [data-name="categories"] {
+  &:before {
+    content: unset;
+  }
   @include breakpoint(large) {
     &::before {
       content: "list";
     }
-  }
-}
-
-[data-name="messages"] {
-  &::before {
-    content: "mail";
-  }
-}
-
-[data-name="admin"] {
-  &::before {
-    content: "settings";
-  }
-}
-
-[data-name="bookmarks"] {
-  &::before {
-    content: "bookmark";
-  }
-}
-
-[data-name="following"] {
-  &::before {
-    content: "news";
-  }
-}
-
-[data-name="assigned"] {
-  &::before {
-    content: "assignment_add";
-  }
-}
-
-[data-name="mentions"] {
-  &::before {
-    content: "alternate_email";
   }
 }
 

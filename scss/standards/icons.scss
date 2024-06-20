@@ -1,0 +1,28 @@
+$icon-map: (
+  home: "home",
+  topics: "feed",
+  categories: "list",
+  messages: "mail",
+  admin: "settings",
+  bookmarks: "bookmark",
+  following: "news",
+  assigned: "assignment_add",
+  mentions: "alternate_email",
+  drafts: "draft",
+  invites: "person_add",
+  preferences: "settings",
+  logout: "logout",
+  chat: "chat_bubble",
+);
+
+@mixin generate-icons {
+  @each $name, $icon-name in $icon-map {
+    [data-name="#{$name}"] {
+      &::before {
+        content: "#{$icon-name}";
+      }
+    }
+  }
+}
+
+@include generate-icons;

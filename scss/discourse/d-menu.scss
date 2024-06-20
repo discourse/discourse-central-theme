@@ -4,13 +4,14 @@
     background: var(--neutral-100);
     border: 0;
     border-radius: var(--rounded-md);
-    ul {
+    overflow: hidden;
+    & > ul {
       list-style: none;
       margin: 0;
       padding: 0.5rem 0;
       display: flex;
       flex-direction: column;
-      li {
+      & > li {
         display: flex;
         a {
           width: 100%;

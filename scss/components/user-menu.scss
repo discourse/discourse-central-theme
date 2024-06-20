@@ -1,0 +1,72 @@
+.c-user-menu {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  &__profile {
+    display: flex;
+    padding: 1rem;
+    gap: 1rem;
+    @include hover;
+    &-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    &-name {
+      display: flex;
+      flex-direction: column;
+      @include body-small;
+      line-height: 1;
+
+      span:first-child {
+        @include body-large;
+      }
+      span:nth-child(2) {
+        &:before {
+          content: "@";
+        }
+      }
+    }
+    &-cta {
+      @include body-small;
+    }
+  }
+  &__links {
+    display: flex;
+    flex-direction: column;
+
+    list-style: none;
+    margin: 0;
+    padding: 0.5rem 0;
+    li {
+      display: flex;
+      a {
+        flex: 1;
+        gap: 1rem;
+        padding: 0.5rem 1rem;
+        align-items: center;
+        display: flex;
+        @include hover;
+      }
+      @include body-large;
+      a:before {
+        @include i;
+      }
+    }
+  }
+  &__footer {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 1rem;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    @include label-small;
+    a {
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

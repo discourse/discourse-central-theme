@@ -343,6 +343,7 @@ body:not(.user-messages-page) {
   .show-more {
     position: relative;
     .alert {
+      border-bottom: var(--border-outer);
       background: var(--neutral-95);
       color: var(--neutral-10);
       @include body-medium;

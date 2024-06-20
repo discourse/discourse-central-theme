@@ -33,7 +33,7 @@ body {
       max-width: var(--d-max-width);
       padding: 0 var(--wrap-px);
     }
-
+    &.has-full-page-chat,
     &.admin-interface,
     &.archetype-regular,
     &.archetype-banner,

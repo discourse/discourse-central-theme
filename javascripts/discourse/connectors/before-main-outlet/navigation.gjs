@@ -76,7 +76,7 @@ export default class CentralNavigation extends Component {
   }
 
   <template>
-    {{!log this.router}}
+    {{log this.router}}
     {{#if (eq this.router.currentRouteName "userActivity.assigned")}}
       {{bodyClass "user-assigned-page"}}
     {{/if}}
@@ -137,6 +137,13 @@ export default class CentralNavigation extends Component {
                 </span>
               </LinkTo>
             </li> --}}
+            <li>
+              <LinkTo @route="chat.browse" data-name="chat">
+                <span>
+                  {{i18n "js.chat.heading"}}
+                </span>
+              </LinkTo>
+            </li>
 
             <li>
               <LinkTo
