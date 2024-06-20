@@ -122,3 +122,21 @@ blocks:
                     default: 1x1
                   period:
                     type: null
+category_badges:
+  type: objects
+  default: []
+  schema:
+    name: category_badge
+    properties:
+      category:
+        type: categories
+        required: true
+      badge:
+        type: string
+        description: a single emoji to use as a badge (copy and paste from https://emojipedia.org/twitter)
+        max_length: 1
+        required: true
+default_category_icon:
+  default: 📁
+  description: a single emoji to use as a default category icon (copy and paste from https://emojipedia.org/twitter)
+  max: 1

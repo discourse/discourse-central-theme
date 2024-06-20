@@ -7,6 +7,7 @@ import BlockProfile from "../../components/blocks/profile";
 import BlockTime from "../../components/blocks/time";
 import BlockTopContributors from "../../components/blocks/top-contributors";
 import BlockTopTopics from "../../components/blocks/top-topics";
+import StickySidebarComponent from "../../components/sticky-sidebar";
 
 export default class BlocksComponent extends Component {
   @service currentUser;
@@ -39,24 +40,26 @@ export default class BlocksComponent extends Component {
 
   <template>
     {{!log this.blocks}}
-    <div class="blocks">
-      <div class="blocks__wrapper">
-        {{#each this.blocks as |row|}}
-          <div class="blocks__row">
-            {{#each row.blocks as |block|}}
-              {{#let (this.blockify block) as |BlockComponent|}}
-                {{#if BlockComponent}}
-                  {{component
-                    BlockComponent
-                    size=block.size
-                    period=block.period
-                  }}
-                {{/if}}
-              {{/let}}
-            {{/each}}
-          </div>
-        {{/each}}
+    <StickySidebarComponent>
+      <div class="blocks">
+        <div class="blocks__wrapper">
+          {{#each this.blocks as |row|}}
+            <div class="blocks__row">
+              {{#each row.blocks as |block|}}
+                {{#let (this.blockify block) as |BlockComponent|}}
+                  {{#if BlockComponent}}
+                    {{component
+                      BlockComponent
+                      size=block.size
+                      period=block.period
+                    }}
+                  {{/if}}
+                {{/let}}
+              {{/each}}
+            </div>
+          {{/each}}
+        </div>
       </div>
-    </div>
+    </StickySidebarComponent>
   </template>
 }
