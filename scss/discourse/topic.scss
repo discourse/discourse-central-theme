@@ -1,4 +1,5 @@
 #topic-title {
+  display: flex;
   border-bottom: var(--border-outer);
   padding: 1rem;
   margin: 0;
@@ -7,6 +8,18 @@
 
     a {
       color: var(--neutral-10);
+    }
+  }
+  .topic-title-outlet {
+    padding-top: 8px;
+    order: -1;
+    .topic-back-button {
+      &:before {
+        @include i;
+        padding-left: 12px;
+        padding-right: 16px;
+        content: "arrow_back";
+      }
     }
   }
 }
