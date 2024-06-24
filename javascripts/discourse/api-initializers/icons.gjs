@@ -156,7 +156,7 @@ export default apiInitializer("1.0", (api) => {
       <li class="c-create">
         <DMenu
           @placement="bottom-end"
-          @modalForMobile={{true}}
+          {{!-- @modalForMobile={{true}} --}}
           @identifier="c-create"
         >
           <:trigger>
