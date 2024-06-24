@@ -12,7 +12,6 @@ import BlockTopContributors from "../../components/blocks/top-contributors";
 import BlockTopTopics from "../../components/blocks/top-topics";
 import StickySidebarComponent from "../../components/sticky-sidebar";
 
-
 export default class RightBlocks extends Component {
   @service currentUser;
   @service router;
