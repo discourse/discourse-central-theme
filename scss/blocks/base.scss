@@ -5,63 +5,52 @@
 @import "profile";
 @import "top-contributors";
 @import "top-topics";
-// @import "cta";
+@import "cta";
+@import "banner";
 // @import "img";
 // @import "canvas";
 // @import "emoji";
 
 // #main-outlet-wrapper {
 .blocks.--top {
-  display: none;
-  // grid-area: content / blocks;
-  // display: flex;
   justify-content: center;
-  // margin-right: 2rem;
-  // border-bottom: var(--border-outer);
+  container-type: inline-size;
+  border-bottom: var(--border-outer);
+  display: flex;
+  justify-content: center;
+  background: var(--neutral-100);
 
   .blocks__wrapper {
+    padding: 1rem;
+    background-size: 47rem;
+    background-repeat: no-repeat;
+    background-position: 100% 50%;
     display: grid;
     justify-content: center;
-    background: #e8ecf2;
-    width: 100%;
-    // margin-right: 2rem;
-    // border-radius: var(--rounded-lg);
-    // grid-template-columns: repeat(12, 4rem);
-    grid-auto-rows: 4rem;
-    height: min-content;
+    width: 59rem;
+    box-sizing: content-box;
+    grid-template-columns: repeat(12, 4rem);
+    // grid-auto-rows: 4rem;
+    height: 100%;
+    container-type: inline-size;
+
+    @container (max-width: 59rem) {
+      display: flex;
+      flex-direction: column;
+    }
     max-height: 19rem;
     gap: 1rem;
     box-sizing: border-box;
     align-items: stretch;
-
-    .block-banner {
-      --jc: center;
-      --ai: center;
-      --bg: transparent;
-      --c: #14263f;
-      --p: 0;
-      --fd: column;
-      width: 100%;
-      // grid-column: span 12;
-      grid-row: span 3;
-      padding: 0 2rem;
-      box-sizing: border-box;
-
-      h1 {
-        margin: 0;
-        text-align: center;
-        @include headline-small;
+    .blocks__row {
+      @container (max-width: 59rem) {
+        display: flex;
+        flex-direction: column;
       }
-      &__blurb {
-        margin-top: 0.75rem;
-        max-width: 75ch;
-        @include body-medium;
-        text-align: center;
-      }
-      .button--primary {
-        margin-top: 1rem;
-        @include button($style: primary);
-      }
+      display: grid;
+      gap: 1rem;
+      grid-column: span 12;
+      grid-template-columns: repeat(12, 4rem);
     }
   }
 }
@@ -70,8 +59,10 @@
 #main-outlet-wrapper {
   .blocks {
     padding-top: 2rem;
+    padding-bottom: 2rem;
     @include breakpoint(large) {
       padding-top: 1rem;
+      padding-bottom: 1rem;
     }
     width: 100%;
 
@@ -104,12 +95,15 @@
 }
 
 .block {
+  --br: var(--rounded-#{$blocks_border_radius});
+
   position: relative;
   display: flex;
   box-sizing: border-box;
   color: var(--c, var(--neutral-10));
-  background: var(--bg, var(--neutral-95));
-  border-radius: var(--br, var(--rounded-xl));
+  background: var(--bg, var(--neutral-100));
+  border-radius: var(--br, var(--rounded-md));
+  border: var(--b, var(--border-outer));
   grid-column: var(--w, span 1);
   grid-row: var(--h, span 1);
   flex-direction: var(--fd, row);

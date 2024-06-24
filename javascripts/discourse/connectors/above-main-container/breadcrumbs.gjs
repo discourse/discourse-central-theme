@@ -3,15 +3,54 @@ import { tracked } from "@glimmer/tracking";
 import { on } from "@ember/modifier";
 import { action } from "@ember/object";
 import { service } from "@ember/service";
-import { capitalize } from "@ember/string";
+import { htmlSafe } from "@ember/template";
 import { eq } from "truth-helpers";
+import bodyClass from "discourse/helpers/body-class";
+import categoryBadge from "discourse/helpers/category-badge";
 import i18n from "discourse-common/helpers/i18n";
 
 export default class Breadcrumbs extends Component {
   @service router;
   @service site;
-
+  @service discovery;
   @tracked routeType;
+
+  get pageName() {
+    switch (true) {
+      case this.router.currentRouteName.includes("userPrivateMessages"):
+        return "js.groups.messages";
+      // case this.router.currentRouteName === "discovery.categories":
+      //   return "js.filters.categories.title";
+      case this.router.currentRouteName.startsWith("admin"):
+        return "js.admin_title";
+      case this.router.currentRouteName.startsWith("chat"):
+        return "js.chat.heading";
+      case this.router.currentRouteName === "userNotifications.responses" ||
+        this.router.currentRouteName === "userNotifications.mentions":
+        return "js.groups.mentions";
+      case this.router.currentRouteName === "userActivity.bookmarks":
+        return "js.user.bookmarks";
+      case this.router?.currentRoute?.parent?.name === "docs":
+        return "js.docs.title";
+      default:
+        return null;
+    }
+  }
+
+  get shouldRenderBreadcrumbs() {
+    return this.pageName || this.isHomepage || this.discovery.category;
+  }
+
+  get shouldRenderFilters() {
+    return this.discovery.category || this.isHomepage;
+  }
+
+  get className() {
+    return this.router.currentRouteName
+      .replace(/\./g, "-")
+      .replace(/([a-z])([A-Z])/g, "$1-$2")
+      .toLowerCase();
+  }
 
   @action
   updateRouteType() {
@@ -56,89 +95,37 @@ export default class Breadcrumbs extends Component {
     return this.routeType === "home";
   }
 
-  get isCategoryView() {
-    this.updateRouteType();
-    return this.routeType === "category";
-  }
-
-  get isCategoryList() {
-    this.updateRouteType();
-    return this.routeType === "categories";
-  }
-
-  get categoryName() {
-    return this.router?.currentRoute?.attributes?.category?.name || "Category";
-  }
-
-  get categoryBadge() {
-    const defaultBadge = settings.default_category_badge || "📁";
-
-    const badge = settings.category_icons?.find(
-      (category) =>
-        category.id[0] === this.router?.currentRoute?.attributes?.category?.id
-    )?.emoji;
-
-    if (!badge) {
-      return defaultBadge;
-    }
-
-    try {
-      // check for valid emoji
-      const regex = /\p{Emoji}/u;
-      if (regex.test(badge)) {
-        return badge;
-      }
-      return defaultBadge;
-    } catch (e) {
-      // \p{Emoji} not supported -> skip validation
-      return badge;
-    }
-  }
-
   @action
   home() {
     this.router.transitionTo("/");
   }
 
   <template>
-    <div class="breadcrumbs">
-      {{#if this.isHomepage}}
+    {{#if this.pageName}}
+      {{bodyClass this.className}}
+
+      <div class="breadcrumbs">
+
         <h2 class="breadcrumbs__title">
-          <div data-badge-type="icon" class="badge">
-            home
-          </div>
-          {{i18n "js.home"}}
-        </h2>
-      {{else if this.isCategoryView}}
-        <h2 class="breadcrumbs__title">
-          <div
+          {{!-- <div
             data-badge-type="emoji"
             data-clickable="true"
             class="badge"
             {{on "click" this.home}}
           >
-            {{this.categoryBadge}}
-          </div>
-          {{this.categoryName}}
+
+          </div> --}}
+          {{i18n this.pageName}}
         </h2>
-      {{else if this.isCategoryList}}
-        <h2 class="breadcrumbs__title">
-          <div
-            data-badge-type="emoji"
-            data-clickable="true"
-            class="badge"
-            {{on "click" this.home}}
-          >
-            🗃️
-          </div>
-          {{capitalize (i18n "js.categories.categories_label")}}
-        </h2>
-      {{/if}}
-      <TopicFilter
-        @filterType={{this.filterType}}
-        @routeType={{this.routeType}}
-      />
-    </div>
+
+        {{#if this.shouldRenderFilters}}
+          <TopicFilter
+            @filterType={{this.filterType}}
+            @routeType={{this.routeType}}
+          />
+        {{/if}}
+      </div>
+    {{/if}}
   </template>
 }
 class TopicFilter extends Component {
@@ -177,7 +164,10 @@ class TopicFilter extends Component {
       onchange={{this.filterTopics}}
     >
       {{#each this.filterOptions as |filterOption|}}
-        <option value={{filterOption.name}}  selected={{eq filterOption.name @filterType}}>
+        <option
+          value={{filterOption.name}}
+          selected={{eq filterOption.name @filterType}}
+        >
           {{i18n filterOption.localization}}
         </option>
       {{/each}}

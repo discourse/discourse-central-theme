@@ -54,17 +54,19 @@ export default apiInitializer("1.0", (api) => {
                     </span>
                   </LinkTo>
                 </li>
+
                 <li>
                   <LinkTo
-                    data-name="drafts"
-                    @route="userActivity.drafts"
-                    @model={{currentUser}}
+                    @route="userActivity.bookmarks"
+                    @model={{this.currentUser}}
+                    data-name="bookmarks"
                   >
                     <span>
-                      {{i18n "js.drafts.label"}}
+                      {{i18n "js.user.bookmarks"}}
                     </span>
                   </LinkTo>
                 </li>
+
                 <li>
                   <LinkTo
                     data-name="invites"
@@ -119,13 +121,7 @@ export default apiInitializer("1.0", (api) => {
                       </span>
                     </LinkTo>
                   </li>
-                  <li>
-                    <LinkTo data-name="tags" @route="tags.index">
-                      <span>
-                        {{i18n "js.tagging.tags"}}
-                      </span>
-                    </LinkTo>
-                  </li>
+
                   <li>
                     <LinkTo data-name="admin" @route="admin.dashboard.general">
                       <span>{{i18n "js.admin_title"}}</span>

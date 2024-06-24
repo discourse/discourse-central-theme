@@ -20,6 +20,7 @@ import endsWithEllipsis from "../../helpers/ends-with-ellipsis";
 export default class PostPrimary extends Component {
   @service currentUser;
   @service router;
+  @service discovery;
 
   @tracked topic = this.args.outletArgs.topic;
 
@@ -53,7 +54,6 @@ export default class PostPrimary extends Component {
   }
 
   <template>
-    {{!log this.topic}}
     <div
       class="hidden"
       {{didInsert this.registerClickHandler}}
@@ -79,16 +79,25 @@ export default class PostPrimary extends Component {
 
       <div class="topic__metadata">
         {{formatDate this.topic.createdAt format="medium" leaveAgo="true"}}
-        {{#if this.topic.category.name}}
-          <span
-            class={{concat
-              "topic__category"
-              (if this.topic.category.read_restricted " --locked")
-            }}
-          >
-            {{this.topic.category.name}}
-          </span>
-        {{/if}}
+        {{#unless this.discovery.category}}
+          {{#if this.topic.category.name}}
+            <a
+              href={{concat
+                "/c/"
+                this.topic.category.slug
+                "/"
+                this.topic.category.id
+              }}
+              title={{this.topic.category.description_text}}
+              class={{concat
+                "topic__category"
+                (if this.topic.category.read_restricted " --locked")
+              }}
+            >
+              {{this.topic.category.name}}
+            </a>
+          {{/if}}
+        {{/unless}}
       </div>
     </div>
 
@@ -141,9 +150,17 @@ export default class PostPrimary extends Component {
           {{/each}}
         </ul>
         <a href={{this.topic.lastPostUrl}} class="topic__last-reply">
-          <span>{{this.topic.lastPoster.user.username}}</span>
-          <span>{{i18n (themePrefix "post.replied")}}</span>
-          {{formatDate this.topic.last_posted_at format="medium-with-ago"}}
+          <span>
+            {{htmlSafe
+              (i18n
+                (themePrefix "post.replied")
+                name=this.topic.lastPoster.user.username
+                timeago=(formatDate
+                  this.topic.last_posted_at format="medium-with-ago"
+                )
+              )
+            }}
+          </span>
         </a>
 
       </div>

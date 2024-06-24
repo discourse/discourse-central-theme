@@ -1,4 +1,8 @@
 .d-header {
+  &-wrap {
+    position: fixed;
+    width: 100%;
+  }
   box-sizing: content-box;
   height: 3rem;
   padding: 0.75rem 0;
@@ -31,12 +35,17 @@
     }
   }
 
+  .hamburger-dropdown {
+    display: none;
+  }
+
   .title {
     display: none;
   }
 
   .home-logo-wrapper-outlet {
     display: flex;
+    flex-shrink: 0;
 
     .logo-temp {
       @include headline-small;
@@ -61,6 +70,22 @@
   .d-header-icons {
     margin: 0;
 
+    .badge-notification {
+      border: 2px solid var(--neutral-100);
+      background: var(--primary-50);
+      color: var(--neutral-100);
+      padding: 0 0.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      min-width: calc(1rem + 2px);
+      height: calc(1rem + 2px);
+      top: 0;
+      right: 0;
+      @include label-small;
+    }
+
     li:has(.ai-bot-button) {
       display: none;
     }
@@ -82,7 +107,7 @@
 
       background: none;
       border: 0;
-      border-radius: var(--rounded-md);
+      border-radius: var(--rounded-full);
 
       transition: none;
 

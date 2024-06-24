@@ -35,10 +35,10 @@
 }
 
 @mixin title-large {
-  font-size: 22px;
-  line-height: 28px;
+  font-size: 20px;
+  line-height: 24px;
   letter-spacing: 0;
-  font-weight: 400;
+  font-weight: 500;
   font-family: var(--heading-font-family);
 }
 
@@ -86,7 +86,7 @@
   font-size: 14px;
   line-height: 20px;
   letter-spacing: 0.1px;
-  font-weight: 600;
+  font-weight: 500;
   font-family: var(--font-family);
 }
 

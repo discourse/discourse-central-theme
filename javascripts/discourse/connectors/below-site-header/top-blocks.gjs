@@ -1,4 +1,5 @@
 import Component from "@glimmer/component";
+import { concat } from "@ember/helper";
 import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
 import BlockBanner from "../../components/blocks/banner";
@@ -14,13 +15,30 @@ export default class TopBlocks extends Component {
   @service router;
   @service site;
 
+  get isHomepage() {
+    switch (this.router?.currentRoute?.parent?.name) {
+      case "discovery":
+        return true;
+      case "tags":
+        return true;
+      default:
+        return false;
+    }
+  }
+
+  get blocksBackground() {
+    return settings.blocks_top_image;
+  }
+
   get blocks() {
-    return settings.blocks;
+    return settings.blocks_top;
   }
 
   @action
   blockify(block) {
     switch (block.name) {
+      case "banner":
+        return BlockBanner;
       case "top_contributors":
         return BlockTopContributors;
       case "top_topics":
@@ -39,31 +57,44 @@ export default class TopBlocks extends Component {
   }
 
   <template>
-    {{!log this.blocks}}
-    <div class="blocks --top">
-      <div class="blocks__wrapper">
-        <BlockBanner />
-      </div>
-    </div>
-    {{!-- <div class="blocks">
-      <div class="blocks__wrapper">
-        {{#each this.blocks as |row|}}
-          <div class="blocks__row">
-            {{#each row.blocks as |block|}}
-              {{#let (this.blockify block) as |BlockComponent|}}
-                {{#if BlockComponent}}
-                  {{component
-                    BlockComponent
-                    size=block.size
-                    period=block.period
-                    count=block.count
-                  }}
-                {{/if}}
-              {{/let}}
+    {{#if this.isHomepage}}
+      {{#if this.blocks}}
+        <div class="blocks --top">
+          <div
+            class="blocks__wrapper"
+            style={{if
+              this.blocksBackground
+              (concat "background-image: url(" this.blocksBackground ")")
+            }}
+          >
+            {{#each this.blocks as |row|}}
+              <div
+                class="blocks__row"
+                style={{concat "order:" (if row.order row.order "0;")}}
+              >
+                {{#each row.blocks as |block|}}
+                  {{#let (this.blockify block) as |BlockComponent|}}
+                    {{#if BlockComponent}}
+                      {{component
+                        BlockComponent
+                        size=block.size
+                        period=block.period
+                        count=block.count
+                        title=block.title
+                        cta=block.cta
+                        ctas=block.ctas
+                        description=block.description
+                        url=block.url
+                        image=block.image
+                      }}
+                    {{/if}}
+                  {{/let}}
+                {{/each}}
+              </div>
             {{/each}}
           </div>
-        {{/each}}
-      </div> --}}
-    {{! </div> }}
+        </div>
+      {{/if}}
+    {{/if}}
   </template>
 }

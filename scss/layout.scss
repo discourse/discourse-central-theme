@@ -1,13 +1,16 @@
 html {
   font-size: 16px;
   color: var(--neutral-10);
-  background-color: var(--neutral-100);
 }
 
 html,
 body {
   height: 100%;
   min-height: 100vh;
+  background-color: var(--neutral-100);
+  @include breakpoint(tablet) {
+    background-color: var(--neutral-95);
+  }
 }
 
 :root {
@@ -23,6 +26,12 @@ body {
 
   --column-navigation: minmax(0, 19rem);
   --column-content: minmax(24rem, 1fr);
+
+  --mobile-nav-h: 4.5rem;
+}
+
+#main {
+  padding-top: var(--header-offset);
 }
 
 body {
@@ -33,17 +42,14 @@ body {
       max-width: var(--d-max-width);
       padding: 0 var(--wrap-px);
     }
-    &.has-full-page-chat,
-    &.admin-interface,
-    &.archetype-regular,
-    &.archetype-banner,
-    &.user-messages-page,
-    &.archetype-private_message {
+
+    &:not(:has(.blocks.--right)) {
       #main-outlet-wrapper {
         @include breakpoint(large) {
           grid-template-columns: var(--column-navigation-mini) minmax(0, 1fr);
           column-gap: 0;
-          padding: 0;
+          padding-right: 0;
+          padding-left: 0;
         }
         @include breakpoint(tablet) {
           grid-template-areas: "content";
@@ -52,7 +58,7 @@ body {
         #main-outlet {
           margin-right: 0rem;
         }
-        --column-content: minmax(24rem, 1fr);
+        --column-content: minmax(45rem, 1fr);
         grid-template-areas: "navigation content";
         grid-template-columns: var(--column-navigation) var(--column-content);
         .blocks {
@@ -80,6 +86,10 @@ body {
         grid-template-columns: minmax(0, 1fr);
         padding: 0;
 
+        padding-bottom: calc(
+          var(--mobile-nav-h) + env(safe-area-inset-bottom) + 2rem
+        );
+
         .blocks {
           display: none;
         }
@@ -90,11 +100,11 @@ body {
       grid-template-columns: var(--column-navigation) var(--column-content) var(
           --column-blocks
         );
-
+      margin: 0 auto;
       column-gap: 2rem;
 
       box-sizing: border-box;
-      padding: 0 var(--wrap-px);
+      padding: 0 var(--wrap-px) 0;
 
       @include breakpoint(large) {
         padding-left: 0;
@@ -113,7 +123,9 @@ body {
       }
 
       #main-outlet {
+        background: var(--neutral-100);
         margin-top: 2rem;
+        margin-bottom: 2rem;
         // margin-right: 2rem;
         @include breakpoint(large) {
           // margin-right: 1rem;
@@ -125,6 +137,8 @@ body {
         }
         padding: 0;
         grid-area: content;
+
+        align-self: flex-start;
         border: var(--border-outer);
         border-radius: var(--rounded-lg);
       }

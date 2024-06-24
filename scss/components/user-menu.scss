@@ -2,12 +2,12 @@
   display: flex;
   flex-direction: column;
   overflow: hidden;
+  min-width: 16rem;
 
   &__profile {
     display: flex;
     padding: 1rem;
     gap: 1rem;
-    @include hover;
     &-info {
       display: flex;
       flex-direction: column;
@@ -28,11 +28,18 @@
         }
       }
     }
+    &:hover {
+      .c-user-menu__profile-cta {
+        text-decoration: underline;
+      }
+    }
     &-cta {
       @include body-small;
+      color: var(--primary-50);
     }
   }
   &__links {
+    border-top: var(--border-inner);
     display: flex;
     flex-direction: column;
 
@@ -49,13 +56,14 @@
         display: flex;
         @include hover;
       }
-      @include body-large;
+      @include body-medium;
       a:before {
         @include i;
       }
     }
   }
   &__footer {
+    border-top: var(--border-inner);
     display: flex;
     list-style: none;
     margin: 0;

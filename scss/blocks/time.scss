@@ -7,9 +7,9 @@
 
   &__date {
     @include body-small;
-    line-height: 1;
   }
   &__time {
-    @include headline-small;
+    padding-bottom: 0.125rem;
+    @include title-large;
   }
 }

@@ -1,8 +1,9 @@
 $icon-map: (
   home: "home",
   topics: "feed",
-  categories: "list",
+  categories: "grid_view",
   messages: "mail",
+  tags: "tag",
   admin: "settings",
   bookmarks: "bookmark",
   following: "news",
@@ -13,6 +14,9 @@ $icon-map: (
   preferences: "settings",
   logout: "logout",
   chat: "chat_bubble",
+  docs: "book_2",
+  flagged: "flag",
+  groups: "group",
 );
 
 @mixin generate-icons {
@@ -26,3 +30,38 @@ $icon-map: (
 }
 
 @include generate-icons;
+
+$d-icon-replace: (
+  d-icon-hands-helping: "handshake",
+  d-icon-reply: "reply",
+  d-icon-flag: "flag",
+  d-icon-bookmark: "bookmark",
+  d-icon-d-topic-share: "share",
+  d-icon-d-post-share: "link",
+  d-icon-wrench: "settings",
+  d-icon-pencil-alt: "edit",
+  d-icon-ellipsis-h: "more_horiz",
+  d-icon-search: "search",
+  d-icon-thumbtack: "keep",
+  d-icon-far-circle: "check_box_outline_blank",
+  d-icon-times-circle: "check_box",
+  d-icon-sort-alpha-up: "sort_by_alpha",
+  d-icon-plus: "add", //check_box_outline_blank
+);
+
+*:has(> .d-icon):before {
+  @include i;
+}
+
+@mixin replaceIcons($map) {
+  @each $old, $new in $map {
+    *:has(> .d-icon.#{$old}):before {
+      content: $new;
+    }
+    .d-icon.#{$old} {
+      display: none;
+    }
+  }
+}
+
+@include replaceIcons($d-icon-replace);

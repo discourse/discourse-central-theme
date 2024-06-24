@@ -1,3 +1,13 @@
+:root {
+  --shadow-menu-panel: 0 0.25rem 2rem rgba(var(--neutral-0-rgb), 0.1);
+}
+
+.fk-d-button-tooltip {
+  &:has(#create-topic) {
+    display: none;
+  }
+}
+
 .fk-d-menu {
   z-index: 1000;
   &__inner-content {

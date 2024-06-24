@@ -51,23 +51,23 @@ export default class BlockTopContributors extends Component {
   }
 
   fetchTopContributors(period, count) {
-    // ajax(`/leaderboard/7.json?period=${period}`)
-    //   .then((data) => {
-    //     this.topContributors = data.users.slice(0, count);
-    //   })
-    //   .catch(() => {
-    ajax(`/directory_items.json?period=${period}&order=likes_received`).then(
-      (data) => {
-        data.directory_items = data.directory_items.map((item) => {
-          let user = item.user;
-          delete item.user;
-          return { ...item, ...user };
-        });
+    ajax(`/leaderboard/7.json?period=${period}`)
+      .then((data) => {
+        this.topContributors = data.users.slice(0, count);
+      })
+      .catch(() => {
+        ajax(
+          `/directory_items.json?period=${period}&order=likes_received`
+        ).then((data) => {
+          data.directory_items = data.directory_items.map((item) => {
+            let user = item.user;
+            delete item.user;
+            return { ...item, ...user };
+          });
 
-        this.topContributors = data.directory_items.slice(0, count);
-      }
-    );
-    // });
+          this.topContributors = data.directory_items.slice(0, count);
+        });
+      });
   }
 
   @action

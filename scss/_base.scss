@@ -10,6 +10,7 @@
 @import "components/other";
 @import "components/navigation";
 @import "components/user-menu";
+@import "components/categories";
 
 @import "blocks/base";
 
@@ -28,3 +29,5 @@
 @import "discourse/d-menu";
 @import "discourse/compose";
 @import "discourse/banner";
+@import "discourse/docs";
+@import "discourse/inputs";
