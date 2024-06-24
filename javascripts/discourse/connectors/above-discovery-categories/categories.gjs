@@ -32,7 +32,7 @@ export default class CentralCategories extends Component {
   }
 
   <template>
-    {{log this.categories}}
+    {{!log this.categories}}
     <div class="c-categories">
       {{#each this.categories as |category|}}
         <div

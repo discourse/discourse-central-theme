@@ -30,7 +30,7 @@ export default class BlockBanner extends Component {
           {{this.description}}
         </span>
       {{/if}}
-      {{log this.ctas}}
+      {{!log this.ctas}}
       {{#if this.ctas}}
         <div class="block-banner__ctas">
           {{#each this.ctas as |cta|}}
