@@ -46,7 +46,8 @@ $d-icon-replace: (
   d-icon-far-circle: "check_box_outline_blank",
   d-icon-times-circle: "check_box",
   d-icon-sort-alpha-up: "sort_by_alpha",
-  d-icon-plus: "add", //check_box_outline_blank
+  d-icon-plus: "add",
+  //check_box_outline_blank
 );
 
 *:has(> .d-icon):before {
