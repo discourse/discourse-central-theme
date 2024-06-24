@@ -35,6 +35,8 @@ export default class CentralCategories extends Component {
     {{!log this.categories}}
     <div class="c-categories">
       {{#each this.categories as |category|}}
+        {{! template-lint-disable no-invalid-interactive }}
+
         <div
           data-notification-level={{category.notificationLevelString}}
           style={{categoryColorVariable category.color}}

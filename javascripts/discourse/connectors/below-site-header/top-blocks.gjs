@@ -2,6 +2,7 @@ import Component from "@glimmer/component";
 import { concat } from "@ember/helper";
 import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
+import concatClass from "discourse/helpers/concat-class";
 import BlockBanner from "../../components/blocks/banner";
 import BlockBirthday from "../../components/blocks/birthday";
 import BlockOnline from "../../components/blocks/online";
@@ -62,15 +63,19 @@ export default class TopBlocks extends Component {
         <div class="blocks --top">
           <div
             class="blocks__wrapper"
-            style={{if
-              this.blocksBackground
-              (concat "background-image: url(" this.blocksBackground ")")
+            style={{htmlSafe
+              (if
+                this.blocksBackground
+                (concat "background-image: url(" this.blocksBackground ")")
+              )
             }}
           >
             {{#each this.blocks as |row|}}
               <div
                 class="blocks__row"
-                style={{concat "order:" (if row.order row.order "0;")}}
+                style={{htmlSafe
+                  (concat "order:" (if row.order row.order "0;"))
+                }}
               >
                 {{#each row.blocks as |block|}}
                   {{#let (this.blockify block) as |BlockComponent|}}
