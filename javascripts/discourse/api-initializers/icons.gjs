@@ -15,7 +15,7 @@ export default apiInitializer("1.0", (api) => {
       <li class="c-user">
         <DMenu
           @placement="bottom-end"
-          {{!-- @modalForMobile={{true}} --}}
+          @modalForMobile={{true}}
           @identifier="c-user"
         >
           <:trigger>
@@ -38,7 +38,7 @@ export default apiInitializer("1.0", (api) => {
                     <span>{{currentUser.username}}</span>
                   </span>
                   <span class="c-user-menu__profile-cta">
-                    View your profile
+                    {{i18n (themePrefix "user.view_your_profile")}}
                   </span>
                 </div>
               </LinkTo>
@@ -165,12 +165,21 @@ export default apiInitializer("1.0", (api) => {
           <:content as |args|>
             {{! template-lint-disable no-invalid-interactive }}
             <ul class="c-create__menu" {{on "click" args.close}}>
-              <li><LinkTo @route="new-topic">New topic</LinkTo></li>
-              <li><LinkTo @route="new-message">New message</LinkTo></li>
-              <li><LinkTo
-                  @route="userActivity.drafts"
-                  @model={{currentUser}}
-                >Drafts</LinkTo></li>
+              <li>
+                <LinkTo @route="new-topic">
+                  <span>{{i18n "js.topic.create"}}</span>
+                </LinkTo>
+              </li>
+              <li>
+                <LinkTo @route="new-message">
+                  <span>{{i18n "js.user.new_private_message"}}</span>
+                </LinkTo>
+              </li>
+              <li>
+                <LinkTo @route="userActivity.drafts" @model={{currentUser}}>
+                  <span>{{i18n "js.drafts.label"}}</span>
+                </LinkTo>
+              </li>
             </ul>
           </:content>
         </DMenu>

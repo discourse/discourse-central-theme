@@ -1,6 +1,8 @@
 en:
   theme_metadata:
     description: ""
+  user:
+    view_your_profile: "View your profile"
   post:
     like: "Like"
     replied: "%{name} replied %{timeago}"

@@ -1,4 +1,3 @@
-// import { inject as service } from "@ember/service";
 import { apiInitializer } from "discourse/lib/api";
 
 export default apiInitializer("1.0", () => {
