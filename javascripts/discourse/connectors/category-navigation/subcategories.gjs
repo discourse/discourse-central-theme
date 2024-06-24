@@ -1,16 +1,16 @@
 import Component from "@glimmer/component";
-import { tracked } from "@glimmer/tracking";
-import { concat, fn } from "@ember/helper";
+// import { tracked } from "@glimmer/tracking";
+import { fn } from "@ember/helper";
 import { on } from "@ember/modifier";
 import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
 import { htmlSafe } from "@ember/template";
-import { eq } from "truth-helpers";
+// import { eq } from "truth-helpers";
 import categoryColorVariable from "discourse/helpers/category-color-variable";
 import categoryLink from "discourse/helpers/category-link";
 import concatClass from "discourse/helpers/concat-class";
 import formatDate from "discourse/helpers/format-date";
-import i18n from "discourse-common/helpers/i18n";
+// import i18n from "discourse-common/helpers/i18n";
 
 export default class CentralCategories extends Component {
   @service currentUser;
@@ -32,12 +32,15 @@ export default class CentralCategories extends Component {
   <template>
     {{#if this.discovery.category.subcategories}}
       <div class="c-categories">
-
         {{#each this.discovery.category.subcategories as |subcategory|}}
+          {{! template-lint-disable no-invalid-interactive }}
           <div
             data-notification-level={{subcategory.notificationLevelString}}
             style={{categoryColorVariable subcategory.color}}
-            class="c-categories__item {{if subcategory.isMuted '--muted'}}"
+            class={{concatClass
+              "c-categories__item"
+              (if subcategory.isMuted "--muted")
+            }}
             {{on "click" (fn this.navigate subcategory.url)}}
           >
             <h3
@@ -56,7 +59,6 @@ export default class CentralCategories extends Component {
             {{/if}}
 
             {{#if subcategory.topics}}
-
               <ul class="c-categories__item-topics">
                 {{#each subcategory.topics as |topic|}}
                   <li>
@@ -70,7 +72,6 @@ export default class CentralCategories extends Component {
                 {{/each}}
               </ul>
             {{/if}}
-
           </div>
         {{/each}}
       </div>

@@ -2,6 +2,7 @@ import Component from "@glimmer/component";
 import { concat } from "@ember/helper";
 import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
+import { htmlSafe } from "@ember/template";
 import BlockBirthday from "../../components/blocks/birthday";
 import BlockCta from "../../components/blocks/cta";
 import BlockOnline from "../../components/blocks/online";
@@ -10,6 +11,7 @@ import BlockTime from "../../components/blocks/time";
 import BlockTopContributors from "../../components/blocks/top-contributors";
 import BlockTopTopics from "../../components/blocks/top-topics";
 import StickySidebarComponent from "../../components/sticky-sidebar";
+
 
 export default class RightBlocks extends Component {
   @service currentUser;
@@ -57,7 +59,10 @@ export default class RightBlocks extends Component {
         <div class="blocks --right">
           <div class="blocks__wrapper">
             {{#each this.blocks as |row|}}
-              <div class="blocks__row" style={{concat "order:" row.order}}>
+              <div
+                class="blocks__row"
+                style={{htmlSafe (concat "order:" row.order)}}
+              >
                 {{#each row.blocks as |block|}}
                   {{#let (this.blockify block) as |BlockComponent|}}
                     {{#if BlockComponent}}
