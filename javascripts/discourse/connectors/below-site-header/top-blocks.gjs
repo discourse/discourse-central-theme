@@ -2,7 +2,7 @@ import Component from "@glimmer/component";
 import { concat } from "@ember/helper";
 import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
-import concatClass from "discourse/helpers/concat-class";
+import { htmlSafe } from "@ember/template";
 import BlockBanner from "../../components/blocks/banner";
 import BlockBirthday from "../../components/blocks/birthday";
 import BlockOnline from "../../components/blocks/online";

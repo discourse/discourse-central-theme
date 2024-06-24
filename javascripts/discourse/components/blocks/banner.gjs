@@ -1,7 +1,7 @@
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { concat } from "@ember/helper";
-import { eq, or } from "truth-helpers";
+// import { eq, or } from "truth-helpers";
 
 // import UserLink from "discourse/components/user-link";
 // import avatar from "discourse/helpers/avatar";

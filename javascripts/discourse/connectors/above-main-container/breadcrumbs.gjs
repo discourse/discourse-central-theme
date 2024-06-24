@@ -1,12 +1,12 @@
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
-import { on } from "@ember/modifier";
+// import { on } from "@ember/modifier";
 import { action } from "@ember/object";
 import { service } from "@ember/service";
-import { htmlSafe } from "@ember/template";
+// import { htmlSafe } from "@ember/template";
 import { eq } from "truth-helpers";
 import bodyClass from "discourse/helpers/body-class";
-import categoryBadge from "discourse/helpers/category-badge";
+// import categoryBadge from "discourse/helpers/category-badge";
 import i18n from "discourse-common/helpers/i18n";
 
 export default class Breadcrumbs extends Component {

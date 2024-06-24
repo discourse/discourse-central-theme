@@ -121,13 +121,13 @@ table.topic-list {
             }
 
             a.title {
-              &:hover {
-                span {
-                  // text-decoration: underline;
-                }
-              }
-              span {
-              }
+              // &:hover {
+              //   span {
+              //     // text-decoration: underline;
+              //   }
+              // }
+              // span {
+              // }
 
               padding: 0;
               color: var(--neutral-10);
@@ -221,14 +221,14 @@ table.topic-list {
       }
     }
 
-    .topic__category {
-      //   &:before {
-      //     display: inline-flex;
-      //     transform: translateY(0.125rem);
-      //     @include i($font-size: 0.75rem);
-      //     content: "lock";
-      //   }
-    }
+    // .topic__category {
+    //   //   &:before {
+    //   //     display: inline-flex;
+    //   //     transform: translateY(0.125rem);
+    //   //     @include i($font-size: 0.75rem);
+    //   //     content: "lock";
+    //   //   }
+    // }
 
     .topic__metadata {
       @include label-small;
