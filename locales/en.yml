@@ -3,7 +3,7 @@ en:
     description: ""
   post:
     like: "Like"
-    replied: "{{name}} replied {{timeago}}"
+    replied: "%{name} replied %{timeago}"
   blocks:
     top_contributors:
       title: "Top Contributors"
