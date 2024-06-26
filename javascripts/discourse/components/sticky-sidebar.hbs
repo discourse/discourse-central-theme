@@ -2,14 +2,16 @@
   <div
     {{did-insert this.didInsert}}
     {{scroll this.onScroll}}
-    style={{concat
-      "position: "
-      this.position
-      "; top: "
-      this.top
-      "px; bottom: "
-      this.bottom
-      "px"
+    style={{htmlSafe
+      (concat
+        "position: "
+        this.position
+        "; top: "
+        this.top
+        "; bottom: "
+        this.bottom
+        ""
+      )
     }}
   >
     {{yield}}
