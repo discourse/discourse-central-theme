@@ -323,6 +323,9 @@
     #create-category {
       order: 9;
     }
+    .categories-admin-dropdown {
+      order: 9;
+    }
   }
   .navigation-category & {
     grid-template-areas:
