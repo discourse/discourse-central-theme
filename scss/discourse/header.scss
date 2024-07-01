@@ -1,23 +1,33 @@
 .d-header {
-  background-color: var(--neutral-100);
-  box-shadow: none;
-  height: 3rem;
+  &-wrap {
+    position: fixed;
+    width: 100%;
+  }
   box-sizing: content-box;
+  height: 3rem;
   padding: 0.75rem 0;
+
+  background-color: var(--neutral-100);
   border-bottom: 1px solid var(--neutral-90);
+  box-shadow: none;
 
   .wrap {
     .contents {
-      display: grid;
-      grid-template-areas: "left center right";
-      grid-template-columns: minmax(0, 18rem) minmax(26rem, 1fr) 21rem;
-      column-gap: 0rem;
       @include breakpoint(large) {
         display: flex;
       }
 
+      display: grid;
+      grid-template-areas: "logo search utility";
+      grid-template-columns: var(--column-navigation) var(--column-content) var(
+          --column-blocks
+        );
+      column-gap: 2rem;
+
       &
-        > *:not(.home-logo-wrapper-outlet):not(.before-header-panel-outlet):not(
+        > *:not(
+          .home-logo-wrapper-outlet,
+          .before-header-panel-outlet,
           .panel
         ) {
         display: none;
@@ -25,91 +35,173 @@
     }
   }
 
+  .hamburger-dropdown {
+    display: none;
+  }
+
   .title {
     display: none;
   }
+
   .home-logo-wrapper-outlet {
     display: flex;
+    flex-shrink: 0;
+
     .logo-temp {
+      @include headline-small;
+
       display: flex;
       width: min-content;
-      img {
-        max-width: 12rem;
-        width: auto;
-        max-height: 2.5rem;
-        height: auto;
-      }
-
       margin: 0;
-      @include headline-small;
+
+      img {
+        width: auto;
+        max-width: 12rem;
+        height: auto;
+        max-height: 2.5rem;
+      }
     }
   }
 
   .extra-info-wrapper {
     display: none;
   }
+
   .d-header-icons {
+    margin: 0;
+
+    .badge-notification {
+      border: 2px solid var(--neutral-100);
+      background: var(--primary-50);
+      color: var(--neutral-100);
+      padding: 0 0.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      min-width: calc(1rem + 2px);
+      height: calc(1rem + 2px);
+      top: 0;
+      right: 0;
+      @include label-small;
+    }
+
     li:has(.ai-bot-button) {
       display: none;
     }
+
     li.c-user {
       order: 9;
     }
+
     li > button,
     li > .icon {
-      border: 0;
-      background: none;
-      padding: 0;
-      color: var(--neutral-10);
-      transition: none;
       @include hover;
-      &:hover {
-        border: 0;
-        background: inherit;
-        color: inherit;
-      }
+
+      box-sizing: border-box;
       width: 2.5rem;
       height: 2.5rem;
-      box-sizing: border-box;
-      border-radius: var(--rounded-md);
+      padding: 0;
+
+      color: var(--neutral-10);
+
+      background: none;
+      border: 0;
+      border-radius: var(--rounded-full);
+
+      transition: none;
+
+      &:hover {
+        color: inherit;
+        background: inherit;
+        border: 0;
+      }
+
       .avatar {
         width: 2rem;
         height: 2rem;
       }
     }
+
     .active {
       .icon {
         background-color: var(--neutral-95);
         border: 0;
-        &:after {
+
+        &::after {
           content: unset;
         }
       }
     }
+
+    li.search-dropdown {
+      order: -2;
+      .icon::before {
+        @include i($font-size: 1.25rem);
+
+        content: "search";
+      }
+
+      .d-icon {
+        display: none;
+      }
+    }
+
     li.chat-header-icon {
       .d-icon {
         display: none;
       }
-      .icon:before {
+
+      @include breakpoint(tablet) {
+        display: none;
+      }
+
+      .icon::before {
         @include i($font-size: 1.25rem);
+
         content: "chat_bubble";
       }
     }
+
     li.c-create {
       order: -1;
-      button:before {
+
+      button::before {
         @include i($font-size: 1.25rem);
+
         content: "edit_square";
       }
     }
+
     li.user-menu-panel {
-      button:before {
+      button::before {
         @include i($font-size: 1.25rem);
+
         content: "notifications";
       }
+
       img.avatar {
         display: none;
       }
     }
+  }
+}
+
+.search-header--visible {
+  .panel .header-dropdown-toggle.search-dropdown,
+  .panel .search-menu {
+    @include breakpoint(tablet) {
+      display: flex;
+    }
+
+    display: none;
+  }
+
+  .before-header-panel-outlet {
+    @include breakpoint(tablet) {
+      display: none;
+    }
+
+    flex: 1 1 auto;
   }
 }

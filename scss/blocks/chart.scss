@@ -173,6 +173,8 @@
 
   &__metadata {
     display: inline-flex;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   &__details {
@@ -205,33 +207,43 @@
         }
       }
     }
+  }
 
-    ul {
-      display: flex;
-      gap: 0.375rem;
-      list-style: none;
-      align-items: baseline;
-      margin: 0;
-      li {
-        a {
-          display: inline-flex;
-          align-items: center;
-          gap: 0.125rem;
-          color: var(--neutral-10);
-          height: 1.25rem;
-          padding: 0 0.25rem;
-          box-sizing: border-box;
-          border: var(--border-outer);
-          border-radius: var(--rounded);
-          @include label-small;
+  &__stats {
+    display: flex;
+    gap: 0.375rem;
+    list-style: none;
+    align-items: baseline;
+    margin: 0;
+    li {
+      a {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.125rem;
+        color: var(--neutral-10);
+        height: 1.25rem;
+        padding: 0 0.25rem;
+        box-sizing: border-box;
+        border: var(--border-outer);
+        border-radius: var(--rounded-md);
+        @include label-small;
 
-          &:before {
-            @include i($font-size: 0.75rem);
-            content: "comment";
-          }
-          span {
-            padding: 0 0.0625rem;
-          }
+        &.--likes:before {
+          @include i($font-size: 0.75rem);
+          content: "favorite";
+        }
+
+        &.--liked:before {
+          @include i($font-size: 0.75rem, $fill: 1);
+          color: var(--love);
+        }
+
+        &.--comments:before {
+          @include i($font-size: 0.75rem);
+          content: "comment";
+        }
+        span {
+          padding: 0 0.0625rem;
         }
       }
     }

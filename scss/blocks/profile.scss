@@ -4,7 +4,7 @@
   --fd: column;
   --ai: center;
   --avatar-w: 5.5rem;
-  --bg: var(--neutral-95);
+  --bg: var(--neutral-100);
 
   &.block--2x2 {
     --avatar-w: 3.5rem;
@@ -27,8 +27,8 @@
         z-index: 1;
         padding: 0.1875rem;
 
-        img {
-        }
+        // img {
+        // }
       }
       &__info {
         flex: unset;
@@ -93,7 +93,7 @@
     flex: 1;
     gap: 0;
     text-align: center;
-    padding: 0 1.5rem 1.5rem 1.5rem;
+    padding: 0 1rem 1rem 1rem;
   }
 
   &__hello {
@@ -110,10 +110,7 @@
 
   &__name {
     display: inline-flex;
-    &:after {
-      content: "!";
-    }
-    // @include title-medium;
+    @include title-medium;
   }
 
   &__username {
@@ -126,13 +123,18 @@
     @include body-small;
   }
 
+  &__edit {
+    margin-top: 1rem;
+    @include button($style: neutral);
+  }
+
   &__bio {
     margin-top: 0.5rem;
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
-    @include body-medium;
+    @include body-small;
   }
 
   &__link {

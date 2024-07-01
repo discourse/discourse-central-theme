@@ -1,11 +1,11 @@
-import { modifier } from 'ember-modifier';
+import { modifier } from "ember-modifier";
 
 export default modifier((element, [callback]) => {
   const handleScroll = () => callback();
 
-  window.addEventListener('scroll', handleScroll);
+  window.addEventListener("scroll", handleScroll);
 
   return () => {
-    window.removeEventListener('scroll', handleScroll);
+    window.removeEventListener("scroll", handleScroll);
   };
 });

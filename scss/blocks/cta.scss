@@ -1,0 +1,24 @@
+.block-cta {
+  --fd: column;
+  --p: 1rem;
+  --jc: space-between;
+
+  color: var(--primary);
+
+  &__img {
+    position: absolute;
+    top: var(--p);
+    right: var(--p);
+  }
+  h4 {
+    @include title-large;
+    margin: 0 0 0.75rem 0;
+  }
+  p {
+    @include body-small;
+    margin: 0 0 0.75rem;
+  }
+  a {
+    @include button($style: primary);
+  }
+}

@@ -15,7 +15,7 @@ export default apiInitializer("1.0", (api) => {
       <li class="c-user">
         <DMenu
           @placement="bottom-end"
-          {{!-- @modalForMobile={{true}} --}}
+          @modalForMobile={{true}}
           @identifier="c-user"
         >
           <:trigger>
@@ -38,42 +38,64 @@ export default apiInitializer("1.0", (api) => {
                     <span>{{currentUser.username}}</span>
                   </span>
                   <span class="c-user-menu__profile-cta">
-                    View your profile
+                    {{i18n (themePrefix "user.view_your_profile")}}
                   </span>
                 </div>
               </LinkTo>
               <ul class="c-user-menu__links">
-                <li data-name="messages">
-                  <LinkTo @route="userPrivateMessages" @model={{currentUser}}>
+                <li>
+                  <LinkTo
+                    data-name="messages"
+                    @route="userPrivateMessages"
+                    @model={{currentUser}}
+                  >
                     <span>
                       {{i18n "js.user.private_messages"}}
                     </span>
                   </LinkTo>
                 </li>
-                <li data-name="drafts">
-                  <LinkTo @route="userActivity.drafts" @model={{currentUser}}>
+
+                <li>
+                  <LinkTo
+                    @route="userActivity.bookmarks"
+                    @model={{this.currentUser}}
+                    data-name="bookmarks"
+                  >
                     <span>
-                      {{i18n "js.drafts.label"}}
+                      {{i18n "js.user.bookmarks"}}
                     </span>
                   </LinkTo>
                 </li>
-                <li data-name="invites">
-                  <LinkTo @route="userInvited" @model={{currentUser}}>
+
+                <li>
+                  <LinkTo
+                    data-name="invites"
+                    @route="userInvited"
+                    @model={{currentUser}}
+                  >
                     <span>
                       {{i18n "js.user.invited.title"}}
                     </span>
                   </LinkTo>
                 </li>
 
-                <li data-name="preferences">
-                  <LinkTo @route="preferences" @model={{currentUser}}>
+                <li>
+                  <LinkTo
+                    data-name="preferences"
+                    @route="preferences"
+                    @model={{currentUser}}
+                  >
                     <span>
-                      {{i18n "user.preferences"}}
+                      {{i18n "user.preferences.title"}}
                     </span>
                   </LinkTo>
                 </li>
-                <li data-name="logout">
-                  <a role="button" onclick={{routeAction "logout"}}>
+                <li>
+                  <a
+                    data-name="logout"
+                    role="button"
+                    onclick={{routeAction "logout"}}
+                  >
                     <span>
                       {{i18n "user.log_out"}}
                     </span>
@@ -82,8 +104,8 @@ export default apiInitializer("1.0", (api) => {
               </ul>
               {{#if (or currentUser.moderator currentUser.admin)}}
                 <ul class="c-user-menu__links">
-                  <li data-name="flagged">
-                    <LinkTo @route="review.index">
+                  <li>
+                    <LinkTo data-name="flagged" @route="review.index">
                       <span>Flagged
                         {{#unless (eq currentUser.reviewable_count 0)}}
                           ({{currentUser.reviewable_count}})
@@ -92,22 +114,16 @@ export default apiInitializer("1.0", (api) => {
                     </LinkTo>
                   </li>
 
-                  <li data-name="groups">
-                    <LinkTo @route="groups.index">
+                  <li>
+                    <LinkTo data-name="groups" @route="groups.index">
                       <span>
                         {{i18n "js.groups.index.title"}}
                       </span>
                     </LinkTo>
                   </li>
-                  <li data-name="tags">
-                    <LinkTo @route="tags.index">
-                      <span>
-                        {{i18n "js.tagging.tags"}}
-                      </span>
-                    </LinkTo>
-                  </li>
-                  <li data-name="admin">
-                    <LinkTo @route="admin.dashboard.general">
+
+                  <li>
+                    <LinkTo data-name="admin" @route="admin.dashboard.general">
                       <span>{{i18n "js.admin_title"}}</span>
                     </LinkTo>
                   </li>
@@ -140,7 +156,7 @@ export default apiInitializer("1.0", (api) => {
       <li class="c-create">
         <DMenu
           @placement="bottom-end"
-          @modalForMobile={{true}}
+          {{!-- @modalForMobile={{true}} --}}
           @identifier="c-create"
         >
           <:trigger>
@@ -149,12 +165,21 @@ export default apiInitializer("1.0", (api) => {
           <:content as |args|>
             {{! template-lint-disable no-invalid-interactive }}
             <ul class="c-create__menu" {{on "click" args.close}}>
-              <li><LinkTo @route="new-topic">New topic</LinkTo></li>
-              <li><LinkTo @route="new-message">New message</LinkTo></li>
-              <li><LinkTo
-                  @route="userActivity.drafts"
-                  @model={{currentUser}}
-                >Drafts</LinkTo></li>
+              <li>
+                <LinkTo @route="new-topic">
+                  <span>{{i18n "js.topic.create"}}</span>
+                </LinkTo>
+              </li>
+              <li>
+                <LinkTo @route="new-message">
+                  <span>{{i18n "js.user.new_private_message"}}</span>
+                </LinkTo>
+              </li>
+              <li>
+                <LinkTo @route="userActivity.drafts" @model={{currentUser}}>
+                  <span>{{i18n "js.drafts.label"}}</span>
+                </LinkTo>
+              </li>
             </ul>
           </:content>
         </DMenu>

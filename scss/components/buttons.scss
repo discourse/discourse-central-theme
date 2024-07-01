@@ -1,11 +1,21 @@
-@mixin button($style: neutral, $size: md) {
+@mixin button($style: tertiary, $size: md) {
   display: flex;
   align-items: center;
   box-sizing: border-box;
 
-  @if $style == neutral {
+  @if $style == primary {
+    background-color: #f26826;
+
+    span {
+      color: var(--neutral-100);
+    }
+  }
+
+  @if $style == tertiary {
     background-color: var(--neutral-100);
-    color: var(--neutral-10);
+    span {
+      color: var(--neutral-10);
+    }
   }
 
   @if $size == sm {
@@ -29,10 +39,26 @@
   } @else if $size == md {
     height: 2.5rem;
 
+    &::before {
+      @include i($font-size: 1.25rem);
+    }
+
+    padding: 0 0.5rem;
+    border-radius: var(--rounded-md);
+
     span {
+      @include label-large;
       padding: 0 0.25rem;
     }
   }
+
+  @if $style == icon {
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: var(--rounded-full);
+  }
+
+  @include hover;
 }
 
 @mixin badge($style: neutral) {
@@ -53,4 +79,40 @@
   overflow: hidden;
 
   @include hover;
+}
+
+.button--primary {
+  @include button($style: primary);
+}
+
+.button--tertiary {
+  @include button($style: tertiary);
+}
+
+.btn-icon {
+  @include button($style: icon);
+}
+
+.select-kit.single-select.dropdown-select-box .select-kit-header.btn-icon {
+  @include button($style: icon);
+
+  .select-kit-header-wrapper {
+    justify-content: center;
+  }
+}
+
+.notifications-button {
+  .select-kit-selected-name {
+    &:before {
+      @include i;
+      content: "notifications";
+    }
+    .d-icon {
+      display: none;
+    }
+  }
+}
+
+.btn-icon-text {
+  @include button($style: neutral);
 }

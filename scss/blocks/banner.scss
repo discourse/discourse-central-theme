@@ -1,0 +1,31 @@
+.block-banner {
+  --b: 0;
+  --jc: center;
+  --ai: center;
+  --bg: url($block-banner-bg) no-repeat 50% 50%;
+  --c: #14263f;
+  --p: 1rem;
+  --fd: column;
+  --w: span 12;
+  padding: 2rem;
+  box-sizing: border-box;
+
+  text-align: center;
+
+  &__ctas {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  h1 {
+    margin: 0;
+    // max-width: 24ch;
+    @include headline-small;
+  }
+  &__blurb {
+    margin-top: 0.75rem;
+    // max-width: 42ch;
+    @include body-medium;
+  }
+}

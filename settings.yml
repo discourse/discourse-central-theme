@@ -1,3 +1,11 @@
+topic_list_show_usernames:
+  default: false
+  type: bool
+  required: true
+
+# button_primary:
+#   properties: id
+
 category_icons:
   default: []
   type: objects
@@ -21,6 +29,9 @@ blocks:
   schema:
     name: row
     properties:
+      order:
+        default: 0
+        type: integer
       blocks:
         type: objects
         schema:
@@ -34,6 +45,7 @@ blocks:
                 - time
                 - profile
                 - online
+                - cta
               required: true
             size:
               type: enum
@@ -41,9 +53,39 @@ blocks:
               choices:
                 - 2x2
                 - 4x4
+                - 4x2
                 - 4w
                 - 2x1
                 - 1x1
+            title:
+              default: ""
+              type: string
+              validations:
+                min: 0
+                max: 26
+            description:
+              default: ""
+              type: string
+              validations:
+                min: 0
+                max: 140
+            cta:
+              default: ""
+              type: string
+              validations:
+                min: 0
+                max: 26
+            url:
+              default: ""
+              type: string
+              validations:
+                url: true
+            count:
+              default: 5
+              type: integer
+              validations:
+                min: 1
+                max: 12
             period:
               default: weekly
               type: enum
@@ -122,21 +164,85 @@ blocks:
                     default: 1x1
                   period:
                     type: null
-category_badges:
-  type: objects
+
+blocks_border_radius:
+  default: ""
+  type: enum
+  choices:
+    - xs
+    - sm
+    - md
+    - lg
+    - xl
+    - 2xl
+    - 3xl
+    - full
+
+blocks_top:
   default: []
+  type: objects
   schema:
-    name: category_badge
+    name: row
     properties:
-      category:
-        type: categories
-        required: true
-      badge:
-        type: string
-        description: a single emoji to use as a badge (copy and paste from https://emojipedia.org/twitter)
-        max_length: 1
-        required: true
-default_category_icon:
-  default: 📁
-  description: a single emoji to use as a default category icon (copy and paste from https://emojipedia.org/twitter)
-  max: 1
+      order:
+        default: 0
+        type: integer
+      blocks:
+        type: objects
+        schema:
+          name: block
+          properties:
+            name:
+              type: enum
+              choices:
+                - banner
+              required: true
+            size:
+              type: enum
+              required: true
+              choices:
+                - 12w
+            title:
+              default: ""
+              type: string
+              validations:
+                min: 0
+                max: 26
+            description:
+              default: ""
+              type: string
+              validations:
+                min: 0
+                max: 140
+            ctas:
+              default: []
+              type: objects
+              schema:
+                name: cta
+                properties:
+                  label:
+                    default: ""
+                    type: string
+                    validations:
+                      min: 0
+                      max: 52
+                  url:
+                    default: ""
+                    type: string
+                    validations:
+                      url: true
+                  style:
+                    default: primary
+                    type: enum
+                    required: true
+                    choices:
+                      - primary
+                      - secondary
+                      - tertiary
+                      - uncontained
+
+blocks_top_image:
+  default: ""
+  type: string
+  validations:
+  url: true

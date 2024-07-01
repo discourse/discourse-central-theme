@@ -4,10 +4,32 @@
 
 .user-messages-page,
 .user-assigned-page,
-.user-notifications-page {
+.user-notifications-page,
+.user-activity-bookmarks-page,
+.user-preferences-page {
   .about,
   .user-navigation-primary {
     display: none;
+  }
+}
+
+.user-activity-bookmarks-page {
+  .user-navigation-secondary {
+    display: none;
+  }
+}
+
+.user-notifications-responses,
+.user-notifications-mentions {
+  .navigation-controls {
+    display: none;
+  }
+  .nav-pills {
+    li:not(.user-nav__notifications-responses):not(
+        .user-nav__notifications-mentions
+      ) {
+      display: none;
+    }
   }
 }
 

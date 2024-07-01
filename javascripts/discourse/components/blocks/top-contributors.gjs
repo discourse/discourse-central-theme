@@ -4,6 +4,7 @@ import { concat } from "@ember/helper";
 import { action } from "@ember/object";
 // import { service } from "@ember/service";
 import { htmlSafe } from "@ember/template";
+import { eq } from "truth-helpers";
 import avatar from "discourse/helpers/avatar";
 import concatClass from "discourse/helpers/concat-class";
 import number from "discourse/helpers/number";
@@ -12,8 +13,17 @@ import i18n from "discourse-common/helpers/i18n";
 
 export default class BlockTopContributors extends Component {
   @tracked topContributors = null;
-  @tracked period = this.args?.period || "weekly";
+  @tracked period = this.args?.period || "monthly";
   @tracked count = parseInt(this.args?.count, 10) || 10;
+
+  periods = [
+    { value: "all", title: "js.filters.top.all.title" },
+    { value: "yearly", title: "js.filters.top.yearly.title" },
+    { value: "quarterly", title: "js.filters.top.quarterly.title" },
+    { value: "monthly", title: "js.filters.top.monthly.title" },
+    { value: "weekly", title: "js.filters.top.weekly.title" },
+    { value: "daily", title: "js.filters.top.today" },
+  ];
 
   constructor() {
     super(...arguments);
@@ -25,9 +35,9 @@ export default class BlockTopContributors extends Component {
     this.topContributors = null;
   }
 
-  get format() {
-    if (this.args.format) {
-      return `block--${this.args.format}`;
+  get size() {
+    if (this.args.size) {
+      return `block--${this.args.size}`;
     }
   }
 
@@ -49,6 +59,12 @@ export default class BlockTopContributors extends Component {
         ajax(
           `/directory_items.json?period=${period}&order=likes_received`
         ).then((data) => {
+          data.directory_items = data.directory_items.map((item) => {
+            let user = item.user;
+            delete item.user;
+            return { ...item, ...user };
+          });
+
           this.topContributors = data.directory_items.slice(0, count);
         });
       });
@@ -65,7 +81,7 @@ export default class BlockTopContributors extends Component {
     <div
       class={{concatClass
         "block block-chart block-top-contributors"
-        this.format
+        this.size
         this.variant
       }}
     >
@@ -77,24 +93,17 @@ export default class BlockTopContributors extends Component {
         {{yield this.topContributors}}
 
         <select onchange={{this.updatePeriod}}>
-          <option value="all">
-            {{i18n "js.filters.top.all.title"}}
-          </option>
-          <option value="yearly">
-            {{i18n "js.filters.top.yearly.title"}}
-          </option>
-          <option value="quarterly">
-            {{i18n "js.filters.top.quarterly.title"}}
-          </option>
-          <option value="monthly">
-            {{i18n "js.filters.top.monthly.title"}}
-          </option>
-          <option value="weekly" selected>
-            {{i18n "js.filters.top.weekly.title"}}
-          </option>
-          <option value="daily">
-            {{i18n "js.filters.top.today"}}
-          </option>
+          {{#each this.periods as |period|}}
+            {{#if (eq this.period period.value)}}
+              <option value={{period.value}} selected>
+                {{i18n period.title}}
+              </option>
+            {{else}}
+              <option value={{period.value}}>
+                {{i18n period.title}}
+              </option>
+            {{/if}}
+          {{/each}}
         </select>
       </div>
       <ol class="block-chart__list">

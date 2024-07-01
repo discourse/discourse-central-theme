@@ -1,20 +1,37 @@
 html {
   font-size: 16px;
   color: var(--neutral-10);
-  background-color: var(--neutral-100);
 }
 
 html,
 body {
   height: 100%;
   min-height: 100vh;
+  background-color: var(--neutral-100);
+  @include breakpoint(tablet) {
+    background-color: var(--neutral-95);
+  }
 }
 
 :root {
   --heading-font-family: system-ui, helvetica, sans-serif;
   --font-family: system-ui, helvetica, sans-serif;
-  --d-max-width: 83rem;
+  --d-max-width: 84rem;
   --wrap-px: 1rem;
+
+  // --column-content: 29rem;
+
+  --column-navigation-mini: 5rem;
+  --column-blocks: 19rem;
+
+  --column-navigation: minmax(0, 19rem);
+  --column-content: minmax(24rem, 1fr);
+
+  --mobile-nav-h: 4.5rem;
+}
+
+#main {
+  padding-top: var(--header-offset);
 }
 
 body {
@@ -26,27 +43,24 @@ body {
       padding: 0 var(--wrap-px);
     }
 
-    &.admin-interface,
-    &.archetype-regular,
-    &.user-messages-page {
+    &:not(:has(.blocks.--right)) {
       #main-outlet-wrapper {
         @include breakpoint(large) {
-          grid-template-columns: 5rem 1fr;
+          grid-template-columns: var(--column-navigation-mini) minmax(0, 1fr);
           column-gap: 0;
-          padding: 0;
-          #main-outlet {
-            border-right: 0;
-          }
+          padding-right: 0;
+          padding-left: 0;
         }
         @include breakpoint(tablet) {
-          grid-template-areas: "center";
+          grid-template-areas: "content";
           grid-template-columns: minmax(0, 1fr);
         }
         #main-outlet {
           margin-right: 0rem;
         }
-        grid-template-areas: "left center";
-        grid-template-columns: minmax(0, 18rem) minmax(24rem, 1fr);
+        --column-content: minmax(45rem, 1fr);
+        grid-template-areas: "navigation content";
+        grid-template-columns: var(--column-navigation) var(--column-content);
         .blocks {
           display: none;
         }
@@ -55,24 +69,26 @@ body {
 
     #main-outlet-wrapper {
       @include breakpoint(large) {
-        grid-template-columns: 5rem minmax(22rem, 1fr) 19rem;
+        grid-template-columns: var(--column-navigation-mini) minmax(0, 1fr) var(
+            --column-blocks
+          );
         column-gap: 0;
         padding-left: 0;
 
         #main-outlet {
           margin-right: 1rem;
+          margin-left: 0;
         }
       }
 
-      // @include breakpoint(medium) {
-      //   grid-template-areas: "center right";
-      //   grid-template-columns: minmax(24rem, 1fr) 19rem;
-      // }
-
       @include breakpoint(tablet) {
-        grid-template-areas: "center";
+        grid-template-areas: "content";
         grid-template-columns: minmax(0, 1fr);
         padding: 0;
+
+        padding-bottom: calc(
+          var(--mobile-nav-h) + env(safe-area-inset-bottom) + 2rem
+        );
 
         .blocks {
           display: none;
@@ -80,12 +96,15 @@ body {
       }
 
       display: grid;
-      grid-template-areas: "left center right";
-      grid-template-columns: minmax(0, 18rem) minmax(26rem, 1fr) 19rem;
-      column-gap: 0rem;
+      grid-template-areas: "navigation content blocks";
+      grid-template-columns: var(--column-navigation) var(--column-content) var(
+          --column-blocks
+        );
+      margin: 0 auto;
+      column-gap: 2rem;
 
       box-sizing: border-box;
-      padding: 0 var(--wrap-px);
+      padding: 0 var(--wrap-px) 0;
 
       @include breakpoint(large) {
         padding-left: 0;
@@ -96,28 +115,37 @@ body {
       }
 
       .blocks {
-        grid-area: right;
+        grid-area: blocks;
       }
 
       .c-navigation {
-        grid-area: left;
+        grid-area: navigation;
       }
 
       #main-outlet {
-        margin-right: 2rem;
+        contain: paint;
+        background: var(--neutral-100);
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        // margin-right: 2rem;
         @include breakpoint(large) {
-          margin-right: 1rem;
+          // margin-right: 1rem;
+          margin-top: 1rem;
         }
         @include breakpoint(tablet) {
           margin: 0;
           border: 0;
+          border-radius: 0;
         }
-        border-right: var(--border-outer);
-        border-left: var(--border-outer);
+        @include breakpoint(mobile-extra-large) {
+          // background: transparent;
+        }
         padding: 0;
-        grid-area: center;
-        // border: var(--border-outer);
-        // border-radius: var(--rounded-xl);
+        grid-area: content;
+
+        align-self: flex-start;
+        border: var(--border-outer);
+        border-radius: var(--rounded-lg);
       }
     }
   }

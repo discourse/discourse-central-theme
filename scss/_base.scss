@@ -1,6 +1,7 @@
 @import "standards/colors";
 @import "standards/typography";
 @import "standards/fonts";
+@import "standards/icons";
 @import "standards/other";
 
 @import "overrides";
@@ -8,6 +9,8 @@
 @import "components/buttons";
 @import "components/other";
 @import "components/navigation";
+@import "components/user-menu";
+@import "components/categories";
 
 @import "blocks/base";
 
@@ -25,3 +28,6 @@
 @import "discourse/admin";
 @import "discourse/d-menu";
 @import "discourse/compose";
+@import "discourse/banner";
+@import "discourse/docs";
+@import "discourse/inputs";

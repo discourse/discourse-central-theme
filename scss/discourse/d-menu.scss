@@ -1,16 +1,27 @@
+:root {
+  --shadow-menu-panel: 0 0.25rem 2rem rgba(var(--neutral-0-rgb), 0.1);
+}
+
+.fk-d-button-tooltip {
+  &:has(#create-topic) {
+    display: none;
+  }
+}
+
 .fk-d-menu {
   z-index: 1000;
   &__inner-content {
     background: var(--neutral-100);
     border: 0;
     border-radius: var(--rounded-md);
-    ul {
+    overflow: hidden;
+    & > ul {
       list-style: none;
       margin: 0;
       padding: 0.5rem 0;
       display: flex;
       flex-direction: column;
-      li {
+      & > li {
         display: flex;
         a {
           width: 100%;

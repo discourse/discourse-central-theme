@@ -1,0 +1,35 @@
+#main-outlet {
+  .container:has(#banner) {
+    display: none;
+  }
+}
+
+#banner {
+  margin: 0;
+  padding: 0;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .floated-buttons {
+    // display: none;
+    position: absolute;
+    right: 1rem;
+  }
+  //   &:hover .floated-buttons {
+  //     display: flex;
+  //   }
+  &-content {
+    flex: 1;
+    box-sizing: border-box;
+    padding: 1rem;
+    max-width: var(--d-max-width);
+    text-align: center;
+    h3 {
+      @include headline-small;
+    }
+    p {
+      @include body-medium;
+    }
+  }
+}

@@ -14,6 +14,8 @@ export default class CentralNavigation extends Component {
   @service currentUser;
   @service router;
   @service site;
+  @service siteSettings;
+  @service discovery;
 
   @tracked categories = [];
 
@@ -76,22 +78,61 @@ export default class CentralNavigation extends Component {
   }
 
   <template>
-    {{!log this.router}}
+    {{!log
+      this.discovery
+      this.router
+      this.siteSettings.lazy_load_categories_groups
+    }}
     {{#if (eq this.router.currentRouteName "userActivity.assigned")}}
       {{bodyClass "user-assigned-page"}}
     {{/if}}
-    <div class="c-navigation">
-      <nav>
-        <ul class="c-navigation__list">
+    <nav class="c-navigation">
+      <ul class="c-navigation__main">
+        <li>
+          <LinkTo @route="discovery.latest" data-name="home">
+            <span>
+              {{i18n "js.home"}}
+            </span>
+          </LinkTo>
+        </li>
+
+        <li>
+          <LinkTo @route="discovery.categories" data-name="categories">
+            <span>
+              {{i18n "js.search.categories"}}
+            </span>
+          </LinkTo>
+        </li>
+
+        <li>
+          <LinkTo @route="tags.index" data-name="tags">
+            <span>
+              {{i18n "js.search.tags"}}
+            </span>
+          </LinkTo>
+        </li>
+
+        {{#if this.siteSettings.docs_enabled}}
           <li>
-            <LinkTo @route="discovery.latest" data-name="home">
+            <LinkTo @route="docs.index" data-name="docs">
               <span>
-                {{i18n "js.home"}}
+                {{i18n "js.docs.title"}}
               </span>
             </LinkTo>
           </li>
+        {{/if}}
 
-          {{!-- <li>
+        {{#if this.currentUser}}
+          <li>
+            <LinkTo @route="chat.browse" data-name="chat">
+              <span>
+                {{i18n "js.chat.heading"}}
+              </span>
+            </LinkTo>
+          </li>
+        {{/if}}
+
+        {{!-- <li>
             <LinkTo @route="discovery.latest" data-name="topics">
               <span>
                 {{i18n "js.topic.list"}}
@@ -100,57 +141,64 @@ export default class CentralNavigation extends Component {
             </LinkTo>
           </li> --}}
 
-          {{#if this.currentUser}}
+      </ul>
 
+      {{#if this.currentUser}}
+
+        <h6>
+          You
+        </h6>
+        <ul class="c-navigation__you">
+          <li>
+            <a
+              href="/filter?q=in:watching,tracking"
+              {{!-- @model={{this.currentUser}} --}}
+              data-name="following"
+            >
+              <span>
+                Following
+              </span>
+            </a>
+          </li>
+
+          <li>
+            <LinkTo
+              @route="userNotifications.responses"
+              @model={{this.currentUser}}
+              data-name="mentions"
+            >
+              <span>
+                {{i18n "js.groups.mentions"}}
+              </span>
+            </LinkTo>
+          </li>
+
+          <li>
+            <LinkTo
+              @route="userActivity.bookmarks"
+              @model={{this.currentUser}}
+              data-name="bookmarks"
+            >
+              <span>
+                {{i18n "js.user.bookmarks"}}
+              </span>
+            </LinkTo>
+          </li>
+
+          <li>
+            <LinkTo
+              @route="userPrivateMessages"
+              @model={{this.currentUser}}
+              data-name="messages"
+            >
+              <span>
+                {{i18n "js.groups.messages"}}
+              </span>
+            </LinkTo>
+          </li>
+
+          {{#if this.siteSettings.assign_enabled}}
             <li>
-              <a
-                href="/filter?q=in:watching,tracking"
-                {{!-- @model={{this.currentUser}} --}}
-                data-name="following"
-              >
-                <span>
-                  Following
-                </span>
-              </a>
-            </li>
-
-            <li>
-              <LinkTo
-                @route="userNotifications.responses"
-                @model={{this.currentUser}}
-                data-name="mentions"
-              >
-                <span>
-                  Mentions
-                </span>
-              </LinkTo>
-            </li>
-
-            {{!-- <li>
-              <LinkTo
-                @route="userActivity.bookmarks"
-                @model={{this.currentUser}}
-                data-name="bookmarks"
-              >
-                <span>
-                  Bookmarks
-                </span>
-              </LinkTo>
-            </li> --}}
-
-            <li>
-              <LinkTo
-                @route="userPrivateMessages"
-                @model={{this.currentUser}}
-                data-name="messages"
-              >
-                <span>
-                  {{i18n "js.groups.messages"}}
-                </span>
-              </LinkTo>
-            </li>
-
-            {{!-- <li>
               <LinkTo
                 @route="userActivity.assigned"
                 @model={{this.currentUser}}
@@ -160,67 +208,55 @@ export default class CentralNavigation extends Component {
                   Assigned
                 </span>
               </LinkTo>
-            </li> --}}
-
-            {{#if this.currentUser.admin}}
-              <li class="c-navigation__admin">
-                <LinkTo @route="admin.dashboard.general" data-name="admin">
-                  <span>
-                    {{i18n "js.admin_title"}}
-                  </span>
-                </LinkTo>
-              </li>
-            {{/if}}
-
+            </li>
           {{/if}}
 
-          <li class="c-navigation__categories">
-            <LinkTo @route="discovery.categories" data-name="categories">
-              <span>
-                {{i18n "js.search.categories"}}
-              </span>
-            </LinkTo>
-            <ul class="c-navigation__categories-list">
-              {{#each this.categories as |category|}}
-                {{#unless category.parent_category_id}}
+          {{#if this.currentUser.admin}}
+            <li>
+              <LinkTo @route="admin.dashboard.general" data-name="admin">
+                <span>
+                  {{i18n "js.admin_title"}}
+                </span>
+              </LinkTo>
+            </li>
+          {{/if}}
 
-                  <li
-                    {{!-- class={{concatClass
+        </ul>
+      {{/if}}
+
+      <h6>
+        {{i18n "js.search.categories"}}
+      </h6>
+      <ul class="c-navigation__categories">
+        {{#each this.categories as |category|}}
+          {{#unless category.parent_category_id}}
+
+            <li
+              {{!-- class={{concatClass
                       (unless
                         (eq category.newTopicsCount 0) "unread-notification"
                       )
                     }} --}}
-                    class={{if
-                      (eq
-                        this.router.currentRoute.attributes.category.id
-                        category.id
-                      )
-                      "active"
-                    }}
-                  >
-                    {{~categoryLink category~}}
+              class={{if
+                (eq this.router.currentRoute.attributes.category.id category.id)
+                "active"
+              }}
+            >
+              {{~categoryLink category~}}
 
-                    {{#if category.subcategory_ids}}
-                      <ul class="c-navigation__subcategories">
-                        {{#each category.subcategory_ids as |subcategory|}}
-                          <li>
-                            {{!log "subcategory" subcategory.name}}
-                            {{~categoryLink subcategory~}}
-                          </li>
-                        {{/each}}
-                      </ul>
-                    {{/if}}
-                  </li>
-                {{/unless}}
-              {{/each}}
-            </ul>
-          </li>
-        </ul>
-      </nav>
-
-      <footer>
-      </footer>
-
-    </div>
+              {{#if category.subcategory_ids}}
+                <ul class="c-navigation__subcategories">
+                  {{#each category.subcategory_ids as |subcategory|}}
+                    <li>
+                      {{~categoryLink subcategory~}}
+                    </li>
+                  {{/each}}
+                </ul>
+              {{/if}}
+            </li>
+          {{/unless}}
+        {{/each}}
+      </ul>
+    </nav>
   </template>
 }

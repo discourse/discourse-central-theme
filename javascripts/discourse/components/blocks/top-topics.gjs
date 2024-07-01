@@ -22,6 +22,15 @@ export default class BlockTopTopics extends Component {
   @tracked period = this.args?.period || "weekly";
   @tracked count = parseInt(this.args?.count, 10) || 10;
 
+  periods = [
+    { value: "all", title: "js.filters.top.all.title" },
+    { value: "yearly", title: "js.filters.top.yearly.title" },
+    { value: "quarterly", title: "js.filters.top.quarterly.title" },
+    { value: "monthly", title: "js.filters.top.monthly.title" },
+    { value: "weekly", title: "js.filters.top.weekly.title" },
+    { value: "daily", title: "js.filters.top.today" },
+  ];
+
   constructor() {
     super(...arguments);
 
@@ -76,24 +85,17 @@ export default class BlockTopTopics extends Component {
         {{yield this.topTopics}}
 
         <select onchange={{this.updatePeriod}}>
-          <option value="all">
-            {{i18n "js.filters.top.all.title"}}
-          </option>
-          <option value="yearly">
-            {{i18n "js.filters.top.yearly.title"}}
-          </option>
-          <option value="quarterly">
-            {{i18n "js.filters.top.quarterly.title"}}
-          </option>
-          <option value="monthly">
-            {{i18n "js.filters.top.monthly.title"}}
-          </option>
-          <option value="weekly" selected>
-            {{i18n "js.filters.top.weekly.title"}}
-          </option>
-          <option value="daily">
-            {{i18n "js.filters.top.today"}}
-          </option>
+          {{#each this.periods as |period|}}
+            {{#if (eq this.period period.value)}}
+              <option value={{period.value}} selected>
+                {{i18n period.title}}
+              </option>
+            {{else}}
+              <option value={{period.value}}>
+                {{i18n period.title}}
+              </option>
+            {{/if}}
+          {{/each}}
         </select>
       </div>
 
@@ -114,26 +116,29 @@ export default class BlockTopTopics extends Component {
                   {{formatDate topic.created_at format="tiny" leaveAgo="true"}}
                   {{~categoryLink topic.category~}}
                 </span>
-                <ul class="block-chart__stats">
-                  {{!-- {{#unless (eq topic.like_count 0)}}
-                    <li>
-                      <a
-                        href={{concat "/t/" topic.slug "/" topic.id}}
-                        class={{if topic.liked "--liked"}}
-                      >
-                        {{number topic.like_count}}
-                      </a>
-                    </li>
-                  {{/unless}} --}}
-                  {{#unless (eq topic.posts_count 1)}}
-                    <li>
-                      <a href={{concat "/t/" topic.slug "/" topic.id}}>
-                        {{number topic.posts_count}}
-                      </a>
-                    </li>
-                  {{/unless}}
-                </ul>
               </div>
+              <ul class="block-chart__stats">
+                {{#unless (eq topic.like_count 0)}}
+                  <li>
+                    <a
+                      href={{concat "/t/" topic.slug "/" topic.id}}
+                      class={{concatClass (if topic.liked "--liked") "--likes"}}
+                    >
+                      <span>{{number topic.like_count}}</span>
+                    </a>
+                  </li>
+                {{/unless}}
+                {{#unless (eq topic.posts_count 1)}}
+                  <li>
+                    <a
+                      href={{concat "/t/" topic.slug "/" topic.id}}
+                      class="--comments"
+                    >
+                      <span>{{number topic.posts_count}}</span>
+                    </a>
+                  </li>
+                {{/unless}}
+              </ul>
             </div>
           </li>
         {{/each}}
