@@ -78,7 +78,7 @@ export default class CentralNavigation extends Component {
   }
 
   <template>
-    {{log
+    {{!log
       this.discovery
       this.router
       this.siteSettings.lazy_load_categories_groups
