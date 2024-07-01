@@ -30,6 +30,8 @@ export default class Breadcrumbs extends Component {
         return "js.user.bookmarks";
       case this.router?.currentRoute?.parent?.name === "docs":
         return "js.docs.title";
+      case this.router?.currentRoute?.parent?.name === "preferences":
+        return "js.user.preferences.title";
       default:
         return null;
     }

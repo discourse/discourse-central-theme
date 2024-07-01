@@ -6,6 +6,9 @@ en:
   post:
     like: "Like"
     replied: "%{name} replied %{timeago}"
+  categories:
+    category:
+      view_all_topics: "View all topics (%{count})"
   blocks:
     top_contributors:
       title: "Top Contributors"
@@ -14,3 +17,5 @@ en:
       title: "Top Topics"
     online:
       label: "online"
+    profile:
+      hello: "Hi, %{name}!"

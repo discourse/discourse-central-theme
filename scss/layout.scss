@@ -123,6 +123,7 @@ body {
       }
 
       #main-outlet {
+        contain: paint;
         background: var(--neutral-100);
         margin-top: 2rem;
         margin-bottom: 2rem;
@@ -134,6 +135,10 @@ body {
         @include breakpoint(tablet) {
           margin: 0;
           border: 0;
+          border-radius: 0;
+        }
+        @include breakpoint(mobile-extra-large) {
+          // background: transparent;
         }
         padding: 0;
         grid-area: content;

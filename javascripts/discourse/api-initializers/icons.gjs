@@ -86,7 +86,7 @@ export default apiInitializer("1.0", (api) => {
                     @model={{currentUser}}
                   >
                     <span>
-                      {{i18n "user.preferences"}}
+                      {{i18n "user.preferences.title"}}
                     </span>
                   </LinkTo>
                 </li>

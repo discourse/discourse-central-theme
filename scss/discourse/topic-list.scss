@@ -13,10 +13,13 @@ table.topic-list {
 
     tr.topic-list-item-separator {
       display: flex;
+      background: var(--neutral-100);
+
       td.topic-list-data {
+        max-width: unset;
         flex: 1;
         border-top: var(--border-inner);
-        border-bottom: var(--border-inner);
+        // border-bottom: var(--border-inner);
         padding: 1rem 0;
 
         span {
@@ -27,6 +30,7 @@ table.topic-list {
       }
     }
     tr.topic-list-item {
+      background: var(--neutral-100);
       @include hover($opacity: 0.02);
 
       cursor: pointer;
@@ -74,8 +78,8 @@ table.topic-list {
       //   }
 
       padding: 1rem;
-
-      border-bottom: var(--border-inner);
+      border-bottom: 0;
+      border-top: var(--border-inner);
 
       animation: none;
 

@@ -15,44 +15,6 @@ export default class DiscoveryBreadcrumbs extends Component {
   @service discovery;
   @tracked routeType;
 
-  get className() {
-    return this.router.currentRouteName
-      .replace(/\./g, "-")
-      .replace(/([a-z])([A-Z])/g, "$1-$2")
-      .toLowerCase();
-  }
-
-  @action
-  updateRouteType() {
-    if (this.router?.currentRoute?.parent?.name === "discovery") {
-      switch (this.router?.currentRoute?.localName) {
-        case "latest":
-        case "hot":
-        case "top":
-        case "new":
-        case "unread":
-          this.routeType = "home";
-          break;
-        case "category":
-        case "latestCategory":
-        case "hotCategory":
-        case "topCategory":
-        case "newCategory":
-        case "unreadCategory":
-          this.routeType = "category";
-          break;
-        case "categories":
-          this.routeType = "categories";
-          break;
-        default:
-          this.routeType = null;
-          break;
-      }
-    } else {
-      this.routeType = null;
-    }
-  }
-
   get filterType() {
     if (this.router?.currentRoute?.localName === "categories") {
       return "categories";
@@ -72,13 +34,7 @@ export default class DiscoveryBreadcrumbs extends Component {
     return this.router.currentRouteName !== "discovery.categories";
   }
 
-  @action
-  home() {
-    this.router.transitionTo("/");
-  }
-
   <template>
-    {{!-- {{bodyClass this.className}} --}}
     <div class="breadcrumbs">
       {{#if this.isHomepage}}
         <h2 class="breadcrumbs__title" data-name="home">
@@ -86,7 +42,7 @@ export default class DiscoveryBreadcrumbs extends Component {
         </h2>
       {{else if this.discovery.category}}
         <div class="breadcrumbs__category">
-          <h2 class="breadcrumbs__title">
+          <h2 class="breadcrumbs__title" data-name="category">
             {{categoryBadge this.discovery.category}}
           </h2>
           {{#if this.discovery.category.description}}
@@ -96,7 +52,7 @@ export default class DiscoveryBreadcrumbs extends Component {
           {{/if}}
         </div>
       {{else if (eq this.router.currentRouteName "discovery.categories")}}
-        <h2 class="breadcrumbs__title">
+        <h2 class="breadcrumbs__title" data-name="categories">
           {{i18n "js.filters.categories.title"}}
         </h2>
 

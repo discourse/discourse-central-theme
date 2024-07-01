@@ -84,8 +84,10 @@ export default class CentralCategories extends Component {
                 {{/each}}
               </ul>
               <a href={{category.url}} class="c-categories__item-more">
-                {{i18n "js.categories.view_all"}}
-                ({{category.topic_count}})
+                {{i18n
+                  (themePrefix "categories.category.view_all_topics")
+                  count=category.topic_count
+                }}
               </a>
             </div>
           {{/if}}

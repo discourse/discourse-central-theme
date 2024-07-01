@@ -165,6 +165,8 @@
   grid-template-rows: auto;
   gap: 1rem;
 
+  border-top: var(--border-inner);
+
   padding: 1rem;
   @container (max-width: 48rem) {
     grid-template-columns: repeat(2, minmax(0, 1fr));

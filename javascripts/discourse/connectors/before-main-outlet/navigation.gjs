@@ -78,7 +78,11 @@ export default class CentralNavigation extends Component {
   }
 
   <template>
-    {{!log this.discovery this.router}}
+    {{log
+      this.discovery
+      this.router
+      this.siteSettings.lazy_load_categories_groups
+    }}
     {{#if (eq this.router.currentRouteName "userActivity.assigned")}}
       {{bodyClass "user-assigned-page"}}
     {{/if}}
