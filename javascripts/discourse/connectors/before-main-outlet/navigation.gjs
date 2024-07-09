@@ -1,13 +1,13 @@
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
-import { on } from "@ember/modifier";
+// import { on } from "@ember/modifier";
 import { action } from "@ember/object";
 import didInsert from "@ember/render-modifiers/modifiers/did-insert";
 import willDestroy from "@ember/render-modifiers/modifiers/will-destroy";
 import { LinkTo } from "@ember/routing";
 import { service } from "@ember/service";
 import { eq } from "truth-helpers";
-import DButton from "discourse/components/d-button";
+// import DButton from "discourse/components/d-button";
 import bodyClass from "discourse/helpers/body-class";
 import categoryLink from "discourse/helpers/category-link";
 import loadingSpinner from "discourse/helpers/loading-spinner";
@@ -128,7 +128,7 @@ export default class CentralNavigation extends Component {
   }
 
   <template>
-    {{log
+    {{!log
       this.discovery
       this.router
       this.siteSettings.lazy_load_categories_groups
