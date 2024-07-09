@@ -187,7 +187,7 @@ export default class CentralNavigation extends Component {
             </li>
           {{/if}}
 
-        {{!-- <li>
+          {{!-- <li>
             <LinkTo @route="discovery.latest" data-name="topics">
               <span>
                 {{i18n "js.topic.list"}}
@@ -243,17 +243,17 @@ export default class CentralNavigation extends Component {
               </LinkTo>
             </li>
 
-          <li>
-            <LinkTo
-              @route="userPrivateMessages"
-              @model={{this.currentUser}}
-              data-name="messages"
-            >
-              <span>
-                {{i18n "js.groups.messages"}}
-              </span>
-            </LinkTo>
-          </li>
+            <li>
+              <LinkTo
+                @route="userPrivateMessages"
+                @model={{this.currentUser}}
+                data-name="messages"
+              >
+                <span>
+                  {{i18n "js.groups.messages"}}
+                </span>
+              </LinkTo>
+            </li>
 
             {{#if this.siteSettings.assign_enabled}}
               <li>
