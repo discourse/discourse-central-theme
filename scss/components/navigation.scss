@@ -3,6 +3,10 @@
     padding: 1rem 0;
   }
 
+  @include breakpoint(large) {
+    padding: 1rem 0;
+  }
+
   @include breakpoint(tablet) {
     position: fixed;
     z-index: 999;
