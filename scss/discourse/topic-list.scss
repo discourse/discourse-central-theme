@@ -186,7 +186,7 @@ table.topic-list {
       display: block;
       position: relative;
       img.avatar {
-        width: 2rem;
+        width: var(--content-icon-w);
         height: auto;
       }
 

@@ -5,8 +5,6 @@ html {
 
 html,
 body {
-  height: 100%;
-  min-height: 100vh;
   background-color: var(--neutral-100);
   @include breakpoint(tablet) {
     background-color: var(--neutral-95);
@@ -19,7 +17,7 @@ body {
   --d-max-width: 84rem;
   --wrap-px: 1rem;
 
-  // --column-content: 29rem;
+  --content-icon-w: 2rem;
 
   --column-navigation-mini: 5rem;
   --column-blocks: 19rem;
@@ -32,6 +30,12 @@ body {
 
 #main {
   padding-top: var(--header-offset);
+}
+
+a,
+a:visited,
+a:hover {
+  color: inherit;
 }
 
 body {
@@ -56,14 +60,11 @@ body {
           grid-template-columns: minmax(0, 1fr);
         }
         #main-outlet {
-          margin-right: 0rem;
+          margin-right: 0;
         }
         --column-content: minmax(45rem, 1fr);
         grid-template-areas: "navigation content";
         grid-template-columns: var(--column-navigation) var(--column-content);
-        .blocks {
-          display: none;
-        }
       }
     }
 
@@ -127,9 +128,7 @@ body {
         background: var(--neutral-100);
         margin-top: 2rem;
         margin-bottom: 2rem;
-        // margin-right: 2rem;
         @include breakpoint(large) {
-          // margin-right: 1rem;
           margin-top: 1rem;
         }
         @include breakpoint(tablet) {
@@ -137,9 +136,7 @@ body {
           border: 0;
           border-radius: 0;
         }
-        @include breakpoint(mobile-extra-large) {
-          // background: transparent;
-        }
+
         padding: 0;
         grid-area: content;
 
@@ -149,12 +146,6 @@ body {
       }
     }
   }
-}
-
-a,
-a:visited,
-a:hover {
-  color: inherit;
 }
 
 #user-card {
