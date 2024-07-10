@@ -18,7 +18,6 @@ import LikeToggle from "../../components/like-toggle";
 import endsWithEllipsis from "../../helpers/ends-with-ellipsis";
 
 export default class PostPrimary extends Component {
-  @service currentUser;
   @service router;
   @service discovery;
 

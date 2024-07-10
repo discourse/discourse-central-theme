@@ -2,7 +2,6 @@ import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { concat } from "@ember/helper";
 import { action } from "@ember/object";
-// import { service } from "@ember/service";
 import { htmlSafe } from "@ember/template";
 import { eq } from "truth-helpers";
 import avatar from "discourse/helpers/avatar";
@@ -50,24 +49,22 @@ export default class BlockTopContributors extends Component {
     }
   }
 
-  fetchTopContributors(period, count) {
-    ajax(`/leaderboard/7.json?period=${period}`)
-      .then((data) => {
-        this.topContributors = data.users.slice(0, count);
-      })
-      .catch(() => {
-        ajax(
-          `/directory_items.json?period=${period}&order=likes_received`
-        ).then((data) => {
-          data.directory_items = data.directory_items.map((item) => {
-            let user = item.user;
-            delete item.user;
-            return { ...item, ...user };
-          });
-
-          this.topContributors = data.directory_items.slice(0, count);
-        });
+  async fetchTopContributors(period, count) {
+    try {
+      const response = await ajax(`/leaderboard/7.json?period=${period}`);
+      this.topContributors = response.users.slice(0, count);
+    } catch (_) {
+      const response = await ajax(
+        `/directory_items.json?period=${period}&order=likes_received`
+      );
+      response.directory_items = response.directory_items.map((item) => {
+        let user = item.user;
+        delete item.user;
+        return { ...item, ...user };
       });
+
+      this.topContributors = response.directory_items.slice(0, count);
+    }
   }
 
   @action
@@ -123,11 +120,7 @@ export default class BlockTopContributors extends Component {
                   href={{concat "/u/" topContributor.username}}
                   data-user-card={{topContributor.username}}
                 >
-                  {{!-- {{#if topContributor.name}}
-                    {{topContributor.name}}
-                  {{else}} --}}
                   {{htmlSafe topContributor.username}}
-                  {{!-- {{/if}} --}}
                 </a>
               </div>
               <div class="block-chart__details">

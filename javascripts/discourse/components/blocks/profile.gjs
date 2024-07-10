@@ -4,7 +4,6 @@ import { concat } from "@ember/helper";
 import { LinkTo } from "@ember/routing";
 import { inject as service } from "@ember/service";
 import { htmlSafe } from "@ember/template";
-// import { eq, or } from "truth-helpers";
 import avatar from "discourse/helpers/avatar";
 import concatClass from "discourse/helpers/concat-class";
 import { ajax } from "discourse/lib/ajax";
@@ -21,13 +20,14 @@ export default class BlockProfile extends Component {
   constructor() {
     super(...arguments);
 
-    if (this.currentUser !== null) {
-      const currentUserUrl = "/u/" + this.currentUser.username + ".json";
-
-      ajax(currentUserUrl).then((data) => {
-        this.updateUserData(data.user);
-      });
+    if (this.currentUser === null) {
+      return;
     }
+
+    const currentUserUrl = "/u/" + this.currentUser.username + ".json";
+    ajax(currentUserUrl).then((data) => {
+      this.updateUserData(data.user);
+    });
   }
 
   get size() {

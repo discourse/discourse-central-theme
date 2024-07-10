@@ -1,9 +1,7 @@
-/** eslint-disable no-unused-vars */
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { concat } from "@ember/helper";
 import { action } from "@ember/object";
-// import { service } from "@ember/service";
 import { htmlSafe } from "@ember/template";
 import { eq } from "truth-helpers";
 import UserLink from "discourse/components/user-link";
@@ -50,22 +48,21 @@ export default class BlockTopTopics extends Component {
 
   @action
   async fetchTopTopics(period, count) {
-    let data = await ajax(`/top.json?period=${period}`);
-    let topTopics = data.topic_list.topics.slice(0, count);
-    let categoryIds = topTopics.map((topic) => topic.category_id);
-    let categories = await Category.asyncFindByIds(categoryIds);
+    const data = await ajax(`/top.json?period=${period}`);
+    const topTopics = data.topic_list.topics.slice(0, count);
+    const categoryIds = topTopics.map((topic) => topic.category_id);
+    const categories = await Category.asyncFindByIds(categoryIds);
 
-    topTopics.forEach((topic) => {
-      topic["category"] = categories.find(
+
+    this.topTopics = topTopics.map((topic) => {
+      topic.category = categories.find(
         (category) => topic.category_id === category.id
       );
-
-      let author = data.users.find(
-        (user) => user.id === topic.posters[0].user_id
+      topic.author = data.users.find(
+        (user) => user.id === topic.posters.at(0).user_id
       );
-      topic.author = author;
+      return topic;
     });
-    this.topTopics = topTopics;
   }
 
   @action

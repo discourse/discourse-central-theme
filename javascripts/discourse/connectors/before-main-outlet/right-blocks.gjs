@@ -13,10 +13,7 @@ import BlockTopTopics from "../../components/blocks/top-topics";
 import StickySidebarComponent from "../../components/sticky-sidebar";
 
 export default class RightBlocks extends Component {
-  @service currentUser;
   @service router;
-  @service site;
-  @service discovery;
 
   get blocks() {
     return settings.blocks;
@@ -53,7 +50,6 @@ export default class RightBlocks extends Component {
 
   <template>
     {{#if this.shouldRenderBlocks}}
-      {{!log this.blocks}}
       <StickySidebarComponent>
         <div class="blocks --right">
           <div class="blocks__wrapper">

@@ -27,7 +27,6 @@ export default class LikeToggle extends Component {
   @action
   toggleLikeDebounced(topic) {
     if (this.loading) {
-      // console.log("Action is currently loading, please wait.");
       return;
     }
 
@@ -40,34 +39,28 @@ export default class LikeToggle extends Component {
 
   async performToggleLike(topic) {
     if (this.clickCounter % 2 === 0) {
-      // console.log("Skipping redundant like.");
       this.clickCounter = 0;
       return;
     }
     this.loading = true;
+
     try {
       const topicPosts = await ajax(`/t/${topic.id}/post_ids.json`);
-      if (topicPosts && topicPosts.post_ids.length) {
-        const firstPost = topicPosts.post_ids[0];
-        if (firstPost) {
-          if (!this.likeToggled) {
-            // Adjusted the logic here to match the updated state
-            await ajax(`/post_actions/${firstPost}`, {
-              type: "DELETE",
-              data: { post_action_type_id: 2 },
-            });
-            // console.log("UNLIKED");
-          } else {
-            await ajax(`/post_actions`, {
-              type: "POST",
-              data: { id: firstPost, post_action_type_id: 2 },
-            });
-            // console.log("LIKED");
-          }
+      const firstPost = topicPosts.post_ids.at(0);
+      if (topicPosts && firstPost) {
+        if (this.likeToggled) {
+          await ajax(`/post_actions`, {
+            type: "POST",
+            data: { id: firstPost, post_action_type_id: 2 },
+          });
+        } else {
+          await ajax(`/post_actions/${firstPost}`, {
+            type: "DELETE",
+            data: { post_action_type_id: 2 },
+          });
         }
       }
-    } catch (error) {
-      // console.error("Error toggling like:", error);
+    } catch (_) {
       // Rollback UI changes in case of an error
       this.likeToggled = !this.likeToggled;
       this.likeCount += this.likeToggled ? 1 : -1;
