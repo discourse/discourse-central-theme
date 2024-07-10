@@ -28,6 +28,7 @@ export default class CentralCategories extends Component {
     {{#if this.discovery.category.subcategories}}
       <div class="c-categories">
         {{#each this.discovery.category.subcategories as |subcategory|}}
+          {{! template-lint-disable no-invalid-interactive }}
           <div
             data-notification-level={{subcategory.notificationLevelString}}
             style={{categoryColorVariable subcategory.color}}

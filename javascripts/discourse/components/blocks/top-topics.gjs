@@ -53,7 +53,6 @@ export default class BlockTopTopics extends Component {
     const categoryIds = topTopics.map((topic) => topic.category_id);
     const categories = await Category.asyncFindByIds(categoryIds);
 
-
     this.topTopics = topTopics.map((topic) => {
       topic.category = categories.find(
         (category) => topic.category_id === category.id

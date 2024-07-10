@@ -11,7 +11,8 @@ export default class BlockBirthday extends Component {
   constructor() {
     super(...arguments);
 
-    ajax("/cakeday/birthdays/today.json").then((data) => { // loading state?
+    ajax("/cakeday/birthdays/today.json").then((data) => {
+      // loading state?
       const birthdays = data.birthdays;
       this.randomBirthday =
         birthdays[Math.floor(Math.random() * birthdays.length)];
