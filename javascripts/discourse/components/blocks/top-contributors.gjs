@@ -120,7 +120,11 @@ export default class BlockTopContributors extends Component {
                   href={{concat "/u/" topContributor.username}}
                   data-user-card={{topContributor.username}}
                 >
-                  {{htmlSafe topContributor.username}}
+                  {{#if topContributor.name}}
+                    {{topContributor.name}}
+                  {{else}}
+                    {{htmlSafe topContributor.username}}
+                  {{/if}}
                 </a>
               </div>
               <div class="block-chart__details">

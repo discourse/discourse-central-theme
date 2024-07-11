@@ -58,7 +58,7 @@ export default class BlockTopTopics extends Component {
         (category) => topic.category_id === category.id
       );
       topic.author = data.users.find(
-        (user) => user.id === topic.posters.at(0).user_id
+        (user) => user.id === topic.posters[0].user_id
       );
       return topic;
     });
