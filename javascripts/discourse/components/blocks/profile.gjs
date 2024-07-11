@@ -24,8 +24,7 @@ export default class BlockProfile extends Component {
       return;
     }
 
-    const currentUserUrl = "/u/" + this.currentUser.username + ".json";
-    ajax(currentUserUrl).then((data) => {
+    ajax(`/u/${this.currentUser.username}.json`).then((data) => {
       this.updateUserData(data.user);
     });
   }

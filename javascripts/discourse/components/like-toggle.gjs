@@ -46,7 +46,7 @@ export default class LikeToggle extends Component {
 
     try {
       const topicPosts = await ajax(`/t/${topic.id}/post_ids.json`);
-      const firstPost = topicPosts.post_ids.at(0);
+      const firstPost = topicPosts.post_ids[0];
       if (topicPosts && firstPost) {
         if (this.likeToggled) {
           await ajax(`/post_actions`, {
@@ -60,7 +60,7 @@ export default class LikeToggle extends Component {
           });
         }
       }
-    } catch (_) {
+    } catch {
       // Rollback UI changes in case of an error
       this.likeToggled = !this.likeToggled;
       this.likeCount += this.likeToggled ? 1 : -1;

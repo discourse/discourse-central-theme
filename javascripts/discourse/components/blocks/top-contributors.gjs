@@ -53,7 +53,7 @@ export default class BlockTopContributors extends Component {
     try {
       const response = await ajax(`/leaderboard/7.json?period=${period}`);
       this.topContributors = response.users.slice(0, count);
-    } catch (_) {
+    } catch {
       const response = await ajax(
         `/directory_items.json?period=${period}&order=likes_received`
       );
