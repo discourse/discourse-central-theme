@@ -404,6 +404,11 @@ body:not(.user-messages-page) {
       justify-content: center;
     }
   }
+
+  .discourse-adplugin > * {
+    margin-left: 1rem;
+    margin-bottom: 1rem;
+  }
 }
 
 .topic-list-bottom {
