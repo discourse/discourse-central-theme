@@ -20,7 +20,8 @@ export default class StickySidebar extends Component {
     const scrollingDown = scrollY > this.prevScrollTop;
     const element = this.element;
 
-    const isScrolledToBottom = window.innerHeight + scrollY >= document.documentElement.scrollHeight;
+    const isScrolledToBottom =
+      window.innerHeight + scrollY >= document.documentElement.scrollHeight;
     if (!this.yOrigin) {
       // save the initial vertical position
       this.yOrigin = getYOrigin(this.element);
