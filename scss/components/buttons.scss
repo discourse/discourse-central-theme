@@ -113,6 +113,7 @@
   }
 }
 
+.btn-text,
 .btn-icon-text {
   @include button($style: neutral);
 }
