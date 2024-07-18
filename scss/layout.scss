@@ -151,6 +151,33 @@ body {
   }
 }
 
+body {
+  &.user-invites-page,
+  &.user-summary-page {
+    #main-outlet-wrapper #main-outlet {
+      padding-top: 1rem;
+    }
+  }
+
+  &.admin-interface {
+    #main-outlet-wrapper #main-outlet {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+  }
+}
+
+@at-root {
+  [class*="user-"] {
+    &[class*="-page"] {
+      #main-outlet-wrapper #main-outlet {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+    }
+  }
+}
+
 a,
 a:visited,
 a:hover {

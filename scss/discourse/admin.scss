@@ -4,3 +4,12 @@
     display: flex;
   }
 }
+
+.admin-interface #main-outlet {
+  .nav-pills {
+    display: none;
+  }
+  .row .nav-pills {
+    display: flex;
+  }
+}

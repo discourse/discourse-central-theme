@@ -169,8 +169,13 @@
   }
 }
 
-.container.posts > .row {
-  border-right: var(--border-inner);
+.container.posts {
+  .timeline-controls {
+    margin-top: 1em;
+  }
+  & > .row {
+    border-right: var(--border-inner);
+  }
 }
 // .topic-navigation {
 //   height: 100%;
@@ -375,4 +380,8 @@
       margin: 0;
     }
   }
+}
+
+#topic-footer-buttons {
+  padding-left: 1rem;
 }

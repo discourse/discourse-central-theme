@@ -58,7 +58,7 @@ export default apiInitializer("1.0", (api) => {
                 <li>
                   <LinkTo
                     @route="userActivity.bookmarks"
-                    @model={{this.currentUser}}
+                    @model={{currentUser}}
                     data-name="bookmarks"
                   >
                     <span>
