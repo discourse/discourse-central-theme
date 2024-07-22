@@ -1,7 +1,7 @@
 import Component from "@glimmer/component";
 import { service } from "@ember/service";
 
-export default class Navigation extends Component {
+export default class Logo extends Component {
   @service siteSettings;
 
   <template>
