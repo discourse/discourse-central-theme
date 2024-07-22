@@ -11,6 +11,7 @@ export default class BlockOnline extends Component {
     super(...arguments);
 
     ajax("/about.json").then((data) => {
+      // loading state?
       this.online = data.about.stats;
     });
   }

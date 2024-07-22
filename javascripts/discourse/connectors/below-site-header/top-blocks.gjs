@@ -12,9 +12,7 @@ import BlockTopContributors from "../../components/blocks/top-contributors";
 import BlockTopTopics from "../../components/blocks/top-topics";
 
 export default class TopBlocks extends Component {
-  @service currentUser;
   @service router;
-  @service site;
 
   get isHomepage() {
     switch (this.router?.currentRoute?.parent?.name) {

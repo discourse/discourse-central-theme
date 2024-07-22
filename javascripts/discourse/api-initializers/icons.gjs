@@ -154,11 +154,7 @@ export default apiInitializer("1.0", (api) => {
 
     api.headerIcons.add("c-create", <template>
       <li class="c-create">
-        <DMenu
-          @placement="bottom-end"
-          {{!-- @modalForMobile={{true}} --}}
-          @identifier="c-create"
-        >
+        <DMenu @placement="bottom-end" @identifier="c-create">
           <:trigger>
             <div class="c-create__icon"></div>
           </:trigger>

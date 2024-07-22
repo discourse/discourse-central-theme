@@ -1,7 +1,6 @@
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { concat } from "@ember/helper";
-// import UserLink from "discourse/components/user-link";
 import avatar from "discourse/helpers/avatar";
 import { ajax } from "discourse/lib/ajax";
 import i18n from "discourse-common/helpers/i18n";
@@ -13,6 +12,7 @@ export default class BlockBirthday extends Component {
     super(...arguments);
 
     ajax("/cakeday/birthdays/today.json").then((data) => {
+      // loading state?
       const birthdays = data.birthdays;
       this.randomBirthday =
         birthdays[Math.floor(Math.random() * birthdays.length)];

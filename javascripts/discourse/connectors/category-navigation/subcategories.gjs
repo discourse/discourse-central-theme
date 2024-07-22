@@ -1,22 +1,17 @@
 import Component from "@glimmer/component";
-// import { tracked } from "@glimmer/tracking";
 import { fn } from "@ember/helper";
 import { on } from "@ember/modifier";
 import { action } from "@ember/object";
 import { inject as service } from "@ember/service";
 import { htmlSafe } from "@ember/template";
-// import { eq } from "truth-helpers";
 import categoryColorVariable from "discourse/helpers/category-color-variable";
 import categoryLink from "discourse/helpers/category-link";
 import concatClass from "discourse/helpers/concat-class";
 import formatDate from "discourse/helpers/format-date";
-// import i18n from "discourse-common/helpers/i18n";
 
 export default class CentralCategories extends Component {
-  @service currentUser;
   @service router;
   @service discovery;
-  @service site;
 
   @action
   navigate(url, event) {
