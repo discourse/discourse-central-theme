@@ -1,3 +1,246 @@
+.sidebar-wrapper {
+  --d-sidebar-section-link-prefix-margin-right: 1rem;
+  --d-sidebar-link-icon-color: var(--primary);
+
+  padding-top: 0.75rem;
+  font-size: var(--font-down-1);
+
+  .sidebar-container {
+    border: none;
+  }
+
+  .sidebar-section-header-caret {
+    display: none;
+  }
+}
+
+.sidebar-section-link-wrapper {
+  .sidebar-section-link {
+    border-radius: var(--rounded-md);
+    height: 2.5rem;
+    &.active {
+      font-weight: 600;
+    }
+  }
+}
+
+.sidebar-section-header-collapsable {
+  pointer-events: none;
+}
+
+.sidebar-section-header-button {
+  border-radius: var(--rounded-full);
+}
+
+.sidebar-section-header-text {
+  font-size: var(--font-down-1);
+  font-weight: 400;
+}
+
+.sidebar-footer-actions-keyboard-shortcuts {
+  display: none;
+}
+
+.sidebar-section-wrapper .sidebar-section-header-wrapper {
+  .discourse-no-touch & {
+    &:hover,
+    &:focus {
+      background: transparent;
+    }
+  }
+}
+
+.sidebar-section-header-global-indicator {
+  display: none;
+}
+
+.sidebar-section {
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--primary-low);
+
+  &[data-section-name="categories"] {
+    border: none;
+  }
+}
+
+.sidebar-section-link-prefix.icon {
+  font-size: var(--font-up-2);
+}
+
+.sidebar-section-wrapper {
+  &[data-section-name="chat-channels"],
+  &[data-section-name="chat-dms"],
+  &[data-section-name="tags"],
+  &[data-section-name="messages"] {
+    display: none;
+  }
+}
+
+[data-list-item-name="all-categories"],
+[data-list-item-name="anniversaries"],
+[data-list-item-name="birthdays"],
+[data-list-item-name="upcoming-events"],
+[data-list-item-name="docs"],
+[data-list-item-name="Chat"] {
+  display: none;
+}
+
+// The default sidebar becomes slide-out for smaller screens
+// but we still want to use it, so a duplicate is added
+// with the class c–small-sidebar
+
+@media screen and (max-width: 1000px) {
+  .sidebar-wrapper {
+    .sidebar-section-wrapper .sidebar-section-header-wrapper {
+      display: none;
+    }
+
+    .sidebar-section-wrapper {
+      &[data-section-name="categories"],
+      &[data-section-name="chat-channels"],
+      &[data-section-name="chat-dms"],
+      &[data-section-name="tags"],
+      &[data-section-name="messages"] {
+        display: none;
+      }
+    }
+
+    .sidebar-sections {
+      padding-top: 0;
+      gap: 0;
+    }
+
+    .sidebar-section {
+      border: none;
+    }
+
+    .sidebar-section-wrapper {
+      margin: 0;
+    }
+
+    .sidebar-section-content {
+      padding: 0;
+    }
+
+    .sidebar-section-link {
+      height: 3.5rem;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+
+      &.active {
+        background: transparent;
+        .sidebar-section-link-prefix.icon {
+          background: var(--primary-very-low);
+        }
+      }
+      .discourse-no-touch & {
+        &:hover,
+        &:focus {
+          background: transparent;
+        }
+      }
+    }
+
+    [data-list-item-name="Tags"],
+    [data-list-item-name="Customize this section"] {
+      display: none;
+    }
+
+    .sidebar-section-link-prefix.icon {
+      font-size: var(--font-up-3);
+      margin: 0;
+      width: 1.25rem;
+      padding: 0.125rem 0.875rem;
+      border-radius: var(--rounded-xl);
+    }
+
+    .sidebar-section-link-content-text {
+      font-size: var(--font-down-1);
+    }
+
+    .sidebar-section-link-suffix {
+      position: absolute;
+      top: 0.25rem;
+      right: 1rem;
+    }
+  }
+
+  .sidebar-footer-wrapper {
+    display: none;
+  }
+}
+
+@include breakpoint(tablet) {
+  .sidebar-wrapper {
+    position: fixed;
+    z-index: 999;
+    top: unset;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
+    height: var(--mobile-nav-h);
+    padding: 0;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+
+    background: var(--neutral-100);
+    border-top: var(--border-outer);
+
+    .sidebar-section[data-section-name="you"] {
+      display: none;
+    }
+
+    .sidebar-section-link-wrapper:has(.--link-button) {
+      display: none;
+    }
+
+    [data-list-item-name="Chat"],
+    [data-list-item-name="Tags"] {
+      display: flex;
+    }
+
+    .sidebar-sections {
+      display: contents;
+    }
+
+    .sidebar-section {
+      width: 100%;
+    }
+
+    .sidebar-section-wrapper {
+      display: flex;
+    }
+
+    .sidebar-section-content {
+      display: contents;
+    }
+
+    .sidebar-custom-sections {
+      display: flex;
+      flex: 1 1 auto;
+      width: 100%;
+    }
+
+    .sidebar-section-link-wrapper {
+      flex: 1 1 auto;
+    }
+
+    .sidebar-section-link-suffix {
+      top: 0.75rem;
+      left: calc(50% + 0.25rem);
+    }
+  }
+}
+
+.global-notice .close {
+  font-size: var(--font-down-1);
+  height: 2em;
+  width: 2em;
+}
+
 .c-navigation {
   @include breakpoint(large) {
     padding: 1rem 0;
