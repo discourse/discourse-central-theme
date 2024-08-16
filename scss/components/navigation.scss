@@ -1,236 +1,294 @@
-.sidebar-wrapper {
-  --d-sidebar-section-link-prefix-margin-right: 1rem;
-  --d-sidebar-link-icon-color: var(--primary);
-
-  padding-top: 0.75rem;
-  font-size: var(--font-down-1);
-
-  .sidebar-container {
-    border: none;
-  }
-
-  .sidebar-section-header-caret {
-    display: none;
-  }
-}
-
-.sidebar-section-link-wrapper {
-  .sidebar-section-link {
-    border-radius: var(--rounded-md);
-    height: 2.5rem;
-    &.active {
-      font-weight: 600;
-    }
-  }
-}
-
-.sidebar-section-header-collapsable {
-  pointer-events: none;
-}
-
-.sidebar-section-header-button {
-  border-radius: var(--rounded-full);
-}
-
-.sidebar-section-header-text {
-  font-size: var(--font-down-1);
-  font-weight: 400;
-}
-
-.sidebar-footer-actions-keyboard-shortcuts {
-  display: none;
-}
-
-.sidebar-section-wrapper .sidebar-section-header-wrapper {
-  .discourse-no-touch & {
-    &:hover,
-    &:focus {
-      background: transparent;
-    }
-  }
-}
-
-.sidebar-section-header-global-indicator {
-  display: none;
-}
-
-.sidebar-section {
-  margin-bottom: 1rem;
-  border-bottom: 1px solid var(--primary-low);
-
-  &[data-section-name="categories"] {
-    border: none;
-  }
-}
-
-.sidebar-section-link-prefix.icon {
-  font-size: var(--font-up-2);
-}
-
-.sidebar-section-wrapper {
-  &[data-section-name="chat-channels"],
-  &[data-section-name="chat-dms"],
-  &[data-section-name="tags"],
-  &[data-section-name="messages"] {
-    display: none;
-  }
-}
-
-[data-list-item-name="all-categories"],
-[data-list-item-name="anniversaries"],
-[data-list-item-name="birthdays"],
-[data-list-item-name="upcoming-events"],
-[data-list-item-name="docs"],
-[data-list-item-name="Chat"] {
-  display: none;
-}
-
-// The default sidebar becomes slide-out for smaller screens
-// but we still want to use it, so a duplicate is added
-// with the class c–small-sidebar
-
-@media screen and (max-width: 1000px) {
+body:not(.admin-interface) {
   .sidebar-wrapper {
-    .sidebar-section-wrapper .sidebar-section-header-wrapper {
-      display: none;
-    }
+    --d-sidebar-section-link-prefix-margin-right: 1rem;
+    --d-sidebar-link-icon-color: var(--primary);
+    --d-sidebar-section-link-icon-size: 1.25em;
+    --d-sidebar-highlight-color: var(--primary);
 
-    .sidebar-section-wrapper {
-      &[data-section-name="categories"],
-      &[data-section-name="chat-channels"],
-      &[data-section-name="chat-dms"],
-      &[data-section-name="tags"],
-      &[data-section-name="messages"] {
-        display: none;
-      }
-    }
+    font-size: var(--font-down-1);
 
-    .sidebar-sections {
-      padding-top: 0;
-      gap: 0;
-    }
-
-    .sidebar-section {
+    .sidebar-container {
+      padding-top: 0.75rem;
       border: none;
     }
 
-    .sidebar-section-wrapper {
-      margin: 0;
-    }
-
-    .sidebar-section-content {
-      padding: 0;
-    }
-
-    .sidebar-section-link {
-      height: 3.5rem;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-
-      &.active {
-        background: transparent;
-        .sidebar-section-link-prefix.icon {
-          background: var(--primary-very-low);
-        }
-      }
-      .discourse-no-touch & {
-        &:hover,
-        &:focus {
-          background: transparent;
-        }
-      }
-    }
-
-    [data-list-item-name="Tags"],
-    [data-list-item-name="Customize this section"] {
+    .sidebar-section-header-caret {
       display: none;
-    }
-
-    .sidebar-section-link-prefix.icon {
-      font-size: var(--font-up-3);
-      margin: 0;
-      width: 1.25rem;
-      padding: 0.125rem 0.875rem;
-      border-radius: var(--rounded-xl);
-    }
-
-    .sidebar-section-link-content-text {
-      font-size: var(--font-down-1);
-    }
-
-    .sidebar-section-link-suffix {
-      position: absolute;
-      top: 0.25rem;
-      right: 1rem;
     }
   }
 
-  .sidebar-footer-wrapper {
+  .sidebar-section-link-wrapper {
+    .sidebar-section-link {
+      border-radius: var(--rounded-md);
+      height: 2.5rem;
+      &.active {
+        font-weight: 600;
+      }
+    }
+
+    .d-icon-wrench {
+      width: 0.85em; // a little too large by default
+    }
+  }
+
+  .sidebar-more-section-links-details-content {
+    padding: 0.5em;
+  }
+
+  .sidebar-more-section-links-details-content-footer {
+    border: none;
+  }
+
+  .sidebar-section-header-collapsable {
+    pointer-events: none;
+  }
+
+  .sidebar-section-header-button {
+    border-radius: var(--rounded-full);
+  }
+
+  .sidebar-section-header-text {
+    font-size: var(--font-down-1);
+    font-weight: 400;
+  }
+
+  .sidebar-footer-wrapper .sidebar-footer-actions {
+    margin-left: 0;
+  }
+
+  .sidebar-footer-actions-keyboard-shortcuts {
     display: none;
   }
-}
 
-@include breakpoint(tablet) {
-  .sidebar-wrapper {
-    position: fixed;
-    z-index: 999;
-    top: unset;
-    bottom: 0;
-    left: 0;
-    right: 0;
+  .sidebar-section-wrapper .sidebar-section-header-wrapper {
+    border-radius: var(--rounded-md);
+    .discourse-no-touch & {
+      &:hover,
+      &:focus {
+        background: transparent;
+      }
+    }
+  }
 
-    height: var(--mobile-nav-h);
-    padding: 0;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: center;
+  .sidebar-section-header-global-indicator {
+    display: none;
+  }
 
-    background: var(--neutral-100);
-    border-top: var(--border-outer);
+  .sidebar-section {
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--primary-low);
 
-    .sidebar-section[data-section-name="you"] {
+    &[data-section-name="categories"] {
+      border: none;
+    }
+  }
+
+  .sidebar-section-link-prefix.icon {
+    font-size: var(--font-up-2);
+  }
+
+  .sidebar-section-wrapper {
+    &[data-section-name="chat-channels"],
+    &[data-section-name="chat-dms"],
+    &[data-section-name="tags"],
+    &[data-section-name="messages"] {
       display: none;
     }
+  }
 
-    .sidebar-section-link-wrapper:has(.--link-button) {
+  [data-list-item-name="Chat"] {
+    display: none;
+  }
+
+  #sidebar-section-content-categories {
+    .sidebar-section-link-wrapper[data-category-id] {
+      .sidebar-section-link-prefix {
+        &:before {
+          content: "📁";
+          background: none;
+          width: 1rem;
+          height: 1rem;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 1rem;
+          padding-left: 0.25em; // alignment fix
+        }
+      }
+
+      .prefix-span {
+        visibility: hidden;
+      }
+    }
+
+    .sidebar-section-link-prefix.span .prefix-badge {
+      right: -0.35em;
+    }
+  }
+
+  [data-link-name="all-categories"],
+  [data-link-name="all-tags"] {
+    .d-icon {
+      height: 0.75em; // a little too large by default
+    }
+  }
+
+  // The default sidebar becomes slide-out for smaller screens
+  // but we still want to use it, so a duplicate is added
+  // with the class c–small-sidebar
+
+  @media screen and (max-width: 1000px) {
+    .sidebar-wrapper {
+      .sidebar-section-wrapper .sidebar-section-header-wrapper {
+        display: none;
+      }
+
+      .sidebar-section-wrapper {
+        &[data-section-name="categories"],
+        &[data-section-name="chat-channels"],
+        &[data-section-name="chat-dms"],
+        &[data-section-name="tags"],
+        &[data-section-name="messages"] {
+          display: none;
+        }
+      }
+
+      .sidebar-sections {
+        padding-top: 0;
+        gap: 0;
+      }
+
+      .sidebar-section {
+        border: none;
+      }
+
+      .sidebar-section-wrapper {
+        margin: 0;
+      }
+
+      .sidebar-section-content {
+        padding: 0;
+      }
+
+      .sidebar-section-link {
+        height: 3.5rem;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .sidebar-section-link-content-text {
+          max-width: 6em;
+        }
+
+        &.active {
+          background: transparent;
+          .sidebar-section-link-prefix.icon {
+            background: var(--primary-very-low);
+          }
+        }
+        .discourse-no-touch & {
+          &:hover,
+          &:focus {
+            background: transparent;
+          }
+        }
+      }
+
+      [data-list-item-name="Tags"],
+      [data-list-item-name="Customize this section"],
+      .sidebar-more-section-links-details-summary {
+        display: none;
+      }
+
+      .sidebar-section-link-prefix.icon {
+        font-size: var(--font-up-3);
+        margin: 0;
+        width: 1.25rem;
+        padding: 0.125rem 0.875rem;
+        border-radius: var(--rounded-xl);
+      }
+
+      .sidebar-section-link-content-text {
+        font-size: var(--font-down-1);
+      }
+
+      .sidebar-section-link-suffix {
+        position: absolute;
+        top: 0.25rem;
+        right: 1rem;
+      }
+    }
+
+    .sidebar-footer-wrapper {
       display: none;
     }
+  }
 
-    [data-list-item-name="Chat"],
-    [data-list-item-name="Tags"] {
+  @include breakpoint(tablet) {
+    .sidebar-wrapper {
+      position: fixed;
+      z-index: 999;
+      top: unset;
+      bottom: 0;
+      left: 0;
+      right: 0;
+
+      height: var(--mobile-nav-h);
+      padding: 0;
+      box-sizing: border-box;
       display: flex;
-    }
+      justify-content: center;
 
-    .sidebar-sections {
-      display: contents;
-    }
+      background: var(--neutral-100);
+      border-top: var(--border-outer);
 
-    .sidebar-section {
-      width: 100%;
-    }
+      .sidebar-custom-sections {
+        overflow: auto;
+      }
 
-    .sidebar-section-wrapper {
-      display: flex;
-    }
+      .sidebar-section[data-section-name="you"] {
+        display: none;
+      }
 
-    .sidebar-section-content {
-      display: contents;
-    }
+      .sidebar-section-link-wrapper:has(.--link-button) {
+        display: none;
+      }
 
-    .sidebar-custom-sections {
-      display: flex;
-      flex: 1 1 auto;
-      width: 100%;
-    }
+      [data-list-item-name="Chat"],
+      [data-list-item-name="Tags"] {
+        display: flex;
+      }
 
-    .sidebar-section-link-wrapper {
-      flex: 1 1 auto;
-    }
+      .sidebar-sections {
+        display: contents;
+      }
 
-    .sidebar-section-link-suffix {
-      top: 0.75rem;
-      left: calc(50% + 0.25rem);
+      .sidebar-section {
+        width: 100%;
+      }
+
+      .sidebar-section-wrapper {
+        display: flex;
+      }
+
+      .sidebar-section-content {
+        display: contents;
+      }
+
+      .sidebar-custom-sections {
+        display: flex;
+        flex: 1 1 auto;
+        width: 100%;
+      }
+
+      .sidebar-section-link-wrapper {
+        flex: 1 1 auto;
+      }
+
+      .sidebar-section-link-suffix {
+        top: 0.75rem;
+        left: calc(50% + 0.25rem);
+      }
     }
   }
 }
@@ -241,291 +299,30 @@
   width: 2em;
 }
 
-.c-navigation {
-  @include breakpoint(large) {
-    padding: 1rem 0;
-  }
-
-  @include breakpoint(tablet) {
-    position: fixed;
-    z-index: 999;
-    top: unset;
-    bottom: 0;
-    left: 0;
-
-    height: var(--mobile-nav-h);
-    padding: 0;
-    box-sizing: border-box;
-    display: flex;
-    justify-content: center;
-
-    background: var(--neutral-100);
-    border-top: var(--border-outer);
-  }
-
-  display: flex;
-  flex-direction: column;
-
-  scrollbar-color: transparent transparent;
-  scrollbar-width: thin;
-
-  position: sticky;
-  top: var(--header-offset);
-
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  align-self: start;
-
-  box-sizing: border-box;
-  width: 100%;
-  height: calc(100vh - var(--header-offset));
-  padding: 2rem 0;
-
-  &::-webkit-scrollbar {
-    width: 1rem;
-    background: transparent;
-  }
-
-  &::-webkit-scrollbar-track {
-    background: transparent;
-  }
-
-  &::-webkit-scrollbar-thumb {
-    background-color: transparent;
-    border: 0.3125rem solid var(--neutral-100);
-    border-radius: var(--rounded-full);
-  }
-
-  &:hover {
-    scrollbar-color: var(--neutral-90) transparent;
-
-    &::-webkit-scrollbar-thumb {
-      background-color: var(--neutral-90);
-
-      &:hover {
-        background-color: var(--neutral-80);
-      }
-    }
-  }
-
-  &__admin {
-    display: flex;
-    flex-direction: column;
-
-    .admin-interface & ul {
-      display: flex !important;
-    }
-
-    & > ul {
-      display: none !important;
-      flex-direction: column;
-    }
-  }
-
-  h6 {
-    @include body-small;
-    border-top: var(--border-outer);
-    padding-top: 1rem;
-    padding-left: 1rem;
-    margin: 1rem 0 0.5rem;
-  }
-
-  &__main,
-  &__categories,
-  &__you {
-    margin: 0;
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    & > li {
-      flex: 1;
-
-      &.active > a,
-      & > a.active {
-        &:before {
-          @include i($fill: 1);
-        }
-        @include breakpoint(large) {
-          background-color: transparent;
-
-          &::before {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            background-color: var(--neutral-95);
-            border-radius: var(--rounded-xl);
-          }
-
-          &:hover:after {
-            content: unset;
-          }
-        }
-
-        font-weight: 600;
-        background-color: rgba(var(--neutral-10-rgb), 0.08);
-      }
-
-      & > a {
-        @include body-medium;
-
-        @include hover;
-
-        display: flex;
-        flex: 1;
-        gap: 1rem;
-        align-items: center;
-
-        height: 2.5rem;
-        padding: 0 1rem;
-
-        border-radius: var(--rounded-md);
-
-        &::before {
-          @include i;
-        }
-
-        &:hover {
-          &::before {
-            @include i($fill: 1);
-          }
-        }
-      }
-    }
-  }
-
-  &__main,
-  &__you {
-    @include breakpoint(tablet) {
-      flex-direction: row;
-      justify-content: space-around;
-      padding: 0;
-    }
-
-    & > li {
-      & > a {
-        @include breakpoint(large) {
-          &:before {
-            padding: 0.125rem 0.875rem;
-          }
-          @include label-small;
-          &:hover:after {
-            content: unset;
-          }
-          flex-direction: column;
-          gap: 0.25rem;
-          justify-content: center;
-
-          height: 3.5rem;
-          padding: 0 0 0.25rem 0;
-
-          border-radius: 0;
-        }
-      }
-
-      &:has(a[data-name="chat"]) {
-        @include breakpoint(tablet) {
-          display: flex;
-        }
-        display: none;
-      }
-    }
-  }
-
-  &__categories {
-    & > li {
-      .badge-category__wrapper {
-        .badge-category {
-          overflow: hidden;
-          gap: 1rem;
-          text-overflow: ellipsis;
-
-          &__name {
-            color: var(--neutral-10);
-          }
-        }
-      }
-    }
-  }
-
-  &__subcategories {
-    position: relative;
-    list-style: none;
-    display: inline-flex;
-    flex-wrap: wrap;
-    row-gap: 0.125rem;
-
-    margin: 0 0 0.5rem;
-    padding-left: 3.25rem;
-
-    &::before {
-      content: "";
-
-      position: absolute;
-      top: 0;
-      left: 1.625rem;
-
-      width: 1px;
-      height: 100%;
-
-      background: var(--neutral-90);
-    }
-
-    & > li {
-      display: inline-flex;
-
-      &:not(:last-of-type) {
-        & > a > span::after {
-          content: ",\00a0";
-        }
-      }
-
-      .badge-category__wrapper {
-        padding: 0;
-
-        .badge-category {
-          display: inline-flex;
-          gap: 0;
-          color: var(--neutral-50);
-          @include body-small;
-
-          &::before {
-            content: unset;
-          }
-
-          &__name {
-            display: inline-flex;
-            gap: 0.125rem;
-            @include body-small;
-
-            &:hover {
-              text-decoration: underline;
-            }
-          }
-        }
-      }
-    }
-  }
-
-  &__you {
-    @include breakpoint(tablet) {
-      display: none;
-    }
-  }
-
-  h6,
-  &__categories {
-    @include breakpoint(large) {
-      display: none;
-    }
-  }
-}
-
 .navigation-container {
-  // display: none;
   .category-breadcrumb,
   #navigation-bar {
     display: none;
+  }
+
+  .c-categories {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+
+    &__item-heading {
+      box-sizing: border-box;
+    }
+
+    .badge-category__wrapper,
+    .badge-category,
+    .badge-category__name {
+      width: 100%;
+    }
+
+    &__item-heading {
+      margin: 0;
+    }
   }
 }
 
@@ -546,7 +343,6 @@
 
   h2 {
     &:before {
-      @include i;
       width: 2rem;
       display: flex;
       justify-content: center;
@@ -616,7 +412,7 @@
   gap: 2rem;
   box-sizing: border-box;
   // min-height: 4.5rem;
-  padding: 1rem;
+  padding: 1rem 1rem 1rem 0;
 
   border-bottom: var(--border-inner);
 
@@ -632,7 +428,7 @@
       font-size: inherit;
 
       .badge-category {
-        gap: 1rem;
+        gap: 0.5rem;
         align-items: baseline;
 
         .badge-category__name {
@@ -653,10 +449,6 @@
       padding: 0 0.375rem;
 
       font-size: 24px;
-
-      &[data-badge-type="icon"] {
-        @include i;
-      }
 
       &[data-badge-type="emoji"] {
         width: 1.25rem;

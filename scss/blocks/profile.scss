@@ -138,10 +138,6 @@
   }
 
   &__link {
-    &:before {
-      @include i($font-size: 1.125rem);
-      content: "link";
-    }
     display: inline-flex;
     gap: 0.25rem;
     align-items: center;
@@ -149,6 +145,17 @@
     @include body-medium;
     a {
       color: var(--primary);
+    }
+  }
+}
+
+.user-main .staff-counters {
+  background: var(--primary-very-low);
+  border-radius: var(--rounded-lg);
+  div > a {
+    color: var(--primary);
+    span {
+      color: var(--secondary);
     }
   }
 }

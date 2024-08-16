@@ -1,0 +1,10 @@
+.has-full-page-chat {
+  .breadcrumbs {
+    display: none;
+  }
+}
+
+body.has-full-page-chat #main-outlet-wrapper #main-outlet {
+  margin: 0;
+  border: none;
+}

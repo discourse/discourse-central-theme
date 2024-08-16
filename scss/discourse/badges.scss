@@ -11,6 +11,36 @@
         background: none;
       }
     }
+    &:before {
+      content: "📁";
+      background: none;
+      width: 1.25rem;
+      height: 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1rem;
+    }
+
+    .badge-category:before {
+      content: "📁";
+    }
+  }
+}
+
+.badge-category__wrapper {
+  font-size: inherit;
+  .badge-category {
+    gap: 0.25rem;
+    align-items: center;
+    &__name {
+      color: var(--neutral-10);
+    }
+    &.--has-parent {
+      &:before {
+        background: none;
+      }
+    }
   }
 }
 
@@ -19,4 +49,8 @@
     background-color: var(--primary-60);
     color: var(--primary-100);
   }
+}
+
+.badge-card {
+  border-radius: var(--rounded-md);
 }

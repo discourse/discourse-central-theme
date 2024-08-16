@@ -47,10 +47,7 @@
             svg {
               display: none;
             }
-            &:before {
-              @include i;
-              content: "close";
-            }
+
             &:visited {
               color: inherit;
             }
@@ -69,10 +66,7 @@
             &:hover {
               background: var(--neutral-90);
             }
-            &:before {
-              content: "tune";
-              @include i;
-            }
+
             svg {
               display: none;
             }
@@ -98,11 +92,7 @@
                   display: flex;
                   align-items: center;
                   column-gap: 0.5rem;
-                  &:before {
-                    order: 1;
-                    content: "history";
-                    @include i;
-                  }
+
                   span[aria-label="Search"] {
                     display: none;
                   }
@@ -157,11 +147,7 @@
 
           position: relative;
           margin: 0;
-          &:before {
-            content: "search";
-            @include i;
-            color: var(--neutral-50);
-          }
+
           &:focus-within {
             background-color: transparent;
 
@@ -189,7 +175,20 @@
   .d-icon {
     display: none;
   }
-  &:before {
-    content: "search";
-  }
+}
+
+.search-menu .searching .spinner,
+.search-menu-container .searching .spinner {
+  margin-right: 1rem;
+}
+
+// Search page
+
+// AI
+.semantic-search__container.search-results {
+  margin: 0;
+}
+
+.search-results:has(.fps-result-entries:empty) {
+  padding: 0;
 }
