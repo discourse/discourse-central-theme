@@ -161,7 +161,7 @@ export default apiInitializer("1.0", (api) => {
           @identifier="c-create"
         >
           <:trigger>
-            {{dIcon "far-edit"}}
+            {{icon "far-edit"}}
           </:trigger>
           <:content as |args|>
             {{! template-lint-disable no-invalid-interactive }}
