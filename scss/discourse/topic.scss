@@ -3,7 +3,7 @@
   border-bottom: var(--border-inner);
   padding: 1rem;
   margin: 0;
-  gap: 1rem;
+  gap: 2.15rem;
   .title-wrapper {
     row-gap: 0.25rem;
   }
@@ -249,67 +249,6 @@
   .topic-avatar {
     width: 3rem;
     align-self: unset;
-
-    &:has(.locked),
-    &:has(.d-icon-lock) {
-      &:before {
-        content: "block";
-      }
-      .d-icon {
-        display: none;
-      }
-    }
-
-    &:has(.archived) {
-      &:before {
-        content: "folder_limited";
-      }
-      .d-icon {
-        display: none;
-      }
-    }
-    &:has(.d-icon-thumbtack) {
-      &:before {
-        content: "keep";
-      }
-      .d-icon {
-        display: none;
-      }
-    }
-
-    &:has(.d-icon-thumbtack.unpinned) {
-      &:before {
-        content: "keep_off";
-      }
-      transform: none;
-      .d-icon {
-        display: none;
-      }
-    }
-    &:has(.d-icon-bookmark) {
-      &:before {
-        content: "bookmark";
-      }
-      .d-icon {
-        display: none;
-      }
-    }
-    &:has(.d-icon-far-eye-slash) {
-      &:before {
-        content: "visibility_off";
-      }
-      .d-icon {
-        display: none;
-      }
-    }
-    &:has(.d-icon-folder) {
-      &:before {
-        content: "folder_limited";
-      }
-      .d-icon {
-        display: none;
-      }
-    }
   }
 
   .small-action-desc {
@@ -359,6 +298,14 @@
 }
 
 .topic-status-info,
+.topic-timer-info {
+  .topic-timer-heading,
+  .slow-mode-heading {
+    padding-left: 1rem;
+  }
+}
+
+.topic-status-info,
 .topic-timer-info,
 .topic-map.--op {
   border-top-color: var(--primary-very-low);
@@ -366,15 +313,19 @@
 
 .topic-map.--op,
 .topic-map.--bottom {
-  padding-left: 1em;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .topic-map.--bottom {
   border-bottom-color: var(--primary-very-low);
 }
 
-.topic-back-button .d-icon {
-  padding-top: 0.5em; // vertical alignment
+.topic-back-button {
+  margin-left: 0.85rem;
+  .d-icon {
+    padding-top: 0.5rem; // vertical alignment
+  }
 }
 
 .edit-controls {
@@ -402,4 +353,36 @@
     margin-right: 0.25em;
     border-radius: var(--rounded-md);
   }
+}
+
+nav.post-controls .actions button.d-hover {
+  background: transparent;
+}
+
+.double-button {
+  border-radius: var(--rounded-md);
+  @include hover;
+
+  button.d-hover,
+  button:hover {
+    &:after {
+      display: none; // undoes the global hover effect
+    }
+  }
+}
+
+nav.post-controls
+  .actions
+  .double-button
+  button.button-count
+  + .toggle-like.d-hover,
+nav.post-controls .actions .double-button:hover button {
+  background: transparent; // undoes the very specific core hover effect
+  &.d-hover {
+    background: transparent;
+  }
+}
+
+.discourse-reactions-double-button {
+  border-radius: var(--rounded-md);
 }

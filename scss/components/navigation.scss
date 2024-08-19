@@ -337,7 +337,6 @@ body:not(.admin-interface) {
 }
 
 .navigation-container .navigation-controls {
-  background: var(--neutral-100);
   & > *:not(:last-child) {
     margin: 0;
   }
