@@ -138,10 +138,6 @@
   }
 
   &__link {
-    &:before {
-      @include i($font-size: 1.125rem);
-      content: "link";
-    }
     display: inline-flex;
     gap: 0.25rem;
     align-items: center;

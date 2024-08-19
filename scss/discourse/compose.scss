@@ -1,3 +1,11 @@
 #reply-control {
   background: var(--neutral-100);
 }
+
+.open .grippie::before {
+  border-color: var(--secondary);
+}
+
+.d-editor-button-bar {
+  border: none;
+}

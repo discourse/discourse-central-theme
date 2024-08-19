@@ -5,8 +5,6 @@ html {
 
 html,
 body {
-  height: 100%;
-  min-height: 100vh;
   background-color: var(--neutral-100);
   @include breakpoint(tablet) {
     background-color: var(--neutral-95);
@@ -53,7 +51,7 @@ body {
         }
         @include breakpoint(tablet) {
           grid-template-areas: "content";
-          grid-template-columns: minmax(0, 1fr);
+          grid-template-columns: 1fr;
         }
         #main-outlet {
           margin-right: 0rem;
@@ -83,7 +81,7 @@ body {
 
       @include breakpoint(tablet) {
         grid-template-areas: "content";
-        grid-template-columns: minmax(0, 1fr);
+        grid-template-columns: 1fr;
         padding: 0;
 
         padding-bottom: calc(
@@ -118,12 +116,11 @@ body {
         grid-area: blocks;
       }
 
-      .c-navigation {
+      .sidebar-wrapper {
         grid-area: navigation;
       }
 
       #main-outlet {
-        contain: paint;
         background: var(--neutral-100);
         margin-top: 2rem;
         margin-bottom: 2rem;

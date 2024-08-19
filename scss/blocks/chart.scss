@@ -228,20 +228,6 @@
         border-radius: var(--rounded-md);
         @include label-small;
 
-        &.--likes:before {
-          @include i($font-size: 0.75rem);
-          content: "favorite";
-        }
-
-        &.--liked:before {
-          @include i($font-size: 0.75rem, $fill: 1);
-          color: var(--love);
-        }
-
-        &.--comments:before {
-          @include i($font-size: 0.75rem);
-          content: "comment";
-        }
         span {
           padding: 0 0.0625rem;
         }

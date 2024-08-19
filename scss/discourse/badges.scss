@@ -15,147 +15,32 @@
       content: "📁";
       background: none;
       width: 1.25rem;
-      height: 1.25rem;
+      height: 1rem;
       display: flex;
       justify-content: center;
       align-items: center;
-      font-size: 1.25rem;
-      .c-navigation__subcategories > li:has(.restricted) > & {
-        background: none;
-        height: auto;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        @include i($font-size: 0.75rem);
-        content: "lock" !important;
-        align-self: center;
-        margin-right: 0.125rem;
-      }
+      font-size: 1rem;
     }
-    &.restricted {
-      .d-icon {
-        display: none;
-      }
-      .badge-category__name {
-        &:before {
-          .c-navigation__categories-list > li:has(.restricted) > & {
-            @include i($font-size: 0.75rem);
-            content: "lock" !important;
-            align-self: center;
-            display: inline-flex;
-            margin-right: 0.125rem;
-            align-items: center;
-            justify-content: center;
-          }
-        }
-      }
-    }
+
     .badge-category:before {
       content: "📁";
     }
-    // &[data-category-id="124"]:before {
-    //   content: "💬";
-    // }
-    // &[data-category-id="10"]:before {
-    //   content: "📒";
-    // }
-    // &[data-category-id="67"]:before {
-    //   content: "📣";
-    // }
-    // &[data-category-id="6"]:before {
-    //   content: "🤝";
-    // }
-    // &[data-category-id="1"]:before {
-    //   content: "🛠️";
-    // }
-    // &[data-category-id="9"]:before {
-    //   content: "💻";
-    // }
-    // &[data-category-id="2"]:before {
-    //   content: "✨";
-    // }
+  }
+}
 
-    // &[data-category-id="148"]:before {
-    //   content: "📈";
-    // }
-
-    // &[data-category-id="24"]:before {
-    //   content: "🔑";
-    // }
-    // &[data-category-id="65"]:before {
-    //   content: "🏡";
-    // }
-    // &[data-category-id="7"]:before {
-    //   content: "⌨️";
-    // }
-    // &[data-category-id="14"]:before {
-    //   content: "💰";
-    // }
-
-    // &[data-category-id="22"]:before {
-    //   content: "🔌";
-    // }
-
-    // &[data-category-id="61"]:before {
-    //   content: "🎨";
-    // }
-    // &[data-category-id="120"]:before {
-    //   content: "🧩";
-    // }
-
-    // &[data-category-id="31"]:before {
-    //   content: "🌱";
-    // }
-
-    // &[data-category-id="106"]:before {
-    //   content: "🚚";
-    // }
-
-    // &[data-category-id="8"]:before {
-    //   content: "🏘️";
-    // }
-
-    // &[data-category-id="30"]:before {
-    //   content: "📦";
-    // }
-
-    // &[data-category-id="3"]:before {
-    //   content: "🗳️";
-    // }
-    // &[data-category-id="105"]:before {
-    //   content: "💛";
-    // }
-
-    // &[data-category-id="35"]:before {
-    //   content: "❤️";
-    // }
-    // &[data-category-id="110"]:before {
-    //   content: "💡";
-    // }
-
-    // &[data-category-id="83"]:before {
-    //   content: "🌐";
-    // }
-
-    // &[data-category-id="25"]:before {
-    //   content: "🪪";
-    // }
-
-    // &[data-category-id="20"]:before {
-    //   content: "🛋️";
-    // }
-
-    // &[data-category-id="117"]:before {
-    //   content: "📃";
-    // }
-
-    // &[data-category-id="96"]:before {
-    //   content: "🌞";
-    // }
-
-    // &[data-category-id="137"]:before {
-    //   content: "➕";
-    // }
+.badge-category__wrapper {
+  font-size: inherit;
+  .badge-category {
+    gap: 0.25rem;
+    align-items: center;
+    &__name {
+      color: var(--neutral-10);
+    }
+    &.--has-parent {
+      &:before {
+        background: none;
+      }
+    }
   }
 }
 
@@ -164,4 +49,8 @@
     background-color: var(--primary-60);
     color: var(--primary-100);
   }
+}
+
+.badge-card {
+  border-radius: var(--rounded-md);
 }
