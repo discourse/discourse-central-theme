@@ -298,6 +298,14 @@
 }
 
 .topic-status-info,
+.topic-timer-info {
+  .topic-timer-heading,
+  .slow-mode-heading {
+    padding-left: 1rem;
+  }
+}
+
+.topic-status-info,
 .topic-timer-info,
 .topic-map.--op {
   border-top-color: var(--primary-very-low);
@@ -305,13 +313,13 @@
 
 .topic-map.--op,
 .topic-map.--bottom {
-  padding-left: 1em;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 .topic-map.--bottom {
   border-bottom-color: var(--primary-very-low);
 }
-
 
 .topic-back-button {
   margin-left: 0.85rem;
@@ -344,6 +352,34 @@
     height: 100%;
     margin-right: 0.25em;
     border-radius: var(--rounded-md);
+  }
+}
+
+nav.post-controls .actions button.d-hover {
+  background: transparent;
+}
+
+.double-button {
+  border-radius: var(--rounded-md);
+  @include hover;
+
+  button.d-hover,
+  button:hover {
+    &:after {
+      display: none; // undoes the global hover effect
+    }
+  }
+}
+
+nav.post-controls
+  .actions
+  .double-button
+  button.button-count
+  + .toggle-like.d-hover,
+nav.post-controls .actions .double-button:hover button {
+  background: transparent; // undoes the very specific core hover effect
+  &.d-hover {
+    background: transparent;
   }
 }
 
