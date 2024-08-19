@@ -57,9 +57,6 @@
         @include hover;
       }
       @include body-medium;
-      a:before {
-        @include i;
-      }
     }
   }
   &__footer {

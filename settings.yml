@@ -3,28 +3,28 @@ topic_list_show_usernames:
   type: bool
   required: true
 
-# button_primary:
-#   properties: id
-
-category_icons:
-  default: []
-  type: objects
-  schema:
-    name: category
-    properties:
-      id:
-        type: categories
-        required: true
-        validations:
-          min: 1
-          max: 1
-      emoji:
-        type: string
-        validations:
-          min_length: 1
-          max_length: 10
 blocks:
-  default: []
+  default:
+    [
+      { "order": 1, "blocks": [{ "name": "profile", "size": "4w" }] },
+      {
+        "order": 3,
+        "blocks":
+          [
+            {
+              "name": "top_topics",
+              "size": "4w",
+              "count": 10,
+              "period": "quarterly",
+            },
+          ],
+      },
+      {
+        "order": 4,
+        "blocks":
+          [{ "name": "top_contributors", "size": "4w", "period": "quarterly" }],
+      },
+    ]
   type: objects
   schema:
     name: row
@@ -166,7 +166,7 @@ blocks:
                     type: null
 
 blocks_border_radius:
-  default: ""
+  default: "xl"
   type: enum
   choices:
     - xs
@@ -179,7 +179,27 @@ blocks_border_radius:
     - full
 
 blocks_top:
-  default: []
+  default:
+    [
+      {
+        "blocks":
+          [
+            {
+              "ctas":
+                [
+                  {
+                    "url": "/about",
+                    "label": "Learn more",
+                    "style": "primary",
+                  },
+                ],
+              "name": "banner",
+              "size": "12w",
+              "title": "Welcome to the community!",
+            },
+          ],
+      },
+    ]
   type: objects
   schema:
     name: row

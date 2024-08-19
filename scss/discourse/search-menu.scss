@@ -16,11 +16,8 @@
         }
         .search-menu-panel {
           background: none;
-          box-shadow: var(--shadow-5);
-          padding-top: 3rem;
-          margin-top: -3rem;
+          box-shadow: var(--shadow-menu-panel);
           z-index: 0;
-          border-radius: 1.5rem;
         }
         .search-icon {
           display: none;
@@ -43,14 +40,6 @@
             height: 2.25rem;
             border-radius: var(--rounded-full);
             color: inherit;
-
-            svg {
-              display: none;
-            }
-            &:before {
-              @include i;
-              content: "close";
-            }
             &:visited {
               color: inherit;
             }
@@ -69,24 +58,20 @@
             &:hover {
               background: var(--neutral-90);
             }
-            &:before {
-              content: "tune";
-              @include i;
-            }
-            svg {
-              display: none;
-            }
           }
         }
 
         .results {
-          padding: 0;
           border: 0;
+          padding: 0;
+
+          .search-result-topic {
+            box-sizing: border-box;
+            padding: 0.5rem;
+          }
 
           .search-menu-initial-options {
-            &:has(li:not(.search-random-quick-tip)) {
-              padding: 0 0.5rem 0.5rem 0.5rem;
-            }
+            margin-top: 0.5em;
 
             .search-menu-assistant-item {
               svg {
@@ -98,11 +83,7 @@
                   display: flex;
                   align-items: center;
                   column-gap: 0.5rem;
-                  &:before {
-                    order: 1;
-                    content: "history";
-                    @include i;
-                  }
+
                   span[aria-label="Search"] {
                     display: none;
                   }
@@ -134,7 +115,6 @@
 
           .search-link {
             padding: 0.5rem 0.875rem;
-            margin: 0 -0.5rem;
             &:hover,
             &:focus {
               background-color: var(--neutral-95);
@@ -144,8 +124,8 @@
 
         .search-menu-recent {
           margin: 0;
-          border-top: var(--border-inner);
-          padding: 0.5rem 0 0 0;
+          padding: 0;
+          border: none;
           h4 {
             @include title-medium;
           }
@@ -157,11 +137,7 @@
 
           position: relative;
           margin: 0;
-          &:before {
-            content: "search";
-            @include i;
-            color: var(--neutral-50);
-          }
+
           &:focus-within {
             background-color: transparent;
 
@@ -189,7 +165,20 @@
   .d-icon {
     display: none;
   }
-  &:before {
-    content: "search";
-  }
+}
+
+.search-menu .searching .spinner,
+.search-menu-container .searching .spinner {
+  margin-right: 1rem;
+}
+
+// Search page
+
+// AI
+.semantic-search__container.search-results {
+  margin: 0;
+}
+
+.search-results:has(.fps-result-entries:empty) {
+  padding: 0;
 }

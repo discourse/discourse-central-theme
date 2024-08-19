@@ -1,0 +1,22 @@
+// todo: these can probably be fixed elsewhere
+// so this file can be removed
+
+.topic-navigation + .row {
+  max-width: unset !important; // overrides very specific core rule
+}
+
+.topic-post article.onscreen-post .row .topic-avatar {
+  float: left;
+  margin-right: 0.5em;
+}
+
+.d-header .extra-info-wrapper ~ .panel {
+  .d-header-icons,
+  .header-buttons {
+    display: flex;
+  }
+}
+
+.read-state {
+  right: 1em;
+}

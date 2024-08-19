@@ -6,10 +6,11 @@ import { on } from "@ember/modifier";
 import { action } from "@ember/object";
 import { debounce } from "@ember/runloop";
 import { inject as service } from "@ember/service";
-import { eq, or } from "truth-helpers";
+import { eq, notEq, or } from "truth-helpers";
 import concatClass from "discourse/helpers/concat-class";
 import number from "discourse/helpers/number";
 import { ajax } from "discourse/lib/ajax";
+import icon from "discourse-common/helpers/d-icon";
 import i18n from "discourse-common/helpers/i18n";
 
 export default class LikeToggle extends Component {
@@ -97,11 +98,8 @@ export default class LikeToggle extends Component {
       {{on "click" (fn this.toggleLikeDebounced @topic)}}
       class={{concatClass (if this.likeToggled "--liked") "topic__like-button"}}
     >
-      {{#if (eq this.likeCount 0)}}
-        <span>
-          {{i18n (themePrefix "post.like")}}
-        </span>
-      {{else}}
+      {{icon "d-unliked"}}
+      {{#if (notEq this.likeCount 0)}}
         {{number this.likeCount}}
       {{/if}}
     </button>

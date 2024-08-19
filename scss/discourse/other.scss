@@ -1,3 +1,55 @@
 .boxed.white {
   background: var(--neutral-100);
 }
+
+.d-icon-circle {
+  background: var(--tertiary-medium);
+  border-radius: var(--rounded-full);
+}
+
+.users-directory.directory,
+.discourse-post-event-upcoming-events,
+.container.groups-index,
+.container.badges,
+.container.cakeday,
+.reviewable,
+.body-page {
+  padding: 0 1rem;
+}
+
+.group-box,
+.reviewable-filters {
+  border-radius: var(--rounded-xl);
+}
+
+.select-kit.dropdown-select-box.period-chooser
+  .period-chooser-header
+  h2.selected-name
+  .top-date-string {
+  font-size: var(--font-down-3);
+}
+
+.select-kit.dropdown-select-box.period-chooser {
+  margin-left: -0.25rem;
+}
+
+.select-kit.dropdown-select-box.period-chooser .period-chooser-header .d-icon {
+  // alignment adjustments
+  position: relative;
+  top: 0.15rem;
+  right: 0.15rem;
+}
+
+.top-lists {
+  padding-left: 1rem;
+}
+
+.categories-admin-dropdown {
+  .d-icon-caret-down {
+    display: none;
+  }
+}
+
+.empty-state {
+  font-size: var(--font-down-1);
+}

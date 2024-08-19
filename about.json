@@ -1,15 +1,17 @@
 {
   "name": "Central",
-  "authors": "Carson",
-  "about_url": "TODO: Put your theme's public repo or Meta topic URL here",
-  "license_url": "TODO: Put your theme's LICENSE URL here",
-  "learn_more": "TODO",
+  "authors": "Carson Chang & The Discourse Team",
+  "about_url": "https://github.com/discourse/discourse-central-theme",
+  "license_url": "https://github.com/discourse/discourse-central-theme/blob/main/LICENSE",
+  "learn_more": "https://meta.discourse.org/t/discourse-central-theme-meta-pre-release-out-now/287495",
   "theme_version": "0.0.1",
-  "minimum_discourse_version": null,
-  "maximum_discourse_version": null,
-  "assets": {},
+
   "modifiers": {
     "serialize_topic_excerpts": "true"
   },
-  "color_schemes": {}
+  "color_schemes": {},
+  "components": [
+    "https://github.com/discourse/discourse-material-design-icons-outlined",
+    "https://github.com/discourse/discourse-header-search"
+  ]
 }

@@ -13,6 +13,7 @@ import avatar from "discourse/helpers/avatar";
 import formatDate from "discourse/helpers/format-date";
 import number from "discourse/helpers/number";
 import replaceEmoji from "discourse/helpers/replace-emoji";
+import icon from "discourse-common/helpers/d-icon";
 import i18n from "discourse-common/helpers/i18n";
 import LikeToggle from "../../components/like-toggle";
 import endsWithEllipsis from "../../helpers/ends-with-ellipsis";
@@ -177,6 +178,7 @@ export default class PostPrimary extends Component {
           href={{concat "/t/" this.topic.slug "/" this.topic.id}}
           class="topic__reply-button"
         >
+          {{icon "reply"}}
           {{#if (eq this.topic.replyCount 0)}}
             <span>
               {{i18n "js.topic.reply.title"}}

@@ -19,10 +19,6 @@
   }
 
   @if $size == sm {
-    &::before {
-      @include i($font-size: 1rem);
-    }
-
     padding: 0 0.375rem;
     height: 1.75rem;
 
@@ -38,10 +34,6 @@
     }
   } @else if $size == md {
     height: 2.5rem;
-
-    &::before {
-      @include i($font-size: 1.25rem);
-    }
 
     padding: 0 0.5rem;
     border-radius: var(--rounded-md);
@@ -59,6 +51,10 @@
   }
 
   @include hover;
+}
+
+.timeline-container .topic-timeline .topic-admin-menu-button .btn {
+  height: 2.5rem;
 }
 
 @mixin badge($style: neutral) {
@@ -98,18 +94,6 @@
 
   .select-kit-header-wrapper {
     justify-content: center;
-  }
-}
-
-.notifications-button {
-  .select-kit-selected-name {
-    &:before {
-      @include i;
-      content: "notifications";
-    }
-    .d-icon {
-      display: none;
-    }
   }
 }
 

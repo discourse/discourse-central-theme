@@ -20,17 +20,6 @@
   }
   .topic-title-outlet {
     order: -1;
-    .topic-back-button {
-      &:before {
-        @include i;
-        width: 2rem;
-        height: 2rem;
-        align-items: center;
-        display: flex;
-        justify-content: center;
-        content: "arrow_back";
-      }
-    }
   }
 }
 
@@ -51,13 +40,7 @@
       color: var(--neutral-50);
       margin: 0.25rem 0 0 0;
       max-width: unset;
-      &:before {
-        @include i($font-size: 1rem);
-        content: "prompt_suggestion";
-      }
-      .d-icon {
-        display: none;
-      }
+
       @include body-small;
       .avatar {
         width: 1rem;
@@ -81,20 +64,15 @@
       &.edits {
         display: inline-flex;
         order: 3;
-        &:before {
-          content: "\00a0·\00a0";
-        }
+        align-self: center;
+
         .widget-button {
           @include body-small;
           padding: 0;
-          .d-icon {
-            display: none;
-          }
-          &:before {
-            @include i($font-size: 1rem);
-            content: "edit";
-            color: var(--neutral-50);
-          }
+          height: unset;
+          margin-left: 0.5em;
+          font-size: var(--font-up-1);
+
           span {
             display: none;
           }
@@ -150,6 +128,9 @@
         width: 100%;
       }
     }
+    .svg-icon-title {
+      font-size: var(--font-up-1);
+    }
   }
 }
 
@@ -177,10 +158,6 @@
     border-right: var(--border-inner);
   }
 }
-// .topic-navigation {
-//   height: 100%;
-//   border-left: var(--border-inner);
-// }
 
 .topic-post {
   border: 0;
@@ -271,11 +248,6 @@
 
   .topic-avatar {
     width: 3rem;
-    &:before {
-      @include i($font-size: 1.25rem, $fill: 1);
-      color: var(--neutral-70);
-    }
-
     align-self: unset;
 
     &:has(.locked),
@@ -384,4 +356,50 @@
 
 #topic-footer-buttons {
   padding-left: 1rem;
+}
+
+.topic-status-info,
+.topic-timer-info,
+.topic-map.--op {
+  border-top-color: var(--primary-very-low);
+}
+
+.topic-map.--op,
+.topic-map.--bottom {
+  padding-left: 1em;
+}
+
+.topic-map.--bottom {
+  border-bottom-color: var(--primary-very-low);
+}
+
+.topic-back-button .d-icon {
+  padding-top: 0.5em; // vertical alignment
+}
+
+.edit-controls {
+  display: flex;
+}
+
+// hide the back button when editing the topic title to avoid confusion
+.title-wrapper:has(.edit-topic-title) + .topic-title-outlet {
+  visibility: hidden;
+}
+
+.regular .more-topics__list-title {
+  padding-left: 1em;
+}
+
+.container.posts #topic-progress-wrapper {
+  margin-bottom: 0.5em;
+
+  .topic-admin-menu-button-container + #topic-progress {
+    border-radius: var(--rounded-md);
+  }
+
+  .topic-admin-menu-button .toggle-admin-menu {
+    height: 100%;
+    margin-right: 0.25em;
+    border-radius: var(--rounded-md);
+  }
 }

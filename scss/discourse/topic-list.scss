@@ -57,26 +57,6 @@ table.topic-list {
         }
       }
 
-      //   @include respond-between(tablet, extra-large) {
-      //     grid-template-areas: "avatar author " "avatar category " "avatar title " "avatar tags " "avatar content " "avatar replies " "avatar actions";
-
-      //     .topic__actions {
-      //       justify-self: flex-start;
-      //       padding: 0;
-      //       margin-top: 1rem;
-      //     }
-      //   }
-
-      //   @include breakpoint(mobile-extra-large) {
-      //     grid-template-areas: "avatar author " "avatar category " "avatar title " "avatar tags " "avatar content " "avatar replies " "avatar actions";
-
-      //     .topic__actions {
-      //       justify-self: flex-start;
-      //       padding: 0;
-      //       margin-top: 1rem;
-      //     }
-      //   }
-
       padding: 1rem;
       border-bottom: 0;
       border-top: var(--border-inner);
@@ -171,14 +151,6 @@ table.topic-list {
   }
 }
 
-.topic-statuses {
-  .topic-status {
-    &:before {
-      @include i($font-size: 0.875rem);
-    }
-  }
-}
-
 .topic {
   &__avatar {
     grid-area: avatar;
@@ -225,15 +197,6 @@ table.topic-list {
       }
     }
 
-    // .topic__category {
-    //   //   &:before {
-    //   //     display: inline-flex;
-    //   //     transform: translateY(0.125rem);
-    //   //     @include i($font-size: 0.75rem);
-    //   //     content: "lock";
-    //   //   }
-    // }
-
     .topic__metadata {
       @include label-small;
 
@@ -264,10 +227,6 @@ table.topic-list {
   }
 
   &__replies {
-    // &:before {
-    //   @include i($font-size: 1rem);
-    //   content: "prompt_suggestion";
-    // }
     color: var(--neutral-50);
     display: flex;
     grid-area: replies;
@@ -343,24 +302,6 @@ table.topic-list {
     a {
       @include button($size: sm);
     }
-
-    .topic__like-button {
-      &::before {
-        content: "favorite";
-      }
-
-      &.--liked::before {
-        @include i($font-size: 1rem, $fill: 1);
-
-        color: var(--love);
-      }
-    }
-
-    .topic__reply-button {
-      &::before {
-        content: "comment";
-      }
-    }
   }
 }
 
@@ -429,5 +370,26 @@ body:not(.user-messages-page) {
     .education {
       color: inherit;
     }
+  }
+}
+
+.--liked.topic__like-button {
+  color: var(--love);
+}
+
+.top-title-buttons {
+  justify-content: center;
+}
+
+// events plugin
+
+table.topic-list
+  tbody.topic-list-body
+  tr.topic-list-item
+  td.topic-list-data.main-link {
+  line-height: 1.4;
+  .link-top-line .event-date,
+  .header-title .event-date {
+    border-color: var(--primary-low);
   }
 }

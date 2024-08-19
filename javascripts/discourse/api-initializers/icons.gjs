@@ -4,6 +4,7 @@ import { eq, or } from "truth-helpers";
 import avatar from "discourse/helpers/bound-avatar-template";
 import routeAction from "discourse/helpers/route-action";
 import { apiInitializer } from "discourse/lib/api";
+import icon from "discourse-common/helpers/d-icon";
 import i18n from "discourse-common/helpers/i18n";
 import DMenu from "float-kit/components/d-menu";
 
@@ -160,7 +161,7 @@ export default apiInitializer("1.0", (api) => {
           @identifier="c-create"
         >
           <:trigger>
-            <div class="c-create__icon"></div>
+            {{icon "far-edit"}}
           </:trigger>
           <:content as |args|>
             {{! template-lint-disable no-invalid-interactive }}

@@ -1,7 +1,6 @@
 @import "standards/colors";
 @import "standards/typography";
 @import "standards/fonts";
-@import "standards/icons";
 @import "standards/other";
 
 @import "overrides";
@@ -16,6 +15,7 @@
 
 @import "layout";
 
+@import "discourse/chat";
 @import "discourse/mixins";
 @import "discourse/header";
 @import "discourse/topic-list";
