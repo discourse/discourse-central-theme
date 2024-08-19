@@ -152,3 +152,21 @@
     }
   }
 }
+
+.user-main {
+  .about.has-background .user-profile-image {
+    margin: 0 -1rem;
+  }
+  .staff-counters {
+    background: var(--primary-very-low);
+    border-radius: var(--rounded-lg) var(--rounded-lg) 0 0;
+    margin: 0 -1rem;
+    color: var(--primary);
+    div > a {
+      color: var(--primary);
+      span {
+        color: var(--secondary);
+      }
+    }
+  }
+}
