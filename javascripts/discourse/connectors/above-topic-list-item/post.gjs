@@ -178,7 +178,7 @@ export default class PostPrimary extends Component {
           href={{concat "/t/" this.topic.slug "/" this.topic.id}}
           class="topic__reply-button"
         >
-          {{dIcon "reply"}}
+          {{icon "reply"}}
           {{#if (eq this.topic.replyCount 0)}}
             <span>
               {{i18n "js.topic.reply.title"}}
