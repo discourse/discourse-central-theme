@@ -16,11 +16,8 @@
         }
         .search-menu-panel {
           background: none;
-          box-shadow: var(--shadow-5);
-          padding-top: 3rem;
-          margin-top: -3rem;
+          box-shadow: var(--shadow-menu-panel);
           z-index: 0;
-          border-radius: 1.5rem;
         }
         .search-icon {
           display: none;
@@ -43,11 +40,6 @@
             height: 2.25rem;
             border-radius: var(--rounded-full);
             color: inherit;
-
-            svg {
-              display: none;
-            }
-
             &:visited {
               color: inherit;
             }
@@ -66,21 +58,20 @@
             &:hover {
               background: var(--neutral-90);
             }
-
-            svg {
-              display: none;
-            }
           }
         }
 
         .results {
-          padding: 0;
           border: 0;
+          padding: 0;
+
+          .search-result-topic {
+            box-sizing: border-box;
+            padding: 0.5rem;
+          }
 
           .search-menu-initial-options {
-            &:has(li:not(.search-random-quick-tip)) {
-              padding: 0 0.5rem 0.5rem 0.5rem;
-            }
+            margin-top: 0.5em;
 
             .search-menu-assistant-item {
               svg {
@@ -124,7 +115,6 @@
 
           .search-link {
             padding: 0.5rem 0.875rem;
-            margin: 0 -0.5rem;
             &:hover,
             &:focus {
               background-color: var(--neutral-95);
@@ -134,8 +124,8 @@
 
         .search-menu-recent {
           margin: 0;
-          border-top: var(--border-inner);
-          padding: 0.5rem 0 0 0;
+          padding: 0;
+          border: none;
           h4 {
             @include title-medium;
           }

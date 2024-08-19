@@ -11,6 +11,7 @@
   },
   "color_schemes": {},
   "components": [
-    "https://github.com/discourse/discourse-material-design-icons-outlined"
+    "https://github.com/discourse/discourse-material-design-icons-outlined",
+    "https://github.com/discourse/discourse-header-search"
   ]
 }

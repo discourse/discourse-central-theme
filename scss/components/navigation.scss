@@ -225,6 +225,12 @@ body:not(.admin-interface) {
   }
 
   @include breakpoint(tablet) {
+    &[class*="archetype-"] {
+      .sidebar-wrapper {
+        display: none;
+      }
+    }
+
     .sidebar-wrapper {
       position: fixed;
       z-index: 999;
@@ -241,6 +247,10 @@ body:not(.admin-interface) {
 
       background: var(--neutral-100);
       border-top: var(--border-outer);
+
+      .sidebar-container {
+        padding-top: 0;
+      }
 
       .sidebar-custom-sections {
         overflow: auto;

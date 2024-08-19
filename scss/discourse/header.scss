@@ -22,7 +22,6 @@
       grid-template-columns: var(--column-navigation) var(--column-content) var(
           --column-blocks
         );
-      column-gap: 2rem;
 
       &
         > *:not(
