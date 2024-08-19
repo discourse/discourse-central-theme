@@ -98,7 +98,7 @@ export default class LikeToggle extends Component {
       {{on "click" (fn this.toggleLikeDebounced @topic)}}
       class={{concatClass (if this.likeToggled "--liked") "topic__like-button"}}
     >
-      {{dIcon "d-unliked"}}
+      {{icon "d-unliked"}}
       {{#if (notEq this.likeCount 0)}}
         {{number this.likeCount}}
       {{/if}}
