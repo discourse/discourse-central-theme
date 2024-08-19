@@ -13,7 +13,7 @@ import avatar from "discourse/helpers/avatar";
 import formatDate from "discourse/helpers/format-date";
 import number from "discourse/helpers/number";
 import replaceEmoji from "discourse/helpers/replace-emoji";
-import dIcon from "discourse-common/helpers/d-icon";
+import icon from "discourse-common/helpers/d-icon";
 import i18n from "discourse-common/helpers/i18n";
 import LikeToggle from "../../components/like-toggle";
 import endsWithEllipsis from "../../helpers/ends-with-ellipsis";
