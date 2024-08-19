@@ -10,7 +10,7 @@ import { eq, notEq, or } from "truth-helpers";
 import concatClass from "discourse/helpers/concat-class";
 import number from "discourse/helpers/number";
 import { ajax } from "discourse/lib/ajax";
-import dIcon from "discourse-common/helpers/d-icon";
+import icon from "discourse-common/helpers/d-icon";
 import i18n from "discourse-common/helpers/i18n";
 
 export default class LikeToggle extends Component {
