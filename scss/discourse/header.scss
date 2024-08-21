@@ -11,6 +11,10 @@
   border-bottom: 1px solid var(--neutral-90);
   box-shadow: none;
 
+  .header-sidebar-toggle {
+    display: none;
+  }
+
   .wrap {
     .contents {
       @include breakpoint(large) {
@@ -19,17 +23,9 @@
 
       display: grid;
       grid-template-areas: "logo search utility";
-      grid-template-columns: var(--column-navigation) var(--column-content) var(
-          --column-blocks
-        );
-
-      &
-        > *:not(
-          .home-logo-wrapper-outlet,
-          .before-header-panel-outlet,
-          .panel
-        ) {
-        display: none;
+      grid-template-columns: 21rem var(--column-content) var(--column-blocks);
+      @media screen and (max-width: 1080px) {
+        grid-template-columns: auto var(--column-content) var(--column-blocks);
       }
     }
   }
@@ -38,32 +34,18 @@
     display: none;
   }
 
-  .title {
-    display: none;
-  }
-
   .home-logo-wrapper-outlet {
+    grid-area: logo;
     display: flex;
     flex-shrink: 0;
-
-    .logo-temp {
-      @include headline-small;
-
-      display: flex;
-      width: min-content;
-      margin: 0;
-
-      img {
-        width: auto;
-        max-width: 12rem;
-        height: auto;
-        max-height: 2.5rem;
-      }
-    }
   }
 
   .extra-info-wrapper {
-    display: none;
+    grid-area: search;
+  }
+
+  .panel {
+    grid-area: utility;
   }
 
   .d-header-icons {
