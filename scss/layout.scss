@@ -12,8 +12,6 @@ body {
 }
 
 :root {
-  --heading-font-family: system-ui, helvetica, sans-serif;
-  --font-family: system-ui, helvetica, sans-serif;
   --d-max-width: 84rem;
   --wrap-px: 1rem;
 
@@ -173,12 +171,6 @@ body {
       }
     }
   }
-}
-
-a,
-a:visited,
-a:hover {
-  color: inherit;
 }
 
 #user-card {

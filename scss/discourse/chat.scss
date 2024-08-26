@@ -22,3 +22,15 @@ body.has-full-page-chat {
     display: none;
   }
 }
+
+.has-full-page-chat:not(.discourse-sidebar) .full-page-chat {
+  border: none;
+}
+
+.chat-composer__wrapper {
+  background: transparent;
+}
+
+.chat-composer-dropdown__menu-trigger {
+  align-self: center;
+}

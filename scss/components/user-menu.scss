@@ -4,6 +4,10 @@
   overflow: hidden;
   min-width: 16rem;
 
+  a {
+    color: var(--neutral-10);
+  }
+
   &__profile {
     display: flex;
     padding: 1rem;
@@ -28,6 +32,10 @@
         }
       }
     }
+    .c-user-menu__profile-cta {
+      color: var(--tertiary);
+    }
+
     &:hover {
       .c-user-menu__profile-cta {
         text-decoration: underline;

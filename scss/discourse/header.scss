@@ -23,9 +23,11 @@
 
       display: grid;
       grid-template-areas: "logo search utility";
-      grid-template-columns: 21rem var(--column-content) var(--column-blocks);
+      grid-template-columns: 19rem var(--column-content) var(--column-blocks);
+      gap: 2rem;
       @media screen and (max-width: 1080px) {
         grid-template-columns: auto var(--column-content) var(--column-blocks);
+        gap: 1rem;
       }
     }
   }
@@ -38,6 +40,11 @@
     grid-area: logo;
     display: flex;
     flex-shrink: 0;
+  }
+
+  .d-header-mode {
+    grid-area: logo;
+    justify-self: end;
   }
 
   .extra-info-wrapper {
@@ -137,6 +144,12 @@
         display: none;
       }
     }
+  }
+}
+
+.c-create__menu {
+  a {
+    color: var(--neutral-10);
   }
 }
 

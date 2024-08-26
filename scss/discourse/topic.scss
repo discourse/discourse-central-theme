@@ -37,7 +37,7 @@
     .reply-to-tab {
       width: 100%;
       order: 10;
-      color: var(--neutral-50);
+      color: var(--neutral-30);
       margin: 0.25rem 0 0 0;
       max-width: unset;
 
@@ -48,7 +48,7 @@
         margin: 0 0.25rem;
       }
       span {
-        color: var(--primary-50);
+        color: var(--primary-30);
       }
       &:hover {
         span {
@@ -80,7 +80,7 @@
       }
       @include body-small;
       a {
-        color: var(--neutral-50);
+        color: var(--neutral-30);
       }
     }
   }
@@ -148,6 +148,14 @@
       }
     }
   }
+}
+
+.small-action-custom-message {
+  margin-top: 0;
+}
+
+.small-action-buttons {
+  order: 2;
 }
 
 .container.posts {
@@ -262,7 +270,7 @@
     }
     @include body-medium;
 
-    color: var(--neutral-50);
+    color: var(--neutral-30);
 
     .small-action-contents {
       display: flex;
@@ -321,9 +329,17 @@
   border-bottom-color: var(--primary-very-low);
 }
 
+.topic-map .topic-link {
+  padding: 0;
+  &:after {
+    display: none;
+  }
+}
+
 .topic-back-button {
   margin-left: 0.85rem;
   .d-icon {
+    color: var(--neutral-30);
     padding-top: 0.5rem; // vertical alignment
   }
 }
@@ -360,7 +376,7 @@ nav.post-controls .actions button.d-hover {
 }
 
 .double-button {
-  border-radius: var(--rounded-md);
+  border-radius: var(--rounded-full);
   @include hover;
 
   button.d-hover,
