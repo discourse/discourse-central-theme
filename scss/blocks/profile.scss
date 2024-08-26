@@ -126,6 +126,9 @@
   &__edit {
     margin-top: 1rem;
     @include button($style: neutral);
+    span {
+      color: var(--neutral-30);
+    }
   }
 
   &__bio {
@@ -147,6 +150,10 @@
       color: var(--primary);
     }
   }
+
+  &__login {
+    margin: 1em 0;
+  }
 }
 
 .user-main {
@@ -156,13 +163,15 @@
   .staff-counters {
     background: var(--primary-very-low);
     border-radius: var(--rounded-lg) var(--rounded-lg) 0 0;
-    margin: 0 -1rem;
-    color: var(--primary);
-    div > a {
+    margin: -1rem -1rem 1rem -1rem;
+    div {
       color: var(--primary);
-      span {
-        color: var(--secondary);
+      > a {
+        color: var(--primary);
       }
+    }
+    span {
+      color: var(--secondary);
     }
   }
 }

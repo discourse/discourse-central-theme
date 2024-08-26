@@ -147,6 +147,11 @@ table.topic-list {
           }
         }
       }
+
+      &.selected {
+        // j/k keyboard nav
+        box-shadow: inset 3px 0 0 var(--d-nav-color--active);
+      }
     }
   }
 }
@@ -200,7 +205,7 @@ table.topic-list {
     .topic__metadata {
       @include label-small;
 
-      color: var(--neutral-50);
+      color: var(--neutral-30);
 
       span {
         &:not(:last-child) {
@@ -212,6 +217,10 @@ table.topic-list {
         &:hover {
           text-decoration: underline;
         }
+      }
+
+      .topic__category {
+        color: var(--neutral-30);
       }
     }
   }
@@ -298,6 +307,10 @@ table.topic-list {
 
     list-style: none;
 
+    .topic__reply-button .d-icon {
+      color: var(--neutral-10);
+    }
+
     button,
     a {
       @include button($size: sm);
@@ -364,7 +377,7 @@ body:not(.user-messages-page) {
       margin: 0;
     }
     a {
-      color: var(--primary-50);
+      color: var(--tertiary);
     }
 
     .education {

@@ -12,7 +12,7 @@
     select {
       cursor: pointer;
       @include body-small;
-      color: var(--neutral-50);
+      color: var(--neutral-30);
       width: unset;
       margin: 0;
       background: none;
@@ -36,6 +36,7 @@
       @include body-small;
       flex: 1;
       line-height: 1rem;
+      color: var(--neutral-30);
     }
 
     display: flex;
