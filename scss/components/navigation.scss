@@ -510,3 +510,61 @@ body:has(.admin-main-nav .nav-pills) {
     display: none;
   }
 }
+
+// Styles for custom sidebar categories section
+// https://github.com/discourse/discourse-sidebar-nested-categories
+
+[data-section-name="Categories"] {
+  border: none !important; // very specific in core
+  display: none !important;
+  @media screen and (min-width: 1001px) {
+    display: block !important; // overrides other important
+  }
+}
+
+.sidebar-section-link-wrapper[data-list-item-name="subcategory"] {
+  padding-left: 2.3em;
+  margin-left: 2.25em;
+}
+
+[data-list-item-name="category"] {
+  .sidebar-section-link-prefix.span {
+    display: none;
+  }
+
+  .sidebar-section-link {
+    &:before {
+      content: "📁";
+      background: none;
+      width: 1.25rem;
+      height: 1.25rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.25rem;
+      margin-right: var(--d-sidebar-section-link-prefix-margin-right);
+      position: relative;
+      top: 0.15em; // vertial alignment
+    }
+  }
+}
+
+.sidebar-section-link-wrapper[data-list-item-name="subcategory"] {
+  .sidebar-section-link-prefix.span {
+    width: unset;
+    margin: 0 0 0;
+    .prefix-span {
+      display: none;
+      width: unset;
+    }
+  }
+
+  .sidebar-section-link-prefix.span .prefix-badge {
+    position: relative;
+    width: 0.86em;
+    height: 0.86em;
+    top: unset;
+    margin-right: 0.15em;
+    margin-left: -0.25em; // horizontal alignment
+  }
+}
