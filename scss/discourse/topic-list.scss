@@ -1,4 +1,4 @@
-table.topic-list {
+table.topic-list:not(.bookmark-list) {
   display: contents;
 
   thead.topic-list-header {
@@ -19,7 +19,6 @@ table.topic-list {
         max-width: unset;
         flex: 1;
         border-top: var(--border-inner);
-        // border-bottom: var(--border-inner);
         padding: 1rem 0;
 
         span {
@@ -105,14 +104,6 @@ table.topic-list {
             }
 
             a.title {
-              // &:hover {
-              //   span {
-              //     // text-decoration: underline;
-              //   }
-              // }
-              // span {
-              // }
-
               padding: 0;
               color: var(--neutral-10);
             }
@@ -141,9 +132,6 @@ table.topic-list {
               grid-area: tags;
               margin-top: 0.625rem;
             }
-          }
-          .topic-excerpt {
-            display: none;
           }
         }
       }
@@ -231,7 +219,6 @@ table.topic-list {
 
   &__excerpt {
     @include body-medium;
-    color: var(--neutral-50);
     margin-top: 0.375rem;
   }
 
@@ -333,10 +320,7 @@ table.topic-list {
 }
 
 body:not(.user-messages-page) {
-  // .topic__username,
-  .topic__excerpt
-  // .topic__last-reply > span:not(.relative-date)
-  {
+  .topic__excerpt {
     display: none;
   }
   .topic__author .topic__metadata {
