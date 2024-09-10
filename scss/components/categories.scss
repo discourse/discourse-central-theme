@@ -39,7 +39,7 @@
       @include body-medium;
 
       margin: 0 0 1rem 0;
-      color: var(--neutral-50);
+      color: var(--primary-medium);
 
       p {
         margin: 0;
@@ -49,12 +49,15 @@
     &-metadata {
       @include label-small;
 
-      color: var(--neutral-50);
+      color: var(--primary-medium);
     }
 
     &-more {
       @include body-small;
-      color: var(--neutral-50);
+      color: var(--primary-high);
+      &:visited {
+        color: var(--primary-high);
+      }
       &::first-letter {
         text-transform: capitalize;
       }
@@ -140,6 +143,7 @@
             flex: 1;
             gap: 0.375rem;
             align-items: baseline;
+            color: var(--primary-medium);
 
             span:first-child {
               overflow: hidden;
