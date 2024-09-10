@@ -170,7 +170,7 @@
     align-items: center;
     gap: 0.375rem;
     @include body-small;
-    color: var(--neutral-50);
+    color: var(--neutral-30);
 
     img.avatar {
       width: 1rem;
@@ -191,7 +191,7 @@
         }
         .badge-category__name {
           @include body-small;
-          color: var(--neutral-50);
+          color: var(--neutral-30);
         }
       }
     }

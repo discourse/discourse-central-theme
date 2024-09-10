@@ -123,7 +123,7 @@ table.topic-list:not(.bookmark-list) {
                 }
 
                 .badge-category__name {
-                  color: var(--g-neutral-50);
+                  color: var(--g-neutral-30);
                 }
               }
             }
@@ -183,6 +183,10 @@ table.topic-list:not(.bookmark-list) {
     gap: 0.375rem;
     align-items: baseline;
 
+    a {
+      color: var(--neutral-30);
+    }
+
     .topic__username {
       @include label-large;
       &:hover {
@@ -223,13 +227,17 @@ table.topic-list:not(.bookmark-list) {
   }
 
   &__replies {
-    color: var(--neutral-50);
+    color: var(--neutral-30);
     display: flex;
     grid-area: replies;
     gap: 0.375rem;
     align-items: center;
 
     margin-top: 0.75rem;
+
+    a {
+      color: inherit;
+    }
 
     &.--reverse {
       li:first-of-type {
@@ -376,6 +384,10 @@ body:not(.user-messages-page) {
 
 .top-title-buttons {
   justify-content: center;
+}
+
+.category-heading {
+  display: none; // custom heading is added
 }
 
 // events plugin
