@@ -102,14 +102,6 @@ export default class BlockProfile extends Component {
             <span>{{i18n "js.edit"}}</span>
           </LinkTo>
         </div>
-      {{else}}
-        <div class="block block-profile">
-          <div class="block-profile__login">
-            <button class="btn" type="button">
-              Login
-            </button>
-          </div>
-        </div>
       {{/if}}
     </div>
   </template>
