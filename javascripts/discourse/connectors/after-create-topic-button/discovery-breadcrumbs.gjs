@@ -85,10 +85,9 @@ class TopicFilter extends Component {
 
   @action
   filterTopics(event) {
-    const routeType = this.args.routeType;
     const category = this.router?.currentRoute?.attributes?.category;
 
-    if (routeType === "category" && event.target.value !== "categories") {
+    if (category && event.target.value !== "categories") {
       this.router.transitionTo(
         `/c/${category.slug}/${category.id}/l/${event.target.value}`
       );
