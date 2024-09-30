@@ -24,3 +24,11 @@
 .topic-title-outlet.back {
   display: none;
 }
+
+// hide footer nav on mobile chat routes to maximize chat space
+
+body.has-full-page-chat {
+  .sidebar-wrapper {
+    display: none;
+  }
+}
