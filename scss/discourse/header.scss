@@ -188,10 +188,14 @@
     }
   }
 
-  li#current-user > .d-icon,
-  li > .btn .d-icon,
-  li > {
-    height: 0.75em;
+  li {
+    > .btn .d-icon, // default button 
+    > svg {
+      height: 0.75em;
+    }
+    > .btn .d-icon-far-edit {
+      height: 0.6em; // more consistent edit icon size
+    }
   }
 }
 
@@ -199,7 +203,6 @@
   display: flex;
   align-items: center;
   > .d-icon-bell {
-    height: 1.25em;
     position: absolute;
     color: var(--primary);
   }
