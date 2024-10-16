@@ -4,7 +4,7 @@ import { concat, get } from "@ember/helper";
 import { action } from "@ember/object";
 import didInsert from "@ember/render-modifiers/modifiers/did-insert";
 import willDestroy from "@ember/render-modifiers/modifiers/will-destroy";
-import { inject as service } from "@ember/service";
+import { service } from "@ember/service";
 import { htmlSafe } from "@ember/template";
 import { eq, or } from "truth-helpers";
 import UserAvatarFlair from "discourse/components/user-avatar-flair";

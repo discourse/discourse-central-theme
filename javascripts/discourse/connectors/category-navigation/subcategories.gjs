@@ -3,7 +3,7 @@ import Component from "@glimmer/component";
 import { fn } from "@ember/helper";
 import { on } from "@ember/modifier";
 import { action } from "@ember/object";
-import { inject as service } from "@ember/service";
+import { service } from "@ember/service";
 import { htmlSafe } from "@ember/template";
 // import { eq } from "truth-helpers";
 import categoryColorVariable from "discourse/helpers/category-color-variable";

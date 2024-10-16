@@ -5,7 +5,7 @@ import { fn, get } from "@ember/helper";
 import { on } from "@ember/modifier";
 import { action } from "@ember/object";
 import { debounce } from "@ember/runloop";
-import { inject as service } from "@ember/service";
+import { service } from "@ember/service";
 import { eq, notEq, or } from "truth-helpers";
 import concatClass from "discourse/helpers/concat-class";
 import number from "discourse/helpers/number";
