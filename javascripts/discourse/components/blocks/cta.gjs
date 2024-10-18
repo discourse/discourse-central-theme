@@ -3,7 +3,7 @@ import { tracked } from "@glimmer/tracking";
 // eslint-disable-next-line no-unused-vars
 import { concat } from "@ember/helper";
 // eslint-disable-next-line no-unused-vars
-import { inject as service } from "@ember/service";
+import { service } from "@ember/service";
 // eslint-disable-next-line no-unused-vars
 import { htmlSafe } from "@ember/template";
 // import { eq, or } from "truth-helpers";
