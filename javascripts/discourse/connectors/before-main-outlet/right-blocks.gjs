@@ -10,13 +10,10 @@ import BlockProfile from "../../components/blocks/profile";
 import BlockTime from "../../components/blocks/time";
 import BlockTopContributors from "../../components/blocks/top-contributors";
 import BlockTopTopics from "../../components/blocks/top-topics";
-import StickySidebarComponent from "../../components/sticky-sidebar";
+import StickySidebar from "../../components/sticky-sidebar";
 
 export default class RightBlocks extends Component {
-  @service currentUser;
   @service router;
-  @service site;
-  @service discovery;
 
   get blocks() {
     return settings.blocks;
@@ -24,8 +21,8 @@ export default class RightBlocks extends Component {
 
   get shouldRenderBlocks() {
     return (
-      this.router?.currentRoute?.parent?.name === "discovery" &&
-      this.router?.currentRouteName !== "discovery.categories"
+      this.router.currentRoute.parent?.name === "discovery" &&
+      this.router.currentRouteName !== "discovery.categories"
     );
   }
 
@@ -46,21 +43,18 @@ export default class RightBlocks extends Component {
         return BlockOnline;
       case "birthday":
         return BlockBirthday;
-      default:
-        return null;
     }
   }
 
   <template>
     {{#if this.shouldRenderBlocks}}
-      {{!log this.blocks}}
-      <StickySidebarComponent>
+      <StickySidebar>
         <div class="blocks --right">
           <div class="blocks__wrapper">
             {{#each this.blocks as |row|}}
               <div
-                class="blocks__row"
                 style={{htmlSafe (concat "order:" row.order)}}
+                class="blocks__row"
               >
                 {{#each row.blocks as |block|}}
                   {{#let (this.blockify block) as |BlockComponent|}}
@@ -83,7 +77,7 @@ export default class RightBlocks extends Component {
             {{/each}}
           </div>
         </div>
-      </StickySidebarComponent>
+      </StickySidebar>
     {{/if}}
   </template>
 }

@@ -135,8 +135,7 @@ body:not(.admin-interface) {
 
   // The default sidebar becomes slide-out for smaller screens
   // but we still want to use it, so a duplicate is added
-  // with the class c–small-sidebar
-
+  // with the class c-small-sidebar
   @media screen and (max-width: 1000px) {
     .sidebar-wrapper {
       .sidebar-section-wrapper .sidebar-section-header-wrapper {
@@ -343,7 +342,6 @@ body:not(.admin-interface) {
   margin: 0;
   display: grid;
   width: 100%;
-  // border-bottom: var(--border-inner);
   padding: 1rem;
 
   .bulk-select {
@@ -420,9 +418,7 @@ body:not(.admin-interface) {
   align-items: flex-start;
   gap: 2rem;
   box-sizing: border-box;
-  // min-height: 4.5rem;
   padding: 1rem 1rem 1rem 0;
-
   border-bottom: var(--border-inner);
 
   &__title {
@@ -481,7 +477,6 @@ body:not(.admin-interface) {
     @include body-medium;
 
     display: inline-block;
-    // padding-left: 3rem;
 
     p {
       margin: 0;
@@ -544,7 +539,7 @@ body:has(.admin-main-nav .nav-pills) {
       font-size: 1.25rem;
       margin-right: var(--d-sidebar-section-link-prefix-margin-right);
       position: relative;
-      top: 0.15em; // vertial alignment
+      top: 0.15em; // vertical alignment
     }
   }
 }

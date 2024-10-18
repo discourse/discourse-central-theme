@@ -1,13 +1,10 @@
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
-// eslint-disable-next-line no-unused-vars
-import { concat, fn } from "@ember/helper";
+import { fn } from "@ember/helper";
 import { on } from "@ember/modifier";
 import { action } from "@ember/object";
 import { service } from "@ember/service";
 import { htmlSafe } from "@ember/template";
-// eslint-disable-next-line no-unused-vars
-import { eq } from "truth-helpers";
 import categoryColorVariable from "discourse/helpers/category-color-variable";
 import categoryLink from "discourse/helpers/category-link";
 import concatClass from "discourse/helpers/concat-class";
@@ -15,10 +12,7 @@ import formatDate from "discourse/helpers/format-date";
 import i18n from "discourse-common/helpers/i18n";
 
 export default class CentralCategories extends Component {
-  @service currentUser;
   @service router;
-  @service discovery;
-  @service site;
 
   @tracked categories = this.args.outletArgs.categories;
 
@@ -34,16 +28,14 @@ export default class CentralCategories extends Component {
   }
 
   <template>
-    {{!log this.categories}}
     <div class="c-categories">
       {{#each this.categories as |category|}}
         {{! template-lint-disable no-invalid-interactive }}
-
         <div
+          {{on "click" (fn this.navigate category.url)}}
           data-notification-level={{category.notificationLevelString}}
           style={{categoryColorVariable category.color}}
           class="c-categories__item {{if category.isMuted '--muted'}}"
-          {{on "click" (fn this.navigate category.url)}}
         >
           <h3
             class={{concatClass
@@ -69,7 +61,6 @@ export default class CentralCategories extends Component {
           {{/if}}
 
           {{#if category.topics}}
-
             <div class="c-categories__item-topics">
               <ul>
                 {{#each category.topics as |topic|}}
@@ -83,6 +74,7 @@ export default class CentralCategories extends Component {
                   </li>
                 {{/each}}
               </ul>
+
               <a href={{category.url}} class="c-categories__item-more">
                 {{i18n
                   (themePrefix "categories.category.view_all_topics")
@@ -91,7 +83,6 @@ export default class CentralCategories extends Component {
               </a>
             </div>
           {{/if}}
-
         </div>
       {{/each}}
     </div>

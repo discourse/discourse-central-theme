@@ -1,11 +1,10 @@
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
-// import { on } from "@ember/modifier";
+import { on } from "@ember/modifier";
 import { action } from "@ember/object";
 import { service } from "@ember/service";
 import { htmlSafe } from "@ember/template";
 import { eq } from "truth-helpers";
-// import bodyClass from "discourse/helpers/body-class";
 import categoryBadge from "discourse/helpers/category-badge";
 import i18n from "discourse-common/helpers/i18n";
 
@@ -16,10 +15,10 @@ export default class DiscoveryBreadcrumbs extends Component {
   @tracked routeType;
 
   get filterType() {
-    if (this.router?.currentRoute?.localName === "categories") {
+    if (this.router.currentRoute.localName === "categories") {
       return "categories";
     }
-    return this.router?.currentRoute?.attributes?.filterType || "";
+    return this.router.currentRoute.attributes?.filterType || "";
   }
 
   get isHomepage() {
@@ -70,7 +69,7 @@ export default class DiscoveryBreadcrumbs extends Component {
 
 class TopicFilter extends Component {
   @service router;
-  @service site;
+  @service siteSettings;
 
   @tracked filterOptions;
 
@@ -78,14 +77,14 @@ class TopicFilter extends Component {
     super(...arguments);
 
     this.filterOptions =
-      this.site.siteSettings?.top_menu?.split("|").map((item) => {
+      this.siteSettings.top_menu?.split("|").map((item) => {
         return { name: item, localization: `js.filters.${item}.title` };
       }) || [];
   }
 
   @action
   filterTopics(event) {
-    const category = this.router?.currentRoute?.attributes?.category;
+    const category = this.router.currentRoute.attributes?.category;
 
     if (category && event.target.value !== "categories") {
       this.router.transitionTo(
@@ -98,9 +97,9 @@ class TopicFilter extends Component {
 
   <template>
     <select
-      class="breadcrumbs__select"
+      {{on "change" this.filterTopics}}
       value={{@filterType}}
-      onchange={{this.filterTopics}}
+      class="breadcrumbs__select"
     >
       {{#each this.filterOptions as |filterOption|}}
         <option

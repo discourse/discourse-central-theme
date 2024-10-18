@@ -104,18 +104,13 @@
         padding: 0;
         border: none;
         justify-content: flex-start;
-        // position: absolute;
-        // left: var(--p);
-        // bottom: var(--p);
       }
 
       &__item {
         &:before {
           content: "";
-          // font-size: 0.75rem;
         }
         padding-left: 0;
-        // column-gap: 0.5rem;
         width: auto;
         &:first-child {
           width: 100%;
@@ -130,10 +125,6 @@
           display: none;
         }
         &:not(:first-child) {
-          // display: inline-flex;
-          // .block-chart__info {
-          //   display: none;
-          // }
           .block-chart__details {
             display: none;
           }
@@ -148,7 +139,6 @@
 
       &__info {
         display: none;
-        // font-size: 0.75rem;
       }
       &__title {
         text-wrap: nowrap;

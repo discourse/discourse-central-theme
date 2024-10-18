@@ -3,13 +3,6 @@
   .discourse-tag.simple {
     @include badge;
     max-width: unset;
-    // span {
-    //   flex: 1;
-    //   min-width: 0;
-    //   white-space: nowrap;
-    //   overflow: hidden;
-    //   text-overflow: ellipsis;
-    // }
     &:not(:last-child):not(:hover):after {
       content: unset;
     }
