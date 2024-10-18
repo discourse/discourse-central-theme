@@ -12,13 +12,9 @@
   justify-content: center;
   align-items: center;
   .floated-buttons {
-    // display: none;
     position: absolute;
     right: 1rem;
   }
-  //   &:hover .floated-buttons {
-  //     display: flex;
-  //   }
   &-content {
     flex: 1;
     box-sizing: border-box;

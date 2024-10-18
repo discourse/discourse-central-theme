@@ -103,7 +103,6 @@
           box-sizing: border-box;
           &:hover {
             background: var(--neutral-100);
-            // @include elevation-3;
           }
           &:has(.search-menu-panel) {
             background: none;

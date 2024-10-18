@@ -114,7 +114,6 @@
       &.second {
         @include body-small;
         order: 1;
-        // width: 100%;
         a {
           color: var(--neutral-30);
         }
@@ -172,7 +171,6 @@
   border-bottom: var(--border-inner);
 
   article.onscreen-post {
-    // padding: 1rem;
     .row {
       padding: 1rem;
       column-gap: 1rem;
@@ -225,9 +223,7 @@
   }
   border: 0;
   border-bottom: var(--border-inner);
-  // border-radius: var(--rounded-lg);
   &.old {
-    // background: var(--neutral-95);
     color: inherit;
   }
   gap: 1rem;

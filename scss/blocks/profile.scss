@@ -19,16 +19,11 @@
         z-index: 0;
         padding-bottom: 0;
         height: 3.5rem;
-        // margin-bottom: -1.75rem;
-        // margin-bottom: -2.25rem;
       }
       &__avatar {
         position: relative;
         z-index: 1;
         padding: 0.1875rem;
-
-        // img {
-        // }
       }
       &__info {
         flex: unset;
@@ -101,7 +96,6 @@
     &:after {
       content: ",";
     }
-    // @include body-small;
   }
 
   &__name-wrapper {

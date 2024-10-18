@@ -3,7 +3,7 @@ import { tracked } from "@glimmer/tracking";
 import { service } from "@ember/service";
 import I18n from "discourse-i18n";
 
-export default class BlockClock extends Component {
+export default class Time extends Component {
   @service currentUser;
 
   @tracked formattedUserLocalTime = "";
@@ -26,15 +26,14 @@ export default class BlockClock extends Component {
   }
 
   updateFormattedUserLocalTime() {
-    const tz = this.currentUser
-      ? this.currentUser.user_option.timezone
-      : moment.tz.guess();
+    const tz = this.currentUser?.user_option.timezone ?? moment.tz.guess();
 
     this.formattedUserLocalTime = moment.tz(tz).format(I18n.t("dates.time"));
     this.formattedUserLocalDate = moment
       .tz(tz)
       .format(I18n.t("dates.full_no_year_no_time"));
   }
+
   <template>
     <div class="block block-time">
       <span class="block-time__date">{{this.formattedUserLocalDate}}</span>

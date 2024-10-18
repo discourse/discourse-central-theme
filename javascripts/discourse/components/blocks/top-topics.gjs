@@ -1,9 +1,8 @@
-/** eslint-disable no-unused-vars */
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { concat } from "@ember/helper";
+import { on } from "@ember/modifier";
 import { action } from "@ember/object";
-// import { service } from "@ember/service";
 import { htmlSafe } from "@ember/template";
 import { eq } from "truth-helpers";
 import UserLink from "discourse/components/user-link";
@@ -17,66 +16,61 @@ import { ajax } from "discourse/lib/ajax";
 import Category from "discourse/models/category";
 import i18n from "discourse-common/helpers/i18n";
 
-export default class BlockTopTopics extends Component {
-  @tracked topTopics = [];
-  @tracked period = this.args?.period || "weekly";
-  @tracked count = parseInt(this.args?.count, 10) || 10;
+const PERIODS = [
+  { value: "all", title: "js.filters.top.all.title" },
+  { value: "yearly", title: "js.filters.top.yearly.title" },
+  { value: "quarterly", title: "js.filters.top.quarterly.title" },
+  { value: "monthly", title: "js.filters.top.monthly.title" },
+  { value: "weekly", title: "js.filters.top.weekly.title" },
+  { value: "daily", title: "js.filters.top.today" },
+];
 
-  periods = [
-    { value: "all", title: "js.filters.top.all.title" },
-    { value: "yearly", title: "js.filters.top.yearly.title" },
-    { value: "quarterly", title: "js.filters.top.quarterly.title" },
-    { value: "monthly", title: "js.filters.top.monthly.title" },
-    { value: "weekly", title: "js.filters.top.weekly.title" },
-    { value: "daily", title: "js.filters.top.today" },
-  ];
+export default class TopTopics extends Component {
+  @tracked topTopics = [];
+  @tracked period = this.args.period || "weekly";
 
   constructor() {
     super(...arguments);
-
-    this.fetchTopTopics(this.period, this.count);
+    this.fetchTopTopics();
   }
 
-  willDestroy() {
-    super.willDestroy(...arguments);
-    this.topTopics = null;
-  }
-
-  get size() {
-    if (this.args.size) {
-      return `block--${this.args.size}`;
-    }
+  get count() {
+    return parseInt(this.args.count, 10) || 10;
   }
 
   @action
-  async fetchTopTopics(period, count) {
-    let data = await ajax(`/top.json?period=${period}`);
-    let topTopics = data.topic_list.topics.slice(0, count);
-    let categoryIds = topTopics.map((topic) => topic.category_id);
-    let categories = await Category.asyncFindByIds(categoryIds);
+  async fetchTopTopics() {
+    const data = await ajax(`/top.json?period=${this.period}`);
+    const topTopics = data.topic_list.topics.slice(0, this.count);
+    const categoryIds = topTopics.map((topic) => topic.category_id);
+    const categories = await Category.asyncFindByIds(categoryIds);
 
     topTopics.forEach((topic) => {
-      topic["category"] = categories.find(
+      topic.category = categories.find(
         (category) => topic.category_id === category.id
       );
 
-      let author = data.users.find(
+      topic.author = data.users.find(
         (user) => user.id === topic.posters[0].user_id
       );
-      topic.author = author;
     });
+
     this.topTopics = topTopics;
   }
 
   @action
   updatePeriod(event) {
-    const newPeriod = event.target.value;
-    this.period = newPeriod;
-    this.fetchTopTopics(this.period, this.count);
+    this.period = event.target.value;
+    this.fetchTopTopics();
   }
 
   <template>
-    <div class={{concatClass "block block-chart block-top-topics" this.size}}>
+    <div
+      class={{concatClass
+        "block block-chart block-top-topics"
+        (if @size (concat "block--" @size))
+      }}
+    >
       <div class="block-chart__header">
         <h3>
           {{i18n (themePrefix "blocks.top_topics.title")}}
@@ -84,8 +78,8 @@ export default class BlockTopTopics extends Component {
 
         {{yield this.topTopics}}
 
-        <select onchange={{this.updatePeriod}}>
-          {{#each this.periods as |period|}}
+        <select {{on "change" this.updatePeriod}}>
+          {{#each PERIODS as |period|}}
             {{#if (eq this.period period.value)}}
               <option value={{period.value}} selected>
                 {{i18n period.title}}
@@ -104,10 +98,11 @@ export default class BlockTopTopics extends Component {
           <li class="block-chart__item">
             <div class="block-chart__info">
               <div class="block-chart__title">
-                <a href={{concat "/t/" topic.slug "/" topic.id}}>
+                <a href="/t/{{topic.slug}}/{{topic.id}}">
                   {{replaceEmoji (htmlSafe topic.fancy_title)}}
                 </a>
               </div>
+
               <div class="block-chart__details">
                 <UserLink class="block-chart__avatar" @user={{topic.author}}>
                   {{avatar topic.author imageSize="tiny"}}
@@ -117,23 +112,22 @@ export default class BlockTopTopics extends Component {
                   {{~categoryLink topic.category~}}
                 </span>
               </div>
+
               <ul class="block-chart__stats">
                 {{#unless (eq topic.like_count 0)}}
                   <li>
                     <a
-                      href={{concat "/t/" topic.slug "/" topic.id}}
+                      href="/t/{{topic.slug}}/{{topic.id}}"
                       class={{concatClass (if topic.liked "--liked") "--likes"}}
                     >
                       <span>{{number topic.like_count}}</span>
                     </a>
                   </li>
                 {{/unless}}
+
                 {{#unless (eq topic.posts_count 1)}}
                   <li>
-                    <a
-                      href={{concat "/t/" topic.slug "/" topic.id}}
-                      class="--comments"
-                    >
+                    <a href="/t/{{topic.slug}}/{{topic.id}}" class="--comments">
                       <span>{{number topic.posts_count}}</span>
                     </a>
                   </li>
@@ -143,8 +137,9 @@ export default class BlockTopTopics extends Component {
           </li>
         {{/each}}
       </ol>
+
       <div class="block-chart__expand">
-        <a href={{concat "/top?period=" this.period}}>
+        <a href="/top?period={{this.period}}">
           {{i18n "js.show_more"}}
         </a>
       </div>

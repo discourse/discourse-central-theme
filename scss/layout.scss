@@ -15,8 +15,6 @@ body {
   --d-max-width: 84rem;
   --wrap-px: 1rem;
 
-  // --column-content: 29rem;
-
   --column-navigation-mini: 5rem;
   --column-blocks: 19rem;
 
@@ -122,18 +120,13 @@ body {
         background: var(--neutral-100);
         margin-top: 2rem;
         margin-bottom: 2rem;
-        // margin-right: 2rem;
         @include breakpoint(large) {
-          // margin-right: 1rem;
           margin-top: 1rem;
         }
         @include breakpoint(tablet) {
           margin: 0;
           border: 0;
           border-radius: 0;
-        }
-        @include breakpoint(mobile-extra-large) {
-          // background: transparent;
         }
         padding: 0;
         grid-area: content;

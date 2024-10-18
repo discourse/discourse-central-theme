@@ -51,7 +51,6 @@
     --scrollbar-w: 0.5rem;
 
     padding-bottom: 1rem;
-
     margin: 0;
     counter-reset: item;
     display: flex;
@@ -61,7 +60,6 @@
     margin-left: calc(var(--p) * -1);
     padding-left: var(--p);
     flex: 1;
-    // column-gap: 100vw;
 
     overscroll-behavior: contain;
     scrollbar-color: transparent transparent;

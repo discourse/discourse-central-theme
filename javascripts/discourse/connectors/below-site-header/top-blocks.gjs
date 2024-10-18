@@ -12,12 +12,10 @@ import BlockTopContributors from "../../components/blocks/top-contributors";
 import BlockTopTopics from "../../components/blocks/top-topics";
 
 export default class TopBlocks extends Component {
-  @service currentUser;
   @service router;
-  @service site;
 
   get isHomepage() {
-    switch (this.router?.currentRoute?.parent?.name) {
+    switch (this.router.currentRoute.parent?.name) {
       case "discovery":
         return true;
       case "tags":
@@ -52,8 +50,6 @@ export default class TopBlocks extends Component {
         return BlockOnline;
       case "birthday":
         return BlockBirthday;
-      default:
-        return null;
     }
   }
 
@@ -62,20 +58,20 @@ export default class TopBlocks extends Component {
       {{#if this.blocks}}
         <div class="blocks --top">
           <div
-            class="blocks__wrapper"
             style={{htmlSafe
               (if
                 this.blocksBackground
                 (concat "background-image: url(" this.blocksBackground ")")
               )
             }}
+            class="blocks__wrapper"
           >
             {{#each this.blocks as |row|}}
               <div
-                class="blocks__row"
                 style={{htmlSafe
                   (concat "order:" (if row.order row.order "0;"))
                 }}
+                class="blocks__row"
               >
                 {{#each row.blocks as |block|}}
                   {{#let (this.blockify block) as |BlockComponent|}}

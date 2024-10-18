@@ -4,49 +4,41 @@ import { concat } from "@ember/helper";
 import { LinkTo } from "@ember/routing";
 import { service } from "@ember/service";
 import { htmlSafe } from "@ember/template";
-// import { eq, or } from "truth-helpers";
+import { or } from "truth-helpers";
 import avatar from "discourse/helpers/avatar";
 import concatClass from "discourse/helpers/concat-class";
 import { ajax } from "discourse/lib/ajax";
 import i18n from "discourse-common/helpers/i18n";
 
-export default class BlockProfile extends Component {
+export default class Profile extends Component {
   @service currentUser;
 
-  @tracked banner = null;
-  @tracked bio = null;
-  @tracked website = null;
-  @tracked website_name = null;
+  @tracked banner;
+  @tracked bio;
+  @tracked website;
+  @tracked websiteName;
 
   constructor() {
     super(...arguments);
 
     if (this.currentUser !== null) {
-      const currentUserUrl = "/u/" + this.currentUser.username + ".json";
-
-      ajax(currentUserUrl).then((data) => {
-        this.updateUserData(data.user);
+      ajax(`/u/${this.currentUser.username}.json`).then(({ user }) => {
+        this.banner = user.profile_background_upload_url;
+        this.bio = user.bio_excerpt;
+        this.website = user.website;
+        this.websiteName = user.website_name;
       });
     }
   }
 
-  get size() {
-    if (this.args.size) {
-      return `block--${this.args.size}`;
-    }
-  }
-
-  updateUserData(user) {
-    this.banner = user.profile_background_upload_url;
-    this.bio = user.bio_excerpt;
-    this.website = user.website;
-    this.website_name = user.website_name;
-  }
-
   <template>
-    <div class={{concatClass "block block-profile" this.size}}>
+    <div
+      class={{concatClass
+        "block block-profile"
+        (if @size (concat "block--" @size))
+      }}
+    >
       {{#if this.currentUser}}
-
         <div
           class="block-profile__banner"
           style={{if
@@ -58,25 +50,21 @@ export default class BlockProfile extends Component {
         <div class="block-profile__avatar">
           {{avatar this.currentUser "huge"}}
         </div>
-        <div class="block-profile__info">
 
+        <div class="block-profile__info">
           <div class="block-profile__name-wrapper">
             <span class="block-profile__name">
               {{i18n
                 (themePrefix "blocks.profile.hello")
-                name=(if
-                  this.currentUser.name
-                  this.currentUser.name
-                  this.currentUser.username
-                )
+                name=(or this.currentUser.name this.currentUser.username)
               }}
             </span>
           </div>
 
           {{#if this.currentUser.name}}
             <a
+              href="/u/{{this.currentUser.username}}"
               class="block-profile__username"
-              href={{concat "/u/" this.currentUser.username}}
             >
               {{this.currentUser.username}}
             </a>
@@ -89,7 +77,7 @@ export default class BlockProfile extends Component {
           {{#if this.website}}
             <span class="block-profile__link">
               <a href={{this.website}}>
-                {{this.website_name}}
+                {{this.websiteName}}
               </a>
             </span>
           {{/if}}
