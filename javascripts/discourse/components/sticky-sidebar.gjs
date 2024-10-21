@@ -1,12 +1,30 @@
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
+import { concat } from "@ember/helper";
 import { action } from "@ember/object";
+import didInsert from "@ember/render-modifiers/modifiers/did-insert";
+import { htmlSafe } from "@ember/template";
+
+function isTopInView(element, yOffset) {
+  const rect = element.getBoundingClientRect();
+  return rect.top >= yOffset && rect.top <= window.innerHeight;
+}
+
+function isBottomInView(element) {
+  const rect = element.getBoundingClientRect();
+  return rect.bottom >= 0 && rect.bottom <= window.innerHeight;
+}
+
+function getYOrigin(el) {
+  const rect = el.getBoundingClientRect();
+  const scrollTop = window.scrollY || window.pageYOffset;
+  return rect.top + scrollTop;
+}
 
 export default class StickySidebar extends Component {
   @tracked top = 0;
   @tracked bottom = 0;
   @tracked position = "relative";
-
   headerHeight = 72;
   offset = 0;
   prevScrollTop = 0;
@@ -83,20 +101,26 @@ export default class StickySidebar extends Component {
       this.headerHeight = headerElement.offsetHeight;
     }
   }
-}
 
-function isTopInView(element, yOffset) {
-  const rect = element.getBoundingClientRect();
-  return rect.top >= yOffset && rect.top <= window.innerHeight;
-}
-
-function isBottomInView(element) {
-  const rect = element.getBoundingClientRect();
-  return rect.bottom >= 0 && rect.bottom <= window.innerHeight;
-}
-
-function getYOrigin(el) {
-  const rect = el.getBoundingClientRect();
-  const scrollTop = window.scrollY || window.pageYOffset;
-  return rect.top + scrollTop;
+  <template>
+    <div class="sticky-sidebar">
+      <div
+        {{didInsert this.didInsert}}
+        {{scroll this.onScroll}}
+        style={{htmlSafe
+          (concat
+            "position: "
+            this.position
+            "; top: "
+            this.top
+            "; bottom: "
+            this.bottom
+            ""
+          )
+        }}
+      >
+        {{yield}}
+      </div>
+    </div>
+  </template>
 }

@@ -1,19 +1,10 @@
 import Component from "@glimmer/component";
-import { tracked } from "@glimmer/tracking";
-// import { on } from "@ember/modifier";
-// import { action } from "@ember/object";
 import { service } from "@ember/service";
-// import { htmlSafe } from "@ember/template";
-// import { eq } from "truth-helpers";
 import bodyClass from "discourse/helpers/body-class";
-// import categoryBadge from "discourse/helpers/category-badge";
 import i18n from "discourse-common/helpers/i18n";
 
 export default class Breadcrumbs extends Component {
   @service router;
-  @service site;
-  @service discovery;
-  @tracked routeType;
 
   get currentPage() {
     switch (true) {
@@ -28,9 +19,9 @@ export default class Breadcrumbs extends Component {
         return "js.groups.mentions";
       case this.router.currentRouteName === "userActivity.bookmarks":
         return "js.user.bookmarks";
-      case this.router?.currentRoute?.parent?.name === "docs":
+      case this.router.currentRoute.parent?.name === "docs":
         return "js.docs.title";
-      case this.router?.currentRoute?.parent?.name === "preferences":
+      case this.router.currentRoute.parent?.name === "preferences":
         return "js.user.preferences.title";
       default:
         return null;

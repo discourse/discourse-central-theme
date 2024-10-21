@@ -9,7 +9,6 @@
   --w: span 12;
   padding: 2rem;
   box-sizing: border-box;
-
   text-align: center;
 
   &__ctas {
@@ -20,12 +19,10 @@
 
   h1 {
     margin: 0;
-    // max-width: 24ch;
     @include headline-small;
   }
   &__blurb {
     margin-top: 0.75rem;
-    // max-width: 42ch;
     @include body-medium;
   }
 }
