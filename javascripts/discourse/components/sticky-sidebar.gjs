@@ -4,6 +4,7 @@ import { concat } from "@ember/helper";
 import { action } from "@ember/object";
 import didInsert from "@ember/render-modifiers/modifiers/did-insert";
 import { htmlSafe } from "@ember/template";
+import scroll from "../modifiers/scroll";
 
 function isTopInView(element, yOffset) {
   const rect = element.getBoundingClientRect();
