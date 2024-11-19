@@ -62,7 +62,7 @@ export default class LikeToggle extends Component {
           }
         }
       }
-    } catch (error) {
+    } catch {
       // Rollback UI changes in case of an error
       this.likeToggled = !this.likeToggled;
       this.likeCount += this.likeToggled ? 1 : -1;
