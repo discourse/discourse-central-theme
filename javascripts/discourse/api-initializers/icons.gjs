@@ -162,7 +162,7 @@ export default apiInitializer("1.0", (api) => {
     <li class="c-create">
       <DMenu @placement="bottom-end" @identifier="c-create">
         <:trigger>
-          {{icon "far-edit"}}
+          {{icon "far-pen-to-square"}}
         </:trigger>
         <:content as |args|>
           {{! template-lint-disable no-invalid-interactive }}
