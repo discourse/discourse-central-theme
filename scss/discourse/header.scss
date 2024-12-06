@@ -205,6 +205,8 @@
   > .d-icon-bell {
     position: absolute;
     color: var(--primary);
+    z-index: 1;
+    pointer-events: none; // prevent svg from blocking hover
   }
 }
 

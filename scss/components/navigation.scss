@@ -88,6 +88,7 @@ body:not(.admin-interface) {
   }
 
   .sidebar-section-wrapper {
+    padding-bottom: 1em;
     &[data-section-name="chat-channels"],
     &[data-section-name="chat-dms"],
     &[data-section-name="tags"],
@@ -221,6 +222,16 @@ body:not(.admin-interface) {
     .sidebar-footer-wrapper {
       display: none;
     }
+
+    .sidebar__panel-switch-button {
+      .d-button-label {
+        display: none;
+      }
+      .d-icon {
+        margin: 0;
+        font-size: var(--font-up-2);
+      }
+    }
   }
 
   @include breakpoint(tablet) {
@@ -270,6 +281,13 @@ body:not(.admin-interface) {
 
       .sidebar-sections {
         display: contents;
+        [data-section-name="user-threads"] {
+          display: none;
+        }
+      }
+
+      .sidebar__panel-switch-button {
+        display: none;
       }
 
       .sidebar-section {
@@ -561,5 +579,11 @@ body:has(.admin-main-nav .nav-pills) {
     top: unset;
     margin-right: 0.15em;
     margin-left: -0.25em; // horizontal alignment
+  }
+}
+
+body:not(.has-full-page-chat) {
+  [data-section-name="user-threads"] {
+    display: none;
   }
 }
