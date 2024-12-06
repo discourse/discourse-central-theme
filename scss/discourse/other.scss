@@ -9,12 +9,15 @@
 
 .users-directory.directory,
 .discourse-post-event-upcoming-events,
-.container.groups-index,
 .container.badges,
 .container.cakeday,
 .reviewable,
 .body-page {
   padding: 0 1rem;
+}
+
+.container.groups-index {
+  padding: 1rem;
 }
 
 .group-box,

@@ -15,7 +15,6 @@
           display: none;
         }
         .search-menu-panel {
-          background: none;
           box-shadow: var(--shadow-menu-panel);
           z-index: 0;
         }
@@ -144,6 +143,11 @@
           }
           #search-term {
             padding: 0.5rem 0;
+          }
+          .search-context {
+            flex-shrink: 0;
+            height: unset;
+            padding: 0.25em;
           }
           .search-context ~ #search-term {
             padding: 0;

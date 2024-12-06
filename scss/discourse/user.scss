@@ -2,17 +2,6 @@
   background: none;
 }
 
-.user-messages-page,
-.user-assigned-page,
-.user-notifications-page,
-.user-activity-bookmarks-page,
-.user-preferences-page {
-  .about,
-  .user-navigation-primary {
-    display: none;
-  }
-}
-
 .user-activity-bookmarks-page {
   .user-navigation-secondary {
     display: none;
@@ -37,5 +26,24 @@
 [data-user-card="system"] {
   img.avatar {
     border-bottom-left-radius: 0;
+  }
+}
+
+.user-admin {
+  border-radius: var(--rounded-md);
+}
+
+.invite-actions {
+  display: flex;
+  gap: 0.5em;
+  .btn {
+    border-radius: var(--rounded-full);
+  }
+}
+
+.pref-username,
+.pref-avatar {
+  .btn {
+    display: inline-flex;
   }
 }

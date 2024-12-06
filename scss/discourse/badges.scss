@@ -54,3 +54,9 @@
 .badge-card {
   border-radius: var(--rounded-md);
 }
+
+.badge-card {
+  .favorite-btn {
+    margin: 0.5em;
+  }
+}

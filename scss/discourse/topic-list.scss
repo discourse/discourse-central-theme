@@ -46,7 +46,7 @@ table.topic-list:not(.bookmark-list) {
       gap: 0 1rem;
 
       @container (max-width: 32rem) {
-        grid-template-areas: "avatar author" "avatar category" "avatar title" "avatar tags" "avatar content" "avatar replies" "avatar actions";
+        grid-template-areas: "avatar author" "avatar category" "avatar title" "avatar tags" "avatar content" "avatar replies" "avatar actions" "avatar excerpt";
         grid-template-columns: 2rem auto;
 
         .topic__actions {
@@ -322,7 +322,7 @@ table.topic-list:not(.bookmark-list) {
 }
 
 body:not(.user-messages-page) {
-  .topic__excerpt {
+  .topic-excerpt {
     display: none;
   }
   .topic__author .topic__metadata {
