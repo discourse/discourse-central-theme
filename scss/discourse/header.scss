@@ -189,11 +189,11 @@
   }
 
   li {
-    > .btn .d-icon, // default button 
+    > .btn .d-icon, // default button
     > svg {
       height: 0.75em;
     }
-    > .btn .d-icon-far-edit {
+    > .btn .d-icon-far-pen-to-square {
       height: 0.6em; // more consistent edit icon size
     }
   }
