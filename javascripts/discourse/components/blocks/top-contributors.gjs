@@ -42,7 +42,9 @@ export default class TopContributors extends Component {
 
   async fetchTopContributors() {
     try {
-      const data = await ajax(`/leaderboard/7.json?period=${this.period}`);
+      const data = await ajax(
+        `/leaderboard/${settings.leaderboard_id}.json?period=${this.period}`
+      );
       this.topContributors = data.users.slice(0, this.count);
     } catch {
       const data = await ajax(
@@ -126,7 +128,9 @@ export default class TopContributors extends Component {
       </ol>
 
       <div class="block-chart__expand">
-        <a href="/leaderboard/7&period={{this.period}}">
+        <a
+          href="/leaderboard/{{settings.leaderboard_id}}&period={{this.period}}"
+        >
           {{i18n "js.show_more"}}
         </a>
       </div>

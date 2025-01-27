@@ -3,6 +3,10 @@ topic_list_show_usernames:
   type: bool
   required: true
 
+leaderboard_id:
+  default: 7
+  type: integer
+
 blocks:
   default:
     [

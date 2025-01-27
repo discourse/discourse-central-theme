@@ -1,6 +1,8 @@
 en:
   theme_metadata:
     description: ""
+    settings:
+      leaderboard_id: "Leaderboard to display when the <a href='https://meta.discourse.org/t/discourse-gamification/225916'>Discourse Gamification</a> plugin is installed. The ID can be found in the leaderboard's URL."
   user:
     view_your_profile: "View your profile"
   post:
