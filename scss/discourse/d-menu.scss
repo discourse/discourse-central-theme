@@ -1,31 +1,43 @@
 :root {
-  --shadow-menu-panel: 0 0.25rem 2rem rgba(0, 0, 0, 0.1);
+  --shadow-menu-panel: 0 0.25rem 2rem rgba(0 0 0 / 10%);
 }
 
 .fk-d-button-tooltip {
   &:has(#create-topic) {
-    display: none;
+    display: none !important;
   }
+}
+
+.topic-list-layout-trigger,
+.topic-drafts-menu-trigger {
+  display: none;
 }
 
 .fk-d-menu {
   z-index: 1000;
+
   &__inner-content {
     background: var(--neutral-100);
     border: 0;
     border-radius: var(--rounded-md);
+
     & > ul {
-      list-style: none;
-      margin: 0;
-      padding: 0.5rem 0;
       display: flex;
       flex-direction: column;
+
+      margin: 0;
+      padding: 0.5rem 0;
+
+      list-style: none;
+
       & > li {
         display: flex;
+
         a {
+          @include hover;
+
           width: 100%;
           padding: 0.5rem 1rem;
-          @include hover;
         }
       }
     }

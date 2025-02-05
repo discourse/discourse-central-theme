@@ -32,3 +32,10 @@ body.has-full-page-chat {
     display: none;
   }
 }
+
+.topic-footer-main-buttons {
+  .create,
+  .btn {
+    border-radius: var(--rounded-full);
+  }
+}
