@@ -5,22 +5,20 @@ html {
 
 html,
 body {
-  background-color: var(--neutral-100);
   @include breakpoint(tablet) {
     background-color: var(--neutral-95);
   }
+
+  background-color: var(--neutral-100);
 }
 
 :root {
   --d-max-width: 84rem;
   --wrap-px: 1rem;
-
   --column-navigation-mini: 5rem;
   --column-blocks: 19rem;
-
   --column-navigation: minmax(0, 19rem);
   --column-content: minmax(24rem, 1fr);
-
   --mobile-nav-h: 4.5rem;
 }
 
@@ -39,22 +37,27 @@ body {
 
     &:not(:has(.blocks.--right)) {
       #main-outlet-wrapper {
+        --column-content: minmax(45rem, 1fr);
+
         @include breakpoint(large) {
           grid-template-columns: var(--column-navigation-mini) minmax(0, 1fr);
           column-gap: 0;
           padding-right: 0;
           padding-left: 0;
         }
+
         @include breakpoint(tablet) {
           grid-template-areas: "content";
           grid-template-columns: 1fr;
         }
-        #main-outlet {
-          margin-right: 0rem;
-        }
-        --column-content: minmax(45rem, 1fr);
+
         grid-template-areas: "navigation content";
         grid-template-columns: var(--column-navigation) var(--column-content);
+
+        #main-outlet {
+          margin-right: 0;
+        }
+
         .blocks {
           display: none;
         }
@@ -79,7 +82,6 @@ body {
         grid-template-areas: "content";
         grid-template-columns: 1fr;
         padding: 0;
-
         padding-bottom: calc(
           var(--mobile-nav-h) + env(safe-area-inset-bottom) + 2rem
         );
@@ -89,20 +91,20 @@ body {
         }
       }
 
+      @include breakpoint(large) {
+        padding-left: 0;
+      }
+
       display: grid;
       grid-template-areas: "navigation content blocks";
       grid-template-columns: var(--column-navigation) var(--column-content) var(
           --column-blocks
         );
-      margin: 0 auto;
       column-gap: 2rem;
 
       box-sizing: border-box;
+      margin: 0 auto;
       padding: 0 var(--wrap-px) 0;
-
-      @include breakpoint(large) {
-        padding-left: 0;
-      }
 
       .sticky-sidebar {
         display: unset;
@@ -117,21 +119,24 @@ body {
       }
 
       #main-outlet {
-        background: var(--neutral-100);
-        margin-top: 2rem;
-        margin-bottom: 2rem;
         @include breakpoint(large) {
           margin-top: 1rem;
         }
+
         @include breakpoint(tablet) {
           margin: 0;
           border: 0;
           border-radius: 0;
         }
-        padding: 0;
-        grid-area: content;
 
+        grid-area: content;
         align-self: flex-start;
+
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        padding: 0;
+
+        background: var(--neutral-100);
         border: var(--border-outer);
         border-radius: var(--rounded-lg);
       }
@@ -149,8 +154,8 @@ body {
 
   &.admin-interface {
     #main-outlet-wrapper #main-outlet {
-      padding-left: 1rem;
       padding-right: 1rem;
+      padding-left: 1rem;
     }
   }
 }
@@ -159,8 +164,10 @@ body {
   [class*="user-"] {
     &[class*="-page"] {
       #main-outlet-wrapper #main-outlet {
-        padding-left: 1rem;
+        box-sizing: border-box;
+        max-width: 100vw;
         padding-right: 1rem;
+        padding-left: 1rem;
       }
     }
   }

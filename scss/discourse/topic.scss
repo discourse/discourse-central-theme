@@ -1,16 +1,21 @@
 #topic-title {
   display: flex;
-  border-bottom: var(--border-inner);
-  padding: 1rem;
-  margin: 0;
   gap: 2.15rem;
+
+  margin: 0;
+  padding: 1rem;
+
+  border-bottom: var(--border-inner);
+
+  &::before,
+  &::after {
+    content: unset;
+  }
+
   .title-wrapper {
     row-gap: 0.25rem;
   }
-  &:before,
-  &:after {
-    content: unset;
-  }
+
   h1 {
     @include headline-small;
 
@@ -18,6 +23,7 @@
       color: var(--neutral-10);
     }
   }
+
   .topic-title-outlet {
     order: -1;
   }
@@ -34,43 +40,53 @@
 
   .post-infos {
     display: contents;
-    .reply-to-tab {
-      width: 100%;
-      order: 10;
-      color: var(--neutral-30);
-      margin: 0.25rem 0 0 0;
-      max-width: unset;
 
+    .reply-to-tab {
       @include body-small;
+
+      order: 10;
+
+      width: 100%;
+      max-width: unset;
+      margin: 0.25rem 0 0;
+
+      color: var(--neutral-30);
+
       .avatar {
         width: 1rem;
         height: 1rem;
         margin: 0 0.25rem;
       }
+
       span {
         color: var(--primary-30);
       }
+
       &:hover {
         span {
           text-decoration: underline;
         }
       }
     }
+
     .post-info {
+      @include body-small;
+
       &.post-date {
         order: 2;
       }
 
       &.edits {
         display: inline-flex;
-        order: 3;
         align-self: center;
+        order: 3;
 
         .widget-button {
           @include body-small;
-          padding: 0;
+
           height: unset;
           margin-left: 0.5em;
+          padding: 0;
           font-size: var(--font-up-1);
 
           span {
@@ -78,7 +94,7 @@
           }
         }
       }
-      @include body-small;
+
       a {
         color: var(--neutral-30);
       }
@@ -87,64 +103,63 @@
 
   .names {
     display: contents;
+
     div.customer-flair-wrapper {
       order: 5;
       width: 100%;
+
       .customer-flair {
-        margin: 0;
-        height: 1.25rem;
+        display: inline-flex;
         align-items: center;
+
+        height: 1.25rem;
+        margin: 0;
         padding: 0 0.5rem;
+
         border: 0;
         border-radius: var(--rounded-full);
-        display: inline-flex;
       }
     }
+
     span {
+      @include body-small;
+
       margin: 0;
       color: var(--neutral-50);
-      @include body-small;
+
       &.first {
+        margin-right: 0.5rem;
+
         a {
           @include label-large;
+
           color: var(--neutral-10);
         }
-        margin-right: 0.5rem;
       }
+
       &.second {
         @include body-small;
+
         order: 1;
+
+        &::after {
+          content: "\00a0·\00a0";
+        }
+
         a {
           color: var(--neutral-30);
         }
-        &:after {
-          content: "\00a0·\00a0";
-        }
       }
+
       &.user-title {
-        color: var(--neutral-50);
         order: 9;
         width: 100%;
+        color: var(--neutral-50);
       }
     }
+
     .svg-icon-title {
       font-size: var(--font-up-1);
-    }
-  }
-}
-
-.small-action {
-  border-bottom: var(--border-inner);
-  &.topic-post-visited {
-    .topic-post-visited-line {
-      border: 0;
-      padding: 1rem;
-      @include body-medium;
-      color: var(--neutral-50);
-      span.topic-post-visited-message {
-        background: none;
-        color: inherit;
-      }
     }
   }
 }
@@ -161,6 +176,7 @@
   .timeline-controls {
     margin-top: 1em;
   }
+
   & > .row {
     border-right: var(--border-inner);
   }
@@ -172,41 +188,54 @@
 
   article.onscreen-post {
     .row {
-      padding: 1rem;
       column-gap: 1rem;
+      padding: 1rem;
+
       .topic-avatar {
-        position: sticky;
-        top: calc(
-          var(--header-offset) + 1rem
-        ) !important; // why is sticky conditional?
-        float: unset;
-        border: 0;
-        padding: 0;
-        width: unset;
-        margin: 0;
         @include breakpoint(tablet) {
           position: relative;
           top: unset !important;
         }
+
+        position: sticky;
+        top: calc(
+          var(--header-offset) + 1rem
+        ) !important; // why is sticky conditional?
+
+        float: unset;
+
+        width: unset;
+        margin: 0;
+        padding: 0;
+
+        border: 0;
       }
+
       .topic-body {
+        float: unset;
+        flex: 1;
+
+        width: unset;
+        padding-top: 0;
+
+        border: 0;
+
         &.highlighted {
           animation: none;
         }
-        flex: 1;
-        border: 0;
-        width: unset;
-        float: unset;
-        padding-top: 0;
+
         .topic-meta-data {
           padding: 0;
         }
+
         .regular.contents {
           margin-top: 1rem;
         }
+
         .cooked {
-          padding: 0;
           @include body-large;
+
+          padding: 0;
         }
       }
     }
@@ -214,31 +243,53 @@
 }
 
 .post-notice {
+  gap: 1rem;
+
+  max-width: unset;
   padding: 1rem;
+
+  border: 0;
+  border-bottom: var(--border-inner);
+
+  &::before {
+    padding: 0 0.875rem;
+  }
+
   p {
     @include body-medium;
   }
-  &:before {
-    padding: 0 0.875rem;
-  }
-  border: 0;
-  border-bottom: var(--border-inner);
+
   &.old {
     color: inherit;
   }
-  gap: 1rem;
-  max-width: unset;
 }
 
 .small-action {
+  gap: 1rem;
   padding: 1rem;
   border-top: 0;
-  gap: 1rem;
+  border-bottom: var(--border-inner);
+
+  &.topic-post-visited {
+    .topic-post-visited-line {
+      @include body-medium;
+
+      padding: 1rem;
+      color: var(--neutral-50);
+      border: 0;
+
+      span.topic-post-visited-message {
+        color: inherit;
+        background: none;
+      }
+    }
+  }
 
   .small-action-buttons {
     button {
-      transition: none;
       @include button($style: tertiary);
+
+      transition: none;
     }
   }
 
@@ -249,27 +300,29 @@
   }
 
   .topic-avatar {
-    width: 3rem;
     align-self: unset;
+    width: 3rem;
   }
 
   .small-action-desc {
+    @include body-medium;
+
     display: flex;
     flex-wrap: nowrap;
+    color: var(--neutral-30);
+
     .avatar {
       margin: 0;
     }
+
     .small-action-buttons {
       display: flex;
     }
-    @include body-medium;
-
-    color: var(--neutral-30);
 
     .small-action-contents {
       display: flex;
-      align-items: center;
       gap: 0.5rem;
+      align-items: center;
     }
 
     p {
@@ -281,22 +334,25 @@
 .regular {
   .more-topics {
     &__container {
-      padding: 1em;
       max-width: unset;
+      padding: 1em;
     }
+
     &__list-title {
       @include title-medium;
     }
+
     &__browse-more {
-      padding: 1rem;
       @include body-medium;
+
       margin: 0;
+      padding: 1rem;
     }
   }
 }
 
 #topic-footer-buttons {
-  padding-left: 1rem;
+  padding-inline: 1rem;
 }
 
 .topic-status-info,
@@ -315,8 +371,8 @@
 
 .topic-map.--op,
 .topic-map.--bottom {
-  padding-left: 1rem;
   padding-right: 1rem;
+  padding-left: 1rem;
 }
 
 .topic-map.--bottom {
@@ -325,16 +381,18 @@
 
 .topic-map .topic-link {
   padding: 0;
-  &:after {
+
+  &::after {
     display: none;
   }
 }
 
 .topic-back-button {
   margin-left: 0.85rem;
+
   .d-icon {
-    color: var(--neutral-30);
     padding-top: 0.5rem; // vertical alignment
+    color: var(--neutral-30);
   }
 }
 
@@ -370,12 +428,13 @@ nav.post-controls .actions button.d-hover {
 }
 
 .double-button {
-  border-radius: var(--rounded-full);
   @include hover;
+
+  border-radius: var(--rounded-full);
 
   button.d-hover,
   button:hover {
-    &:after {
+    &::after {
       display: none; // undoes the global hover effect
     }
   }
@@ -405,6 +464,7 @@ nav.post-controls .actions .double-button:hover button {
   > div {
     margin-bottom: 0;
   }
+
   .reply .row {
     padding-left: 0.5rem;
   }
