@@ -14,7 +14,7 @@ import number from "discourse/helpers/number";
 import replaceEmoji from "discourse/helpers/replace-emoji";
 import { ajax } from "discourse/lib/ajax";
 import Category from "discourse/models/category";
-import i18n from "discourse-common/helpers/i18n";
+import { i18n } from "discourse-i18n";
 
 const PERIODS = [
   { value: "all", title: "js.filters.top.all.title" },

@@ -2,7 +2,7 @@ import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import avatar from "discourse/helpers/avatar";
 import { ajax } from "discourse/lib/ajax";
-import i18n from "discourse-common/helpers/i18n";
+import { i18n } from "discourse-i18n";
 
 export default class Birthday extends Component {
   @tracked randomBirthday;

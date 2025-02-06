@@ -7,10 +7,10 @@ import { debounce } from "@ember/runloop";
 import { service } from "@ember/service";
 import { eq, notEq, or } from "truth-helpers";
 import concatClass from "discourse/helpers/concat-class";
+import icon from "discourse/helpers/d-icon";
 import number from "discourse/helpers/number";
 import { ajax } from "discourse/lib/ajax";
-import icon from "discourse-common/helpers/d-icon";
-import i18n from "discourse-common/helpers/i18n";
+import { i18n } from "discourse-i18n";
 
 export default class LikeToggle extends Component {
   @service currentUser;
