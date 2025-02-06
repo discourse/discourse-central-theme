@@ -10,11 +10,11 @@ import UserAvatarFlair from "discourse/components/user-avatar-flair";
 import UserLink from "discourse/components/user-link";
 import avatar from "discourse/helpers/avatar";
 import concatClass from "discourse/helpers/concat-class";
+import icon from "discourse/helpers/d-icon";
 import formatDate from "discourse/helpers/format-date";
 import number from "discourse/helpers/number";
 import replaceEmoji from "discourse/helpers/replace-emoji";
-import icon from "discourse-common/helpers/d-icon";
-import i18n from "discourse-common/helpers/i18n";
+import { i18n } from "discourse-i18n";
 import LikeToggle from "../../components/like-toggle";
 import endsWithEllipsis from "../../helpers/ends-with-ellipsis";
 

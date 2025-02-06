@@ -1,7 +1,7 @@
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
 import { service } from "@ember/service";
-import I18n from "discourse-i18n";
+import { i18n } from "discourse-i18n";
 
 export default class Time extends Component {
   @service currentUser;
@@ -28,10 +28,10 @@ export default class Time extends Component {
   updateFormattedUserLocalTime() {
     const tz = this.currentUser?.user_option.timezone ?? moment.tz.guess();
 
-    this.formattedUserLocalTime = moment.tz(tz).format(I18n.t("dates.time"));
+    this.formattedUserLocalTime = moment.tz(tz).format(i18n("dates.time"));
     this.formattedUserLocalDate = moment
       .tz(tz)
-      .format(I18n.t("dates.full_no_year_no_time"));
+      .format(i18n("dates.full_no_year_no_time"));
   }
 
   <template>

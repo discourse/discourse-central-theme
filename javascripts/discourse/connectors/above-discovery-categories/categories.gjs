@@ -9,7 +9,7 @@ import categoryColorVariable from "discourse/helpers/category-color-variable";
 import categoryLink from "discourse/helpers/category-link";
 import concatClass from "discourse/helpers/concat-class";
 import formatDate from "discourse/helpers/format-date";
-import i18n from "discourse-common/helpers/i18n";
+import { i18n } from "discourse-i18n";
 
 export default class CentralCategories extends Component {
   @service router;

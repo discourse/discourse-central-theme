@@ -9,7 +9,7 @@ import avatar from "discourse/helpers/avatar";
 import concatClass from "discourse/helpers/concat-class";
 import number from "discourse/helpers/number";
 import { ajax } from "discourse/lib/ajax";
-import i18n from "discourse-common/helpers/i18n";
+import { i18n } from "discourse-i18n";
 
 const PERIODS = [
   { value: "all", title: "js.filters.top.all.title" },
