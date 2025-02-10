@@ -1,11 +1,10 @@
 import Component from "@glimmer/component";
 import { tracked } from "@glimmer/tracking";
-import { get } from "@ember/helper";
 import { on } from "@ember/modifier";
 import { action } from "@ember/object";
 import { debounce } from "@ember/runloop";
 import { service } from "@ember/service";
-import { eq, notEq, or } from "truth-helpers";
+import { not } from "truth-helpers";
 import concatClass from "discourse/helpers/concat-class";
 import icon from "discourse/helpers/d-icon";
 import number from "discourse/helpers/number";
@@ -13,13 +12,20 @@ import { ajax } from "discourse/lib/ajax";
 import { i18n } from "discourse-i18n";
 
 export default class LikeToggle extends Component {
-  @service currentUser;
   @service dialog;
 
-  @tracked likeToggled = this.args.topic.liked;
   @tracked likeCount = this.args.topic.like_count;
+  @tracked liked = this.args.topic.op_liked || false;
   @tracked loading = false;
   clickCounter = 0;
+
+  get canLike() {
+    return this.args.topic.op_can_like || false;
+  }
+
+  get firstPostId() {
+    return this.args.topic.first_post_id || false;
+  }
 
   @action
   toggleLikeDebounced() {
@@ -28,8 +34,8 @@ export default class LikeToggle extends Component {
     }
 
     this.clickCounter++;
-    this.likeToggled = !this.likeToggled;
-    this.likeCount += this.likeToggled ? 1 : -1;
+    this.liked = !this.liked;
+    this.likeCount += this.liked ? 1 : -1;
     debounce(this, this.performToggleLike, 1000); // 1s delay
   }
 
@@ -42,32 +48,25 @@ export default class LikeToggle extends Component {
     this.loading = true;
 
     try {
-      const topicPosts = await ajax(`/t/${this.args.topic.id}/post_ids.json`);
-
-      if (topicPosts?.post_ids.length) {
-        const firstPost = topicPosts.post_ids[0];
-
-        if (firstPost) {
-          if (!this.likeToggled) {
-            // Adjusted the logic here to match the updated state
-            await ajax(`/post_actions/${firstPost}`, {
-              type: "DELETE",
-              data: { post_action_type_id: 2 },
-            });
-          } else {
-            await ajax(`/post_actions`, {
-              type: "POST",
-              data: { id: firstPost, post_action_type_id: 2 },
-            });
-          }
+      if (this.firstPostId) {
+        if (!this.liked) {
+          await ajax(`/post_actions/${this.firstPostId}`, {
+            type: "DELETE",
+            data: { post_action_type_id: 2 },
+          });
+        } else {
+          await ajax(`/post_actions`, {
+            type: "POST",
+            data: { id: this.firstPostId, post_action_type_id: 2 },
+          });
         }
       }
     } catch {
       // Rollback UI changes in case of an error
-      this.likeToggled = !this.likeToggled;
-      this.likeCount += this.likeToggled ? 1 : -1;
+      this.liked = !this.liked;
+      this.likeCount += this.liked ? 1 : -1;
       this.dialog.alert(
-        this.likeToggled
+        this.liked
           ? "Sorry, you can't remove that like. Please refresh."
           : "Sorry, you can't like that topic."
       );
@@ -81,19 +80,16 @@ export default class LikeToggle extends Component {
     <button
       {{on "click" this.toggleLikeDebounced}}
       type="button"
-      disabled={{or
-        (eq @topic.first_poster.username this.currentUser.username)
-        (eq (get @topic.posters "0.user.username") this.currentUser.username)
-      }}
+      disabled={{not this.canLike}}
       title={{if
-        (eq @topic.first_poster.username this.currentUser.username)
-        "You cannot like this post."
+        (this.canLike)
         (i18n "post_action_types.like.description")
+        "You cannot like this post."
       }}
-      class={{concatClass (if this.likeToggled "--liked") "topic__like-button"}}
+      class={{concatClass (if this.liked "--liked") "topic__like-button"}}
     >
       {{icon "d-unliked"}}
-      {{#if (notEq this.likeCount 0)}}
+      {{#if this.likeCount}}
         {{number this.likeCount}}
       {{/if}}
     </button>

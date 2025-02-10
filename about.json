@@ -9,5 +9,8 @@
   "components": [
     "https://github.com/discourse/discourse-material-design-icons-outlined",
     "https://github.com/discourse/discourse-header-search"
-  ]
+  ],
+  "modifiers": {
+    "serialize_topic_op_likes_data": true
+  }
 }
