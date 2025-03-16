@@ -7,42 +7,40 @@
   --rounded-2xl: 1rem;
   --rounded-3xl: 1.5rem;
   --rounded-full: 9999px;
-
   --border-outer: 1px solid var(--neutral-90);
   --border-inner: 1px solid var(--neutral-95);
 }
 
 @mixin sr-only {
   position: absolute;
+  overflow: hidden;
   width: 1px;
   height: 1px;
-  padding: 0;
   margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
+  padding: 0;
   white-space: nowrap;
+  clip: rect(0, 0, 0, 0);
   border-width: 0;
 }
 
 @mixin hover($opacity: 0.08) {
+  position: relative;
+  overflow: hidden;
+
   & > * {
     z-index: 1;
   }
-  overflow: hidden;
-  position: relative;
+
   &:hover {
     &::after {
-      content: "";
-
       pointer-events: none;
-
+      content: "";
       position: absolute;
+      z-index: 0;
       top: 0;
       left: 0;
-      z-index: 0;
       width: 100%;
       height: 100%;
-
       opacity: $opacity;
       background: var(--neutral-10);
     }

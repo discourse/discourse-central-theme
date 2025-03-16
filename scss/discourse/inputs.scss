@@ -12,9 +12,10 @@ input[type="url"],
 input[type="search"],
 input[type="tel"],
 input[type="color"] {
-  background: var(--neutral-100);
-  color: var(--neutral-10);
   padding: 0.5rem 1rem;
+  color: var(--neutral-10);
+  background: var(--neutral-100);
   border: var(--border-outer);
+
   @include body-large;
 }

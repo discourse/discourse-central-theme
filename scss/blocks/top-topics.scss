@@ -15,50 +15,61 @@
     .block-chart {
       &__header {
         margin-bottom: 0;
+
         h3 {
           font-size: 0.75rem;
         }
+
         select {
           position: absolute;
-          bottom: var(--p);
           right: var(--p);
+          bottom: var(--p);
         }
       }
+
       &__list {
         row-gap: 0;
       }
+
       &__info {
         font-size: 0.75rem;
       }
+
       &__title {
+        overflow: hidden;
         display: -webkit-box;
         -webkit-box-orient: vertical;
-        -webkit-line-clamp: 2;
-        overflow: hidden;
         text-overflow: ellipsis;
+        -webkit-line-clamp: 2;
       }
+
       &__expand {
-        margin-top: 0rem;
+        justify-content: flex-start;
+        margin-top: 0;
         padding: 0;
         border: none;
-        justify-content: flex-start;
       }
+
       &__details {
         display: none;
       }
+
       &__item {
-        &:before {
+        padding-left: 0.75rem;
+
+        &::before {
           font-size: 0.75rem;
         }
+
         &:nth-child(3) {
           .block-chart__title {
             -webkit-line-clamp: 1;
           }
         }
+
         &:nth-child(n + 4) {
           display: none;
         }
-        padding-left: 0.75rem;
       }
     }
   }

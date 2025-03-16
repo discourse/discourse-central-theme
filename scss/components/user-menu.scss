@@ -1,7 +1,7 @@
 .c-user-menu {
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
   min-width: 16rem;
 
   a {
@@ -10,28 +10,33 @@
 
   &__profile {
     display: flex;
-    padding: 1rem;
     gap: 1rem;
+    padding: 1rem;
+
     &-info {
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
     }
+
     &-name {
       display: flex;
       flex-direction: column;
-      @include body-small;
       line-height: 1;
+
+      @include body-small;
 
       span:first-child {
         @include body-large;
       }
+
       span:nth-child(2) {
-        &:before {
+        &::before {
           content: "@";
         }
       }
     }
+
     .c-user-menu__profile-cta {
       color: var(--tertiary);
     }
@@ -41,41 +46,50 @@
         text-decoration: underline;
       }
     }
+
     &-cta {
-      @include body-small;
       color: var(--primary-50);
+
+      @include body-small;
     }
   }
+
   &__links {
-    border-top: var(--border-inner);
     display: flex;
     flex-direction: column;
-
-    list-style: none;
     margin: 0;
     padding: 0.5rem 0;
+    list-style: none;
+    border-top: var(--border-inner);
+
     li {
       display: flex;
+
+      @include body-medium;
+
       a {
+        display: flex;
         flex: 1;
         gap: 1rem;
-        padding: 0.5rem 1rem;
         align-items: center;
-        display: flex;
+        padding: 0.5rem 1rem;
+
         @include hover;
       }
-      @include body-medium;
     }
   }
+
   &__footer {
-    border-top: var(--border-inner);
     display: flex;
-    list-style: none;
+    flex-wrap: wrap;
+    gap: 0.5rem;
     margin: 0;
     padding: 1rem;
-    gap: 0.5rem;
-    flex-wrap: wrap;
+    list-style: none;
+    border-top: var(--border-inner);
+
     @include label-small;
+
     a {
       &:hover {
         text-decoration: underline;

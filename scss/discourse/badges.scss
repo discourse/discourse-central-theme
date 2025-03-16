@@ -1,61 +1,47 @@
 .badge-category__wrapper {
   font-size: inherit;
+
   .badge-category {
     gap: 0.25rem;
     align-items: center;
+
     &__name {
       color: var(--neutral-10);
     }
+
     &.--has-parent {
-      &:before {
+      &::before {
         background: none;
       }
     }
-    &:before {
+
+    &::before {
       content: "📁";
-      background: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       width: 1.25rem;
       height: 1rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
       font-size: 1rem;
+      background: none;
     }
 
-    .badge-category:before {
+    .badge-category::before {
       content: "📁";
-    }
-  }
-}
-
-.badge-category__wrapper {
-  font-size: inherit;
-  .badge-category {
-    gap: 0.25rem;
-    align-items: center;
-    &__name {
-      color: var(--neutral-10);
-    }
-    &.--has-parent {
-      &:before {
-        background: none;
-      }
     }
   }
 }
 
 .badge-notification {
   &.unread-posts {
-    background-color: var(--primary-60);
     color: var(--primary-100);
+    background-color: var(--primary-60);
   }
 }
 
 .badge-card {
   border-radius: var(--rounded-md);
-}
 
-.badge-card {
   .favorite-btn {
     margin: 0.5em;
   }

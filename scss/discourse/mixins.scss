@@ -1,6 +1,6 @@
 @mixin post-aside {
-  border-left: 5px solid var(--neutral-80);
   background-color: var(--neutral-95);
+  border-left: 5px solid var(--neutral-80);
 }
 
 $breakpoints: (
@@ -18,10 +18,11 @@ a {
   &.mention,
   &.mention-group {
     display: inline;
-    @include body-medium;
-    color: var(--neutral-30);
     padding: 0.0625rem 0.25rem;
+    color: var(--neutral-30);
     background: var(--neutral-90);
     border-radius: var(--rounded-md);
+
+    @include body-medium;
   }
 }

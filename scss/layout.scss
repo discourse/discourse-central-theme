@@ -5,11 +5,11 @@ html {
 
 html,
 body {
+  background-color: var(--neutral-100);
+
   @include breakpoint(tablet) {
     background-color: var(--neutral-95);
   }
-
-  background-color: var(--neutral-100);
 }
 
 :root {
@@ -27,6 +27,20 @@ body {
 }
 
 body {
+  &.user-invites-page,
+  &.user-summary-page {
+    #main-outlet-wrapper #main-outlet {
+      padding-top: 1rem;
+    }
+  }
+
+  &.admin-interface {
+    #main-outlet-wrapper #main-outlet {
+      padding-right: 1rem;
+      padding-left: 1rem;
+    }
+  }
+
   &.has-sidebar-page,
   & {
     .wrap {
@@ -38,6 +52,8 @@ body {
     &:not(:has(.blocks.--right)) {
       #main-outlet-wrapper {
         --column-content: minmax(45rem, 1fr);
+        grid-template-areas: "navigation content";
+        grid-template-columns: var(--column-navigation) var(--column-content);
 
         @include breakpoint(large) {
           grid-template-columns: var(--column-navigation-mini) minmax(0, 1fr);
@@ -51,9 +67,6 @@ body {
           grid-template-columns: 1fr;
         }
 
-        grid-template-areas: "navigation content";
-        grid-template-columns: var(--column-navigation) var(--column-content);
-
         #main-outlet {
           margin-right: 0;
         }
@@ -65,6 +78,16 @@ body {
     }
 
     #main-outlet-wrapper {
+      display: grid;
+      grid-template-areas: "navigation content blocks";
+      grid-template-columns: var(--column-navigation) var(--column-content) var(
+          --column-blocks
+        );
+      column-gap: 2rem;
+      box-sizing: border-box;
+      margin: 0 auto;
+      padding: 0 var(--wrap-px) 0;
+
       @include breakpoint(large) {
         grid-template-columns: var(--column-navigation-mini) minmax(0, 1fr) var(
             --column-blocks
@@ -95,17 +118,6 @@ body {
         padding-left: 0;
       }
 
-      display: grid;
-      grid-template-areas: "navigation content blocks";
-      grid-template-columns: var(--column-navigation) var(--column-content) var(
-          --column-blocks
-        );
-      column-gap: 2rem;
-
-      box-sizing: border-box;
-      margin: 0 auto;
-      padding: 0 var(--wrap-px) 0;
-
       .sticky-sidebar {
         display: unset;
       }
@@ -119,6 +131,15 @@ body {
       }
 
       #main-outlet {
+        grid-area: content;
+        align-self: flex-start;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        padding: 0;
+        background: var(--neutral-100);
+        border: var(--border-outer);
+        border-radius: var(--rounded-lg);
+
         @include breakpoint(large) {
           margin-top: 1rem;
         }
@@ -128,34 +149,7 @@ body {
           border: 0;
           border-radius: 0;
         }
-
-        grid-area: content;
-        align-self: flex-start;
-
-        margin-top: 2rem;
-        margin-bottom: 2rem;
-        padding: 0;
-
-        background: var(--neutral-100);
-        border: var(--border-outer);
-        border-radius: var(--rounded-lg);
       }
-    }
-  }
-}
-
-body {
-  &.user-invites-page,
-  &.user-summary-page {
-    #main-outlet-wrapper #main-outlet {
-      padding-top: 1rem;
-    }
-  }
-
-  &.admin-interface {
-    #main-outlet-wrapper #main-outlet {
-      padding-right: 1rem;
-      padding-left: 1rem;
     }
   }
 }

@@ -8,8 +8,10 @@
   &__date {
     @include body-small;
   }
+
   &__time {
     padding-bottom: 0.125rem;
+
     @include title-large;
   }
 }

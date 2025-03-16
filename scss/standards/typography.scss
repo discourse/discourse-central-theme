@@ -1,95 +1,95 @@
 @mixin headline-large {
+  font-family: var(--heading-font-family);
   font-size: 32px;
+  font-weight: 600;
   line-height: 40px;
   letter-spacing: 0;
-  font-weight: 600;
-  font-family: var(--heading-font-family);
 }
 
 @mixin headline-medium {
+  font-family: var(--heading-font-family);
   font-size: 28px;
+  font-weight: 600;
   line-height: 36px;
   letter-spacing: 0;
-  font-weight: 600;
-  font-family: var(--heading-font-family);
 }
 
 @mixin headline-small {
+  font-family: var(--heading-font-family);
   font-size: 24px;
+  font-weight: 600;
   line-height: 32px;
   letter-spacing: 0;
-  font-weight: 600;
-  font-family: var(--heading-font-family);
 }
 
 @mixin title-large {
+  font-family: var(--heading-font-family);
   font-size: 20px;
+  font-weight: 500;
   line-height: 24px;
   letter-spacing: 0;
-  font-weight: 500;
-  font-family: var(--heading-font-family);
 }
 
 @mixin title-medium {
+  font-family: var(--font-family);
   font-size: 16px;
+  font-weight: 600;
   line-height: 24px;
   letter-spacing: 0.1px;
-  font-weight: 600;
-  font-family: var(--font-family);
 }
 
 @mixin title-small {
+  font-family: var(--font-family);
   font-size: 14px;
+  font-weight: 600;
   line-height: 20px;
   letter-spacing: 0.1px;
-  font-weight: 600;
-  font-family: var(--font-family);
 }
 
 @mixin body-large {
+  font-family: var(--font-family);
   font-size: 16px;
+  font-weight: 400;
   line-height: 24px;
   letter-spacing: 0.1px;
-  font-weight: 400;
-  font-family: var(--font-family);
 }
 
 @mixin body-medium {
+  font-family: var(--font-family);
   font-size: 14px;
+  font-weight: 400;
   line-height: 20px;
   letter-spacing: 0.1px;
-  font-weight: 400;
-  font-family: var(--font-family);
 }
 
 @mixin body-small {
+  font-family: var(--font-family);
   font-size: 12px;
+  font-weight: 400;
   line-height: 16px;
   letter-spacing: 0.1px;
-  font-weight: 400;
-  font-family: var(--font-family);
 }
 
 @mixin label-large {
+  font-family: var(--font-family);
   font-size: 14px;
+  font-weight: 500;
   line-height: 20px;
   letter-spacing: 0.1px;
-  font-weight: 500;
-  font-family: var(--font-family);
 }
 
 @mixin label-medium {
+  font-family: var(--font-family);
   font-size: 12px;
+  font-weight: 600;
   line-height: 16px;
   letter-spacing: 0.1px;
-  font-weight: 600;
-  font-family: var(--font-family);
 }
 
 @mixin label-small {
+  font-family: var(--font-family);
   font-size: 11px;
+  font-weight: 400;
   line-height: 12px;
   letter-spacing: 0.2px;
-  font-weight: 400;
-  font-family: var(--font-family);
 }
