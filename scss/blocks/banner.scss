@@ -7,8 +7,8 @@
   --p: 1rem;
   --fd: column;
   --w: span 12;
-  padding: 2rem;
   box-sizing: border-box;
+  padding: 2rem;
   text-align: center;
 
   &__ctas {
@@ -19,10 +19,13 @@
 
   h1 {
     margin: 0;
+
     @include headline-small;
   }
+
   &__blurb {
     margin-top: 0.75rem;
+
     @include body-medium;
   }
 }

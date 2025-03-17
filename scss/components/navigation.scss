@@ -1,10 +1,90 @@
 body:not(.admin-interface) {
+  @include breakpoint(tablet) {
+    &[class*="archetype-"] {
+      .sidebar-wrapper {
+        display: none;
+      }
+    }
+
+    .sidebar-wrapper {
+      position: fixed;
+      z-index: 999;
+      top: unset;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      display: flex;
+      justify-content: center;
+      box-sizing: border-box;
+      height: var(--mobile-nav-h);
+      padding: 0;
+      background: var(--neutral-100);
+      border-top: var(--border-outer);
+
+      .sidebar-container {
+        padding-top: 0;
+      }
+
+      .sidebar-custom-sections {
+        overflow: auto;
+        display: flex;
+        flex: 1 1 auto;
+        width: 100%;
+      }
+
+      .sidebar-section[data-section-name="you"] {
+        display: none;
+      }
+
+      .sidebar-section-link-wrapper:has(.--link-button) {
+        display: none;
+      }
+
+      [data-list-item-name="Chat"],
+      [data-list-item-name="Tags"] {
+        display: flex;
+      }
+
+      .sidebar-sections {
+        display: contents;
+
+        [data-section-name="user-threads"] {
+          display: none;
+        }
+      }
+
+      .sidebar__panel-switch-button {
+        display: none;
+      }
+
+      .sidebar-section {
+        width: 100%;
+      }
+
+      .sidebar-section-wrapper {
+        display: flex;
+      }
+
+      .sidebar-section-content {
+        display: contents;
+      }
+
+      .sidebar-section-link-wrapper {
+        flex: 1 1 auto;
+      }
+
+      .sidebar-section-link-suffix {
+        top: 0.75rem;
+        left: calc(50% + 0.25rem);
+      }
+    }
+  }
+
   .sidebar-wrapper {
     --d-sidebar-section-link-prefix-margin-right: 1rem;
     --d-sidebar-link-icon-color: var(--primary);
     --d-sidebar-section-link-icon-size: 1.25em;
     --d-sidebar-highlight-color: var(--primary);
-
     font-size: var(--font-down-1);
 
     .sidebar-container {
@@ -19,8 +99,9 @@ body:not(.admin-interface) {
 
   .sidebar-section-link-wrapper {
     .sidebar-section-link {
-      border-radius: var(--rounded-md);
       height: 2.5rem;
+      border-radius: var(--rounded-md);
+
       &.active {
         font-weight: 600;
       }
@@ -62,6 +143,7 @@ body:not(.admin-interface) {
 
   .sidebar-section-wrapper .sidebar-section-header-wrapper {
     border-radius: var(--rounded-md);
+
     .discourse-no-touch & {
       &:hover,
       &:focus {
@@ -89,6 +171,7 @@ body:not(.admin-interface) {
 
   .sidebar-section-wrapper {
     padding-bottom: 1em;
+
     &[data-section-name="chat-channels"],
     &[data-section-name="chat-dms"],
     &[data-section-name="tags"],
@@ -104,16 +187,16 @@ body:not(.admin-interface) {
   #sidebar-section-content-categories {
     .sidebar-section-link-wrapper[data-category-id] {
       .sidebar-section-link-prefix {
-        &:before {
+        &::before {
           content: "📁";
-          background: none;
+          display: flex;
+          align-items: center;
+          justify-content: center;
           width: 1rem;
           height: 1rem;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          font-size: 1rem;
           padding-left: 0.25em; // alignment fix
+          font-size: 1rem;
+          background: none;
         }
       }
 
@@ -144,6 +227,8 @@ body:not(.admin-interface) {
       }
 
       .sidebar-section-wrapper {
+        margin: 0;
+
         &[data-section-name="categories"],
         &[data-section-name="chat-channels"],
         &[data-section-name="chat-dms"],
@@ -154,16 +239,12 @@ body:not(.admin-interface) {
       }
 
       .sidebar-sections {
-        padding-top: 0;
         gap: 0;
+        padding-top: 0;
       }
 
       .sidebar-section {
         border: none;
-      }
-
-      .sidebar-section-wrapper {
-        margin: 0;
       }
 
       .sidebar-section-content {
@@ -171,10 +252,10 @@ body:not(.admin-interface) {
       }
 
       .sidebar-section-link {
-        height: 3.5rem;
         flex-direction: column;
-        justify-content: center;
         align-items: center;
+        justify-content: center;
+        height: 3.5rem;
 
         .sidebar-section-link-content-text {
           max-width: 6em;
@@ -182,10 +263,12 @@ body:not(.admin-interface) {
 
         &.active {
           background: transparent;
+
           .sidebar-section-link-prefix.icon {
             background: var(--primary-very-low);
           }
         }
+
         .discourse-no-touch & {
           &:hover,
           &:focus {
@@ -201,10 +284,10 @@ body:not(.admin-interface) {
       }
 
       .sidebar-section-link-prefix.icon {
-        font-size: var(--font-up-3);
-        margin: 0;
         width: 1.25rem;
+        margin: 0;
         padding: 0.125rem 0.875rem;
+        font-size: var(--font-up-3);
         border-radius: var(--rounded-xl);
       }
 
@@ -227,103 +310,19 @@ body:not(.admin-interface) {
       .d-button-label {
         display: none;
       }
+
       .d-icon {
         margin: 0;
         font-size: var(--font-up-2);
       }
     }
   }
-
-  @include breakpoint(tablet) {
-    &[class*="archetype-"] {
-      .sidebar-wrapper {
-        display: none;
-      }
-    }
-
-    .sidebar-wrapper {
-      position: fixed;
-      z-index: 999;
-      top: unset;
-      bottom: 0;
-      left: 0;
-      right: 0;
-
-      height: var(--mobile-nav-h);
-      padding: 0;
-      box-sizing: border-box;
-      display: flex;
-      justify-content: center;
-
-      background: var(--neutral-100);
-      border-top: var(--border-outer);
-
-      .sidebar-container {
-        padding-top: 0;
-      }
-
-      .sidebar-custom-sections {
-        overflow: auto;
-      }
-
-      .sidebar-section[data-section-name="you"] {
-        display: none;
-      }
-
-      .sidebar-section-link-wrapper:has(.--link-button) {
-        display: none;
-      }
-
-      [data-list-item-name="Chat"],
-      [data-list-item-name="Tags"] {
-        display: flex;
-      }
-
-      .sidebar-sections {
-        display: contents;
-        [data-section-name="user-threads"] {
-          display: none;
-        }
-      }
-
-      .sidebar__panel-switch-button {
-        display: none;
-      }
-
-      .sidebar-section {
-        width: 100%;
-      }
-
-      .sidebar-section-wrapper {
-        display: flex;
-      }
-
-      .sidebar-section-content {
-        display: contents;
-      }
-
-      .sidebar-custom-sections {
-        display: flex;
-        flex: 1 1 auto;
-        width: 100%;
-      }
-
-      .sidebar-section-link-wrapper {
-        flex: 1 1 auto;
-      }
-
-      .sidebar-section-link-suffix {
-        top: 0.75rem;
-        left: calc(50% + 0.25rem);
-      }
-    }
-  }
 }
 
 .global-notice .close {
-  font-size: var(--font-down-1);
-  height: 2em;
   width: 2em;
+  height: 2em;
+  font-size: var(--font-down-1);
 }
 
 .navigation-container {
@@ -339,6 +338,7 @@ body:not(.admin-interface) {
 
     &__item-heading {
       box-sizing: border-box;
+      margin: 0;
     }
 
     .badge-category__wrapper,
@@ -346,32 +346,29 @@ body:not(.admin-interface) {
     .badge-category__name {
       width: 100%;
     }
-
-    &__item-heading {
-      margin: 0;
-    }
   }
 }
 
 .navigation-container .navigation-controls {
+  display: grid;
+  width: 100%;
+  margin: 0;
+  padding: 1rem;
+
   & > *:not(:last-child) {
     margin: 0;
   }
-  margin: 0;
-  display: grid;
-  width: 100%;
-  padding: 1rem;
 
   .bulk-select {
     display: none;
   }
 
   h2 {
-    &:before {
-      width: 2rem;
+    &::before {
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
+      width: 2rem;
     }
   }
 
@@ -381,48 +378,53 @@ body:not(.admin-interface) {
 
   .navigation-categories & {
     display: flex;
+
     .breadcrumbs__title {
       flex: 1;
     }
+
     #create-category {
       order: 9;
     }
+
     .categories-admin-dropdown {
       order: 9;
     }
   }
+
   .navigation-category & {
-    grid-template-areas:
-      "title title notifications edit . list"
-      ". description description description description list";
-    grid-template-columns: 2rem auto 2.5rem 2.5rem 1fr auto;
-    grid-template-rows: auto auto;
-    row-gap: 0.5rem;
-    column-gap: 1rem;
+    grid-template: "title title notifications edit . list" auto ". description description description description list" auto / 2rem auto 2.5rem 2.5rem 1fr auto;
+    gap: 0.5rem 1rem;
   }
 
   .breadcrumbs {
     display: contents;
+
     &__select {
       grid-area: list;
     }
+
     &__category {
       display: contents;
     }
+
     &__title {
-      padding: 0;
-      min-height: 2.5rem;
       grid-area: title;
       grid-column: span 2;
+      min-height: 2.5rem;
+      padding: 0;
     }
+
     &__desc {
       grid-area: description;
       white-space: initial;
     }
   }
+
   .notifications-button {
     grid-area: notifications;
   }
+
   .edit-category {
     position: relative;
     left: -0.5rem;
@@ -431,21 +433,21 @@ body:not(.admin-interface) {
 }
 
 .breadcrumbs {
-  order: -1;
   display: flex;
-  align-items: flex-start;
   gap: 2rem;
+  align-items: flex-start;
+  order: -1;
   box-sizing: border-box;
   padding: 1rem 1rem 1rem 0;
   border-bottom: var(--border-inner);
 
   &__title {
-    @include headline-small;
-
     display: flex;
     gap: 1rem;
     align-items: center;
     margin: 0;
+
+    @include headline-small;
 
     .badge-category__wrapper {
       font-size: inherit;
@@ -454,12 +456,12 @@ body:not(.admin-interface) {
         gap: 0.5rem;
         align-items: baseline;
 
-        .badge-category__name {
-          white-space: initial;
-        }
-
         &::before {
           width: 2rem;
+        }
+
+        .badge-category__name {
+          white-space: initial;
         }
       }
     }
@@ -468,9 +470,7 @@ body:not(.admin-interface) {
       display: flex;
       align-items: center;
       justify-content: center;
-
       padding: 0 0.375rem;
-
       font-size: 24px;
 
       &[data-badge-type="emoji"] {
@@ -492,9 +492,9 @@ body:not(.admin-interface) {
   }
 
   &__desc {
-    @include body-medium;
-
     display: inline-block;
+
+    @include body-medium;
 
     p {
       margin: 0;
@@ -502,19 +502,18 @@ body:not(.admin-interface) {
   }
 
   &__select {
-    @include body-medium;
-    text-align: right;
     cursor: pointer;
-    height: 2.5rem;
     width: min-content;
+    height: 2.5rem;
     margin-bottom: 0;
     margin-left: auto;
     padding: 0;
-
     color: var(--neutral-30);
-
+    text-align: right;
     background: none;
     border: none;
+
+    @include body-medium;
   }
 }
 
@@ -526,18 +525,13 @@ body:has(.admin-main-nav .nav-pills) {
 
 // Styles for custom sidebar categories section
 // https://github.com/discourse/discourse-sidebar-nested-categories
-
 [data-section-name="Categories"] {
-  border: none !important; // very specific in core
   display: none !important;
+  border: none !important; // very specific in core
+
   @media screen and (min-width: 1001px) {
     display: block !important; // overrides other important
   }
-}
-
-.sidebar-section-link-wrapper[data-list-item-name="subcategory"] {
-  padding-left: 2.3em;
-  margin-left: 2.25em;
 }
 
 [data-list-item-name="category"] {
@@ -546,26 +540,30 @@ body:has(.admin-main-nav .nav-pills) {
   }
 
   .sidebar-section-link {
-    &:before {
+    &::before {
       content: "📁";
-      background: none;
-      width: 1.25rem;
-      height: 1.25rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 1.25rem;
-      margin-right: var(--d-sidebar-section-link-prefix-margin-right);
       position: relative;
       top: 0.15em; // vertical alignment
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.25rem;
+      height: 1.25rem;
+      margin-right: var(--d-sidebar-section-link-prefix-margin-right);
+      font-size: 1.25rem;
+      background: none;
     }
   }
 }
 
 .sidebar-section-link-wrapper[data-list-item-name="subcategory"] {
+  margin-left: 2.25em;
+  padding-left: 2.3em;
+
   .sidebar-section-link-prefix.span {
     width: unset;
-    margin: 0 0 0;
+    margin: 0;
+
     .prefix-span {
       display: none;
       width: unset;
@@ -574,9 +572,9 @@ body:has(.admin-main-nav .nav-pills) {
 
   .sidebar-section-link-prefix.span .prefix-badge {
     position: relative;
+    top: unset;
     width: 0.86em;
     height: 0.86em;
-    top: unset;
     margin-right: 0.15em;
     margin-left: -0.25em; // horizontal alignment
   }

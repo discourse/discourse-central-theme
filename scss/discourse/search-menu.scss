@@ -1,11 +1,12 @@
 .floating-search-input {
   width: 100%;
+  max-width: 45rem;
   padding: 0;
+
   @include breakpoint(tablet) {
     padding: 0;
   }
 
-  max-width: 45rem;
   .search-banner-inner {
     &.wrap {
       .search-menu {
@@ -14,10 +15,12 @@
         .search-random-quick-tip {
           display: none;
         }
+
         .search-menu-panel {
-          box-shadow: var(--shadow-menu-panel);
           z-index: 0;
+          box-shadow: var(--shadow-menu-panel);
         }
+
         .search-icon {
           display: none;
         }
@@ -26,34 +29,39 @@
           display: none;
           order: 4;
           padding: 0;
+
           .clear-search {
-            &:hover {
-              background: var(--neutral-90);
-            }
-            margin: 0;
-            padding: 0;
             display: flex;
             align-items: center;
             justify-content: center;
             width: 2.25rem;
             height: 2.25rem;
-            border-radius: var(--rounded-full);
+            margin: 0;
+            padding: 0;
             color: inherit;
+            border-radius: var(--rounded-full);
+
+            &:hover {
+              background: var(--neutral-90);
+            }
+
             &:visited {
               color: inherit;
             }
           }
+
           button.show-advanced-search {
-            padding: 0;
-            border: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             width: 2.25rem;
             height: 2.25rem;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            padding: 0;
             color: inherit;
-            transition: none;
+            border: 0;
             border-radius: var(--rounded-full);
+            transition: none;
+
             &:hover {
               background: var(--neutral-90);
             }
@@ -61,8 +69,8 @@
         }
 
         .results {
-          border: 0;
           padding: 0;
+          border: 0;
 
           .search-result-topic {
             box-sizing: border-box;
@@ -80,12 +88,13 @@
               &[data-usage="recent-search"] {
                 a.search-link {
                   display: flex;
-                  align-items: center;
                   column-gap: 0.5rem;
+                  align-items: center;
 
                   span[aria-label="Search"] {
                     display: none;
                   }
+
                   .search-item-slug {
                     order: 2;
                   }
@@ -96,16 +105,19 @@
         }
 
         .search-menu-container {
-          border-radius: var(--rounded-full);
+          box-sizing: border-box;
           background: var(--neutral-100);
           border: var(--border-outer);
-          box-sizing: border-box;
+          border-radius: var(--rounded-full);
+
           &:hover {
             background: var(--neutral-100);
           }
+
           &:has(.search-menu-panel) {
             background: none;
             box-shadow: none;
+
             .searching {
               display: flex;
             }
@@ -113,6 +125,7 @@
 
           .search-link {
             padding: 0.5rem 0.875rem;
+
             &:hover,
             &:focus {
               background-color: var(--neutral-95);
@@ -124,39 +137,41 @@
           margin: 0;
           padding: 0;
           border: none;
+
           h4 {
             @include title-medium;
           }
         }
 
         .search-input {
-          z-index: 1;
-          background: none;
-
           position: relative;
+          z-index: 1;
+          gap: 0.5rem;
+          height: 2.5rem;
           margin: 0;
+          padding: 0 0.875rem;
+          background: none;
+          background-color: transparent;
+          border: none;
 
           &:focus-within {
             background-color: transparent;
-
             outline: 0;
           }
+
           #search-term {
             padding: 0.5rem 0;
           }
+
           .search-context {
             flex-shrink: 0;
             height: unset;
             padding: 0.25em;
           }
+
           .search-context ~ #search-term {
             padding: 0;
           }
-          background-color: transparent;
-          border: none;
-          height: 2.5rem;
-          padding: 0 0.875rem 0;
-          gap: 0.5rem;
         }
       }
     }
@@ -165,6 +180,7 @@
 
 .search-container .search-cta {
   flex: 0 0 auto;
+
   .d-icon {
     display: none;
   }

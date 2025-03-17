@@ -1,9 +1,12 @@
 .discourse-tags {
   gap: 0.5rem;
+
   .discourse-tag.simple {
-    @include badge;
     max-width: unset;
-    &:not(:last-child):not(:hover):after {
+
+    @include badge;
+
+    &:not(:last-child, :hover)::after {
       content: unset;
     }
   }
@@ -13,14 +16,17 @@
   .list-controls {
     padding: 1rem;
   }
+
   hr {
+    margin: 0;
     border-top: var(--border-inner);
-    margin: 0;
   }
+
   .tag-sort-options {
-    padding: 1rem;
     margin: 0;
+    padding: 1rem;
   }
+
   .tags-list {
     margin: 0;
     padding: 1rem;

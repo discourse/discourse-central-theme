@@ -1,6 +1,5 @@
 // todo: these can probably be fixed elsewhere
 // so this file can be removed
-
 .topic-navigation + .row {
   max-width: unset !important; // overrides very specific core rule
 }
@@ -26,7 +25,6 @@
 }
 
 // hide footer nav on mobile chat routes to maximize chat space
-
 body.has-full-page-chat {
   .sidebar-wrapper {
     display: none;

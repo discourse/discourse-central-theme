@@ -3,27 +3,30 @@
 }
 
 .c-categories {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: auto;
+  gap: 1rem;
+  padding: 1rem;
+  border-top: var(--border-inner);
+
   &__item {
-    @include hover($opacity: 0.02);
-
     cursor: pointer;
-
     display: flex;
     flex-direction: column;
-
     box-sizing: border-box;
     padding: 0.5rem;
-
     background: var(--neutral-100);
-
     border: var(--border-outer);
     border-radius: var(--rounded-lg);
 
+    @include hover($opacity: 0.02);
+
     &-heading {
-      @include title-large;
+      margin-bottom: 0.5rem;
       font-size: var(--font-0);
 
-      margin-bottom: 0.5rem;
+      @include title-large;
 
       .badge-category__wrapper {
         white-space: initial;
@@ -36,10 +39,10 @@
     }
 
     &-description {
-      @include body-medium;
-
-      margin: 0 0 1rem 0;
+      margin: 0 0 1rem;
       color: var(--primary-medium);
+
+      @include body-medium;
 
       p {
         margin: 0;
@@ -47,53 +50,63 @@
     }
 
     &-metadata {
-      @include label-small;
-
       color: var(--primary-medium);
+
+      @include label-small;
     }
 
     &-more {
-      @include body-small;
       color: var(--primary-high);
-      &:visited {
-        color: var(--primary-high);
-      }
+
+      @include body-small;
+
       &::first-letter {
         text-transform: capitalize;
       }
+
+      &:visited {
+        color: var(--primary-high);
+      }
+
       &:hover {
         text-decoration: underline;
       }
     }
 
     h6 {
-      @include body-small;
+      margin-top: 1rem;
       padding-top: 1rem;
       border-top: var(--border-outer);
-      margin-top: 1rem;
+
+      @include body-small;
     }
 
     &-subcategories {
       display: flex;
-      margin-bottom: 1rem;
       flex-wrap: wrap;
-      @include body-small;
-      align-items: center;
       gap: 0.375rem;
+      align-items: center;
+      margin-bottom: 1rem;
+
+      @include body-small;
 
       .badge-category__wrapper {
+        padding: 0.25rem 0.625rem 0.25rem 0.5rem;
+        white-space: nowrap;
         background: var(--neutral-100);
         border: var(--border-outer);
-        padding: 0.25rem 0.625rem 0.25rem 0.5rem;
         border-radius: var(--rounded-md);
-        white-space: nowrap;
+
         @include hover($opacity: 0.08);
+
         .badge-category {
-          width: 100%;
           gap: 0.25rem;
-          @include label-large;
+          width: 100%;
           font-size: var(--font-0);
-          &:before {
+
+          @include label-large;
+
+          &::before {
             width: 1rem;
             height: 1rem;
             font-size: 0.75rem;
@@ -106,34 +119,33 @@
       display: flex;
       flex-direction: column;
       gap: 0.75rem;
-      border-top: var(--border-outer);
-      padding-top: 0.75rem;
       margin: auto 0 0;
+      padding-top: 0.75rem;
+      border-top: var(--border-outer);
 
       ul {
         display: flex;
-        margin: 0;
         flex-direction: column;
         gap: 0.125rem;
         align-items: flex-start;
         justify-self: flex-end;
+        margin: 0;
         list-style: none;
 
         li {
-          @include body-medium;
-
           overflow: hidden;
           display: flex;
           gap: 0.125rem;
           max-width: 100%;
 
+          @include body-medium;
+
           &::before {
             content: "•";
-
-            width: 1rem;
             display: flex;
-            justify-content: center;
             align-items: baseline;
+            justify-content: center;
+            width: 1rem;
           }
 
           a {
@@ -159,24 +171,15 @@
     }
   }
 
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-
-  grid-template-rows: auto;
-  gap: 1rem;
-
-  border-top: var(--border-inner);
-
-  padding: 1rem;
   @container (max-width: 48rem) {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   @container (max-width: 32rem) {
     grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 0.5rem;
     padding: 0;
     background: var(--neutral-95);
-    gap: 0.5rem;
 
     &__item {
       border: 0;

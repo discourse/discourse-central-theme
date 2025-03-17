@@ -13,6 +13,7 @@
 
   @if $style == tertiary {
     background-color: var(--neutral-100);
+
     span {
       color: var(--neutral-10);
     }
@@ -21,26 +22,24 @@
   @if $size == sm {
     padding: 0 0.375rem;
     height: 1.75rem;
-
     gap: 0.125rem;
-
     border-radius: var(--rounded-md);
     border: var(--border-outer);
 
     span {
-      @include body-small;
-
       padding: 0 0.125rem;
+
+      @include body-small;
     }
   } @else if $size == md {
     height: 2.5rem;
-
     padding: 0 0.5rem;
     border-radius: var(--rounded-md);
 
     span {
-      @include label-large;
       padding: 0 0.25rem;
+
+      @include label-large;
     }
   }
 
@@ -58,22 +57,17 @@
 }
 
 @mixin badge($style: neutral) {
-  @include label-small;
-
   position: relative;
-
+  overflow: hidden;
   display: flex;
   align-items: center;
-
   height: 1rem;
   padding: 0 0.25rem;
-
   color: var(--neutral-10);
-
   background-color: var(--neutral-95);
   border-radius: var(--rounded-sm);
-  overflow: hidden;
 
+  @include label-small;
   @include hover;
 }
 

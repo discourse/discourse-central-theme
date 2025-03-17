@@ -1,15 +1,15 @@
 .d-header {
+  box-sizing: content-box;
+  height: 3rem;
+  padding: 0.75rem 0;
+  background-color: var(--neutral-100);
+  border-bottom: 1px solid var(--neutral-90);
+  box-shadow: none;
+
   &-wrap {
     position: fixed;
     width: 100%;
   }
-  box-sizing: content-box;
-  height: 3rem;
-  padding: 0.75rem 0;
-
-  background-color: var(--neutral-100);
-  border-bottom: 1px solid var(--neutral-90);
-  box-shadow: none;
 
   .header-sidebar-toggle {
     display: none;
@@ -17,14 +17,15 @@
 
   .wrap {
     .contents {
-      @include breakpoint(large) {
-        display: flex;
-      }
-
       display: grid;
       grid-template-areas: "logo search utility";
       grid-template-columns: 19rem var(--column-content) var(--column-blocks);
       gap: 2rem;
+
+      @include breakpoint(large) {
+        display: flex;
+      }
+
       @media screen and (max-width: 1080px) {
         grid-template-columns: auto var(--column-content) var(--column-blocks);
         gap: 1rem;
@@ -37,8 +38,8 @@
   }
 
   .home-logo-wrapper-outlet {
-    grid-area: logo;
     display: flex;
+    grid-area: logo;
     flex-shrink: 0;
   }
 
@@ -59,18 +60,19 @@
     margin: 0;
 
     .badge-notification {
-      border: 2px solid var(--neutral-100);
-      background: var(--primary-50);
-      color: var(--neutral-100);
-      padding: 0 0.25rem;
+      top: 0;
+      right: 0;
       display: flex;
       align-items: center;
       justify-content: center;
       box-sizing: border-box;
       min-width: calc(1rem + 2px);
       height: calc(1rem + 2px);
-      top: 0;
-      right: 0;
+      padding: 0 0.25rem;
+      color: var(--neutral-100);
+      background: var(--primary-50);
+      border: 2px solid var(--neutral-100);
+
       @include label-small;
     }
 
@@ -84,20 +86,17 @@
 
     li > button,
     li > .icon {
-      @include hover;
-
       box-sizing: border-box;
       width: 2.5rem;
       height: 2.5rem;
       padding: 0;
-
       color: var(--neutral-10);
-
       background: none;
       border: 0;
       border-radius: var(--rounded-full);
-
       transition: none;
+
+      @include hover;
 
       &:hover {
         color: inherit;
@@ -134,6 +133,7 @@
 
     li.c-create {
       order: -1;
+
       .d-icon {
         color: var(--primary);
       }
@@ -156,19 +156,19 @@
 .search-header--visible {
   .panel .header-dropdown-toggle.search-dropdown,
   .panel .search-menu {
+    display: none;
+
     @include breakpoint(tablet) {
       display: flex;
     }
-
-    display: none;
   }
 
   .before-header-panel-outlet {
+    flex: 1 1 auto;
+
     @include breakpoint(tablet) {
       display: none;
     }
-
-    flex: 1 1 auto;
   }
 }
 
@@ -178,6 +178,7 @@
       .d-icon {
         color: var(--primary);
       }
+
       .discourse-no-touch & {
         &:hover {
           .d-icon {
@@ -193,6 +194,7 @@
     > svg {
       height: 0.75em;
     }
+
     > .btn .d-icon-far-pen-to-square {
       height: 0.6em; // more consistent edit icon size
     }
@@ -202,11 +204,12 @@
 .header-dropdown-toggle.current-user {
   display: flex;
   align-items: center;
+
   > .d-icon-bell {
-    position: absolute;
-    color: var(--primary);
-    z-index: 1;
     pointer-events: none; // prevent svg from blocking hover
+    position: absolute;
+    z-index: 1;
+    color: var(--primary);
   }
 }
 

@@ -11,13 +11,14 @@
 
     select {
       cursor: pointer;
-      @include body-small;
-      color: var(--neutral-30);
       width: unset;
       margin: 0;
+      color: var(--neutral-30);
+      text-align: right;
       background: none;
       border: none;
-      text-align: right;
+
+      @include body-small;
 
       option {
         padding: 0;
@@ -25,55 +26,44 @@
     }
 
     h3 {
-      @include title-medium;
       margin: 0;
+
+      @include title-medium;
     }
   }
 
   &__expand {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin-top: 0.5rem;
+    text-align: center;
+
     a,
     span {
-      @include body-small;
       flex: 1;
       line-height: 1rem;
       color: var(--neutral-30);
+
+      @include body-small;
     }
-
-    display: flex;
-    justify-content: center;
-    text-align: center;
-    margin-top: 0.5rem;
-
-    position: relative;
   }
 
   &__list {
     --scrollbar-w: 0.5rem;
-
-    padding-bottom: 1rem;
-    margin: 0;
     counter-reset: item;
-    display: flex;
-    row-gap: 1rem;
-    flex-flow: column;
-    overflow-y: scroll;
-    margin-left: calc(var(--p) * -1);
-    padding-left: var(--p);
-    flex: 1;
-
-    overscroll-behavior: contain;
     scrollbar-color: transparent transparent;
     scrollbar-width: thin;
-
-    &:hover {
-      scrollbar-color: var(--primary-200) transparent;
-      &::-webkit-scrollbar-thumb {
-        background-color: var(--primary-200);
-        &:hover {
-          background-color: var(--primary-400);
-        }
-      }
-    }
+    overflow-y: scroll;
+    overscroll-behavior: contain;
+    display: flex;
+    flex: 1;
+    flex-flow: column;
+    row-gap: 1rem;
+    margin: 0;
+    margin-left: calc(var(--p) * -1);
+    padding-bottom: 1rem;
+    padding-left: var(--p);
 
     &::-webkit-scrollbar {
       width: var(--scrollbar-w);
@@ -88,15 +78,27 @@
       background-color: transparent;
       border-radius: var(--rounded-full);
     }
+
+    &:hover {
+      scrollbar-color: var(--primary-200) transparent;
+
+      &::-webkit-scrollbar-thumb {
+        background-color: var(--primary-200);
+
+        &:hover {
+          background-color: var(--primary-400);
+        }
+      }
+    }
   }
 
   &__item {
-    display: flex;
     position: relative;
-    padding-left: 1.25rem;
+    display: flex;
     column-gap: 0.5rem;
-    width: 100%;
     box-sizing: border-box;
+    width: 100%;
+    padding-left: 1.25rem;
 
     &:first-child {
       .block-chart__img {
@@ -107,19 +109,20 @@
     }
 
     img.emoji {
-      height: 1rem;
       width: auto;
+      height: 1rem;
     }
 
-    &:before {
+    &::before {
       content: counter(item) ".";
       counter-increment: item;
       position: absolute;
-      left: -0.375rem;
       top: 0;
+      left: -0.375rem;
       width: 2ch;
-      @include body-medium;
       text-align: right;
+
+      @include body-medium;
     }
   }
 
@@ -127,6 +130,7 @@
     a {
       display: block;
     }
+
     img {
       width: 2rem;
       height: auto;
@@ -134,17 +138,19 @@
   }
 
   &__info {
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     flex-grow: 1;
     font-size: 0.875rem;
-    overflow: hidden;
   }
 
   &__title {
     display: inline-flex;
+
     a {
       color: var(--neutral-10);
+
       @include body-medium;
 
       &:hover {
@@ -158,17 +164,18 @@
   }
 
   &__metadata {
-    display: inline-flex;
     overflow: hidden;
+    display: inline-flex;
     text-overflow: ellipsis;
   }
 
   &__details {
     display: flex;
-    align-items: center;
     gap: 0.375rem;
-    @include body-small;
+    align-items: center;
     color: var(--neutral-30);
+
+    @include body-small;
 
     img.avatar {
       width: 1rem;
@@ -176,7 +183,7 @@
     }
 
     .relative-date {
-      &:after {
+      &::after {
         content: "\00a0·\00a0";
       }
     }
@@ -184,12 +191,15 @@
     .badge-category__wrapper {
       .badge-category {
         display: contents;
-        &:before {
+
+        &::before {
           display: none;
         }
+
         .badge-category__name {
-          @include body-small;
           color: var(--neutral-30);
+
+          @include body-small;
         }
       }
     }
@@ -198,20 +208,22 @@
   &__stats {
     display: flex;
     gap: 0.375rem;
-    list-style: none;
     align-items: baseline;
     margin: 0;
+    list-style: none;
+
     li {
       a {
         display: inline-flex;
-        align-items: center;
         gap: 0.125rem;
-        color: var(--neutral-10);
+        align-items: center;
+        box-sizing: border-box;
         height: 1.25rem;
         padding: 0 0.25rem;
-        box-sizing: border-box;
+        color: var(--neutral-10);
         border: var(--border-outer);
         border-radius: var(--rounded-md);
+
         @include label-small;
 
         span {

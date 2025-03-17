@@ -1,85 +1,107 @@
 .docs {
   .docs-search {
-    background: none;
-    padding: 2rem;
     margin: 0;
+    padding: 2rem;
+    background: none;
     border-bottom: var(--border-inner);
+
     &-wrapper {
       display: flex;
       align-items: center;
-      &:before {
-        padding: 0 0.875rem;
+
+      &::before {
         position: absolute;
+        padding: 0 0.875rem;
         color: var(--neutral-50);
       }
     }
+
     &-bar {
-      padding-left: 2.5rem;
       height: 2.5rem;
+      padding-left: 2.5rem;
       border-radius: var(--rounded-full);
     }
   }
+
   .docs-browse {
     .docs-items {
+      padding: 1rem;
+
       a {
         color: inherit;
       }
+
       .item-controls-buttons {
         .categories-amount,
         .tags-amount {
           display: none;
         }
       }
+
       .docs-item {
-        padding: 0.5rem 0;
         gap: 0.5rem;
-        // @include hover;
+        padding: 0.5rem 0;
+
         &:hover {
           background: none;
         }
+
         &-count {
-          @include body-small;
           color: var(--neutral-50);
+
+          @include body-small;
         }
+
         .tag-id,
         .category-id {
-          @include body-medium;
           color: var(--neutral-10);
+
+          @include body-medium;
         }
       }
     }
+
     .docs-topic-list {
       .docs-topic-link {
         color: var(--neutral-10);
+
         @include body-large;
       }
     }
+
     .loading-container {
       padding: 0;
     }
+
     .docs-topic {
       width: 100%;
       padding-right: 0.5rem;
+
       .docs-nav-link {
         &.more {
           padding: 1rem;
+
           @include body-large;
         }
+
         &.return {
-          padding: 1rem;
           display: flex;
           gap: 1rem;
+          padding: 1rem;
 
           @include label-large;
         }
       }
+
       .topic-content {
         padding: 0;
+
         & > h1 {
-          border-top: var(--border-inner);
-          border-bottom: var(--border-inner);
           margin: 0;
           padding: 1rem;
+          border-top: var(--border-inner);
+          border-bottom: var(--border-inner);
+
           @include headline-small;
         }
       }
@@ -89,30 +111,30 @@
   .docs-filters {
     min-width: 14rem;
     padding: 0;
-
     border-right: var(--border-inner);
 
     h3 {
-      @include title-small;
       margin: 0;
-    }
-  }
 
-  .docs-browse .docs-items {
-    padding: 1rem;
+      @include title-small;
+    }
   }
 
   .empty-state {
     padding: 1rem;
     color: inherit;
+
     &-title {
-      @include headline-small;
       margin-bottom: 1rem;
+
+      @include headline-small;
     }
+
     &-body {
       p {
-        @include body-large;
         margin: 0;
+
+        @include body-large;
       }
     }
   }

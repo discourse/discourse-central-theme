@@ -6,85 +6,78 @@ table.topic-list:not(.bookmark-list) {
   }
 
   tbody.topic-list-body {
+    container-type: inline-size;
     display: flex;
     flex-direction: column;
     border: 0;
-    container-type: inline-size;
 
     tr.topic-list-item-separator {
       display: flex;
       background: var(--neutral-100);
 
       td.topic-list-data {
-        max-width: unset;
         flex: 1;
-        border-top: var(--border-inner);
+        max-width: unset;
         padding: 1rem 0;
+        border-top: var(--border-inner);
 
         span {
-          background-color: transparent;
           color: var(--neutral-50);
+          background-color: transparent;
+
           @include body-medium;
         }
       }
     }
+
     tr.topic-list-item {
-      background: var(--neutral-100);
-      @include hover($opacity: 0.02);
-
       cursor: pointer;
-
       position: relative;
+      display: grid;
+      grid-template-areas: "avatar author actions" "avatar category actions" "avatar title actions" "avatar tags actions" "avatar content actions" "avatar replies actions";
+      grid-template-columns: 2rem auto auto;
+      gap: 0 1rem;
+      padding: 1rem;
+      background: var(--neutral-100);
+      border-top: var(--border-inner);
+      border-bottom: 0;
+      animation: none;
+
+      @include hover($opacity: 0.02);
 
       .docs-results & {
         display: flex;
       }
 
-      display: grid;
-      grid-template-areas: "avatar author actions" "avatar category actions" "avatar title actions" "avatar tags actions" "avatar content actions" "avatar replies actions";
-      grid-template-columns: 2rem auto auto;
-      gap: 0 1rem;
-
-      @container (max-width: 32rem) {
-        grid-template-areas: "avatar author" "avatar category" "avatar title" "avatar tags" "avatar content" "avatar replies" "avatar actions" "avatar excerpt";
-        grid-template-columns: 2rem auto;
-
-        .topic__actions {
-          justify-self: flex-start;
-          padding: 0;
-          margin-top: 1rem;
-        }
-      }
-
-      padding: 1rem;
-      border-bottom: 0;
-      border-top: var(--border-inner);
-
-      animation: none;
-
       td.topic-list-data {
         // mobile overrides
         max-width: unset;
         padding: 0;
+
         .pull-left {
           display: none;
         }
+
         .topic-item-metadata {
           display: contents;
+
           & > *:not(.main-link) {
             display: none;
           }
+
           .main-link {
-            @include body-large;
             width: unset;
             color: var(--neutral-10);
+
+            @include body-large;
+
             a {
               color: inherit;
             }
           }
         }
-        // end
 
+        // end
         &.num,
         &.posters {
           display: none;
@@ -96,8 +89,8 @@ table.topic-list:not(.bookmark-list) {
           @include body-large;
 
           .link-top-line {
-            margin-top: 0.25rem;
             grid-area: title;
+            margin-top: 0.25rem;
 
             .topic-post-badges {
               line-height: 0;
@@ -140,6 +133,17 @@ table.topic-list:not(.bookmark-list) {
         // j/k keyboard nav
         box-shadow: inset 3px 0 0 var(--d-nav-color--active);
       }
+
+      @container (max-width: 32rem) {
+        grid-template-areas: "avatar author" "avatar category" "avatar title" "avatar tags" "avatar content" "avatar replies" "avatar actions" "avatar excerpt";
+        grid-template-columns: 2rem auto;
+
+        .topic__actions {
+          justify-self: flex-start;
+          margin-top: 1rem;
+          padding: 0;
+        }
+      }
     }
   }
 }
@@ -147,9 +151,11 @@ table.topic-list:not(.bookmark-list) {
 .topic {
   &__avatar {
     grid-area: avatar;
+
     a {
-      display: block;
       position: relative;
+      display: block;
+
       img.avatar {
         width: 2rem;
         height: auto;
@@ -157,17 +163,18 @@ table.topic-list:not(.bookmark-list) {
 
       .avatar-flair {
         position: absolute;
-        bottom: -0.125rem;
         right: -0.25rem;
+        bottom: -0.125rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         width: 1rem;
         height: 1rem;
         background-size: contain;
+
         &:not([title="team"]) {
           border-radius: var(--rounded-full);
         }
-        display: flex;
-        justify-content: center;
-        align-items: center;
 
         .d-icon {
           width: 0.75rem;
@@ -189,23 +196,25 @@ table.topic-list:not(.bookmark-list) {
 
     .topic__username {
       @include label-large;
+
       &:hover {
         text-decoration: underline;
       }
     }
 
     .topic__metadata {
-      @include label-small;
-
       color: var(--neutral-30);
+
+      @include label-small;
 
       span {
         &:not(:last-child) {
-          &:after {
+          &::after {
             content: "\00a0·";
             display: inline-flex;
           }
         }
+
         &:hover {
           text-decoration: underline;
         }
@@ -222,18 +231,18 @@ table.topic-list:not(.bookmark-list) {
   }
 
   &__excerpt {
-    @include body-medium;
     margin-top: 0.375rem;
+
+    @include body-medium;
   }
 
   &__replies {
-    color: var(--neutral-30);
     display: flex;
     grid-area: replies;
     gap: 0.375rem;
     align-items: center;
-
     margin-top: 0.75rem;
+    color: var(--neutral-30);
 
     a {
       color: inherit;
@@ -252,8 +261,9 @@ table.topic-list:not(.bookmark-list) {
       list-style: none;
 
       li {
-        margin: 0 -0.1875rem;
         position: relative;
+        margin: 0 -0.1875rem;
+
         &:hover {
           z-index: 1;
         }
@@ -263,7 +273,6 @@ table.topic-list:not(.bookmark-list) {
           box-sizing: content-box;
           width: 1rem;
           height: auto;
-
           background: var(--neutral-100);
           border: 1px solid var(--neutral-100);
         }
@@ -272,13 +281,15 @@ table.topic-list:not(.bookmark-list) {
 
     .topic__last-reply {
       display: inline-flex;
+
       @include body-small;
+
       &:hover {
         text-decoration: underline;
       }
 
       span:not(:last-of-type) {
-        &:after {
+        &::after {
           content: "\00a0";
         }
       }
@@ -290,10 +301,8 @@ table.topic-list:not(.bookmark-list) {
     grid-area: actions;
     gap: 0.5rem;
     place-self: center flex-end;
-
     margin: 0;
     padding-left: 1rem;
-
     list-style: none;
 
     .topic__reply-button .d-icon {
@@ -315,6 +324,7 @@ table.topic-list:not(.bookmark-list) {
     .topic__last-reply > span:not(.relative-date) {
       display: none;
     }
+
     .topic__author .topic__metadata {
       @include body-small;
     }
@@ -325,6 +335,7 @@ body:not(.user-messages-page) {
   .topic-excerpt {
     display: none;
   }
+
   .topic__author .topic__metadata {
     @include body-small;
   }
@@ -335,33 +346,39 @@ body:not(.user-messages-page) {
 
   .show-more {
     position: relative;
+
     .alert {
-      border-bottom: var(--border-inner);
-      background: var(--neutral-95);
-      color: var(--neutral-10);
-      @include body-medium;
       display: flex;
       justify-content: center;
+      color: var(--neutral-10);
+      background: var(--neutral-95);
+      border-bottom: var(--border-inner);
+
+      @include body-medium;
     }
   }
 
   .discourse-adplugin > * {
-    margin-left: 1rem;
     margin-bottom: 1rem;
+    margin-left: 1rem;
   }
 }
 
 .topic-list-bottom {
   margin: 0;
+
   .footer-message {
     padding: 1rem;
     text-align: center;
+
     @include body-medium;
 
     h3 {
-      @include body-medium;
       margin: 0;
+
+      @include body-medium;
     }
+
     a {
       color: var(--tertiary);
     }
@@ -385,12 +402,12 @@ body:not(.user-messages-page) {
 }
 
 // events plugin
-
 table.topic-list
   tbody.topic-list-body
   tr.topic-list-item
   td.topic-list-data.main-link {
   line-height: 1.4;
+
   .link-top-line .event-date,
   .header-title .event-date {
     border-color: var(--primary-low);

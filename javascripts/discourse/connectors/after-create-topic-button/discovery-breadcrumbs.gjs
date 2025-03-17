@@ -12,6 +12,7 @@ export default class DiscoveryBreadcrumbs extends Component {
   @service router;
   @service site;
   @service discovery;
+
   @tracked routeType;
 
   get filterType() {

@@ -1,10 +1,8 @@
 #topic-title {
   display: flex;
   gap: 2.15rem;
-
   margin: 0;
   padding: 1rem;
-
   border-bottom: var(--border-inner);
 
   &::before,
@@ -42,15 +40,13 @@
     display: contents;
 
     .reply-to-tab {
-      @include body-small;
-
       order: 10;
-
       width: 100%;
       max-width: unset;
       margin: 0.25rem 0 0;
-
       color: var(--neutral-30);
+
+      @include body-small;
 
       .avatar {
         width: 1rem;
@@ -82,12 +78,12 @@
         order: 3;
 
         .widget-button {
-          @include body-small;
-
           height: unset;
           margin-left: 0.5em;
           padding: 0;
           font-size: var(--font-up-1);
+
+          @include body-small;
 
           span {
             display: none;
@@ -111,36 +107,34 @@
       .customer-flair {
         display: inline-flex;
         align-items: center;
-
         height: 1.25rem;
         margin: 0;
         padding: 0 0.5rem;
-
         border: 0;
         border-radius: var(--rounded-full);
       }
     }
 
     span {
-      @include body-small;
-
       margin: 0;
       color: var(--neutral-50);
+
+      @include body-small;
 
       &.first {
         margin-right: 0.5rem;
 
         a {
-          @include label-large;
-
           color: var(--neutral-10);
+
+          @include label-large;
         }
       }
 
       &.second {
-        @include body-small;
-
         order: 1;
+
+        @include body-small;
 
         &::after {
           content: "\00a0·\00a0";
@@ -192,32 +186,27 @@
       padding: 1rem;
 
       .topic-avatar {
-        @include breakpoint(tablet) {
-          position: relative;
-          top: unset !important;
-        }
-
         position: sticky;
         top: calc(
           var(--header-offset) + 1rem
         ) !important; // why is sticky conditional?
-
         float: unset;
-
         width: unset;
         margin: 0;
         padding: 0;
-
         border: 0;
+
+        @include breakpoint(tablet) {
+          position: relative;
+          top: unset !important;
+        }
       }
 
       .topic-body {
         float: unset;
         flex: 1;
-
         width: unset;
         padding-top: 0;
-
         border: 0;
 
         &.highlighted {
@@ -233,9 +222,9 @@
         }
 
         .cooked {
-          @include body-large;
-
           padding: 0;
+
+          @include body-large;
         }
       }
     }
@@ -244,10 +233,8 @@
 
 .post-notice {
   gap: 1rem;
-
   max-width: unset;
   padding: 1rem;
-
   border: 0;
   border-bottom: var(--border-inner);
 
@@ -272,11 +259,11 @@
 
   &.topic-post-visited {
     .topic-post-visited-line {
-      @include body-medium;
-
       padding: 1rem;
       color: var(--neutral-50);
       border: 0;
+
+      @include body-medium;
 
       span.topic-post-visited-message {
         color: inherit;
@@ -287,9 +274,9 @@
 
   .small-action-buttons {
     button {
-      @include button($style: tertiary);
-
       transition: none;
+
+      @include button($style: tertiary);
     }
   }
 
@@ -305,11 +292,11 @@
   }
 
   .small-action-desc {
-    @include body-medium;
-
     display: flex;
     flex-wrap: nowrap;
     color: var(--neutral-30);
+
+    @include body-medium;
 
     .avatar {
       margin: 0;
@@ -339,14 +326,16 @@
     }
 
     &__list-title {
+      padding-left: 1em;
+
       @include title-medium;
     }
 
     &__browse-more {
-      @include body-medium;
-
       margin: 0;
       padding: 1rem;
+
+      @include body-medium;
     }
   }
 }
@@ -405,10 +394,6 @@
   visibility: hidden;
 }
 
-.regular .more-topics__list-title {
-  padding-left: 1em;
-}
-
 .container.posts #topic-progress-wrapper {
   margin-bottom: 0.5em;
 
@@ -428,9 +413,9 @@ nav.post-controls .actions button.d-hover {
 }
 
 .double-button {
-  @include hover;
-
   border-radius: var(--rounded-full);
+
+  @include hover;
 
   button.d-hover,
   button:hover {
@@ -447,6 +432,7 @@ nav.post-controls
   + .toggle-like.d-hover,
 nav.post-controls .actions .double-button:hover button {
   background: transparent; // undoes the very specific core hover effect
+
   &.d-hover {
     background: transparent;
   }

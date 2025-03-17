@@ -13,8 +13,10 @@
   .navigation-controls {
     display: none;
   }
+
   .nav-pills {
-    li:not(.user-nav__notifications-responses):not(
+    li:not(
+        .user-nav__notifications-responses,
         .user-nav__notifications-mentions
       ) {
       display: none;
@@ -36,6 +38,7 @@
 .invite-actions {
   display: flex;
   gap: 0.5em;
+
   .btn {
     border-radius: var(--rounded-full);
   }

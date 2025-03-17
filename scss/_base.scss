@@ -2,19 +2,14 @@
 @import "standards/typography";
 @import "standards/fonts";
 @import "standards/other";
-
 @import "overrides";
-
 @import "components/buttons";
 @import "components/other";
 @import "components/navigation";
 @import "components/user-menu";
 @import "components/categories";
-
 @import "blocks/base";
-
 @import "layout";
-
 @import "discourse/chat";
 @import "discourse/mixins";
 @import "discourse/header";
