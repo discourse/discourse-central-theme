@@ -200,6 +200,7 @@ body:not(.admin-interface) {
         }
       }
 
+      .prefix-square,
       .prefix-span {
         visibility: hidden;
       }
@@ -416,19 +417,24 @@ body:not(.admin-interface) {
     }
 
     &__desc {
-      grid-area: description;
+      grid-column-start: 1;
+      grid-column-end: -1;
       white-space: initial;
     }
   }
 
-  .notifications-button {
+  .notifications-tracking-trigger {
     grid-area: notifications;
+    border-radius: var(--rounded-full);
   }
 
   .edit-category {
     position: relative;
-    left: -0.5rem;
     grid-area: edit;
+
+    [aria-hidden="true"] {
+      display: none;
+    }
   }
 }
 
