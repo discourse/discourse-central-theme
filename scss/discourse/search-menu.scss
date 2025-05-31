@@ -1,9 +1,11 @@
+@use "lib/viewport";
+
 .floating-search-input {
   width: 100%;
   max-width: 45rem;
   padding: 0;
 
-  @include breakpoint(tablet) {
+  @include viewport.until(md) {
     padding: 0;
   }
 

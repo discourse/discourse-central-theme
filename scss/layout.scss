@@ -1,3 +1,5 @@
+@use "lib/viewport";
+
 html {
   font-size: 16px;
   color: var(--neutral-10);
@@ -7,7 +9,7 @@ html,
 body {
   background-color: var(--neutral-100);
 
-  @include breakpoint(tablet) {
+  @include viewport.until(md) {
     background-color: var(--neutral-95);
   }
 }
@@ -55,14 +57,14 @@ body {
         grid-template-areas: "navigation content";
         grid-template-columns: var(--column-navigation) var(--column-content);
 
-        @include breakpoint(large) {
+        @include viewport.until(lg) {
           grid-template-columns: var(--column-navigation-mini) minmax(0, 1fr);
           column-gap: 0;
           padding-right: 0;
           padding-left: 0;
         }
 
-        @include breakpoint(tablet) {
+        @include viewport.until(md) {
           grid-template-areas: "content";
           grid-template-columns: 1fr;
         }
@@ -88,7 +90,7 @@ body {
       margin: 0 auto;
       padding: 0 var(--wrap-px) 0;
 
-      @include breakpoint(large) {
+      @include viewport.until(lg) {
         grid-template-columns: var(--column-navigation-mini) minmax(0, 1fr) var(
             --column-blocks
           );
@@ -101,7 +103,7 @@ body {
         }
       }
 
-      @include breakpoint(tablet) {
+      @include viewport.until(md) {
         grid-template-areas: "content";
         grid-template-columns: 1fr;
         padding: 0;
@@ -114,7 +116,7 @@ body {
         }
       }
 
-      @include breakpoint(large) {
+      @include viewport.until(lg) {
         padding-left: 0;
       }
 
@@ -140,11 +142,11 @@ body {
         border: var(--border-outer);
         border-radius: var(--rounded-lg);
 
-        @include breakpoint(large) {
+        @include viewport.until(lg) {
           margin-top: 1rem;
         }
 
-        @include breakpoint(tablet) {
+        @include viewport.until(md) {
           margin: 0;
           border: 0;
           border-radius: 0;

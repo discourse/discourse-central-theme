@@ -1,5 +1,7 @@
+@use "lib/viewport";
+
 body:not(.admin-interface) {
-  @include breakpoint(tablet) {
+  @include viewport.until(md) {
     &[class*="archetype-"] {
       .sidebar-wrapper {
         display: none;
@@ -221,7 +223,7 @@ body:not(.admin-interface) {
   // The default sidebar becomes slide-out for smaller screens
   // but we still want to use it, so a duplicate is added
   // with the class c-small-sidebar
-  @media screen and (max-width: 1000px) {
+  @media screen and (width <= 1000px) {
     .sidebar-wrapper {
       .sidebar-section-wrapper .sidebar-section-header-wrapper {
         display: none;
@@ -535,7 +537,7 @@ body:has(.admin-main-nav .nav-pills) {
   display: none !important;
   border: none !important; // very specific in core
 
-  @media screen and (min-width: 1001px) {
+  @media screen and (width >= 1001px) {
     display: block !important; // overrides other important
   }
 }
