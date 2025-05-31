@@ -1,3 +1,4 @@
+@use "lib/viewport";
 @import "online";
 @import "chart";
 @import "time";
@@ -61,7 +62,7 @@
     padding-top: 2rem;
     padding-bottom: 2rem;
 
-    @include breakpoint(large) {
+    @include viewport.until(lg) {
       padding-top: 1rem;
       padding-bottom: 1rem;
     }
