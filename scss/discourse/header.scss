@@ -1,3 +1,5 @@
+@use "lib/viewport";
+
 .d-header {
   box-sizing: content-box;
   height: 3rem;
@@ -22,11 +24,11 @@
       grid-template-columns: 19rem var(--column-content) var(--column-blocks);
       gap: 2rem;
 
-      @include breakpoint(large) {
+      @include viewport.until(lg) {
         display: flex;
       }
 
-      @media screen and (max-width: 1080px) {
+      @media screen and (width <= 1080px) {
         grid-template-columns: auto var(--column-content) var(--column-blocks);
         gap: 1rem;
       }
@@ -126,7 +128,7 @@
     }
 
     li.chat-header-icon {
-      @include breakpoint(tablet) {
+      @include viewport.until(md) {
         display: none;
       }
     }
@@ -158,7 +160,7 @@
   .panel .search-menu {
     display: none;
 
-    @include breakpoint(tablet) {
+    @include viewport.until(md) {
       display: flex;
     }
   }
@@ -166,7 +168,7 @@
   .before-header-panel-outlet {
     flex: 1 1 auto;
 
-    @include breakpoint(tablet) {
+    @include viewport.until(md) {
       display: none;
     }
   }
