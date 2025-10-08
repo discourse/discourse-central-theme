@@ -16,9 +16,9 @@
 
   .nav-pills {
     li:not(
-        .user-nav__notifications-responses,
-        .user-nav__notifications-mentions
-      ) {
+      .user-nav__notifications-responses,
+      .user-nav__notifications-mentions
+    ) {
       display: none;
     }
   }
