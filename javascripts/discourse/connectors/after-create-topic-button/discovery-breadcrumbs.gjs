@@ -10,7 +10,6 @@ import { i18n } from "discourse-i18n";
 
 export default class DiscoveryBreadcrumbs extends Component {
   @service router;
-  @service site;
   @service discovery;
 
   @tracked routeType;

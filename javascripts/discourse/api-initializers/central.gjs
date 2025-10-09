@@ -1,6 +1,6 @@
 import { apiInitializer } from "discourse/lib/api";
 
-export default apiInitializer("1.0", () => {
+export default apiInitializer(() => {
   const categories = settings.category_icons;
 
   if (categories) {

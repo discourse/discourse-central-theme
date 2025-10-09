@@ -11,6 +11,6 @@ function removeProfileExpand(api) {
 export default {
   name: "remove-profile-expand",
   initialize() {
-    withPluginApi("0.10.1", removeProfileExpand);
+    withPluginApi(removeProfileExpand);
   },
 };
