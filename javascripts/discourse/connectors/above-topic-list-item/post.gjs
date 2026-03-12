@@ -5,7 +5,6 @@ import didInsert from "@ember/render-modifiers/modifiers/did-insert";
 import willDestroy from "@ember/render-modifiers/modifiers/will-destroy";
 import { service } from "@ember/service";
 import { htmlSafe } from "@ember/template";
-import { eq, or } from "truth-helpers";
 import UserAvatarFlair from "discourse/components/user-avatar-flair";
 import UserLink from "discourse/components/user-link";
 import avatar from "discourse/helpers/avatar";
@@ -14,6 +13,7 @@ import icon from "discourse/helpers/d-icon";
 import formatDate from "discourse/helpers/format-date";
 import number from "discourse/helpers/number";
 import replaceEmoji from "discourse/helpers/replace-emoji";
+import { eq, or } from "discourse/truth-helpers";
 import { i18n } from "discourse-i18n";
 import LikeToggle from "../../components/like-toggle";
 import endsWithEllipsis from "../../helpers/ends-with-ellipsis";
@@ -28,7 +28,7 @@ export default class PostPrimary extends Component {
   }
 
   get topic() {
-    return this.args.outletArgs.topic;
+    return this.args.topic;
   }
 
   @action

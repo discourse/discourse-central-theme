@@ -4,7 +4,6 @@ import { concat } from "@ember/helper";
 import { on } from "@ember/modifier";
 import { action } from "@ember/object";
 import { htmlSafe } from "@ember/template";
-import { eq } from "truth-helpers";
 import UserLink from "discourse/components/user-link";
 import avatar from "discourse/helpers/avatar";
 import categoryLink from "discourse/helpers/category-link";
@@ -14,6 +13,7 @@ import number from "discourse/helpers/number";
 import replaceEmoji from "discourse/helpers/replace-emoji";
 import { ajax } from "discourse/lib/ajax";
 import Category from "discourse/models/category";
+import { eq } from "discourse/truth-helpers";
 import { i18n } from "discourse-i18n";
 
 const PERIODS = [

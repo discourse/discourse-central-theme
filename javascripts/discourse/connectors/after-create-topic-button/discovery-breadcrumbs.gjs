@@ -4,15 +4,13 @@ import { on } from "@ember/modifier";
 import { action } from "@ember/object";
 import { service } from "@ember/service";
 import { htmlSafe } from "@ember/template";
-import { eq } from "truth-helpers";
 import categoryBadge from "discourse/helpers/category-badge";
+import { eq } from "discourse/truth-helpers";
 import { i18n } from "discourse-i18n";
 
 export default class DiscoveryBreadcrumbs extends Component {
   @service router;
   @service discovery;
-
-  @tracked routeType;
 
   get filterType() {
     if (this.router.currentRoute.localName === "categories") {
@@ -58,10 +56,7 @@ export default class DiscoveryBreadcrumbs extends Component {
       {{/if}}
 
       {{#if this.shouldRenderFilters}}
-        <TopicFilter
-          @filterType={{this.filterType}}
-          @routeType={{this.routeType}}
-        />
+        <TopicFilter @filterType={{this.filterType}} />
       {{/if}}
     </div>
   </template>
