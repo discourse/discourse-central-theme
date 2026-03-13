@@ -4,10 +4,10 @@ import { concat } from "@ember/helper";
 import { LinkTo } from "@ember/routing";
 import { service } from "@ember/service";
 import { htmlSafe } from "@ember/template";
-import { or } from "truth-helpers";
 import avatar from "discourse/helpers/avatar";
 import concatClass from "discourse/helpers/concat-class";
 import { ajax } from "discourse/lib/ajax";
+import { or } from "discourse/truth-helpers";
 import { i18n } from "discourse-i18n";
 
 export default class Profile extends Component {

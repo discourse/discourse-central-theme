@@ -1,3 +1,4 @@
+/* eslint-disable ember/no-classic-components */
 import Component from "@ember/component";
 import { tagName } from "@ember-decorators/component";
 import SmallScreenSidebar0 from "../../components/small-screen-sidebar";

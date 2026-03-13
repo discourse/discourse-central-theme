@@ -1,5 +1,4 @@
 import Component from "@glimmer/component";
-import { tracked } from "@glimmer/tracking";
 import { fn } from "@ember/helper";
 import { on } from "@ember/modifier";
 import { action } from "@ember/object";
@@ -14,8 +13,6 @@ import { i18n } from "discourse-i18n";
 export default class CentralCategories extends Component {
   @service router;
 
-  @tracked categories = this.args.outletArgs.categories;
-
   @action
   navigate(url, event) {
     const anchor = event.target.closest("a, button");
@@ -29,7 +26,7 @@ export default class CentralCategories extends Component {
 
   <template>
     <div class="c-categories">
-      {{#each this.categories as |category|}}
+      {{#each @categories as |category|}}
         {{! template-lint-disable no-invalid-interactive }}
         <div
           {{on "click" (fn this.navigate category.url)}}

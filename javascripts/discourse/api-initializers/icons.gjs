@@ -1,12 +1,12 @@
 import { on } from "@ember/modifier";
 import { LinkTo } from "@ember/routing";
-import { eq, or } from "truth-helpers";
+import DMenu from "discourse/float-kit/components/d-menu";
 import avatar from "discourse/helpers/bound-avatar-template";
 import icon from "discourse/helpers/d-icon";
 import routeAction from "discourse/helpers/route-action";
 import { apiInitializer } from "discourse/lib/api";
+import { eq, or } from "discourse/truth-helpers";
 import { i18n } from "discourse-i18n";
-import DMenu from "float-kit/components/d-menu";
 
 export default apiInitializer((api) => {
   const currentUser = api.getCurrentUser();
