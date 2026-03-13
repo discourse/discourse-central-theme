@@ -4,11 +4,11 @@ import { on } from "@ember/modifier";
 import { action } from "@ember/object";
 import { debounce } from "@ember/runloop";
 import { service } from "@ember/service";
-import { resettableTracked } from "discourse/declarations/app/lib/tracked-tools";
 import concatClass from "discourse/helpers/concat-class";
 import icon from "discourse/helpers/d-icon";
 import number from "discourse/helpers/number";
 import { ajax } from "discourse/lib/ajax";
+import { resettableTracked } from "discourse/lib/tracked-tools";
 import { not } from "discourse/truth-helpers";
 import { i18n } from "discourse-i18n";
 
